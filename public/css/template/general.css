@@ -344,6 +344,9 @@ nav > div.identity span {
 .active-tool {
     background-color: #cccccc!important;
 }
+.active-subTool{
+    background-color: #e7e7e7!important;
+}
 .opacity {
     opacity: 1!important;
 }

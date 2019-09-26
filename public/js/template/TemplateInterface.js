@@ -14,6 +14,7 @@ class TemplateInterface{
     constructor(){
         this.tools = {};
         this.initAccueil()
+        this.buildTemplateEventZone()
     }
 
     initAccueil(){
@@ -36,33 +37,12 @@ class TemplateInterface{
         this.toolBox.activeToolBoxEvents();
     }
 
-   /* displayMenu(){
-        this.templateMenu = new TemplateMenu();
-        this.templateMenu.init();
-    }*/
-
- /*  init(){
-       this.initActionWindows()
-    }
-    initActionWindows(){
-        switch(this.currentStage){
-            case 1 : {
-              let templateCreatorWindow =  new TemplateCreatorWindow(this)
-                templateCreatorWindow.switchOn();
-            }
-            break;
-        }
+    buildTemplateEventZone(){
+        /*let templateEventsZone = $('#templateEventsZone');
+        let topMenu = $('nav');
+        templateEventsZone.css({'position':'absolute', 'top':topMenu.height(), 'width':'100%','height':'100%'})*/
     }
 
-    /*createTemplate(templateProperties){
-        this.template = new Template(templateProperties);
-        this.template.create();
-        return this.template;
-    }*/
-
-    /*attachToolBox(){
-        this.toolBox = new TemplateToolBox();
-    }*/
 }
 
 export {TemplateInterface}

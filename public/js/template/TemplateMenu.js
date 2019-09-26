@@ -5,8 +5,8 @@ class TemplateMenu{
     }
 
     init(){
-        console.log('TemplateMenu initialized')
-        console.log(this.$newTemplateButton)
+       
+       
         this.events('DisplayCreateTemplateDivOnClick')
         this.events('createTemplateOnClick')
         this.events('displayImportTemplateDivOnClick')
@@ -18,7 +18,7 @@ class TemplateMenu{
                 this.$newTemplateButton.on('click',(e)=>{
                     e.preventDefault()
                     this.buildNewTemplateDiv()
-                    console.log('Création !')
+                   
                 });
                 break;
             case 'createTemplateOnClick' :
@@ -26,20 +26,20 @@ class TemplateMenu{
 
                     e.preventDefault()
                     window.location.href = "http://localhost:8000/template/create";
-                    console.log('Template créé !')
+                   
                 })
                 break;
             case 'displayImportTemplateDivOnClick' :
                 this.$loadTemplateButton.on('click',(e)=>{
                     e.preventDefault()
                     this.buildImportTemplateDiv()
-                    console.log('Création !')
+                   
                 })
                 break;
             case 'importTemplateOnClick' :
                 $('body').on('click','#validTemplateImport',(e)=>{
                     e.preventDefault()
-                    console.log('Template importé !')
+                   
                 })
                 break;
         }

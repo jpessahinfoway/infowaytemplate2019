@@ -1,7 +1,15 @@
 class TemplateToolBox{
     constructor(){
-       
-        this.iconsSize=null;
+        console.log('Hello Toolbox')
+
+        this.$location = {
+            ul : $('.tools ul:first'),
+        };
+
+        this.tools={};
+
+
+       /* this.iconsSize=null;
         this.casesProperties={size:null,background:'white'};
         //this.setToolBoxCaseSize({width:50,height:50});
         this.setIconSize(20);
@@ -17,15 +25,51 @@ class TemplateToolBox{
             toolBox : $('#toolbar'),
             toolsContainer : $('.tools')
         };
-        this.active()
+        this.active()*/
+
     }
 
-    active(){
-       
-        this.$location.toolBox.fadeIn();
+    setToolIcon(tool,icon){
+        tool.iconClass=icon
+        tool.elements.icon=$(`<i class="${tool.iconClass}"></i>`);
     }
 
-    initLastActivatedToolBoxElements(){
+    setToolTitle(tool) {
+        tool.attrs.title = tool.instance.description;
+    }
+    addTool(tool,icon){
+
+        this.tools[tool.name]={};
+        this.tools[tool.name].elements={};
+        this.tools[tool.name].attrs={};
+        this.tools[tool.name].instance=tool;
+        this.setToolTitle(this.tools[tool.name]);
+        this.tools[tool.name].elements.span = $(`<span>${this.tools[tool.name].attrs.title}</span>`);
+        this.tools[tool.name].elements.li=$(`<li title="${this.tools[tool.name].attrs.title}"></li>`);
+        this.setToolIcon(this.tools[tool.name],icon);
+
+        this.$location.ul.append(
+            this.tools[tool.name].elements.li
+                .append(this.tools[tool.name].elements.span)
+                .append(this.tools[tool.name].elements.icon)
+        );
+
+        /*let icon = $(`<i></i>`)
+        let iconInToolBox =$('<li class="tools"></li>');
+        iconInToolBox.append(tool.iconContainer);
+        let subToolsContainer,subToolConainer=null;
+        Object.keys(this.tools[tool.constructor.name].subTools).forEach((subToolName,index)=>{
+            this.subTools[subToolName]=this.tools[tool.constructor.name].subTools[subToolName];
+            if(index<1){  subToolsContainer=$('<ul class="subToolsContainer"></ul>')  };
+            subToolConainer = $('<li class="subtools"></li>').append(this.tools[tool.constructor.name].subTools[subToolName].iconContainer);
+            subToolsContainer.append(subToolConainer);
+        });
+        if(subToolsContainer !== null)iconInToolBox.append(subToolsContainer);
+        this.setMenuCaseProperties(tool);
+        this.showMenuCase(iconInToolBox,tool);*/
+    }
+
+   /* initLastActivatedToolBoxElements(){
         this.lastActivatedToolBoxElements = {
             tool : {
                 'li' : null,
@@ -36,15 +80,16 @@ class TemplateToolBox{
                 'i'  : "dfgdfg"
             }
         }
-    }
-    setLastActivatedToolBoxElements({tool = {li : false, i:false}, subTool = {li:false,i:false}} = {}){
+    }*/
+
+   /* setLastActivatedToolBoxElements({tool = {li : false, i:false}, subTool = {li:false,i:false}} = {}){
         if(tool.li)this.lastActivatedToolBoxElements.tool.li=tool.li;
         if(tool.i)this.lastActivatedToolBoxElements.tool.i=tool.i;
         if(subTool.li)this.lastActivatedToolBoxElements.subTool.li=subTool.li;
         if(subTool.i) this.lastActivatedToolBoxElements.subTool.i = subTool.i
-    }
+    }*/
 
-    setToolBoxCaseSize(size){
+    /*setToolBoxCaseSize(size){
         let access = true;
 
         if(typeof size.width === 'undefined' ||  !Number.isInteger(size.width)){
@@ -58,8 +103,8 @@ class TemplateToolBox{
 
         if(!access)return;
         this.casesProperties.size=size;
-    }
-    setIconSize(size){
+    }*/
+  /*  setIconSize(size){
         let access = true;
 
         if(typeof size === 'undefined' ||  !Number.isInteger(size)){
@@ -69,33 +114,24 @@ class TemplateToolBox{
 
         if(!access)return;
         this.iconsSize=size;
-    }
+    }*/
 
-    setMenuCaseProperties(tool){
+  /*  setMenuCaseProperties(tool){
         let icon = tool.iconContainer;
         icon.css('font-size',this.iconsSize);
         this.$location.toolBox.find('ul').css('background-color',this.casesProperties.background)
 
-    }
-    showMenuCase(menuCase,tool){
-       /*if(typeof icon ==='undefined' || !icon.is('i')){
-          
-           return
-       }*/
+    }*/
+   /* showMenuCase(menuCase,tool){
 
         //menuCase.width(this.casesProperties.size.width);
         //menuCase.height(this.casesProperties.size.height);
 
         this.$location.toolBox.find('ul:first').append(menuCase);
-    }
+    }*/
 
-    disactiveAllTools(exception){
+   /* disactiveAllTools(exception){
         let exceptionArray = exception;
-
-       /* if(typeof exception === 'undefined' || (!Array.isArray(exception) && typeof exception !== 'string')){
-           
-            return
-        }*/
 
      //   typeof exception === 'string'? exceptionArray.push(exception):exceptionArray = exception;
         let allowDisactivation;
@@ -120,10 +156,10 @@ class TemplateToolBox{
                
             }
         })
-    }
+    }*/
 
 
-    activeToolBoxEvents(){
+   /* activeToolBoxEvents(){
         //Au click sur un element de la toolBox
         this.$location.toolBox.find('.tools li').on('click',(e)=>{
             let active = {tool : false, subtool:false};
@@ -172,14 +208,15 @@ class TemplateToolBox{
             e.stopPropagation()
         })
     }
-    activeAllTools(){
+    */
+   /* activeAllTools(){
 
        
         Object.keys(this.tools).forEach((tool)=>{
             this.tools[tool].active();
         })
-    }
-    activeToolInToolBox(toolName,active=true){
+    }*/
+   /* activeToolInToolBox(toolName,active=true){
         let element = Object.keys(this.tools).includes(toolName)?'tool':'subTool';
 console.log(this.activatedTool)
         let objectToActive = element==='tool'?this.tools[toolName]:this.subTools[toolName];
@@ -194,23 +231,9 @@ console.log(this.activatedTool)
             objectToActive.iconContainer.parent().removeClass(classToAdd)
         }
 
-    }
+    }*/
 
-    addTools(tool){
-        this.tools[tool.constructor.name]=tool;
-        let iconInToolBox =$('<li class="tools"></li>');
-        iconInToolBox.append(tool.iconContainer);
-        let subToolsContainer,subToolConainer=null;
-        Object.keys(this.tools[tool.constructor.name].subTools).forEach((subToolName,index)=>{
-            this.subTools[subToolName]=this.tools[tool.constructor.name].subTools[subToolName];
-            if(index<1){  subToolsContainer=$('<ul class="subToolsContainer"></ul>')  };
-            subToolConainer = $('<li class="subtools"></li>').append(this.tools[tool.constructor.name].subTools[subToolName].iconContainer);
-            subToolsContainer.append(subToolConainer);
-        });
-        if(subToolsContainer !== null)iconInToolBox.append(subToolsContainer);
-        this.setMenuCaseProperties(tool);
-        this.showMenuCase(iconInToolBox,tool);
-    }
+
 
 }
 

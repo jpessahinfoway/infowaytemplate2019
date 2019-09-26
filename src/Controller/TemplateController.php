@@ -33,7 +33,7 @@ class TemplateController extends AbstractController
         $templateName = $request->get('name');
         $orientation = $request->get('orientation');
         $template = $em->getRepository(template::class)->findAll();
-        return $this->render('template/create/index.html.twig', [
+        return $this->render('template/create/index2.html.twig', [
             'controller_name' => 'TemplateController',
             'templateName'    => $templateName,
             'orientation'     => $orientation,

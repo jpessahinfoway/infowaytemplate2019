@@ -1,13 +1,13 @@
-import {TemplateTool} from '../TemplateTool.js'
+import {TemplateTool} from './TemplateTool.js'
+
 class ZoneDraggerTool extends TemplateTool{
-    constructor(template){
-        super(template);
-        this.setTitle('Déplacer');
-        this.setIcon('fal fa-arrows');
-        this.$eventLocation = '.zone'
+    constructor(templateInterface){
+        super(templateInterface);
+        this.description = 'Déplacer une zone';
+        this.$eventLocation.click =  $('body');
     }
 
-    activeTool(boolean){
+   /* activeTool(boolean){
         super.activeToolDecorator(boolean,(mode)=>{
             if(mode==='on'){
                 let newPosition,
@@ -40,29 +40,19 @@ class ZoneDraggerTool extends TemplateTool{
                             if(nextZonePos.top<0)nextZonePos.top=0;
                             if(nextZonePos.left + currentZone.size.width>this.template.size.width)nextZonePos.left= this.template.size.width-currentZone.size.width;
                             if(nextZonePos.top + currentZone.size.height>this.template.size.height)nextZonePos.top= this.template.size.height-currentZone.size.height;
-                            /*else if(nextZonePos.left + currentZone.size.width>this.template.size.width) {
-                                positionLimit = {left:this.template.size.width-currentZone.size.width}
-                                currentZone.setPosition(positionLimit)
-                                resolve(this.stopMove=true)
-                            }*/
+
+
                             else if(nextZonePos.top<=0) {
-                                /*positionLimit = {top : 0}
-                                Promise.resolve(currentZone.setPosition(positionLimit)).then(()=>{
-                                    this.stopMove=true
-                                })*/
+
                             }
                             else{
                                 this.stopMove=false
                             }
                         })
-                        /*if(nextZonePos.left<0 || (nextZonePos.left + this.currentZone.size.width) > this.template.size.width || nextZonePos.top <= 0) { this.stopMove = false }
-                        else { this.stopMove=true; }*/
-                        //if (this.activated && !this.stopMove) {
+
                             currentZone.setPosition(nextZonePos);
                             currentPosition = nextZonePos
                         this.template.tools['ZoneInfoDisplayerTool'].updateInfosZoneContent({position:nextZonePos});
-                            // currentZone.setPosition();
-                        //}
                     }
                 })
                 $(`${'body'}`).on('mouseup.'+this.constructor.name, (e) => {
@@ -77,7 +67,7 @@ class ZoneDraggerTool extends TemplateTool{
             }
         })
     }
-
+*/
 }
 
 export {ZoneDraggerTool}

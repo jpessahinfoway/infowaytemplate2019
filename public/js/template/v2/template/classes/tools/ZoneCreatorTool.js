@@ -1,15 +1,19 @@
-import {TemplateTool} from '../TemplateTool.js'
+import {TemplateTool} from './TemplateTool.js'
 class ZoneCreatorTool extends TemplateTool{
-    constructor(template){
-        super(template);
-        this.setIcon('fal fa-plus-square');
+
+    constructor(templateInterface){
+        super(templateInterface);
+        this.description = 'Ajouter une zone';
+        this.$eventLocation.click = $(document);
+
+       /* this.setIcon('fal fa-plus-square');
         this.setTitle('Ajouter');
         this.$eventLocation=$(document);
         this.$currentWorkZone = null;
-        this.lastPosition = null;
+        this.lastPosition = null;*/
     }
 
-    activeTool(boolean){
+    /*activeTool(boolean){
         super.activeToolDecorator(boolean,(mode)=>{
             if(mode==='on'){
                 this.$eventLocation.on('mousedown.'+this.constructor.name,(e)=> {
@@ -60,7 +64,7 @@ class ZoneCreatorTool extends TemplateTool{
                 this.$eventLocation.unbind('mousemove.'+this.constructor.name);
             }
         })
-    }
+    }*/
 
 }
 

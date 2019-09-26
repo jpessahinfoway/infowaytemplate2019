@@ -1,10 +1,9 @@
-import {TemplateTool} from '../TemplateTool.js'
+import {TemplateTool} from './TemplateTool.js'
 class ZoneRemoverTool extends TemplateTool{
-    constructor(template){
-        super(template);
-        this.setIcon('fal fa-trash-alt');
-        this.setTitle('Supprimer');
-        this.$eventLocation = $('.zoneDeleter');
+    constructor(templateInterface){
+        super(templateInterface);
+        this.$eventLocation.click = $('.zoneDeleter');
+        this.description = 'Supprimer une zone';
         this.removerIcon = {
             name : '<i class="fal fa-times"></i>',
             size : 10,
@@ -15,7 +14,7 @@ class ZoneRemoverTool extends TemplateTool{
        
     }
 
-    appendCloseButton(){
+    /*appendCloseButton(){
         var myPromise = new Promise(resolve=>{
             Object.keys(this.template.zones).forEach((zoneIndex,indexIter)=>{
                 let currentZone = this.template.zones[zoneIndex];
@@ -41,9 +40,9 @@ class ZoneRemoverTool extends TemplateTool{
         });
         return myPromise;
 
-    }
+    }*/
 
-    activeTool(boolean){
+   /* activeTool(boolean){
         super.activeToolDecorator(boolean,(mode)=>{
             if(mode==='on'){
                 this.appendCloseButton().then(()=>{
@@ -56,7 +55,7 @@ class ZoneRemoverTool extends TemplateTool{
                 $('.'+this.removerIcon.class).remove()
             }
         })
-    }
+    }*/
 }
 
 export {ZoneRemoverTool}

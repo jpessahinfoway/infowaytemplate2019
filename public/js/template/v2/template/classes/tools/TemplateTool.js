@@ -1,17 +1,19 @@
 class TemplateTool {
-    constructor(template){
-        this.template = template;
+    constructor(templateInterface){
+        this.interface = templateInterface;
         this.name = this.constructor.name;
-        this.jq = null;
+      //  this.jq = null;
         this.icon = null;
        
-        this.iconContainer = $(`<span title="${this.title}" class="${this.name}" data-tool="${this.constructor.name}"></span>`);
-        this.title = null;
+       // this.iconContainer = $(`<span title="${this.title}" class="${this.name}" data-tool="${this.constructor.name}"></span>`);
+
         this.state = 'disabled';
-        this.$eventLocation=null;
-        this.workZone = $('#template__workzone__templateZone');
+
+        this.$eventLocation={};
+
+       // this.workZone = $('#template__workzone__templateZone');
         this.subTools = {};
-        this.activated = false;
+    //    this.activated = false;
     }
 
     addSubTool(subTool){
@@ -36,21 +38,21 @@ class TemplateTool {
         return { top: _y, left: _x };
     }
 
-    setIcon(iconClass){
+   /* setIcon(iconClass){
         this.icon = $(`<i class="${iconClass}"></i>`)
         this.iconContainer.append(this.icon);
         this.icon.data('eventname',this.constructor.name);
-    }
+    }*/
 
     isActivated(){
         return this.state ==='enabled';
     }
 
-    setTitle(title){
+    /*setTitle(title){
         this.iconContainer.attr('title',this.title=title)
-    }
+    }*/
 
-    switchState(){
+    /*switchState(){
         if(typeof this.state === 'undefined' || (this.state !== 'enabled' && this.state !== 'disabled')){
            
             return;
@@ -59,9 +61,9 @@ class TemplateTool {
         else this.state='enabled';
        
         return this.state !== 'disabled';
-    }
+    }*/
 
-    activeToolDecorator(boolean,functionToExecuteWhenEventIsTriggered){
+    /*activeToolDecorator(boolean,functionToExecuteWhenEventIsTriggered){
        
         if(typeof boolean ==='undefined'){
             this.activeToolDecorator(this.switchState());
@@ -94,7 +96,7 @@ class TemplateTool {
            
         }
     }
-
+*/
 
 }
 

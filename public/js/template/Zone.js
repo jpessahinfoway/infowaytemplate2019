@@ -5,7 +5,7 @@ class Zone{
         this.type = type;
         this.size = size;
         this.position = position;
-        console.log(this.size)
+       
         this.backgroundColor = 'rgb(255, 119, 119)';
         this.identificator = null;
         this.location=null;
@@ -45,7 +45,7 @@ class Zone{
     }
 
     setLocation(location,append=false){
-        if(typeof append !== 'boolean')return console.log('Mauvais typage')
+        if(typeof append !== 'boolean')return
         this.location = location;
         if(append)this.appendIt()
     }
@@ -59,7 +59,7 @@ class Zone{
 
 
 
-        console.log(newZone)
+       
         newZone.addClass('zone');
         newZone.css    ({top:position.top,left:position.left});
         newZone.width  (size.width+'px');
@@ -80,7 +80,7 @@ class Zone{
 
     setSize(size = this.size) {
         if(size.width){
-            console.log(size.width)
+           
             this.$zone.width(size.width);
             this.size.width=size.width
         }

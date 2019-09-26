@@ -2,7 +2,7 @@ import {TemplateInterface} from "../TemplateInterface.js";
 import {ZoneCreatorTool} from "../tools/ZoneCreatorTool.js";
 import {ZoneDraggerTool} from "../tools/ZoneDraggerTool.js";
 import {ZoneRemoverTool} from "../tools/ZoneRemoverTool.js";
-import {ZonePriorityManagerTool} from "../tools/ZonePriorityManagerTool.js";
+//import {ZonePriorityManagerTool} from "../tools/ZonePriorityManagerTool.js";
 import {ZoneResizerTool} from "../tools/ZoneResizerTool.js";
 import {Template} from "../Template.js";
 

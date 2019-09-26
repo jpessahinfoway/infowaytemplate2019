@@ -1,20 +1,19 @@
-import {TemplateTool} from '../TemplateTool.js'
+import {TemplateTool} from './TemplateTool.js'
 class ZoneResizerTool extends TemplateTool{
-    constructor(template){
-        super(template);
-        this.setIcon('fal fa-vector-square');
-        this.setTitle('Transformation');
-        this.$eventLocation = 'zoneResizer';
-        this.iconsArray = [];
+    constructor(templateInterface){
+        super(templateInterface);
+        this.description='Transformer une zone'
+        this.$eventLocation = $('body');
+        /*this.iconsArray = [];
         this.size = 5;
         this.backGroundColor = null;
-        this.borderStyle = null;
+        this.borderStyle = null;*/
 
     }
 
 
 
-    appendResizeButton(){
+  /*  appendResizeButton(){
         let myPromise = new Promise((resolve)=>{
             Object.keys(this.template.zones).forEach((templateZoneIndex,iterIndex)=>{
                 let currentZone = this.template.zones[templateZoneIndex];
@@ -48,8 +47,8 @@ class ZoneResizerTool extends TemplateTool{
         });
         return myPromise;
     }
-
-    resizeZoneOnMouseActivity(){
+*/
+    /*resizeZoneOnMouseActivity(){
         $(`.${this.$eventLocation}`).on('mousedown.'+this.constructor,(e)=>{
             this.activated=true
 
@@ -122,8 +121,7 @@ class ZoneResizerTool extends TemplateTool{
 
 
                     if(cursorPosition.new.left<=0){
-                       // let difference =
-                        //properties.new.size.width=false
+
                     }
                     if(properties.new.position.top<=-1){
                         properties.new.size.height = false;
@@ -147,8 +145,8 @@ class ZoneResizerTool extends TemplateTool{
         $('body').on('mouseup',()=>{
             $('body').unbind('mousemove.'+this.constructor.name)
         })
-    }
-    activeTool(boolean){
+    }*/
+    /*activeTool(boolean){
         super.activeToolDecorator(boolean,(mode)=>{
             if(mode==='on'){
 
@@ -165,7 +163,7 @@ class ZoneResizerTool extends TemplateTool{
                // $('.'+this.removerIcon.class).remove()
             }
         })
-    }
+    }*/
 
 }
 
