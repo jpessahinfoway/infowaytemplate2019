@@ -9,6 +9,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 class TemplateController extends AbstractController
@@ -22,6 +23,19 @@ class TemplateController extends AbstractController
         return $this->render('template/accueil/index.html.twig', [
             'controller_name' => 'TemplateController',
         ]);
+    }
+    /**
+     * @Route("/template/stage1/register", name="templateStage1Register",methods="GET")
+     */
+    public function registerTemplate(Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $zonesToRegister = $request->get('zones');
+        $templateToRegister = $request->get('template');
+        //var_dump($zonesToRegister);
+        //var_dump($zonesToRegister);
+        var_dump($templateToRegister);
+        return new Response('Enregistrement en base OK');
     }
 
     /**

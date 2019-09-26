@@ -1,23 +1,29 @@
-import {TemplateTool} from '../TemplateTool.js'
-import {ZonePriorityForegroundTool} from './subTools/ZonePriorityForegroundTool.js'
+import {TemplateTool} from './TemplateTool.js'
+import {ZonePriorityForegroundTool} from "./subtools/ZonePriorityForegroundTool.js";
+/*import {ZonePriorityForegroundTool} from './subTools/ZonePriorityForegroundTool.js'
 import {ZonePriorityBackgroundTool} from "./subTools/ZonePriorityBackgroundTool.js";
 import {ZonePriorityAboveTool} from "./subTools/ZonePriorityAboveTool.js";
-import {ZonePriorityBellowTool} from "./subTools/ZonePriorityBellowTool.js";
+import {ZonePriorityBellowTool} from "./subTools/ZonePriorityBellowTool.js";*/
 
 class ZonePriorityManagerTool extends TemplateTool{
-    constructor(template){
-        super(template);
-        this.setTitle('Arranger');
+    constructor(templateInterface){
+        super(templateInterface);
+        this.description = 'Arranger une zone';
         this.$eventLocation=$('body');
-        this.addSubTools(template);
-        this.setIcon('fal fa-layer-group');
+        this.addSubTools()
+       // this.addSubTools(template);
     }
 
-    addSubTools(template){
-        this.addSubTool(new ZonePriorityForegroundTool(template));
-        this.addSubTool(new ZonePriorityBackgroundTool(template));
-        this.addSubTool(new ZonePriorityAboveTool(template));
-        this.addSubTool(new ZonePriorityBellowTool(template));
+    addSubTool(subTool){
+        this.subTools[subTool.name]=subTool
+    }
+
+
+    addSubTools(){
+        this.addSubTool(new ZonePriorityForegroundTool(this.interface));
+      /*  this.addSubTool(new ZonePriorityBackgroundTool(this.interface));
+        this.addSubTool(new ZonePriorityAboveTool(this.interface));
+        this.addSubTool(new ZonePriorityBellowTool(this.interface));*/
     }
 
 
@@ -30,11 +36,11 @@ class ZonePriorityManagerTool extends TemplateTool{
        
     }*/
 
-   setIcon(iconClass){
+   /*setIcon(iconClass){
         super.setIcon(iconClass)
 
         //this.displaySubsIcons()
-    }
+    }*/
 
     /*createSubIconsContainer(){
         this.subIconsContainer = $('<ul>test</ul>');
@@ -44,7 +50,7 @@ class ZonePriorityManagerTool extends TemplateTool{
     }*/
 
 
-    displaySubsIcons(){
+   /* displaySubsIcons(){
         let ul = $('<ul></ul>')
         let lastIcon,lastIconContainer;
         Object.keys(this.subMenuIcons).forEach(subMenuIcon=>{
@@ -56,7 +62,7 @@ class ZonePriorityManagerTool extends TemplateTool{
         });
 
         this.iconContainer = $(this.iconContainer.get(0).outerHTML + ul.get(0).outerHTML)
-    }
+    }*/
 
     activeTool(boolean){
         super.activeToolDecorator(boolean,()=>{

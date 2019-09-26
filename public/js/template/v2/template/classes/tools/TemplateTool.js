@@ -13,6 +13,7 @@ class TemplateTool {
 
        // this.workZone = $('#template__workzone__templateZone');
         this.subTools = {};
+        console.log(this.subTools)
     //    this.activated = false;
     }
 
@@ -63,7 +64,7 @@ class TemplateTool {
         return this.state !== 'disabled';
     }*/
 
-    /*activeToolDecorator(boolean,functionToExecuteWhenEventIsTriggered){
+    activeToolDecorator(boolean,functionToExecuteWhenEventIsTriggered){
        
         if(typeof boolean ==='undefined'){
             this.activeToolDecorator(this.switchState());
@@ -96,7 +97,7 @@ class TemplateTool {
            
         }
     }
-*/
+
 
 }
 

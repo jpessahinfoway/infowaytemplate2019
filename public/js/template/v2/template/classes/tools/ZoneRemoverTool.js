@@ -2,7 +2,7 @@ import {TemplateTool} from './TemplateTool.js'
 class ZoneRemoverTool extends TemplateTool{
     constructor(templateInterface){
         super(templateInterface);
-        this.$eventLocation.click = $('.zoneDeleter');
+        this.$eventLocation.click = $('.body');
         this.description = 'Supprimer une zone';
         this.removerIcon = {
             name : '<i class="fal fa-times"></i>',
@@ -14,10 +14,9 @@ class ZoneRemoverTool extends TemplateTool{
        
     }
 
-    /*appendCloseButton(){
-        var myPromise = new Promise(resolve=>{
-            Object.keys(this.template.zones).forEach((zoneIndex,indexIter)=>{
-                let currentZone = this.template.zones[zoneIndex];
+    appendCloseButton(){
+            Object.keys(this.interface.currentTemplate.getZones()).forEach((zoneIndex,indexIter)=>{
+                let currentZone = this.interface.currentTemplate.getZone(zoneIndex);
                 let removerIcon = $(this.removerIcon.name);
                 removerIcon.css('font-size',this.removerIcon.size+'px');
                 removerIcon.css('position','absolute');
@@ -27,35 +26,29 @@ class ZoneRemoverTool extends TemplateTool{
                 removerIcon.css('padding',5);
                 removerIcon.addClass(this.removerIcon.class);
                 currentZone.$zone.append(removerIcon);
-                if(indexIter === Object.keys(this.template.zones).length-1){
-                   
-                    let zoneDeleterFinderInterval = setInterval(()=>{
-                        if(currentZone.$zone.find('.zoneDeleter').length>0){
-                            resolve('icone zone Deleter ajouté partout')
-                            clearInterval(zoneDeleterFinderInterval);
-                        }
-                    },100);
+                if(indexIter === Object.keys(this.interface.currentTemplate.getZones()).length-1){
+
                 }
             })
-        });
-        return myPromise;
+    }
 
-    }*/
-
-   /* activeTool(boolean){
+    activeTool(boolean){
         super.activeToolDecorator(boolean,(mode)=>{
+            console.log('sfsdf')
+
             if(mode==='on'){
-                this.appendCloseButton().then(()=>{
-                    $(`.${this.removerIcon.class}`).on('click.'+this.constructor.name,(e)=>{
-                        let zoneId=$(e.currentTarget).parent().prop('id').match(/[0-9]*$/)[0];
-                       
-                    });
-                })
+                this.appendCloseButton()
+                $('body').on('click.'+this.constructor.name,'.zoneDeleter',(e)=>{
+                    console.log($(e.currentTarget))
+                    let zoneId=$(e.currentTarget).parents('.zone').data('zone');
+                    this.interface.currentTemplate.deleteZoneInTemplate(zoneId)
+                });
             }else if(mode === 'off'){
                 $('.'+this.removerIcon.class).remove()
             }
+
         })
-    }*/
+    }
 }
 
 export {ZoneRemoverTool}

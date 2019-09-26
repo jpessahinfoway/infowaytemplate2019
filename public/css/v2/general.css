@@ -596,6 +596,14 @@ nav > div.identity span {
 .infos > .close {
     color: #385b72;
 }
+
+.zoneResizer{
+    height:5px;
+    width:5px;
+    position:absolute;
+    background-color: transparent;
+    border:1px solid black;
+}
 /***************************************************/
 /**********************ZONE*************************/
 /***************************************************/
@@ -606,15 +614,20 @@ nav > div.identity span {
 .container-zone > div {
     position: absolute;
 }
+
+.active-tool{
+    background:#369e89
+}
+
 .container-zone > div:first-child {
-    top: 50px;
+  /*  top: 50px;
     left: 100px;
     width: 700px;
-    height: 600px;
+    height: 600px;*/
 }
 .container-zone > div:last-child {
-    top: 10px;
+  /*  top: 10px;
     left: 900px;
     width: 200px;
-    height: 400px;
+    height: 400px;*/
 }

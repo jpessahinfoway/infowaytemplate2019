@@ -4,9 +4,7 @@ import {ZonePriorityManagerSubTool} from "./ZonePriorityManagerSubTool.js";
 class ZonePriorityBackgroundTool extends ZonePriorityManagerSubTool{
     constructor(template){
         super(template);
-       
-        this.setTitle('Mettre au dernier plan');
-        this.setIcon('fad fa-send-backward')
+        this.description = 'Mettre en dernier plan';
     }
 
     activeTool(boolean){

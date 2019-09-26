@@ -31,8 +31,9 @@ class Template{
     }
 
     deleteZoneInTemplate(id){
-        this.zones[id].delete();
-        delete this.zones[id];
+
+        this._zones[id].delete();
+        delete this._zones[id];
     }
 
     createNewZone(position={top:0,left:0},size={width:0,height:0}){

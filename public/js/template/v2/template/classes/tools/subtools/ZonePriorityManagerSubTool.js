@@ -3,14 +3,15 @@ import {TemplateSubTool} from "../TemplateSubTool.js";
 class ZonePriorityManagerSubTool extends TemplateSubTool{
     constructor(template){
         super(template);
-        this.$eventLocation=".zone";
+        this.$eventLocation.click=$('.zone');
     }
 
     activeTool(boolean,onActivationFunction){
         super.activeToolDecorator(boolean,(mode)=>{
             if(mode==='on'){
-                $('.zone').on('click.'+this.constructor.name,(e)=>{
-                    this.currentZone = this.template.zones[$(e.currentTarget).prop('id').match(/[0-9]*$/)[0]];
+                this.$eventLocation.click.on('click.'+this.constructor.name,(e)=>{
+                    let idZone = $(e.currentTarget).data('zone');
+                    this.currentZone = this.interface.currentTemplate.getZones(idZone)
                     onActivationFunction.bind(this)();
                     this.updateZoneZindex();
                 })
@@ -21,7 +22,7 @@ class ZonePriorityManagerSubTool extends TemplateSubTool{
     }
 
     filterZonesByZindex(croissant=true){
-      return Object.keys(this.template.zones).sort((a,b)=>{return croissant ? this.template.zones[a].zIndex - this.template.zones[b].zIndex : this.template.zones[b].zIndex - this.template.zones[a].zIndex}).map(val=>this.template.zones[val])
+      return Object.keys(this.interface.currentTemplate.getZones()).sort((a,b)=>{return croissant ? this.interface.currentTemplate.getZones(a).zIndex - this.interface.currentTemplate.getZones(b).zIndex : this.interface.currentTemplate.getZones(b).zIndex - this.interface.currentTemplate.getZones(a).zIndex}).map(val=>this.interface.currentTemplate.getZones(val))
     }
 
     updateZoneZindex(){

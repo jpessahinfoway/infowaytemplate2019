@@ -3,7 +3,11 @@ class ZoneResizerTool extends TemplateTool{
     constructor(templateInterface){
         super(templateInterface);
         this.description='Transformer une zone'
-        this.$eventLocation = $('body');
+        this.$eventLocation.mousemove = $('body');
+        this.$eventLocation.mouseup = $('body');
+        this.$eventLocation.mousedown = $('body');
+        this.currentWorkZone=null;
+        this.workSpace = $('.container-zone')
         /*this.iconsArray = [];
         this.size = 5;
         this.backGroundColor = null;
@@ -13,10 +17,10 @@ class ZoneResizerTool extends TemplateTool{
 
 
 
-  /*  appendResizeButton(){
-        let myPromise = new Promise((resolve)=>{
-            Object.keys(this.template.zones).forEach((templateZoneIndex,iterIndex)=>{
-                let currentZone = this.template.zones[templateZoneIndex];
+    appendResizeButton(){
+         Object.keys(this.interface.currentTemplate.getZones()).forEach((templateZoneIndex,iterIndex)=>{
+             console.log(templateZoneIndex);
+                this.currentWorkZone = this.interface.currentTemplate.getZone(templateZoneIndex);
                 this.iconsArray = [];
                 this.iconsArray.push($(`<span class="tl" data-position="topLeft" style="top:-2px;left:-2px"></span>`));
                 this.iconsArray.push($(`<span class="tr" data-position="topRight" style="top:-2px;right:-2px"></span>`));
@@ -32,36 +36,30 @@ class ZoneResizerTool extends TemplateTool{
                     if(this.backGroundColor !== null)icon.css('background-color',this.backGroundColor);
                     if(this.borderStyle !== null)icon.css('border',this.borderStyle);
                     //icon.css('border')
-                   
-                    this.template.zones[templateZoneIndex].$zone.append(icon)
+
+                    this.currentWorkZone.$zone.append(icon)
                 });
-                if(iterIndex === Object.keys(this.template.zones).length-1){
-                    let zoneRemoverFinderInterval = setInterval(()=>{
-                        if(currentZone.$zone.find('.zoneResizer').length===this.iconsArray.length){
-                            resolve('icone zone Remover ajouté partout');
-                            clearInterval(zoneRemoverFinderInterval);
-                        }
-                    },100);
-                }
             })
-        });
-        return myPromise;
     }
-*/
-    /*resizeZoneOnMouseActivity(){
-        $(`.${this.$eventLocation}`).on('mousedown.'+this.constructor,(e)=>{
-            this.activated=true
+
+    resizeZoneOnMouseActivity(){
+        this.$eventLocation.mousedown.on('mousedown.'+this.constructor,'.zoneResizer',(e)=>{
+            this.activated=true;
 
             this.lastIconClicked = $(e.currentTarget);
 
-            let zoneId=$(e.currentTarget).parent().prop('id').match(/[0-9]*$/)[0];
+            let zoneId=$(e.currentTarget).parents('.zone').data('zone');
 
-            this.$currentWorkZone = this.template.zones[zoneId];
+            this.currentWorkZone = this.interface.currentTemplate.getZone(zoneId);
 
-            let properties = {new : {size:this.$currentWorkZone.size,position:this.$currentWorkZone.position}};
+            console.log(this.currentWorkZone)
+            let properties = {new : {size:this.currentWorkZone.getSize(),position:this.currentWorkZone.getPosition()}};
             properties.old = properties.new;
 
-            let cursorPosition = {'new':this.getCursorPositionInTemplate(e,this.workZone),'old':null};
+            console.log(this.currentWorkZone.$zone)
+            console.log(this.workSpace)
+            let cursorPosition = {'new':this.getCursorPositionInTemplate(e,this.workSpace),'old':null};
+
 
            // let {oldPosition,deplacementValue}=null;
 
@@ -70,7 +68,7 @@ class ZoneResizerTool extends TemplateTool{
             $(`${'body'}`).on('mousemove.'+this.constructor.name, (e) => {
 
                     cursorPosition.old = cursorPosition.new;
-                    cursorPosition.new = this.getCursorPositionInTemplate(e,this.workZone);
+                    cursorPosition.new = this.getCursorPositionInTemplate(e,this.workSpace);
 
                     deplacementValue = {left:cursorPosition.new.left-cursorPosition.old.left,top:cursorPosition.new.top-cursorPosition.old.top};
 
@@ -85,14 +83,13 @@ class ZoneResizerTool extends TemplateTool{
                     switch(this.lastIconClicked.data('position')){
                         case 'topLeft':
                             // $('body').addClass('tl');
-                            properties.new.position = {left : properties.old.position.left + deplacementValue.left,top:this.$currentWorkZone.position.top + deplacementValue.top};
+                            properties.new.position = {left : properties.old.position.left + deplacementValue.left,top:properties.old.position.top + deplacementValue.top};
                            
                             properties.new.size = {width: properties.old.size.width - deplacementValue.left,height:properties.old.size.height - deplacementValue.top};
                             break;
                         case 'topRight':
 
                             properties.new.position = {left: false,top:properties.old.position.top+deplacementValue.top};
-                           
                             properties.new.size = {width: properties.old.size.width + deplacementValue.left,height:properties.old.size.height-deplacementValue.top};
 
                             break;
@@ -104,6 +101,9 @@ class ZoneResizerTool extends TemplateTool{
                             properties.new.size = {width: properties.old.size.width + deplacementValue.left,height:properties.old.size.height+deplacementValue.top};
                             break;
                         case 'middleLeft':
+                            console.log(properties.old.position.left)
+                            console.log(deplacementValue.left)
+                            console.log(properties.old.position.left + deplacementValue.left)
                             properties.new.position = {left: properties.old.position.left + deplacementValue.left,top:false};
                             properties.new.size = {width: properties.old.size.width - deplacementValue.left,height:false};
                             break;
@@ -120,50 +120,44 @@ class ZoneResizerTool extends TemplateTool{
                     }
 
 
-                    if(cursorPosition.new.left<=0){
+                  /*  if(cursorPosition.new.left<=0){
 
                     }
                     if(properties.new.position.top<=-1){
                         properties.new.size.height = false;
                         properties.new.position.top=false;
-                    }
+                    }*/
 
 
-                 console.log(properties.old.size)
-                    if(properties.new.position)this.$currentWorkZone.setPosition(properties.new.position);
+                    if(properties.new.position)this.currentWorkZone.setPosition(properties.new.position);
 
-                    console.log(properties.new.size)
-                    if(properties.new.size)this.$currentWorkZone.setSize(properties.new.size);
-                if(cursorPosition.new.left<=0){debugger;}
-                    console.log($('#zone-'+this.$currentWorkZone.identificator).width())
+                    if(properties.new.size)this.currentWorkZone.setSize(properties.new.size);
                    
 
-                    this.template.tools['ZoneInfoDisplayerTool'].updateInfosZoneContent(properties.new);
+                    //this.template.tools['ZoneInfoDisplayerTool'].updateInfosZoneContent(properties.new);
 
             });
         });
-        $('body').on('mouseup',()=>{
-            $('body').unbind('mousemove.'+this.constructor.name)
+        this.$eventLocation.mouseup.on('mouseup',()=>{
+            this.$eventLocation.mousemove.unbind('mousemove.'+this.constructor.name)
         })
-    }*/
-    /*activeTool(boolean){
+    }
+    activeTool(boolean){
+
         super.activeToolDecorator(boolean,(mode)=>{
+
             if(mode==='on'){
 
-                this.appendResizeButton().then(()=>{
-                    this.resizeZoneOnMouseActivity()
-                })
+                this.appendResizeButton()
+                this.resizeZoneOnMouseActivity()
             }else if(mode === 'off'){
-                let $eventLocation = $('.'+this.$eventLocation);
-                $eventLocation.remove();
-                $(`${'body'}`).unbind('mouseup.'+this.constructor.name);
-                $eventLocation.unbind('mousedown.'+this.constructor.name);
-                $(`${'body'}`).unbind('mousemove.'+this.constructor.name);
-
-               // $('.'+this.removerIcon.class).remove()
+                this.$eventLocation.mouseup.unbind('mouseup.'+this.constructor.name);
+                this.$eventLocation.mousedown.unbind('mousedown.'+this.constructor.name);
+                this.$eventLocation.mousemove.unbind('mousemove.'+this.constructor.name);
+                $('.zoneResizer').remove()
             }
         })
-    }*/
+    }
 
 }
 

@@ -4,8 +4,8 @@ class ZonePriorityAboveTool extends TemplateSubTool{
     constructor(template){
         super(template);
         console.log(template)
-        this.setTitle('Mettre en juste en dessous');
-        this.setIcon('fal fa-layer-minus')
+        this.description = 'Avancer une zone';
+
     }
 
     activeTool(boolean){

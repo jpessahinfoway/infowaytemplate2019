@@ -27,10 +27,10 @@ class ZonePriorityManagerTool extends TemplateTool{
             title,
             className
         };
-       
+        console.log(this.subMenuIcons)
     }*/
 
-   setIcon(iconClass){
+    setIcon(iconClass){
         super.setIcon(iconClass)
 
         //this.displaySubsIcons()
@@ -38,13 +38,18 @@ class ZonePriorityManagerTool extends TemplateTool{
 
     /*createSubIconsContainer(){
         this.subIconsContainer = $('<ul>test</ul>');
-       
-       
+        console.log(this.constructor.name)
+        console.log(this.template.interface.toolBox.tools)
         debugger;
     }*/
 
+    initBackGroundTool(){
+        $(`#${this.subMenuIcons['BackgroundTool'].className}`).on('click',()=>{
+            console.log('testons')
+        })
+    }
 
-    displaySubsIcons(){
+    /*displaySubsIcons(){
         let ul = $('<ul></ul>')
         let lastIcon,lastIconContainer;
         Object.keys(this.subMenuIcons).forEach(subMenuIcon=>{
@@ -56,7 +61,7 @@ class ZonePriorityManagerTool extends TemplateTool{
         });
 
         this.iconContainer = $(this.iconContainer.get(0).outerHTML + ul.get(0).outerHTML)
-    }
+    }*/
 
     activeTool(boolean){
         super.activeToolDecorator(boolean,()=>{

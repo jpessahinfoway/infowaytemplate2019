@@ -4,8 +4,7 @@ class ZonePriorityBellowTool extends TemplateSubTool{
     constructor(template){
         super(template);
        
-        this.setTitle('Mettre juste au dessus');
-        this.setIcon('fal fa-layer-plus');
+        this.description = 'Reculer une zone';
         this.$eventLocation=$('body');
     }
 
