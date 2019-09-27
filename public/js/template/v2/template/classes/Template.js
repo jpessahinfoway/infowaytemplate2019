@@ -14,6 +14,7 @@ class Template{
     }
 
     getSize(){
+        console.log(this._attr._size)
         return this._attr._size;
     }
 

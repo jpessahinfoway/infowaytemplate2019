@@ -5,8 +5,8 @@ class ZoneRemoverTool extends TemplateTool{
         this.$eventLocation.click = $('.body');
         this.description = 'Supprimer une zone';
         this.removerIcon = {
-            name : '<i class="fal fa-times"></i>',
-            size : 10,
+            name : '<i class="fad fa-trash-alt"></i>',
+            size : 80,
             position: {top:false,bottom:false,left:false,right:0},
             class:'zoneDeleter'
         }
@@ -20,10 +20,12 @@ class ZoneRemoverTool extends TemplateTool{
                 let removerIcon = $(this.removerIcon.name);
                 removerIcon.css('font-size',this.removerIcon.size+'px');
                 removerIcon.css('position','absolute');
-
-                removerIcon.css({'right':this.removerIcon.position.right});
-                removerIcon.css('box-shadow','inset 0 0 0 1px');
-                removerIcon.css('padding',5);
+                removerIcon.css({'opacity':'0.5'});
+                removerIcon.css({'color':'white'});
+                removerIcon.css({'top':'50%'});
+                removerIcon.css({'left':'50%'});
+                removerIcon.css({'transform':'translate(-50%,-50%'});
+               // removerIcon.css('box-shadow','inset 0 0 0 1px');
                 removerIcon.addClass(this.removerIcon.class);
                 currentZone.$zone.append(removerIcon);
                 if(indexIter === Object.keys(this.interface.currentTemplate.getZones()).length-1){

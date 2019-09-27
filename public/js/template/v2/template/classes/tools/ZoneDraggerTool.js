@@ -42,8 +42,13 @@ class ZoneDraggerTool extends TemplateTool{
                                 let positionLimit;
                                 if(nextZonePos.left<0)nextZonePos.left=0;
                                 if(nextZonePos.top<0)nextZonePos.top=0;
-                                if(nextZonePos.left + currentZone.size.width>this.interface.currentTemplate.getSize().width)nextZonePos.left= this.interface.currentTemplate.getSize().width-currentZone.size.width;
-                                if(nextZonePos.top + currentZone.size.height>this.interface.currentTemplate.getSize().height)nextZonePos.top= this.interface.currentTemplate.getSize().height-currentZone.size.height;
+
+                                if(nextZonePos.left + currentZone.size.width>this.interface.currentTemplate.getSize()._width){
+                                    nextZonePos.left= this.interface.currentTemplate.getSize()._width-currentZone.size.width;
+                                }
+                                if(nextZonePos.top + currentZone.size.height>this.interface.currentTemplate.getSize()._height){
+                                    nextZonePos.top=this.interface.currentTemplate.getSize()._height-currentZone.size.height;
+                                }
                             currentZone.setPosition(nextZonePos);
                             currentPosition = nextZonePos
                             //this.template.tools['ZoneInfoDisplayerTool'].updateInfosZoneContent({position:nextZonePos});

@@ -23,6 +23,10 @@ h2 {
 a {
     text-decoration: none;
 }
+
+.zone{
+    display:flex;
+}
 main {
     width: 100%;
 }
