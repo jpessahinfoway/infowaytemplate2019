@@ -23,8 +23,11 @@ class Template{
     }
 
     deleteZoneInTemplate(id){
+        console.log(this.getZones())
         this.getZone(id).delete();
         delete this._zones[id];
+        console.log(this.getZones())
+
     }
 
     getZones(){
@@ -76,10 +79,13 @@ class Template{
     createNewZone(position={top:0,left:0},size={width:0,height:0}){
         let zoneId = null;
         let zIndex = Object.keys(this._zones).length;
+        console.log(Object.keys(this._zones))
         for(let i=0; i<=Object.keys(this._zones).length+1;i++){
             if(!(i in this._zones)){
                 zoneId=i;
                 break;
+            }else{
+                console.log(this._zones)
             }
         }
         let zone = new Zone({position:position,size:size});
@@ -88,6 +94,7 @@ class Template{
         zone.setIdentificator(zoneId);
         zone.setLocation(this.$template,true);
         zone.attachToTemplate(this);
+        console.log(this._zones)
         return zone;
     }
 
