@@ -39,7 +39,7 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/template/stage1/create", name="templateStage1",methods="GET")
+     * @Route("/template/stage1/create", name="templateStages",methods="GET")
      */
     public function stage1Creation(\Symfony\Component\HttpFoundation\Request $request)
     {
@@ -47,7 +47,7 @@ class TemplateController extends AbstractController
         $templateName = $request->get('name');
         $orientation = $request->get('orientation');
         $template = $em->getRepository(template::class)->findAll();
-        return $this->render('template/create/index2.html.twig', [
+        return $this->render('template/stages/index.html.twig', [
             'controller_name' => 'TemplateController',
             'templateName'    => $templateName,
             'orientation'     => $orientation,

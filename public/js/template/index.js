@@ -1,5 +1,8 @@
-import {TemplateInterface} from "./TemplateInterface.js";
+import {TemplateModule} from "./classes/TemplateModule.js";
 
-let templateInterface = new TemplateInterface();
+let templateModule = new TemplateModule();
 
-templateInterface.displayMenu();
+templateModule.createTemplate( 'test' , 'H' );
+templateModule.attachToolBox();
+
+
