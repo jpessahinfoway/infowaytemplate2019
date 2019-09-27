@@ -604,9 +604,16 @@ nav > div.identity span {
     background-color: transparent;
     border:1px solid black;
 }
+.zoneDeleter{
+    opacity :0.5;
+    color:white;
+}
+
 
 .zone{
-display: flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 /***************************************************/
 /**********************ZONE*************************/
