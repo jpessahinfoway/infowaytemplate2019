@@ -5,10 +5,9 @@ import {ZoneDraggerTool} from "./tools/ZoneDraggerTool.js";
 import {ZoneRemoverTool} from "./tools/ZoneRemoverTool.js";
 import {ZoneResizerTool} from "./tools/ZoneResizerTool.js";
 import {ZonePriorityManagerTool} from "./tools/ZonePriorityManagerTool.js";
-import {ZonePriorityForegroundTool} from "./tools/subtools/zonePriorityManager/ZonePriorityForegroundTool.js";
-import {ZonePriorityBellowTool} from "./tools/subtools/zonePriorityManager/ZonePriorityBellowTool.js";
-import {ZonePriorityAboveTool} from "./tools/subtools/zonePriorityManager/ZonePriorityAboveTool.js";
-import {ZonePriorityBackgroundTool} from "./tools/subtools/zonePriorityManager/ZonePriorityBackgroundTool.js";
+import {ZoneMaskerTool} from "./tools/ZoneMaskerTool.js";
+import {ZoneInfoDisplayerTool} from "./tools/ZoneInfoDisplayerTool.js";
+import {ZoneZoomOnTool} from "./tools/ZoneZoomOnTool.js";
 
 class TemplateModule{
 
@@ -21,15 +20,14 @@ class TemplateModule{
     attachToolBox(){
 
         this.toolBox = new TemplateToolBox();
-        this.toolBox.addTool(new ZoneCreatorTool(this),'fal fa-plus-square');
-        this.toolBox.addTool(new ZoneDraggerTool(this),'fal fa-arrows');
-        this.toolBox.addTool(new ZoneRemoverTool(this),'fal fa-trash-alt');
-        this.toolBox.addTool(new ZoneResizerTool(this),'fal fa-vector-square');
-        this.toolBox.addTool(new ZonePriorityManagerTool(this),'fal fa-layer-group');
-        this.toolBox.addTool(new ZonePriorityForegroundTool(this),'fal fa-bring-front',this.toolBox.tools['ZonePriorityManagerTool'].instance);
-        this.toolBox.addTool(new ZonePriorityBackgroundTool(this),'fal fa-send-back',this.toolBox.tools['ZonePriorityManagerTool'].instance);
-        this.toolBox.addTool(new ZonePriorityBellowTool(this),'fal fa-layer-plus',this.toolBox.tools['ZonePriorityManagerTool'].instance);
-        this.toolBox.addTool(new ZonePriorityAboveTool(this),'fal fa-layer-minus',this.toolBox.tools['ZonePriorityManagerTool'].instance);
+        this.toolBox.addTool(new ZoneCreatorTool(this));
+        this.toolBox.addTool(new ZoneDraggerTool(this));
+        this.toolBox.addTool(new ZoneRemoverTool(this));
+        this.toolBox.addTool(new ZoneResizerTool(this));
+        this.toolBox.addTool(new ZonePriorityManagerTool(this));
+        this.toolBox.addTool(new ZoneMaskerTool(this));
+        this.toolBox.addTool(new ZoneZoomOnTool(this));
+        this.toolBox.addTool(new ZoneInfoDisplayerTool(this));
         this.toolBox.activeToolBoxEvents()
     }
 

@@ -33,7 +33,7 @@ section > div {
 .sub-zone {
     cursor: pointer;
 }
-.infos > div > div.input-group:nth-of-type(2) {
+.infos > div > div.input-group:nth-of-type(2),.infos > div > div.input-group:nth-of-type(3), #referent{
     width: 100%;
 }
 .popup {

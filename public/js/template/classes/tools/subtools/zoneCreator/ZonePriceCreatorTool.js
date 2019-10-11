@@ -1,10 +1,11 @@
 import {ZoneCreatorSubTool} from "./parent/ZoneCreatorSubTool.js";
 
-class ZonePriceCreator extends ZoneCreatorSubTool{
+class ZonePriceCreatorTool extends ZoneCreatorSubTool{
     constructor(){
         super();
         this.type='price';
     }
+
 }
 
-export {ZonePriceCreator}
+export {ZonePriceCreatorTool}

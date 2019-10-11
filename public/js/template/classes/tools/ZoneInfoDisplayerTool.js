@@ -1,11 +1,32 @@
-import {TemplateTool} from '../TemplateTool.js'
-class ZoneInfoDisplayerTool extends TemplateTool{
-    constructor(template){
-        super(template);
-        this.setTitle('ZoneInfos');
-        this.setIcon('fal fa-arrows');
-        this.$eventLocation = document
+import {PermanentTool} from "./parent/PermanentTool.js";
+import {Observer} from "../pattern/observer/Observer.js";
+class ZoneInfoDisplayerTool extends PermanentTool{
+    constructor(templateInterface){
+        super(templateInterface);
+        this.$eventLocation.doubleclick = $('body')
+        this.activeTool(true);
+        this.positionReferent = {
+            instance : templateInterface.currentTemplate,
+            name  : templateInterface.currentTemplate.constructor.name
+        },
         this.$location = {
+            infosChamps : {
+                name : $('.infos .input-group #name'),
+                type : $('.infos .input-group #type'),
+                pos  : {
+                    x : $('.infos .input-group #posX'),
+                    y : $('.infos .input-group #posY')
+                },
+                size : {
+                    width : $('.infos .input-group #width'),
+                    height : $('.infos .input-group #height')
+                }
+            }
+        }
+        this.zonePropertiesChangeObserver = null
+        this.initZoneObserver();
+
+        /*this.$location = {
             zones   : $('.zones'),
             infoDiv : $('.infos'),
         }
@@ -13,10 +34,60 @@ class ZoneInfoDisplayerTool extends TemplateTool{
             name     : null,
             position : null,
             size     : null
-        }
+        }*/
     }
 
-    updateInfosZoneContent({name = null, position = {left : null, top : null}, size = {width : null, height:null} } = {}){
+    initZoneObserver(){
+        this.zonePropertiesChangeObserver = new Observer();
+        this.zonePropertiesChangeObserver.observerFunction((observer)=>{
+            let zoneInstance = observer.data[0];
+            let infosToUpdate = observer.data[1];
+            this.updateInfoZoneWithNewDatas(zoneInstance,infosToUpdate);
+        })
+    }
+
+    updateInfoZoneWithNewDatas(objectLinkedToInfoZone,{name=null,pos={left:null,top:null},size={width:null,height:null},type=null}={}){
+        if(name!==null)this.$location.infosChamps.name.val(name);
+        if(type!==null){
+            console.log(this.$location.infosChamps.type.find('option').each((optionIndex,option)=>{
+                if($(option).val() === type && optionIndex>1){
+                    $(option).clone().prependTo(this.$location.infosChamps.type)
+                    $(option).remove()
+                }
+            }));
+        }
+        if(pos.left!==null)this.$location.infosChamps.pos.x.val(pos.left);
+        if(pos.top!==null)this.$location.infosChamps.pos.y.val(pos.top);
+        if(size.width!==null)this.$location.infosChamps.size.width.val(size.width);
+        if(size.height!==null)this.$location.infosChamps.size.height.val(size.height);
+    }
+
+    activeTool(boolean){
+        super.activeToolDecorator(boolean,(mode)=>{
+            if(mode==='on'){
+                this.$eventLocation.doubleclick.on(`dblclick.${this.constructor.name}`,'.zone',(e)=>{
+                    let zoneId = $(e.currentTarget).data('zone')
+                    this.currentZone = this.interface.currentTemplate.getZone(zoneId);
+                    this.currentZone.zonePropertiesChangeObservable.addObserver(this.zonePropertiesChangeObserver);
+                    this.updateInfoZoneWithNewDatas(this.currentZone,{name:this.currentZone.name,pos:{left:this.currentZone.position.left,top:this.currentZone.position.top},size:{width:this.currentZone.size.width,height:this.currentZone.size.height},type:this.currentZone.type} )
+                    console.log(this.currentZone)
+                    $('.infos').removeClass('none');
+                })
+               $('#wrapper-div').on(`click.${this.constructor.name}`,function(e){
+                    console.log('test')
+               })
+            }
+            if(mode==='off'){
+
+            }
+
+        })
+    }
+
+
+
+
+   /* updateInfosZoneContent({name = null, position = {left : null, top : null}, size = {width : null, height:null} } = {}){
 
         if(name !== null)this.$location.infoDiv.find('#name').val(name)
 
@@ -25,8 +96,8 @@ class ZoneInfoDisplayerTool extends TemplateTool{
 
         if(size.width) this.$location.infoDiv.find('#width').val(size.width);
         if(size.height)this.$location.infoDiv.find('#height').val(size.height);
-    }
-    activeTool(boolean){
+    }*/
+  /*  activeTool(boolean){
         super.activeToolDecorator(boolean,(mode)=>{
             if(mode==='on'){
                
@@ -54,7 +125,7 @@ class ZoneInfoDisplayerTool extends TemplateTool{
 
             }
         })
-    }
+    }*/
 
 }
 

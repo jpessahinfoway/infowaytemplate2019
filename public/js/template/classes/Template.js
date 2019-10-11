@@ -8,6 +8,7 @@ class Template{
             _size           :   {},
             _orientation    :   null,
             _id             :   null,
+            _scale          :   1
         };
         this._zones = {}
 
@@ -16,6 +17,16 @@ class Template{
     getSize(){
         console.log(this._attr._size)
         return this._attr._size;
+    }
+
+    setCurrentScale(scale){
+        this._attr._scale = scale
+        console.log(this._attr._scale)
+    }
+
+    getCurrentScale(){
+        console.log(this._attr._scale)
+        return this._attr._scale;
     }
 
     getZone(id){
@@ -76,7 +87,7 @@ class Template{
         this.$template.fadeIn()
     }
 
-    createNewZone(position={top:0,left:0},size={width:0,height:0}){
+    createNewZone(position={top:0,left:0},size={width:0,height:0},zoneType='zone'){
         let zoneId = null;
         let zIndex = Object.keys(this._zones).length;
         console.log(Object.keys(this._zones))
@@ -88,7 +99,7 @@ class Template{
                 console.log(this._zones)
             }
         }
-        let zone = new Zone({position:position,size:size});
+        let zone = new Zone({position:position,size:size,type:zoneType});
         zone.create();
         zone.setZIndex(zIndex);
         zone.setIdentificator(zoneId);

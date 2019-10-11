@@ -1,6 +1,6 @@
-import {TemplateTool} from "./parent/TemplateTool.js";
+import {ZoneZoomOnSubTool} from "./parent/ZoneZoomOnSubTool.js";
 
-class ZoneZoomDecreaserTool extends TemplateTool{
+class ZoneZoomDecreaserTool extends ZoneZoomOnSubTool{
     constructor(templateInterface){
         super(templateInterface);
         this.description = 'Appliquer un dézoom';
@@ -76,7 +76,6 @@ class ZoneZoomDecreaserTool extends TemplateTool{
                 this.$eventLocation.rightclick.unbind(`contextmenu.${this.constructor.name}`);
                 this.$eventLocation.click.unbind(`click.${this.constructor.name}`);
                 this.$eventLocation.mousemove.unbind(`mousemove.${this.constructor.name}`);
-
             }
 
         })

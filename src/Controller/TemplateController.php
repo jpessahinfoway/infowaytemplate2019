@@ -38,6 +38,7 @@ class TemplateController extends AbstractController
         return new Response('Enregistrement en base OK');
     }
 
+
     /**
      * @Route("/template/stage1/create", name="templateStages",methods="GET")
      */
@@ -51,6 +52,25 @@ class TemplateController extends AbstractController
             'controller_name' => 'TemplateController',
             'templateName'    => $templateName,
             'orientation'     => $orientation,
+            'stageNumber'     => 1,
+        ]);
+    }
+
+    /**
+     * @Route("/template/stage2/create", name="templateStage2",methods="GET")
+     */
+    public function stage2Creation(\Symfony\Component\HttpFoundation\Request $request)
+    {
+        $em = $this->getDoctrine()->getManager();
+        $templateName = $request->get('name');
+        $orientation = $request->get('orientation');
+        $template = $em->getRepository(template::class)->findAll();
+
+        return $this->render('template/stages/index.html.twig', [
+            'controller_name' => 'TemplateController',
+            'templateName'    => $templateName,
+            'orientation'     => $orientation,
+            'stageNumber'     => 2,
         ]);
     }
 
@@ -66,7 +86,7 @@ class TemplateController extends AbstractController
         return $this->render('template/creation.html.twig', [
             'controller_name' => 'TemplateController',
             'templateName'   => $name,
-            'templateFormat' => $format
+            'templateFormat' => $format,
         ]);
     }
 }

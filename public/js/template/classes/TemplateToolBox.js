@@ -1,3 +1,6 @@
+import {TemplateSubTool} from "./tools/subtools/parent/TemplateSubTool.js";
+import {PermanentTool} from "./tools/parent/PermanentTool.js";
+
 class TemplateToolBox{
     constructor(){
         console.log('Hello Toolbox')
@@ -6,7 +9,10 @@ class TemplateToolBox{
             ul : $('.tools ul:first'),
         };
 
-        this.activatedTool = {};
+        this.activatedTool = {
+            tool:null,
+            subTool : null
+        };
 
         this.tools={};
 
@@ -35,29 +41,20 @@ class TemplateToolBox{
     disactiveAllTools(exception){
      let exceptionArray = exception;
 
-  //   typeof exception === 'string'? exceptionArray.push(exception):exceptionArray = exception;
-     let allowDisactivation;
      Object.keys(this.tools).forEach((tool)=>{
-         allowDisactivation=true;
-         if(!exceptionArray.includes(tool)){
-
-             Object.keys(this.tools[tool].subTools).forEach(subTool=>{
-
-                 if(!exceptionArray.includes(subTool)){
-                     this.tools[tool].subTools[subTool].elements.li.removeClass('active-subTool');
-
-                     this.tools[tool].subTools[subTool].instance.activeTool(false);
-                 }else{
-                     allowDisactivation=false
-                 }
-             })
-             if(allowDisactivation){
-                 this.tools[tool].elements.li.removeClass('active-tool');
-                 this.tools[tool].instance.activeTool(false);
-             }
-         }else{
-
+         if(!exceptionArray.includes(tool) && !(this.tools[tool].instance instanceof PermanentTool)){
+             //this.activeToolInToolBox(this.tools[tool].name,false)
+             this.activeToolInToolBox(tool,false);
+             /*this.tools[tool].elements.li.removeClass('active-tool');
+             this.tools[tool].instance.activeTool(false);*/
          }
+         Object.keys(this.tools[tool].subTools).forEach(subTool=>{
+
+             if(!exceptionArray.includes(subTool)){
+                 this.activeToolInToolBox(subTool,false);
+                 //this.activeToolInToolBox(this.tools[tool].subTools[subTool],false)
+             }
+         })
      })
  }
 
@@ -73,143 +70,121 @@ class TemplateToolBox{
             });
     }
 
+
+
+    getParentTool(subToolName){
+        let parentTool = null;
+          Object.keys(this.tools).forEach((tool)=>{
+              if(Object.keys(this.tools[tool].subTools).includes(subToolName))parentTool=tool
+          });
+        return parentTool
+    }
+
      activeToolInToolBox(toolName,active=true){
+
      let element = Object.keys(this.tools).includes(toolName)?'tool':'subTool';
 
-     let objectToActive = element==='tool'?this.tools[toolName].instance:this.subTools[toolName];
+     let objectToActive = element==='tool'?this.tools[toolName]:this.tools[this.getParentTool(toolName)].subTools[toolName];
 
      let classToAdd = element==='tool'?'active-tool':'active-subTool';
-     console.log(objectToActive)
-     objectToActive.activeTool(active);
+console.log(active)
+     objectToActive.instance.activeTool(active);
      if(active){
-         this.activatedTool[element]=objectToActive;
-         this.tools[objectToActive.name].elements.li.addClass(classToAdd);
+         console.log(objectToActive)
+         if(!(objectToActive.instance instanceof PermanentTool))this.activatedTool[element]=objectToActive.instance;
+         objectToActive.elements.li.addClass(classToAdd);
      }else{
-         this.activatedTool[element]=null;
-         this.tools[objectToActive.name].elements.li.removeClass(classToAdd);
+         console.log(objectToActive)
+        if(this.activatedTool[element] !== null && this.activatedTool[element].name === toolName)this.activatedTool[element]=null;
+         objectToActive.elements.li.removeClass(classToAdd);
      }
 
+    }
+
+    isElementClickedIsTool($element){
+        return $element.hasClass('tool')
     }
 
     activeToolBoxEvents(){
         //Au click sur un element de la toolBox
         this.$location.ul.find('li').on('click',(e)=>{
-            let active = {tool : false, subtool:false};
+            e.stopPropagation();
+
+            let elementClicked = $(e.currentTarget);
 
             let toolsToNotDisactivate = [];
 
-            let tool = $(e.currentTarget).hasClass('tool')?$(e.currentTarget).find('span:first').data('tool'):$(e.currentTarget).parents('li.tool').find('span:first').data('tool');
+            let subToolSelectioned = this.isElementClickedIsTool(elementClicked) ? null : $(e.currentTarget).data('subtool');
+            let toolSelectioned = this.isElementClickedIsTool(elementClicked) ? $(e.currentTarget).data('tool') : $(e.currentTarget).parents('li.tool').data('tool');
 
-            let subTool = $(e.currentTarget).find('span:first').data('subtool')?$(e.currentTarget).find('span:first').data('subtool'):false;
-            console.log(subTool)
-            if(!subTool){
-                active.tool=this.tools[tool].state !=='enabled'
+
+
+            //Obligé de jamais desactiver l element en cour car si on le desactive lors du test pour savoir si il etait enablé il sera toujours a false et donc s activera a chaque fois meme en cas de click sur le meme icone (ou il devrait se desactiver)
+
+            if(this.isElementClickedIsTool(elementClicked)){
+                this.disactiveAllTools([toolSelectioned]);
+                this.tools[toolSelectioned].instance.state !== 'enabled'?this.activeToolInToolBox(this.tools[toolSelectioned].instance.name,true):this.activeToolInToolBox(this.tools[toolSelectioned].instance.name,false)
             }else{
-                if(this.tools[tool].subTools[subTool].state !=='enabled'){
-                    active.subtool=true
-                    active.tool=true
-                }else{
-                    if(this.activatedTool.subTool!==null){
 
-                        if(Object.keys(this.tools[tool].subTools).includes(subTool)){
-                            if(this.activatedTool.subTool.name !== subTool){
-                                active.subtool=true;
-                                active.tool=true;
-                            }
-                        }else{
-                            active.tool=false;
-                            active.subtool=true;
+                if(this.activatedTool.subTool === null){
+
+                    this.disactiveAllTools([]);
+                    this.activeToolInToolBox(this.tools[toolSelectioned].instance.name,true)
+                    console.log(subToolSelectioned)
+                    console.log(toolSelectioned)
+                    this.activeToolInToolBox(this.tools[toolSelectioned].subTools[subToolSelectioned].instance.name,true)
+                }else{
+                    if(this.activatedTool.tool !== null && this.activatedTool.tool.name === toolSelectioned){
+
+                        if(subToolSelectioned === this.activatedTool.subTool.name){
+                            this.disactiveAllTools([])
+                        }
+                        else{
+                            this.disactiveAllTools([toolSelectioned])
+                            this.activeToolInToolBox(this.tools[toolSelectioned].subTools[subToolSelectioned].instance.name,true)
                         }
                     }else{
-                        active.subTool=true;
-                        active.tool = true;
+
+                        this.disactiveAllTools([])
+                        this.activeToolInToolBox(this.tools[toolSelectioned].subTools[subToolSelectioned].instance.name,true)
+                        this.activeToolInToolBox(this.tools[toolSelectioned].instance.name,true)
                     }
                 }
+
             }
 
-            Object.keys(active).map(val=>toolsToNotDisactivate.push(val));
-
-            this.disactiveAllTools(toolsToNotDisactivate);
-
-
-            Object.keys(active).map(val=>{
-                let toolsEntity = val==='tool'?tool:subTool;
-
-
-                if(active[val])toolsEntity.state==='enabled'?this.activeToolInToolBox(toolsEntity,false):this.activeToolInToolBox(toolsEntity,true);
-            });
-
-            //this.disactiveSubTools(eventName);
-
-            e.stopPropagation()
         })
     }
 
-    setToolIcon(tool,icon){
-        tool.iconClass=icon
-        tool.elements.icon=$(`<i class="${tool.iconClass}"></i>`);
-    }
-
-    setToolTitle(tool) {
-        tool.attrs.title = tool.instance.description;
-    }
-
-    addSubTool(tool,subTool){
-        this.tools[tool.name].subTools[subTool.name]={}
-        this.tools[tool.name].subTools[subTool.name]={}
-    }
-    addTool(tool,icon,parentTool=false){
-
-        let toolContainer    = !parentTool ?  this.tools  :  this.tools[parentTool.name].subTools ;
-        let ul               = !parentTool ?  this.$location.ul  :  this.tools[parentTool.name].elements.ul;
-        let toolType         = !parentTool ?  "tool" : "subtool" ;
-        let $currentToolHTML = null;
-
-        toolContainer[tool.name]={};
-
-        if(!parentTool)toolContainer[tool.name].subTools = {}
-        toolContainer[tool.name].elements={};
-        toolContainer[tool.name].attrs={};
-        toolContainer[tool.name].instance=tool;
-
-        this.setToolTitle(toolContainer[tool.name]);
-
-        toolContainer[tool.name].elements.span = $(`<span>${toolContainer[tool.name].attrs.title}</span>`);
-        toolContainer[tool.name].elements.span.data('tool',tool.name);
-        console.log(toolContainer[tool.name])
-        toolContainer[tool.name].elements.li    = $(`<li class="${toolType}" title="${toolContainer[tool.name].attrs.title}"></li>`);
-
-        this.setToolIcon(toolContainer[tool.name],icon);
-        Object.keys(tool.subTools).length >0 ?toolContainer[tool.name].elements.ul=$(`<ul class="subMenu"></ul>`)   :  null;
-
-        console.log(toolContainer[tool.name].elements.icon)
-        $currentToolHTML =
-            toolContainer[tool.name].elements.li
-                .append(toolContainer[tool.name].elements.span).append(toolContainer[tool.name].elements.icon);
-        if(toolContainer[tool.name].elements.ul !== null)$currentToolHTML.append(toolContainer[tool.name].elements.ul);
-
-        ul.append($currentToolHTML);
-
-      /*  console.log(ul)
-        console.log()
-        if(parentTool)toolContainer[tool.name].elements.li.append(ul);*/
 
 
+    addTool(tool){
 
+        let currentTool;
 
-        /*let icon = $(`<i></i>`)
-        let iconInToolBox =$('<li class="tools"></li>');
-        iconInToolBox.append(tool.iconContainer);
-        let subToolsContainer,subToolConainer=null;
-        Object.keys(this.tools[tool.constructor.name].subTools).forEach((subToolName,index)=>{
-            this.subTools[subToolName]=this.tools[tool.constructor.name].subTools[subToolName];
-            if(index<1){  subToolsContainer=$('<ul class="subToolsContainer"></ul>')  };
-            subToolConainer = $('<li class="subtools"></li>').append(this.tools[tool.constructor.name].subTools[subToolName].iconContainer);
-            subToolsContainer.append(subToolConainer);
-        });
-        if(subToolsContainer !== null)iconInToolBox.append(subToolsContainer);
-        this.setMenuCaseProperties(tool);
-        this.showMenuCase(iconInToolBox,tool);*/
+        if(!(tool instanceof TemplateSubTool)){
+            currentTool = this.tools[tool.name] ={};
+            if(typeof currentTool.subTools === 'undefined')currentTool.subTools = {}
+        }else{
+            currentTool = this.tools[tool.parentTool.name].subTools[tool.name] = {};
+        }
+
+        currentTool.elements={};
+        currentTool.attrs={};
+        currentTool.instance=tool;
+
+        currentTool.elements.span = $(`.${tool.name} span`);
+
+        currentTool.elements.li    = $(`.${tool.name}`);
+
+        currentTool.attrs.title = currentTool.instance.description;
+        currentTool.attrs.icon = currentTool.elements.li.find('i').get(0);
+
+        console.log(tool.subTools);
+        Object.keys(tool.subTools).forEach(subTool=>{
+            this.addTool(tool.subTools[subTool])
+        })
+
     }
 
    /* initLastActivatedToolBoxElements(){

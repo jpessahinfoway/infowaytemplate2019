@@ -348,7 +348,12 @@ nav > div.identity span {
     font-weight: bold;
 }
 .active-tool {
+
     background-color: #cccccc!important;
+}
+
+.blindmode{
+    background-color:transparent !important;
 }
 .active-subTool{
     background-color: #e7e7e7!important;

@@ -3,8 +3,9 @@ import {ZonePriorityManagerSubTool} from "./parent/ZonePriorityManagerSubTool.js
 class ZonePriorityForegroundTool extends ZonePriorityManagerSubTool{
     constructor(template){
         super(template);
-        this.$eventLocation=$('.zone');
+        this.$eventLocation.click=$('body');
         this.description = 'Mettre au premier plan';
+        this.adaptableIconsInZone.element = '<span class="zone-priority-foreground-icon"><i class="fal fa-bring-front"></i></span>';
       //  this.setIcon('fad fa-bring-forward')
     }
 

@@ -1,3 +1,6 @@
+import {Observable} from "./pattern/observer/Observable.js";
+
+
 class Zone{
     constructor({size={width:0,height:0}, type='zone', position = {top:0,left:0}}={}){
         this.$zone= null;
@@ -5,10 +8,16 @@ class Zone{
         this.type = type;
         this.size = size;
         this.position = position;
-       
         this.backgroundColor = 'rgb(255, 119, 119)';
         this.identificator = null;
         this.location=null;
+        this.parent=null;
+        this.zonePropertiesChangeObservable = new Observable()
+    }
+
+
+    setType(type){
+        this.type=type;
     }
 
     getSize(){
@@ -23,8 +32,9 @@ class Zone{
         this.$zone =  $('<div></div>');
         this.$zone.css("position","absolute");
         this.$zone.addClass("zone");
+        if(this.type!=='zone')this.$zone.addClass(`${this.type}-zone`);
         this.setSize(size);
-        this.setColor(color);
+        //this.setColor(color);
         this.setPosition(position);
         console.log('ici')
         //this.setIdentificator(id);
@@ -35,6 +45,8 @@ class Zone{
     }
 
     setZIndex(zIndex){
+        console.log(this)
+        console.log(zIndex)
         this.zIndex = zIndex;
         this.$zone.css('z-index', zIndex);
     }
@@ -66,23 +78,6 @@ class Zone{
         if(append)this.appendIt()
     }
 
-    createNewZone(position,size){
-        let newZone =  $('<div></div>');
-        for(let i=0; i<=this.zones.length+1;i++){
-            if(!i in this.zones)this.zones[i]=newZone
-        }
-        newZone.css('position','absolute');
-
-
-
-       
-        newZone.addClass('zone');
-        newZone.css    ({top:position.top,left:position.left});
-        newZone.width  (size.width+'px');
-        newZone.height (size.height+'px');
-        this.ids.templateZone.append(newZone);
-        return newZone;
-    }
 
     setPosition(position = this.position){
         if(position.left){
@@ -92,6 +87,7 @@ class Zone{
             this.position.top = position.top;
         }
         this.$zone.css({top:position.top,left:position.left});
+        this.zonePropertiesChangeObservable.notify(this,{pos:position});
     }
 
     setSize(size = this.size) {
@@ -104,10 +100,11 @@ class Zone{
             this.$zone.height(size.height);
             this.size.height = size.height;
         }
+        this.zonePropertiesChangeObservable.notify(this,{size:size});
     }
 
     setColor(color = this.backgroundColor){
-        this.$zone.css({'background-color':color, 'opacity' : 0.6});
+        this.$zone.css({'background-color':color, 'opacity' : 0.4});
     }
 }
 
