@@ -1,0 +1,57 @@
+/*******************************************************/
+/**************************MODAL************************/
+/*******************************************************/
+.popup {
+    width: 50%;
+}
+
+.modal .popup{
+    padding: 15px;
+    position: relative;
+    width: 60%;
+    min-height:90%;
+    background-color: #ffffff;
+    border: 1px solid #385b72;
+}
+
+.modal .popup{
+    display:flex;
+    justify-content: space-between;
+}
+
+.modal .popup > div{
+    width:49%;
+}
+.modal {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5000;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+.popup {
+    max-height:95%;
+    overflow-y: auto;
+
+}
+.icon-action-div i{
+    opacity :0.3;
+    color:white;
+}
+.icon-action-div i.active-icon{
+    opacity :0.6;
+}
+
+.icon-action-div{
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}

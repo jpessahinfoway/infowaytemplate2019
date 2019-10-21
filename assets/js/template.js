@@ -1,0 +1,38 @@
+/*
+ * Welcome to your app's main JavaScript file!
+ *
+ * We recommend including the built version of this JavaScript file
+ * (and its CSS file) in your base layout (base.html.twig).
+ */
+
+// any CSS you require will output into a single css file (app.css in this case)
+
+import '../css/app.css';
+import '../css/other/general.css';
+import '../css/template_work_zone.css';
+import '../css/zones.css';
+import '../css/menus/top_nav_menu.css';
+import '../css/toolbars/toolbars.css';
+import '../css/modals/modals.css';
+import '../css/modals/choice_modal.css';
+import '../css/tools/zone_infos_displayer.css';
+import '../css/tools/zone_resizer.css';
+import '../css/tools/associate/associate_zones.css';
+
+
+const $ = require('jquery');
+
+// Need jQuery? Install it with "yarn add jquery", then uncomment to require it.
+// const $ = require('jquery');
+
+import {TemplateModule} from "./template/classes/TemplateModule";
+
+let templateModule = new TemplateModule();
+
+templateModule.createTemplate( 'test' , 'H' );
+templateModule.attachToolBox();
+
+
+
+
+console.log('Hello Webpack Encore! Edit me in assets/js/app.js');

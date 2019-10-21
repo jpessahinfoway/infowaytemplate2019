@@ -1,0 +1,31 @@
+.container-zone > div {
+    position: absolute;
+}
+.price-zone,.price-preview{
+    background: rgba(255, 215, 0, 0.6)!important
+}
+
+.text-zone,.text-preview{
+    background: rgba(73, 182, 117, 0.6) !important;
+}
+
+.zone,.zone-preview{
+    background:rgba(243, 79, 31, 0.4)
+}
+.media-zone, .media-preview{
+    background:rgba(14, 75, 239, 0.6)!important
+}
+
+.zone-selected {
+    background-color: rgba(159, 73, 182, 0.6)!important;
+}
+.selected {
+    border: 1px solid #9F49B6!important;
+}
+
+span.zone-infos-content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

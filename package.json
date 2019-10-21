@@ -1,0 +1,10 @@
+{
+  "requires": true,
+  "lockfileVersion": 1,
+  "dependencies": {
+    "@symfony/webpack-encore": "^0.28.0",
+    "flatted": "^2.0",
+    "jquery": "^3.4.1",
+    "serializr": "^1.5.3"
+  }
+}

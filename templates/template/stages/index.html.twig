@@ -9,12 +9,18 @@
     <link rel="stylesheet" href="/css/v2/general.css">
     <link rel="stylesheet" href="/css/v2/stage2.css">
     <link rel="stylesheet" href="/css/v2/classes.css">
-    <script src="/js/template/index.js" type="module" defer></script>
 
     <title>Menu du module Template</title>
+    {% block stylesheets %}
+        {# 'app' must match the first argument to addEntry() in webpack.config.js #}
+        {{ encore_entry_link_tags('template') }}
+
+        <!-- Renders a link tag (if your module requires any CSS)
+             <link rel="stylesheet" href="/build/app.css"> -->
+    {% endblock %}
 </head>
 <body {% if stageNumber is defined %}data-stage="{{ stageNumber }}" {% endif %}>
-    <div id="choice-background">
+    <div id="choice-background" class="template-menu">
         <div id="choice-zone">
             <div class="choice-window">
                 <div class="choice-window__label"><p>Fenetre de choix</p><span class="choice-window__label__close"><i class="fal fa-times"></i></span></div>
@@ -29,7 +35,14 @@
         </div>
     </div>
 <main>
-    <nav>
+
+    <div class="association-zones--buttons">
+        <p>Cliquez sur les zones a associer et comfirmer ou annuler pour retourner vers le menu</p>
+        <button type="button" class="comfirm" disabled>Confirmer association</button>
+        <button type="button" class="cancel">Annuler</button>
+    </div>
+
+    <nav class="template-toolsmenu">
         <ul>
             <li><p>Fichier</p>
                 <ul class="template-menu">
@@ -50,7 +63,7 @@
             <li><p>Outils</p>
                 <ul>
                     <li><i class="fal fa-plus-square"></i><p>Ajouter une zone</p></i>
-                        <ul>
+                        <ul class="slider-menu">
                             <li title="Zone Texte"><i class="fal fa-text"></i><p>Zone texte</p></li>
                             <li title="Zone Prix"><i class="fal fa-euro-sign"></i><p>Zone prix</p></li>
                             <li title="Zone Media"><i class="fal fa-image"></i><p>Zone Médias</p></li>
@@ -61,7 +74,7 @@
                     <li title="Supprimer"><i class="fal fa-trash-alt"></i><p>Supprimer</p></li>
                     <li title="Dupliquer"><i class="fal fa-copy"></i><p>Dupliquer</p></li>
                     <li title="Transformation" class="disabled"><i class="fal fa-vector-square"></i><p>Transformation manuelle</p></li>
-                    <li title="Arranger"><i class="fal fa-layer-group"></i><p>Arranger</p>
+                    <li title="Arranger"><i class="fal fa-layer-group"></i><p>Organiser</p>
                         <ul>
                             <li title="Avancer une zone"><i class="fal fa-layer-plus"></i><p>Avancer une Zone</p></li>
                             <li title="Reculer une zone"><i class="fal fa-layer-minus"></i><p>Reculer une zone</p></li>
@@ -79,15 +92,19 @@
             <span>Ici la date de la derniére sauvegarde</span>
         </div>
     </nav>
-    <div class="toolbar">
+    <div class="toolbar template-toolsmenu">
 
         {%  if 'stage2' in path(app.request.attributes.get('_route')) %}
-        <div class="modal-toolbar" id="modal-toolbar">
+        <div class="modal-toolbar tools" id="modal-toolbar">
             <ul>
-                <li data-modal="background"><span>Arrière plan</span><i class="fal fa-image"></i></li>
-                <li data-modal="text"><span>Texte</span><i class="fal fa-text"></i></li>
-                <li data-modal="price"><span>Prix</span><i class="fal fa-euro-sign"></i></li>
-                <li data-modal="medias"><span>Médias</span><i class="fal fa-photo-video"></i></li>
+                <li>
+                    <ul>
+                        <li data-modal="background" class="subTool ZoneContainerBackgroundEditorTool" data-subtool="ZoneContainerBackgroundEditorTool"><span>Arrière plan</span><i class="fal fa-image"></i></li>
+                        <li data-modal="text"><span>Texte</span><i class="fal fa-text"></i></li>
+                        <li data-modal="price"><span>Prix</span><i class="fal fa-euro-sign"></i></li>
+                        <li data-modal="medias"><span>Médias</span><i class="fal fa-photo-video"></i></li>
+                    </ul>
+                </li>
             </ul>
         </div>
         {% endif %}
@@ -96,7 +113,7 @@
             <ul>
                 <li title="Ajouter une zone" class="tool ZoneCreatorTool" data-tool="ZoneCreatorTool"><span>Ajouter une zone</span><i class="fal fa-plus-square"></i>
                     {%  if 'stage2' in path(app.request.attributes.get('_route')) %}
-                    <ul>
+                    <ul class="slider-menu">
                         <li title="Zone Texte" class="subTool ZoneTextCreatorTool" data-subtool="ZoneTextCreatorTool"><span>Texte</span><i class="fal fa-text"></i></li>
                         <li title="Zone Prix" class="subTool ZonePriceCreatorTool" data-subtool="ZonePriceCreatorTool"><span>Prix</span><i class="fal fa-euro-sign"></i></li>
                         <li title="Zone Media" class="subTool ZoneMediaCreatorTool"data-subtool="ZoneMediaCreatorTool"><span>Média</span><i class="fal fa-image"></i></li>
@@ -107,8 +124,8 @@
                 <li title="Supprimer" class="tool ZoneRemoverTool" data-tool="ZoneRemoverTool"><span>Supprimer</span><i class="fal fa-trash-alt"></i></li>
                 <li title="Dupliquer" class="tool ZoneDuplicatorTool" data-tool="ZoneDuplicatorTool"><span>Dupliquer</span><i class="fal fa-copy"></i></li>
                 <li title="Transformation" class="tool ZoneResizerTool" data-tool="ZoneResizerTool"><span>Transformation</span><i class="fal fa-vector-square"></i></li>
-                <li title="Arranger" class="tool ZonePriorityManagerTool" data-tool="ZonePriorityManagerTool"><span>Déplacer</span><i class="fal fa-layer-group"></i>
-                    <ul class="subMenu subTools" >
+                <li title="Arranger" class="tool ZonePriorityManagerTool" data-tool="ZonePriorityManagerTool"><span>Organiser</span><i class="fal fa-layer-group"></i>
+                    <ul class="subMenu subTools slider" >
                         <li title="Avancer une zone" class="subTool ZonePriorityAboveTool" data-subTool="ZonePriorityAboveTool"><span>Avancer une zone</span><i class="fal fa-layer-plus"></i></li>
                         <li title="Reculer une zone"class="subTool ZonePriorityBellowTool" data-subTool="ZonePriorityBellowTool"><span>Reculer une zone</span><i class="fal fa-layer-minus"></i></li>
                         <li title="Mettre au premier plan" class="subTool ZonePriorityForegroundTool" data-subTool="ZonePriorityForegroundTool"><span>Mettre au premier plan</span><i class="fal fa-bring-front"></i></li>
@@ -143,12 +160,12 @@
     </section>
 </main>
 <!-----------------------INFOS-------------------->
-<div class="infos none">
+<div class="infos none template-toolsmenu">
     <span class="close" title="Fermer"><i class="fal fa-times"></i></span>
-    <div>
+    <div class="tools">
         <h2>Infos zone</h2>
         <ul class="links">
-            <li data-type="associate" title="Associer des zones"><span>Associer des Zones</span></li>
+            <li class="tool ZoneAssociationTool" data-tool="ZoneAssociationTool" data-type="associate" title="Associer des zones" ><span>Associer des Zones</span></li>
         </ul>
         <div class="input-group">
             <label for="name">Nom</label>
@@ -193,6 +210,64 @@
         </div>
     </div>
 </div>
+    <!-----------------------BACKGROUNDEDITOR-------------------->
+    <div class="modal background-editor none" id="background">
+        <div class="popup">
+            <span class="close" title="Fermer"><i class="fal fa-times"></i></span>
+            <div class="left-container">
+                <div class="miniature">
+                    <h2>Choisissez vos zones</h2>
+                    <div class="container">
+                        <div data-id="container-zone"></div>
+                    </div>
+                    <p>Cliquez dans les zones ou vous souhaitez appliquer les modifications</p>
+                </div>
+                <div class="upload-background">
+                    <h2>uploader des médias</h2>
+                    <div class="container">
+                        <form method="" action="" id="upload-background">
+                            <div class="file-group">
+                                <label for="files-background"><i class="fas fa-upload"></i>Uploader des images</label>
+                                <input type="file" name="files[]" id="files-background" multiple>
+                                <img src="./assets/loader.gif">
+                                <p class="message success">Lorem ipsum dolor sit amet consectetur adipisicing elit</p>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="right-container">
+                <div class="list-background">
+                    <h2>Choisissez un fond</h2>
+                    <div class="radios-group">
+                        <label>Couleur de fond</label>
+                        <div class="checkbox">
+                            <input type="color" name="background-color" value="#000000">
+                            <input type="checkbox" name="activate-background-color" id="activate-background-color" value="activate">
+                            <label for="activate-background-color">Afficher la couleur</label>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="media">
+                            <img src="./assets/background/fond_gris.png">
+                            <span>Lorem ipsum dolor</span>
+                        </div>
+                        <div class="media">
+                            <img src="./assets/background/areas.png">
+                            <span>Lorem ipsum dolor</span>
+                        </div>
+                        <div class="media">
+                            <img src="./assets/background/Areas_PHILEAS_OP-ETE.jpg">
+                            <span>Lorem ipsum dolor</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="button-group">
+                    <button class="btn">valider</button>
+                </div>
+            </div>
+        </div>
+    </div>
 <!-------------------------BACKGROUND-------------------->
 <div class="modal background none" id="background">
     <div class="popup">
@@ -325,85 +400,8 @@
     </div>
 </div>
 <!-------------------------------ASSOCIATE----------------------------->
-<div class="modal associate none" id="associate">
-    <div class="popup">
-        <span class="close" title="Fermer"><i class="fal fa-times"></i></span>
-        <div id="lock">
-            <h2>VERROUILLER LA ZONE</h2>
-            <form action="" method="">
-                <div class="switch-group">
-                    <label class="switch">
-                        <input type="checkbox" id="switch">
-                        <span class="slider"></span>
-                    </label>
-                    <span>Non vérouillé</span>
-                </div>
-            </form>
-        </div>
-        <div id="zone">
-            <h2>ASSOCIER DES ZONES</h2>
-            <form action="" method="" id="zones-associate">
-                <div>
-                    <h3>Zones Affectées</h3>
-                    <div class="loaded"></div>
-                </div>
-                <div class="controls">
-                    <span class="add" title="Ajouter"><i class="fas fa-reply"></i></span>
-                    <span class="remove" title="Enlever"><i class="fas fa-share"></i></span>
-                </div>
-                <div>
-                    <h3>Zones Disponibles</h3>
-                    <div class="available">
-                        <span class="price" data-id="2">Prix-2</span>
-                        <span class="text" data-id="3">Texte-5</span>
-                    </div>
-                </div>
-                <div class="button-group">
-                    <button class="btn">Valider</button>
-                </div>
-            </form>
-        </div>
-        <div id="categories">
-            <h2>ASSOCIER DES CATEGORIES</h2>
-            <span id="toggle" data-complete="none">Tout sélectionner</span>
-            <form action="" method="" id="categories-associate">
-                <div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="category-1" id="category-1" value="25">
-                        <label for="category-1">Catégorie n°1</label>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="category-2" id="category-2" value="45">
-                        <label for="category-2">Catégorie n°2</label>
-                    </div>
-                </div>
-                <div class="button-group">
-                    <button class="btn">Valider</button>
-                </div>
-            </form>
-        </div>
-        <div id="products">
-            <h2>ASSOCIER UN PRODUIT</h2>
-            <form action="" method="" id="">
-                <div class="input-group">
-                    <label>Liste des produits</label>
-                    <select name="products">
-                        <option value="">Associer à aucun produit</option>
-                        <option value="2" data-category="25">Lorem ipsum dolor</option>
-                        <option value="5" data-category="25">Lorem ipsum dolor</option>
-                        <option value="6" data-category="25">Lorem ipsum dolor</option>
-                        <option value="18" data-category="45">Lorem ipsum dolor</option>
-                        <option value="35" data-category="45">Lorem ipsum dolor</option>
-                        <option value="32" data-category="25">Lorem ipsum dolor</option>
-                    </select>
-                </div>
-                <div class="button-group">
-                    <button class="btn">Valider</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
+
+    {% include 'template/stages/windows/associate-window.html.twig' %}
 <!----------------------------------NEW---------------------------->
 <div class="modal none" id="new">
     <div class="popup">
@@ -622,7 +620,7 @@
         background.run()*/
     })
     // Lors d'un clic sur l'une des icônes des modal
-    $('#modal-toolbar ul li, nav ul li:nth-child(2) ul li').on('click', e => {
+    /*$('#modal-toolbar ul li, nav ul li:nth-child(2) ul li').on('click', e => {
         // Type de la modal à ouvrir
         let element = $(e.currentTarget).data('modal')
         // On affiche la modal et on génére un miniature du template selon le type de zone
@@ -644,7 +642,14 @@
                 backgroundModal.init()
                 break
         }
-    })
+    })*/
 </script>
+    {% block javascripts %}
+        {{ encore_entry_script_tags('template')  }}
+
+        <!-- Renders app.js & a webpack runtime.js file
+            <script src="/build/runtime.js"></script>
+            <script src="/build/app.js"></script> -->
+    {% endblock %}
 </body>
 </html>

@@ -1,107 +1,7 @@
-section {
-    overflow: hidden;
-    position: absolute;
-    top: 100px;
-    left: 200px;
-    background-color: #ffffff; 
-}
-section > div {
-    width: 1280px;
-    height: 720px;   
-}
-.container-zone > div > div.sub-zone {
-    position: absolute;
-}
-.container-zone > div > div.sub-zone:first-child {
-    top: 20px;
-    left: 50px; 
-    width: 150px;
-    height: 70px;
-}
-.container-zone > div > div.sub-zone:nth-child(2) {
-    top: 20px;
-    left: 250px; 
-    width: 300px;
-    height: 300px;
-}
-.container-zone > div > div.sub-zone:last-child{
-    top: 390px;
-    left: 50px; 
-    width: 400px;
-    height: 100px;
-}
-.sub-zone {
-    cursor: pointer;
-}
-.infos > div > div.input-group:nth-of-type(2),.infos > div > div.input-group:nth-of-type(3), #referent{
-    width: 100%;
-}
-.popup {
-    width: 50%;
-}
-.associate .popup > div {
-    width: 100%;
-    margin-bottom: 20px;
-}
-.associate .popup div:nth-of-type(2) form {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-.associate .popup div:nth-of-type(2) form div:not(.controls) {
-    width: 43%;
-}
-.associate .popup div:nth-of-type(2) form h3 {
-    font-style: italic;
-    font-weight: bold;
-    font-size: 0.8rem;
-    margin-bottom: 4px;
-    color: #385b72;
-}
-.associate .popup div:nth-of-type(2) form div:not(.controls) div {
-    width: 100%;
-    height: 200px;
-    padding: 5px;
-    border: 1px solid #385b72;
-}
-.associate .popup div:nth-of-type(2) form div:not(.controls):not(:last-child) span{
-    padding: 3px;
-    margin-right: 5px;
-    cursor: pointer;
-    display: inline-block;
-    color: #385b72;
-}
-.associate .popup div:nth-of-type(2) form div.controls {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-.associate .popup div:nth-of-type(2) form div.controls span {
-    border: 1px solid #385b72;
-    margin-top: 10px;
-    padding: 10px;
-    cursor: pointer;
-}
-.associate .popup div:nth-of-type(3) > span {
-    font-weight: bold;
-    font-size: 0.7rem;
-    color: #385b72;
-    font-style: italic;
-    cursor: pointer;
-}
-.associate .popup div:nth-of-type(3) form {
-    margin-top: 5px;
-}
-.associate .popup div:nth-of-type(3) form > div {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    flex-wrap: wrap;
-    max-height: 150px;
-}
-.associate .popup div:last-child form > div {
+
+/*.associate .popup div:last-child form > div {
     width: 40%;
-}
+}*/
 /*****************************************************************/
 /*****************************MEDIAS******************************/
 /*****************************************************************/
@@ -172,10 +72,16 @@ section > div {
 .all-zones {
     transform-origin: center;
 }
-.popup {
-    max-height: 95%;
-    overflow-y: auto;
+
+
+.selected-label{
+    color: rgba(0,0,0,0.3)!important;
+    padding: 20px!important;
+    background: rgba(255,255,255,0.2)!important;
 }
+
+
+
 /********************************************************/
 /**********************MINIATURE*************************/
 /********************************************************/
