@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Entity;
+namespace AddOn\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PropertyRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Entity\PropertyRepository")
  */
 class Property
 {
