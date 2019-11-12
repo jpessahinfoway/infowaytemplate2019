@@ -59,9 +59,58 @@ a:hover:before {
 main {
     width: 100%;
 }
-button {
+button.hidden-btn{
+    font-size: 13px;
+    padding: 1px;
+    margin: 2px;
     border: none;
+    background: transparent;
+    cursor : pointer;
+}
+.hidden-btn i{
+    color : #a7b8c3;
+}
+button.hidden-btn:hover i{
+    color : #385b72;
+}
+button.btn{
+    border: double;
     cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    padding: 10px 20px;
+    font-size: 0.6rem;
+    color: #ffffff;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    z-index: 1;
+}
+button.btn:before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background-color: #385b72;
+    transition: all .3s;
+    z-index: -1;
+    transition: all .3s;
+}
+button.btn:after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #5b8eaf;
+    z-index: -2;
+}
+
+button.btn:hover:before {
+    width: 100%;
 }
 label{
     color: #385b72;
@@ -164,14 +213,18 @@ input[type="radio"], input[type="checkbox"] {
     margin-right: 5px;
     width: 10px;
 }
-.file-group > label:hover:before {
-    font-family: "Font Awesome 5 Pro";
-    content: "\f07c";
-}
+
 .file-group > p {
-    font-size: 0.7rem;
+  /*  font-size: 0.7rem;
     margin-left: 5px;
-    color: #385b72;
+    color: #385b72;*/
+}
+
+.radios-group > label {
+    display: block;
+    font-weight: bold;
+    width: 100%;
+    cursor: default;
 }
 .radios-group span {
     color: #385b72;
@@ -292,7 +345,7 @@ input:checked + .slider:before {
 .hidden {
     visibility: hidden;
 }
-.btn {
+/*.btn {
     padding: 5px 12px;
     font-size: 0.6rem;
     font-weight: bold;
@@ -302,11 +355,9 @@ input:checked + .slider:before {
     background-color: #385b72;
     text-transform: uppercase;
     color: #ffffff;
-}
-.btn:hover {
-    background-color: #ffffff;
-    color: #385b72;
-}
+}*/
+
+
 .btn:active {
     background-color: #000;
     color: #ffffff;
@@ -316,9 +367,10 @@ input:checked + .slider:before {
     color: #ffffff;
     font-size: 0.7rem;
     font-weight: bold;
+    border : 1px solid #b94c4c
 }
 .success {
-    border: 1px solid #4e6c34;
+    border: 1px solid #7ac837;
     background-color: #4e6c34;
 }
 .error {
@@ -328,4 +380,38 @@ input:checked + .slider:before {
 .warning {
     border: 1px solid #ff7f00;
     background-color: #ff7f00;
+}
+
+.file-group > label {
+    border: 1px double #385b72;
+    padding: 6px 10px;
+    cursor: pointer;
+    font-size: 0.6rem;
+    margin-bottom: 0;
+    font-style: normal;
+    position: relative;
+    color: #385b72;
+    z-index: 1;
+}
+.file-group > label:before {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 100%;
+    left: 0;
+    bottom: 0;
+    background-color: #46728f;
+    transition: all 0.5s;
+    z-index: -1;
+}
+.file-group > label:hover:before {
+    width: 100%;
+}
+.file-group > label:hover i {
+    color: #ffffff;
+    transform: rotate(360deg);
+}
+.file-group > label > i {
+    margin-right: 3px;
+    transition: all .5s;
 }

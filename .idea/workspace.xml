@@ -2,109 +2,78 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="869b1863-c2d7-447a-8c37-f8b2e78912b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/css/menus/top_nav_menu.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/modals/choice_modal.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/modals/modals.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/other/general.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/other/reset.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/template_work_zone.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/toolbars/left_toolbar_1.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/toolbars/left_toolbar_2.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/toolbars/toolbars.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/tools/associate/associate_zones.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/tools/zone_infos_displayer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/tools/zone_resizer.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/css/zones.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/Template.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/TemplateModule.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/TemplateToolBox.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/Zone.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/pattern/observer/Observable.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/pattern/observer/Observer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneAssociationTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContainerEditorTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneCreatorTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneDraggerTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneDuplicatorTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneInfoDisplayerTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneMaskerTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZonePriorityManagerTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneRemoverTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneResizerTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneZoomOnTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/parent/PermanentTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/parent/TemplateTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/parent/TemplateSubTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneAssociation/ZoneAssociatorSubTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneAssociation/parent/ZoneAssociationSubTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneAssociation/zoneAssociator/ZoneAssociatorInInterface.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneAssociation/zoneAssociator/ZoneAssociatorInWindowSubTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerBackgroundEditorTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/parent/ZoneContainerEditorSubTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZoneMediaCreatorTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZonePriceCreatorTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZoneTextCreatorTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/parent/ZoneCreatorSubTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityAboveTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityBackgroundTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityBellowTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityForegroundTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/parent/ZonePriorityManagerSubTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneZoomOn/ZoneZoomDecreaserTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneZoomOn/ZoneZoomIncreaserTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneZoomOn/parent/ZoneZoomOnSubTool.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/utilities/ChoiceDiv.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/js/template/index.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/template/stages/windows/associate-window.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/tools/template_miniature/template_miniature.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/tools/zone_container_editor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/tools/zone_container_editor/text_styles/texts.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/tools/zone_container_editor/zone_container_background_editor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/tools/zone_container_editor/zone_container_text_editor.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/IncrusteStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/Style.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/StyleProperty.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/TemplateMiniature.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/TextIncrusteStyle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/TextStylyzer.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/TemplateMiniatorizerTool.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerMediaEditorTool.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerTextEditorTool.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/utilities/utilities.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/zoneContents/BackgroundContent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/zoneContents/Content.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/js/template/classes/zoneContents/MediaContent.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/config/packages/dev/maker.yaml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/css/template/tools/zone_container_editor/text_styles/text-styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Service/CSSParser.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/template/test.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/infowaytemplate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/infowaytemplate.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/modals/modals.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/modals/modals.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/other/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/other/general.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/toolbars/toolbars.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/toolbars/toolbars.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/zones.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/zones.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/TemplateModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/TemplateModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/TemplateToolBox.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/TemplateToolBox.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/Zone.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/Zone.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneAssociationTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneAssociationTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContainerEditorTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContainerEditorTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneCreatorTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneCreatorTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/ZonePriorityManagerTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZonePriorityManagerTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneRemoverTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneRemoverTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneResizerTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneResizerTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneZoomOnTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneZoomOnTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/parent/TemplateTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/parent/TemplateTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/parent/TemplateSubTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/parent/TemplateSubTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneAssociation/ZoneAssociatorSubTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneAssociation/ZoneAssociatorSubTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneAssociation/parent/ZoneAssociationSubTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneAssociation/parent/ZoneAssociationSubTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerBackgroundEditorTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerBackgroundEditorTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/parent/ZoneContainerEditorSubTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/parent/ZoneContainerEditorSubTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZoneMediaCreatorTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZoneMediaCreatorTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZonePriceCreatorTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZonePriceCreatorTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZoneTextCreatorTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZoneTextCreatorTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/parent/ZoneCreatorSubTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/parent/ZoneCreatorSubTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityAboveTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityAboveTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityBackgroundTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityBackgroundTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityBellowTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityBellowTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityForegroundTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityForegroundTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/parent/ZonePriorityManagerSubTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/parent/ZonePriorityManagerSubTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneZoomOn/ZoneZoomDecreaserTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneZoomOn/ZoneZoomDecreaserTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneZoomOn/ZoneZoomIncreaserTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneZoomOn/ZoneZoomIncreaserTool.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneZoomOn/parent/ZoneZoomOnSubTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneZoomOn/parent/ZoneZoomOnSubTool.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/bundles.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/bundles.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/template/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/template/general.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/v2/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/v2/general.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/v2/stage2.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/v2/stage2.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/accueil/AccueilStation.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/accueil/ActionWindow.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/accueil/TemplateCreatorWindow.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/accueil/index.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/Template.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/TemplateModule.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/TemplateToolBox.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/Zone.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/pattern/observer/Observable.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/pattern/observer/Observer.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/ZoneCreatorTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/ZoneDraggerTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/ZoneInfoDisplayerTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/ZoneMaskerTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/ZonePriorityManagerTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/ZoneRemoverTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/ZoneResizerTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/ZoneZoomOnTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/parent/PermanentTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/parent/TemplateTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/parent/TemplateSubTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/zoneCreator/ZoneMediaCreatorTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/zoneCreator/ZonePriceCreatorTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/zoneCreator/ZoneTextCreatorTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/zoneCreator/parent/ZoneCreatorSubTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityAboveTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityBackgroundTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityBellowTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityForegroundTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/zonePriorityManager/parent/ZonePriorityManagerSubTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/zoneZoomOn/ZoneZoomDecreaserTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/zoneZoomOn/ZoneZoomIncreaserTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/tools/subtools/zoneZoomOn/parent/ZoneZoomOnSubTool.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/classes/utilities/ChoiceDiv.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/template/index.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TemplateController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TemplateController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Template.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Template.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/symfony.lock" beforeDir="false" afterPath="$PROJECT_DIR$/symfony.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/template/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/template/index.html.twig" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/template/stages/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/template/stages/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.config.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -136,65 +105,69 @@
           <entry key="project.closed" value="4" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.13" value="1" />
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="4" />
-          <entry key="project.opened" value="10" />
+          <entry key="project.opened" value="12" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="81" />
-          <entry key="env" value="1" />
+          <entry key="css" value="140" />
+          <entry key="env" value="4" />
           <entry key="gitignore" value="6" />
-          <entry key="html" value="2" />
-          <entry key="js" value="553" />
-          <entry key="json" value="5" />
+          <entry key="html" value="3" />
+          <entry key="js" value="693" />
+          <entry key="json" value="8" />
+          <entry key="lock" value="1" />
           <entry key="md" value="1" />
-          <entry key="php" value="52" />
+          <entry key="php" value="107" />
           <entry key="ts" value="2" />
-          <entry key="twig" value="102" />
+          <entry key="twig" value="119" />
           <entry key="xml" value="3" />
-          <entry key="yaml" value="18" />
+          <entry key="yaml" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="81" />
-          <entry key="HTML" value="2" />
-          <entry key="JSON" value="5" />
-          <entry key="JavaScript" value="553" />
+          <entry key="CSS" value="140" />
+          <entry key="HTML" value="3" />
+          <entry key="JSON" value="9" />
+          <entry key="JavaScript" value="693" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="52" />
-          <entry key="PLAIN_TEXT" value="7" />
-          <entry key="Twig" value="102" />
+          <entry key="PHP" value="107" />
+          <entry key="PLAIN_TEXT" value="10" />
+          <entry key="Twig" value="119" />
           <entry key="TypeScript" value="2" />
           <entry key="XML" value="3" />
-          <entry key="YAML" value="18" />
+          <entry key="YAML" value="43" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="6877" />
-          <entry key="env" value="59" />
+          <entry key="css" value="8275" />
+          <entry key="env" value="85" />
           <entry key="gitignore" value="31" />
-          <entry key="js" value="102164" />
-          <entry key="json" value="6" />
-          <entry key="php" value="2527" />
-          <entry key="twig" value="5971" />
+          <entry key="js" value="126801" />
+          <entry key="json" value="167" />
+          <entry key="php" value="8680" />
+          <entry key="twig" value="6842" />
           <entry key="txt" value="21" />
-          <entry key="yaml" value="23" />
+          <entry key="yaml" value="479" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="6877" />
-          <entry key="JSON" value="6" />
-          <entry key="JavaScript" value="102164" />
-          <entry key="PHP" value="2527" />
-          <entry key="PLAIN_TEXT" value="111" />
-          <entry key="Twig" value="5971" />
-          <entry key="YAML" value="23" />
+          <entry key="CSS" value="8275" />
+          <entry key="HTML" value="28" />
+          <entry key="JSON" value="167" />
+          <entry key="JavaScript" value="126773" />
+          <entry key="PHP" value="8680" />
+          <entry key="PLAIN_TEXT" value="137" />
+          <entry key="Twig" value="6842" />
+          <entry key="YAML" value="479" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -202,15 +175,31 @@
           <entry key="TypeScriptServerServiceImpl" value="1" />
         </counts>
       </usages-collector>
+      <usages-collector id="statistics.php.new.class">
+        <counts>
+          <entry key="PHP Class.type" value="2" />
+        </counts>
+      </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContainerEditorTool.js">
+        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerTextEditorTool.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+            <state relative-caret-position="969">
+              <caret line="57" selection-start-line="57" selection-end-line="57" />
+              <folding>
+                <element signature="e#0#79#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/TemplateMiniatorizerTool.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
               <folding>
                 <element signature="e#0#50#0" expanded="true" />
               </folding>
@@ -219,43 +208,52 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/parent/ZoneContainerEditorSubTool.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/TemplateModule.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="220">
-              <caret line="35" column="46" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
-              <folding>
-                <element signature="e#0#36#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerBackgroundEditorTool.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="221">
-              <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-            </state>
-          </provider>
+        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZoneTextCreatorTool.js">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/TemplateToolBox.js">
+        <entry file="file://$PROJECT_DIR$/assets/css/tools/zone_container_editor/zone_container_text_editor.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1258">
-              <caret line="74" column="5" lean-forward="true" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+            <state relative-caret-position="131">
+              <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/css/zones.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-396" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/Style.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="357">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContainerEditorTool.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="49">
+              <caret line="131" column="43" selection-start-line="131" selection-start-column="43" selection-end-line="131" selection-end-column="43" />
               <folding>
-                <element signature="e#0#72#0" expanded="true" />
+                <element signature="e#0#50#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/template/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-107">
+              <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
             </state>
           </provider>
         </entry>
@@ -263,43 +261,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/template/stages/index.html.twig">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="115" column="31" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
+            <state relative-caret-position="-952">
+              <caret line="10" column="124" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="124" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/css/toolbars/toolbars.css">
+        <entry file="file://$PROJECT_DIR$/public/css/template/tools/zone_container_editor/text_styles/text-styles.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="101">
-              <caret line="59" column="14" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZoneMediaCreatorTool.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/parent/ZoneCreatorSubTool.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1088">
-              <caret line="76" column="34" selection-start-line="76" selection-start-column="34" selection-end-line="76" selection-end-column="34" />
-              <folding>
-                <element signature="e#0#64#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZonePriorityManagerTool.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="20" selection-end-line="35" selection-end-column="32" />
+            <state relative-caret-position="522">
+              <caret line="94" column="1" selection-start-line="94" selection-start-column="1" selection-end-line="94" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -309,45 +281,45 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="TypeScript File" />
         <option value="CSS File" />
+        <option value="HTML File" />
         <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>hover</find>
-      <find>pop</find>
-      <find>Zones d</find>
-      <find>tool</find>
-      <find>delete</find>
-      <find>currentZo</find>
-      <find>popup--</find>
-      <find>inInterface</find>
-      <find>none</find>
-      <find>switch</find>
-      <find>setTe</find>
-      <find>this.associatedActionsInInterfaceMode</find>
-      <find>setT</find>
-      <find>unactiva</find>
-      <find>hide</find>
-      <find>removeClass('non</find>
-      <find>state</find>
-      <find>comfirm</find>
-      <find>comfirmAssociation</find>
-      <find>onClick</find>
-      <find>flatted</find>
-      <find>webpac</find>
-      <find>index</find>
-      <find>displa</find>
-      <find>infos</find>
-      <find>backgroun</find>
-      <find>click</find>
-      <find>container</find>
-      <find>mouse</find>
-      <find>Ajou</find>
+      <find>Observ</find>
+      <find>Obser</find>
+      <find>notif</find>
+      <find>.zone</find>
+      <find>absolute</find>
+      <find>action</find>
+      <find>.icon-action-div</find>
+      <find>background</find>
+      <find>Container</find>
+      <find>asset</find>
+      <find>getSe</find>
+      <find>getSele</find>
+      <find>php</find>
+      <find>button</find>
+      <find>styleName</find>
+      <find>App\Repository\Secondary\</find>
+      <find>kernel</find>
+      <find>App</find>
+      <find>App\</find>
+      <find>AddOn</find>
+      <find>exclu</find>
+      <find>Model</find>
+      <find>localhost</find>
+      <find>addons</find>
+      <find>CSS</find>
+      <find>ajax</find>
+      <find>debugger</find>
+      <find>stage2</find>
+      <find>text-styles.css</find>
+      <find>TextIn</find>
     </findStrings>
     <replaceStrings>
       <replace>custom_select</replace>
@@ -359,8 +331,10 @@
       <replace>$location</replace>
       <replace>currentParent</replace>
       <replace>this.referent.$location</replace>
+      <replace>styleProperty</replace>
     </replaceStrings>
     <dirStrings>
+      <dir>C:\wamp64\www\infowaytemplate\assets\js</dir>
       <dir>C:\wamp64\www\infowaytemplate</dir>
     </dirStrings>
   </component>
@@ -370,57 +344,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/public/js/utilities/Flatted.js" />
-        <option value="$PROJECT_DIR$/assets/js/app.js" />
-        <option value="$PROJECT_DIR$/public/js/template/classes/tools/ZoneDuplicatorTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/index.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/Zone.js" />
-        <option value="$PROJECT_DIR$/webpack.config.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneAssociationTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneCreatorTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneDraggerTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneInfoDisplayerTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneMaskerTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZonePriorityManagerTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneResizerTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneZoomOnTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/Template.js" />
-        <option value="$PROJECT_DIR$/package.json" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneDuplicatorTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneRemoverTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/parent/TemplateTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneAssociation/ZoneAssociatorSubTool.js" />
-        <option value="$PROJECT_DIR$/assets/css/app.css" />
-        <option value="$PROJECT_DIR$/assets/css/toolbar_1.css" />
-        <option value="$PROJECT_DIR$/assets/css/left_toolbar_2.css" />
-        <option value="$PROJECT_DIR$/assets/css/other/reset.css" />
-        <option value="$PROJECT_DIR$/assets/css/menus/top_menu.css" />
-        <option value="$PROJECT_DIR$/public/css/template/general.css" />
-        <option value="$PROJECT_DIR$/assets/css/menus/top_nav_menu.css" />
-        <option value="$PROJECT_DIR$/assets/css/other/general.css" />
-        <option value="$PROJECT_DIR$/assets/css/modal.css" />
-        <option value="$PROJECT_DIR$/assets/css/tools/zone_resizer.css" />
-        <option value="$PROJECT_DIR$/assets/css/modals.css" />
-        <option value="$PROJECT_DIR$/assets/css/modals/choicesmodal.ts" />
-        <option value="$PROJECT_DIR$/assets/css/modals/choice_modal.css" />
-        <option value="$PROJECT_DIR$/public/css/v2/general.css" />
-        <option value="$PROJECT_DIR$/assets/css/template_work_zone.css" />
-        <option value="$PROJECT_DIR$/assets/css/tools/zone_infos_displayer.css" />
-        <option value="$PROJECT_DIR$/assets/css/tools/associate.css" />
-        <option value="$PROJECT_DIR$/assets/js/template.js" />
-        <option value="$PROJECT_DIR$/assets/css/zones.css" />
-        <option value="$PROJECT_DIR$/assets/css/tools/associate/associate_zones.css" />
-        <option value="$PROJECT_DIR$/public/css/v2/stage2.css" />
-        <option value="$PROJECT_DIR$/assets/css/modals/modals.css" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/zoneContainerEditorSubTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/parent/zoneContainerEditorSubTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerBackgroundEditorTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/TemplateModule.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContainerEditorTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/parent/ZoneContainerEditorSubTool.js" />
-        <option value="$PROJECT_DIR$/assets/css/toolbars/toolbars.css" />
-        <option value="$PROJECT_DIR$/templates/template/stages/index.html.twig" />
         <option value="$PROJECT_DIR$/assets/js/template/classes/TemplateToolBox.js" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/TemplateMiniature.js" />
+        <option value="$PROJECT_DIR$/assets/css/modals/modals.css" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerMediaEditorTool.js" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContainerEditorTool.js" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerBackgroundEditorTool.js" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/parent/ZoneContainerEditorSubTool.js" />
+        <option value="$PROJECT_DIR$/assets/js/template.js" />
+        <option value="$PROJECT_DIR$/assets/css/tools/zone_container_editor/text_styles/texts.css" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/CSSParser.js" />
+        <option value="$PROJECT_DIR$/assets/js/text-styles.js" />
+        <option value="$PROJECT_DIR$/webpack.config.js" />
+        <option value="$PROJECT_DIR$/public/css/template/tools/zone_container_editor/text_styles/texts.css" />
+        <option value="$PROJECT_DIR$/templates/template/test.html.twig.html" />
+        <option value="$PROJECT_DIR$/assets/css/other/general.css" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/Style.js" />
+        <option value="$PROJECT_DIR$/src/Entity/Default/Template.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Main/Zone.php" />
+        <option value="$PROJECT_DIR$/src/Repository/ZonesRepository.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Template.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Zone.php" />
+        <option value="$PROJECT_DIR$/src/Repository/TemplateRepository.php" />
+        <option value="$PROJECT_DIR$/src/Entity/Secondary/Model.php" />
+        <option value="$PROJECT_DIR$/src/Repository/Secondary/ModelRepository.php" />
+        <option value="$PROJECT_DIR$/src/Controller/Secondary/TemplateController.php" />
+        <option value="$PROJECT_DIR$/src/Bundles/AddOnBundle/Entity/Model.php" />
+        <option value="$PROJECT_DIR$/src/Bundles/AddOnBundle/Repository/ModelRepository.php" />
+        <option value="$PROJECT_DIR$/config/services.yaml" />
+        <option value="$PROJECT_DIR$/composer.json" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/TemplateModule.js" />
+        <option value="$PROJECT_DIR$/test.js" />
+        <option value="$PROJECT_DIR$/retest.php" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/StyleProperty.js" />
+        <option value="$PROJECT_DIR$/src/Bundles/AddOnBundle/src/Entity/Style.php" />
+        <option value="$PROJECT_DIR$/src/Bundles/AddOnBundle/src/Entity/Model.php" />
+        <option value="$PROJECT_DIR$/config/packages/dev/maker.yaml" />
+        <option value="$PROJECT_DIR$/config/packages/doctrine.yaml" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/Incruste.js" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/TextIncruste.js" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/TextIncrusteStyle.js" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/IncrusteStyle.js" />
+        <option value="$PROJECT_DIR$/templates/template/test.html.twig" />
+        <option value="$PROJECT_DIR$/src/Service/CSSParser.php" />
+        <option value="$PROJECT_DIR$/templates/template/index.html.twig" />
+        <option value="$PROJECT_DIR$/templates/template/stages/index.html.twig" />
+        <option value="$PROJECT_DIR$/src/Controller/TemplateController.php" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/TextStylyzer.js" />
+        <option value="$PROJECT_DIR$/public/css/template/tools/zone_container_editor/text_styles/text-styles.css" />
+        <option value="$PROJECT_DIR$/assets/css/tools/zone_container_editor/zone_container_text_editor.css" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerTextEditorTool.js" />
       </list>
     </option>
   </component>
@@ -485,7 +459,6 @@
       <path value="$PROJECT_DIR$/vendor/phpdocumentor/reflection-docblock" />
       <path value="$PROJECT_DIR$/vendor/symfony/routing" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher" />
-      <path value="$PROJECT_DIR$/vendor/symfony/contracts" />
       <path value="$PROJECT_DIR$/vendor/symfony/debug-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/serializer" />
       <path value="$PROJECT_DIR$/vendor/symfony/orm-pack" />
@@ -496,7 +469,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/web-link" />
       <path value="$PROJECT_DIR$/vendor/symfony/var-exporter" />
       <path value="$PROJECT_DIR$/vendor/symfony/inflector" />
-      <path value="$PROJECT_DIR$/vendor/symfony/panther" />
       <path value="$PROJECT_DIR$/vendor/symfony/security-core" />
       <path value="$PROJECT_DIR$/vendor/symfony/security-http" />
       <path value="$PROJECT_DIR$/vendor/symfony/expression-language" />
@@ -515,7 +487,6 @@
       <path value="$PROJECT_DIR$/vendor/symfony/swiftmailer-bundle" />
       <path value="$PROJECT_DIR$/vendor/symfony/serializer-pack" />
       <path value="$PROJECT_DIR$/vendor/symfony/doctrine-bridge" />
-      <path value="$PROJECT_DIR$/vendor/facebook/webdriver" />
       <path value="$PROJECT_DIR$/vendor/symfony/polyfill-intl-icu" />
       <path value="$PROJECT_DIR$/vendor/symfony/cache" />
       <path value="$PROJECT_DIR$/vendor/symfony/event-dispatcher-contracts" />
@@ -551,13 +522,14 @@
       <path value="$PROJECT_DIR$/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/vendor/doctrine/persistence" />
       <path value="$PROJECT_DIR$/vendor/symfony/webpack-encore-bundle" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
     </include_path>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="26" />
-    <option name="y" value="176" />
+    <option name="x" value="18" />
+    <option name="y" value="43" />
     <option name="width" value="1932" />
-    <option name="height" value="804" />
+    <option name="height" value="908" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -585,6 +557,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -608,20 +581,6 @@
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
-              <item name="modals" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-              <item name="toolbars" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
               <item name="tools" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -630,7 +589,7 @@
               <item name="assets" type="462c0819:PsiDirectoryNode" />
               <item name="css" type="462c0819:PsiDirectoryNode" />
               <item name="tools" type="462c0819:PsiDirectoryNode" />
-              <item name="associate" type="462c0819:PsiDirectoryNode" />
+              <item name="zone_container_editor" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
@@ -652,6 +611,57 @@
               <item name="js" type="462c0819:PsiDirectoryNode" />
               <item name="template" type="462c0819:PsiDirectoryNode" />
               <item name="classes" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="objects" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
+              <item name="subtools" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
+              <item name="subtools" type="462c0819:PsiDirectoryNode" />
+              <item name="zoneContainerEditor" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="tools" type="462c0819:PsiDirectoryNode" />
+              <item name="subtools" type="462c0819:PsiDirectoryNode" />
+              <item name="zoneContainerEditor" type="462c0819:PsiDirectoryNode" />
+              <item name="parent" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
@@ -665,55 +675,61 @@
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="bin" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Bundles" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Bundles" type="462c0819:PsiDirectoryNode" />
+              <item name="AddOnBundle" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Bundles" type="462c0819:PsiDirectoryNode" />
+              <item name="AddOnBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Bundles" type="462c0819:PsiDirectoryNode" />
+              <item name="AddOnBundle" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
-              <item name="v2" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="public" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="template" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
@@ -726,7 +742,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -747,18 +762,18 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\infowaytemplate\assets\js\template\classes\tools\subtools\zoneContainerEditor\parent" />
-      <recent name="C:\wamp64\www\infowaytemplate\assets\css\tools\associate" />
-      <recent name="C:\wamp64\www\infowaytemplate\assets\css\modals" />
-      <recent name="C:\wamp64\www\infowaytemplate\assets\css\toolbars" />
-      <recent name="C:\wamp64\www\infowaytemplate\assets\js\template\classes" />
+      <recent name="C:\wamp64\www\infowaytemplate\src" />
+      <recent name="C:\wamp64\www\infowaytemplate\bundles\AddOnBundle\src" />
+      <recent name="C:\wamp64\www\infowaytemplate" />
+      <recent name="C:\wamp64\www\infowaytemplate\src\Bundles" />
+      <recent name="C:\wamp64\www\infowaytemplate\src\Entity" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\infowaytemplate\assets\js\template\classes\tools\subtools\zoneContainerEditor" />
       <recent name="C:\wamp64\www\infowaytemplate\assets\js\template\classes" />
       <recent name="C:\wamp64\www\infowaytemplate\assets\js\template" />
       <recent name="C:\wamp64\www\infowaytemplate\public\js\template\classes\tools" />
       <recent name="C:\wamp64\www\infowaytemplate\public\js\template\v2\template\classes" />
-      <recent name="C:\wamp64\www\infowaytemplate\public\js\template\v2\template\classes\tools" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -792,7 +807,9 @@
       <workItem from="1568188351750" duration="74701000" />
       <workItem from="1568740830763" duration="16873000" />
       <workItem from="1570434991432" duration="82737000" />
-      <workItem from="1570780641817" duration="155519000" />
+      <workItem from="1570780641817" duration="255446000" />
+      <workItem from="1572858811102" duration="92019000" />
+      <workItem from="1573550244770" duration="24587000" />
     </task>
     <task id="LOCAL-00001" summary="css zone flex">
       <created>1569571566982</created>
@@ -805,7 +822,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="601143000" />
+    <option name="totallyTimeSpent" value="817676000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -817,13 +834,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="26" y="176" width="1932" height="804" extended-state="0" />
-    <editor active="true" />
+    <frame x="18" y="43" width="1932" height="908" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19497864" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19925214" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="TypeScript" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
       <window_info anchor="bottom" id="Run" order="2" />
@@ -834,10 +849,11 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.329718" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.40597016" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="10" sideWeight="0.49946582" visible="true" weight="0.46124032" />
+      <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5005342" side_tool="true" weight="0.38801712" />
       <window_info anchor="bottom" id="File Transfer" order="12" visible="true" weight="0.32919255" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.329718" />
+      <window_info anchor="bottom" id="TypeScript" order="14" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -846,28 +862,29 @@
       <window_info anchor="right" x="0" y="0" width="433" height="867" id="Documentation" order="5" side_tool="true" weight="0.32959402" />
     </layout>
     <layout-to-restore>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19497864" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.19497864" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.329718" />
-      <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.329718" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="10" visible="true" weight="0.32810616" />
-      <window_info anchor="bottom" id="Event Log" order="11" side_tool="true" />
-      <window_info anchor="bottom" id="File Transfer" order="12" visible="true" weight="0.32919255" />
-      <window_info anchor="bottom" id="Messages" order="13" weight="0.329718" />
+      <window_info anchor="bottom" id="TypeScript" order="0" />
+      <window_info anchor="bottom" id="Message" order="1" />
+      <window_info anchor="bottom" id="Find" order="2" weight="0.329718" />
+      <window_info anchor="bottom" id="Run" order="3" />
+      <window_info anchor="bottom" id="Debug" order="4" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="7" weight="0.3293124" />
+      <window_info anchor="bottom" id="Docker" order="8" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.329718" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.49946582" visible="true" weight="0.38801712" />
+      <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5005342" side_tool="true" visible="true" weight="0.38801712" />
+      <window_info anchor="bottom" id="File Transfer" order="13" visible="true" weight="0.32919255" />
+      <window_info anchor="bottom" id="Messages" order="14" weight="0.329718" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Remote Host" order="3" weight="0.32675907" />
-      <window_info anchor="right" id="Database" order="4" visible="true" weight="0.18482906" />
+      <window_info anchor="right" id="Database" order="4" weight="0.18482906" />
       <window_info anchor="right" x="0" y="0" width="433" height="867" id="Documentation" order="5" side_tool="true" weight="0.32959402" />
     </layout-to-restore>
   </component>
@@ -882,363 +899,308 @@
     <option name="LAST_COMMIT_MESSAGE" value="css zone flex" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/js/template/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/Zone.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="55" selection-start-column="55" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneCreatorTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="56" selection-start-line="4" selection-start-column="56" selection-end-line="4" selection-end-column="56" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneDraggerTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="49" selection-start-column="49" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneInfoDisplayerTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="52" selection-start-line="1" selection-start-column="52" selection-end-line="1" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneResizerTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="49" selection-start-column="49" selection-end-column="49" />
-          <folding>
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#span#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneZoomOnTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="80" selection-start-line="1" selection-start-column="80" selection-end-line="1" selection-end-column="80" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/utilities/ChoiceDiv.js">
+    <entry file="file://$PROJECT_DIR$/config/packages/swiftmailer.yaml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneMaskerTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="51" selection-start-column="51" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/Template.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="8" selection-start-line="4" selection-start-column="8" selection-end-line="4" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="22" selection-start-line="5" selection-start-column="22" selection-end-line="5" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneDuplicatorTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="46" column="16" selection-start-line="46" selection-start-column="16" selection-end-line="46" selection-end-column="16" />
-          <folding>
-            <element signature="e#0#51#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneAssociationTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="49" selection-start-column="49" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneRemoverTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="33" column="4" selection-start-line="33" selection-start-column="4" selection-end-line="33" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/parent/TemplateSubTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="37" selection-start-line="2" selection-start-column="37" selection-end-line="2" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/parent/TemplateTool.js">
+    <entry file="file://$PROJECT_DIR$/config/packages/sensio_framework_extra.yaml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneAssociation/parent/ZoneAssociationSubTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="46" selection-start-line="3" selection-start-column="46" selection-end-line="3" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/webpack.config.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="43" selection-start-line="15" selection-start-column="43" selection-end-line="15" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/build/template.js">
+    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneAssociation/ZoneAssociatorSubTool.js">
+    <entry file="file://$PROJECT_DIR$/config/packages/routing.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/framework.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/cache.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/assets.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/infowaytemplate/config/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2108">
-          <caret line="86" selection-start-line="86" selection-end-line="86" />
-          <folding>
-            <element signature="e#0#74#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-772">
+          <caret line="15" column="11" selection-start-line="15" selection-start-column="11" selection-end-line="15" selection-end-column="11" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/template/general.css">
+    <entry file="file://$PROJECT_DIR$/public/css/template/reset.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/public/css/v2/reset.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="22" lean-forward="true" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
+        <state relative-caret-position="-136">
+          <caret line="13" column="20" selection-end-line="47" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/css/other/reset.css">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/toolbars/left_toolbar_2.css">
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="25" selection-start-line="25" selection-end-line="27" selection-end-column="74" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/doctrine_migrations.yaml">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/menus/top_nav_menu.css">
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/Template.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="724">
-          <caret line="115" column="1" selection-start-line="115" selection-start-column="1" selection-end-line="115" selection-end-column="1" />
+        <state relative-caret-position="112">
+          <caret line="17" column="27" selection-start-line="17" selection-start-column="27" selection-end-line="17" selection-end-column="27" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/other/general.css">
+    <entry file="file://$PROJECT_DIR$/node_modules/flatted/cjs/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="330" column="1" selection-start-line="330" selection-start-column="1" selection-end-line="330" selection-end-column="1" />
+        <state relative-caret-position="-357" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/flatted/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1469">
+          <caret line="111" column="37" selection-start-line="111" selection-start-column="28" selection-end-line="111" selection-end-column="37" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/tools/zone_resizer.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="1" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/modals/choicesmodal.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="1" selection-start-line="2" selection-start-column="1" selection-end-line="2" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/app.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/toolbars/left_toolbar_1.css">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/v2/classes.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-755" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/tools/zone_infos_displayer.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="69" column="1" selection-start-line="69" selection-start-column="1" selection-end-line="69" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/modals/choice_modal.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="59" column="1" selection-start-line="59" selection-start-column="1" selection-end-line="59" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/template_work_zone.css">
+    <entry file="file://$PROJECT_DIR$/retest.php" />
+    <entry file="file://$PROJECT_DIR$/node_modules/flatted/esm/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
-          <caret line="13" column="1" selection-start-line="13" selection-start-column="1" selection-end-line="13" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="163">
-          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/zones.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
           <caret line="31" selection-start-line="31" selection-end-line="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/v2/general.css">
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/TemplateMiniature.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/tools/associate/associate_zones.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="316">
-          <caret line="138" column="1" selection-start-line="138" selection-start-column="1" selection-end-line="138" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/modals/modals.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/public/css/v2/stage2.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1394">
-          <caret line="82" selection-start-line="82" selection-end-line="82" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZonePriceCreatorTool.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zonePriorityManager/ZonePriorityBackgroundTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" selection-start-line="10" selection-end-line="25" selection-end-column="5" />
-          <folding>
-            <element signature="e#0#61#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/parent/ZoneCreatorSubTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="76" column="34" selection-start-line="76" selection-start-column="34" selection-end-line="76" selection-end-column="34" />
-          <folding>
-            <element signature="e#0#64#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZonePriorityManagerTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="20" selection-end-line="35" selection-end-column="32" />
+        <state relative-caret-position="-1078">
+          <caret line="13" column="21" selection-start-line="13" selection-start-column="21" selection-end-line="13" selection-end-column="21" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/template/classes/TemplateModule.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="35" column="46" selection-start-line="35" selection-start-column="46" selection-end-line="35" selection-end-column="46" />
+        <state relative-caret-position="231">
+          <caret line="64" selection-start-line="64" selection-end-line="64" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/test.js" />
+    <entry file="file://$PROJECT_DIR$/config/packages/dev/maker.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-start-column="1" selection-end-line="6" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/webpack.config.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/services.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="20" column="78" selection-start-line="20" selection-start-column="78" selection-end-line="20" selection-end-column="78" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/doctrine.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-175">
+          <caret line="20" selection-start-line="20" selection-end-line="25" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/Zone.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="24" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/zoneContents/BackgroundContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="49" selection-start-line="6" selection-start-column="41" selection-end-line="6" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/zoneContents/MediaContent.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Bundles/AddOnBundle/src/Entity/Style.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="66" selection-start-line="31" selection-start-column="66" selection-end-line="31" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/zoneContents/Content.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="17" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/TextIncrusteStyle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" column="35" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/IncrusteStyle.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="85">
+          <caret line="5" column="23" selection-start-line="5" selection-start-column="23" selection-end-line="5" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Service/CSSParser.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-141">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
           <folding>
-            <element signature="e#0#36#0" expanded="true" />
+            <element signature="e#113#149#0#PHP" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContainerEditorTool.js">
+    <entry file="file://$PROJECT_DIR$/src/Bundles/AddOnBundle/src/Entity/Model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="37" selection-start-line="15" selection-start-column="37" selection-end-line="15" selection-end-column="37" />
+        <state relative-caret-position="148">
+          <caret line="152" column="21" selection-start-line="152" selection-start-column="21" selection-end-line="152" selection-end-column="21" />
+          <folding>
+            <element signature="e#32#80#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/template/test.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/template/creation.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/TemplateController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="505">
+          <caret line="103" selection-start-line="103" selection-end-line="103" />
+          <folding>
+            <element signature="e#80#103#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/template/layout/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="68" selection-start-line="7" selection-start-column="68" selection-end-line="7" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/StyleProperty.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="629">
+          <caret line="40" column="66" selection-start-line="40" selection-start-column="66" selection-end-line="40" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/TextStylyzer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="80">
+          <caret line="112" column="92" selection-start-line="112" selection-start-column="92" selection-end-line="112" selection-end-column="92" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/template/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-107">
+          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/Style.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZoneTextCreatorTool.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerTextEditorTool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="969">
+          <caret line="57" selection-start-line="57" selection-end-line="57" />
+          <folding>
+            <element signature="e#0#79#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/TemplateMiniatorizerTool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/parent/ZoneContainerEditorSubTool.js">
+    <entry file="file://$PROJECT_DIR$/assets/css/zones.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="17" selection-start-line="15" selection-start-column="17" selection-end-line="15" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneCreator/ZoneMediaCreatorTool.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneContainerBackgroundEditorTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="29" selection-start-line="13" selection-start-column="29" selection-end-line="13" selection-end-column="29" />
-        </state>
+        <state relative-caret-position="-396" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/template/stages/index.html.twig">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="115" column="31" selection-start-line="115" selection-start-column="31" selection-end-line="115" selection-end-column="31" />
+        <state relative-caret-position="-952">
+          <caret line="10" column="124" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="124" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/css/toolbars/toolbars.css">
+    <entry file="file://$PROJECT_DIR$/public/css/template/tools/zone_container_editor/text_styles/text-styles.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="101">
-          <caret line="59" column="14" selection-start-line="59" selection-start-column="14" selection-end-line="59" selection-end-column="14" />
+        <state relative-caret-position="522">
+          <caret line="94" column="1" selection-start-line="94" selection-start-column="1" selection-end-line="94" selection-end-column="1" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/TemplateToolBox.js">
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContainerEditorTool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1258">
-          <caret line="74" column="5" lean-forward="true" selection-start-line="74" selection-start-column="5" selection-end-line="74" selection-end-column="5" />
+        <state relative-caret-position="49">
+          <caret line="131" column="43" selection-start-line="131" selection-start-column="43" selection-end-line="131" selection-end-column="43" />
           <folding>
-            <element signature="e#0#72#0" expanded="true" />
+            <element signature="e#0#50#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/tools/zone_container_editor/zone_container_text_editor.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="131">
+          <caret line="24" column="48" selection-start-line="24" selection-start-column="48" selection-end-line="24" selection-end-column="48" />
         </state>
       </provider>
     </entry>

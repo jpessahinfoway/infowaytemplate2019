@@ -3,8 +3,8 @@ import {Zone} from "../../../../Zone.js";
 import {Observer} from "../../../../pattern/observer/Observer.js";
 
 class ZoneCreatorSubTool extends TemplateSubTool{
-    constructor(){
-        super();
+    constructor(templateInterface,parentTool){
+        super(templateInterface,parentTool);
         this.type=null;
         this.zoneCreatorObserver=null;
         this.initZoneCreatorObserver();
@@ -26,7 +26,9 @@ class ZoneCreatorSubTool extends TemplateSubTool{
             this.parentTool.setUsingToolAuthorization(false);
             let $target = $(target);
 
+
             if($target.hasClass('zone')){
+                console.log($target)
                 let currentParent = this.parentTool.interface.currentTemplate.getZone($target.data('zone'));
                 let referent = null;
 

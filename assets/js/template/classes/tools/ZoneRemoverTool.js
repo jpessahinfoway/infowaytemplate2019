@@ -14,7 +14,11 @@ class ZoneRemoverTool extends TemplateTool{
     }
 
     initOnZoneHoverFocusIcon(){
-        $('.zone').on(`mouseover.${this.constructor.name}`,  (e)=> { $(e.currentTarget).find('.remover-icon i').addClass('active-icon')  });
+        $('.zone').on(`mouseover.${this.constructor.name}`,  (e)=> {
+            console.log('icii')
+            $(e.currentTarget).find('.remover-icon i').addClass('active-icon')
+
+        });
         $('.zone').on(`mouseout.${this.constructor.name}`,   (e)=>     {    $(e.currentTarget).find('.remover-icon i').removeClass('active-icon')   })
     }
 

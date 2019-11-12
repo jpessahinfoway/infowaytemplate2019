@@ -1,23 +1,49 @@
 doctrine:
     dbal:
         # configure these for your database server
-        driver: 'pdo_mysql'
-        server_version: '5.7'
-        charset: utf8mb4
-        default_table_options:
-            charset: utf8mb4
-            collate: utf8mb4_unicode_ci
-            host: 127.0.0.1
-            port: 3306
-        url: '%env(resolve:DATABASE_URL)%'
+#        driver: 'pdo_mysql'
+#        server_version: '5.7'
+#        charset: utf8mb4
+#         default_table_options:
+#            charset: utf8mb4
+#            collate: utf8mb4_unicode_ci
+#            host: 127.0.0.1
+#            port: 3306
+#        url: '%env(resolve:DATABASE_URL)%'
+        default_connection: default
+        connections:
+            default:
+                # configure these for your database server
+                url: '%env(resolve:DATABASE_URL)%'
+                driver: 'pdo_mysql'
+                server_version: '5.7'
+                charset: utf8mb4
+            addons:
+                # configure these for your database server
+                url: '%env(resolve:DATABASE_SECONDARY_URL)%'
+                driver: 'pdo_mysql'
+                server_version: '5.7'
+                charset: utf8mb4
     orm:
-        auto_generate_proxy_classes: true
-        naming_strategy: doctrine.orm.naming_strategy.underscore
-        auto_mapping: true
-        mappings:
-            App:
-                is_bundle: false
-                type: annotation
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'App\Entity'
-                alias: App
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default
+                mappings:
+                    App:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Entity'
+                        prefix: 'App\Entity'
+                        alias: App
+
+            addons:
+                connection: addons
+                mappings:
+                    AddOn:
+                        is_bundle: false
+                        type: annotation
+                        dir: '%kernel.project_dir%/src/Bundles/AddOnBundle/src/Entity'
+                        prefix: 'AddOn\Entity'
+                        alias: AddOn
+

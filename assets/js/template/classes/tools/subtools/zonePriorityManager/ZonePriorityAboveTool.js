@@ -1,8 +1,8 @@
 import {ZonePriorityManagerSubTool} from "./parent/ZonePriorityManagerSubTool.js";
 
 class ZonePriorityAboveTool extends ZonePriorityManagerSubTool{
-    constructor(template){
-        super(template);
+    constructor(templateInterface,parentTool){
+        super(templateInterface,parentTool);
         this.$eventLocation.click=$('body');
         this.description = 'Avancer une zone';
         this.adaptableIconsInZone.element = '<span class="zone-priority-above-icon"><i class="fal fa-layer-plus"></i></span>';

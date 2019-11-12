@@ -1,8 +1,8 @@
 import {ZonePriorityManagerSubTool} from "./parent/ZonePriorityManagerSubTool.js";
 
 class ZonePriorityBellowTool extends ZonePriorityManagerSubTool{
-    constructor(template){
-        super(template);
+    constructor(templateInterface,parentTool){
+        super(templateInterface,parentTool);
         this.$eventLocation.click=$('body');
         this.description = 'Reculer une zone';
         this.adaptableIconsInZone.element = '<span class="zone-priority-above-icon"><i class="fal fa-layer-minus"></i></span>';

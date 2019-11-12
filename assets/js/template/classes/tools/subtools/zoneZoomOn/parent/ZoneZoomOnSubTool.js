@@ -1,8 +1,8 @@
 import {TemplateSubTool} from "../../parent/TemplateSubTool.js";
 
 class ZoneZoomOnSubTool extends TemplateSubTool{
-    constructor(templateInterface){
-        super(templateInterface);
+    constructor(templateInterface,parentTool){
+        super(templateInterface,parentTool);
         this.$eventLocation.click=$('body');
         this.toolOn=false;
         this.paused=false

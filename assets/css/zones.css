@@ -1,26 +1,52 @@
 .container-zone > div {
     position: absolute;
 }
-.price-zone,.price-preview{
-    background: rgba(255, 215, 0, 0.6)!important
+
+.pricetype-wrapper,.price-preview, .zone-miniature.price-zone{
+    background: rgba(255, 215, 0, 0.4);
+    outline: 2px solid rgba(255, 215, 0, 0.6);
 }
 
-.text-zone,.text-preview{
-    background: rgba(73, 182, 117, 0.6) !important;
+.texttype-wrapper,.text-preview, .zone-miniature.text-zone{
+    background: rgba(73, 182, 117, 0.4) ;
+    outline: 2px solid rgba(73, 182, 117, 0.6);
 }
 
-.zone,.zone-preview{
-    background:rgba(243, 79, 31, 0.4)
+.zonetype-wrapper,.zone-preview, .zone-miniature{
+    background:rgba(243, 79, 31, 0.4);
+    outline: 2px solid rgba(243, 79, 31, 0.6)
 }
-.media-zone, .media-preview{
-    background:rgba(14, 75, 239, 0.6)!important
+
+.selected-style{
+    background: #59a8f8;
+    opacity: 0.4;
+    outline: 1px solid #71b5fb;
+}
+
+.zone-content {
+    text-align: center;
+}
+.zone-content img{
+    max-height : 100%;
+
+}
+.zone{
+    display:flex;
+    height:100%;
+}
+
+.mediatype-wrapper, .media-preview, .zone-miniature.media-zone{
+    background:rgba(14, 75, 239, 0.4);
+    outline: 2px solid rgba(14, 75, 239, 0.6)
 }
 
 .zone-selected {
     background-color: rgba(159, 73, 182, 0.6)!important;
 }
 .selected {
-    border: 1px solid #9F49B6!important;
+    /*border: 1px solid #9F49B6!important;*/
+    opacity:0.4;
+
 }
 
 span.zone-infos-content{

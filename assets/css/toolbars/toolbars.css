@@ -57,21 +57,21 @@
     font-size: 0.8rem;
     cursor: pointer;
 }
-.toolbar ul ul {
+.toolbar ul li ul.slider-menu {
     display: none;
     background-color: #ffffff;
 }
 .toolbar ul ul li:last-child {
     border-bottom: none;
 }
-.toolbar ul ul li, .toolbar ul ul li i {
+.toolbar ul li ul.slider-menu li, .toolbar ul li ul.slider-menu li i {
     color: #385b72;
 }
 
-.toolbar .active-tool{
+.toolbar .active-tool:not(.hidden-tool),.toolbar li.hidden-tool .active-subTool{
     background:#369e89
 }
 
-.active-subTool{
+ul li.tool:not(.hidden-tool) .active-subTool{
     background:#c2ede5;
 }

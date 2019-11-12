@@ -2,8 +2,8 @@ import {TemplateSubTool} from "../parent/TemplateSubTool.js";
 import {ZonePriorityManagerSubTool} from "./parent/ZonePriorityManagerSubTool.js";
 
 class ZonePriorityBackgroundTool extends ZonePriorityManagerSubTool{
-    constructor(template){
-        super(template);
+    constructor(templateInterface,parentTool){
+        super(templateInterface,parentTool);
         this.description = 'Mettre en dernier plan';
         this.adaptableIconsInZone.element = '<span class="zone-priority-background-icon"><i class="fal fa-layer-group"></i></span>';
     }

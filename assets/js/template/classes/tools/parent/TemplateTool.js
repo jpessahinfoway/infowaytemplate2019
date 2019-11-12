@@ -26,7 +26,6 @@ class TemplateTool{
 
     addSubTool(subTool){
         this.subTools[subTool.name]=subTool
-        subTool.parentTool = this;
         console.log(subTool.parentTool)
     }
 
@@ -47,7 +46,7 @@ class TemplateTool{
                 iconsInZones.find('i').css('font-size',minSizeValue*0.3);
 
                 // removerIcon.css('box-shadow','inset 0 0 0 1px');
-                currentZone.$location.append(iconsInZones);
+                currentZone.$zone.append(iconsInZones);
                 if(indexIter === Object.keys(this.interface.currentTemplate.getZones()).length-1){
 
                 }

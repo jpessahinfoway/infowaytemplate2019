@@ -9,7 +9,6 @@
     padding: 15px;
     position: relative;
     width: 60%;
-    min-height:90%;
     background-color: #ffffff;
     border: 1px solid #385b72;
 }
@@ -46,6 +45,7 @@
 }
 .icon-action-div i.active-icon{
     opacity :0.6;
+    position: relative;
 }
 
 .icon-action-div{

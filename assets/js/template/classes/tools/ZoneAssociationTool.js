@@ -16,7 +16,7 @@ class ZoneAssociationTool extends TemplateTool{
 
 
     addSubTools(){
-        this.addSubTool(new ZoneAssociatorSubTool(this.interface));
+        this.addSubTool(new ZoneAssociatorSubTool(this.interface,this));
     }
 
 

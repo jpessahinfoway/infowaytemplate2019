@@ -8,6 +8,7 @@ class Zone{
         this.$locationAddOnContainer = $('<div></div>')
         this.type = type;
         this.size = size;
+        this.zoneContent = null;
         this.zoneChildrens = {};
         this.zoneParent = null;
         this.associatedZone = {};
@@ -28,6 +29,21 @@ class Zone{
         this.zoneChildrens[zone.identificator]=zone
     }
 
+    add$ElementInZone($element){
+        this.$location.append($element)
+    }
+
+    setZoneBackground(background){
+        this.background = background;
+        console.log(background.url)
+        this.$zone.css("background-image", "url(" + background.url + ")");
+    }
+
+    setZoneContent(content){
+        this.content = content;
+        this.zoneContent.html(this.content.html)
+    }
+
     putTextInZone(text){
         this.$contentSpan.text(text)
     }
@@ -39,15 +55,11 @@ class Zone{
         this.associatedZone[zoneToAssociate.identificator]=zoneToAssociate;
         zoneToAssociate.associatedZone[this.identificator]=this;
 
-        console.log(this.associatedZone)
-        console.log(zoneToAssociate.associatedZone)
     }
 
     unAssociateZone(zoneToUnAssociate){
         delete this.associatedZone[zoneToUnAssociate.identificator];
         delete zoneToUnAssociate.associatedZone[this.identificator];
-        console.log(this.associatedZone)
-        console.log(zoneToUnAssociate.associatedZone)
     }
 
     getSize(){
@@ -59,12 +71,16 @@ class Zone{
     }
 
     create({id=this.id,position=this.position,color=this.backgroundColor,size=this.size}={}){
-        this.$location =  $(`<div data-type="${this.type}"></div>`);
+        this.$zone =  $(`<div data-type="${this.type}"></div>`);
+
+        this.$location = $(`<div class="${this.type}type-wrapper"></div>`)
         this.$contentSpan=$('<span class="zone-infos-content"></span>')
-        this.$location.append(this.$contentSpan);
-        this.$location.css("position","absolute");
-        this.$location.addClass("zone");
-        if(this.type!=='zone')this.$location.addClass(`${this.type}-zone`);
+
+        this.zoneContent=$('<div class="zone-content"></div>')
+        this.$zone.append(this.$contentSpan).append(this.zoneContent)
+        this.$location.append(this.$zone)
+        this.$zone.addClass("zone");
+        if(this.type!=='zone')this.$zone.addClass(`${this.type}-zone`);
         this.setSize(size);
         this.setPosition(position);
     }
@@ -78,8 +94,7 @@ class Zone{
     }
 
     setZIndex(zIndex){
-        console.log(this)
-        console.log(zIndex)
+
         this.zIndex = zIndex;
         this.$location.css('z-index', zIndex);
     }
@@ -95,10 +110,9 @@ class Zone{
 
         this.name = "zone-"+id;
 
-        this.$location.data('zone',id);
-        this.$location.attr("id",this.name);
-        console.log(this.$location)
-        console.log(this.$location.attr("id"))
+        this.$zone.data('zone',id);
+        this.$zone.attr("id",this.name);
+
     }
 
     appendIt(location = this.location){

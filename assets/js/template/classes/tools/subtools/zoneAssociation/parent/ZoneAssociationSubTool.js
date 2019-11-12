@@ -2,8 +2,8 @@ import {TemplateSubTool} from "../../parent/TemplateSubTool.js";
 
 
 class ZoneAssociationSubTool extends TemplateSubTool{
-    constructor(template){
-        super(template);
+    constructor(templateInterface,parentTool){
+        super(templateInterface,parentTool);
         this.$location = {
             closeAssociationWindow : $('.modal.associate .close'),
             associationWindow : $('div.modal.associate#associate')

@@ -1,8 +1,8 @@
 import {ZoneZoomOnSubTool} from "./parent/ZoneZoomOnSubTool.js";
 
 class ZoneZoomIncreaserTool extends ZoneZoomOnSubTool{
-    constructor(templateInterface){
-        super(templateInterface);
+    constructor(templateInterface,parentTool){
+        super(templateInterface,parentTool);
         this.description = 'Appliquer un zoom';
         this.deplacementVal = {
             x : 0,

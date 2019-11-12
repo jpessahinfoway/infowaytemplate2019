@@ -11,6 +11,7 @@ import {ZoneZoomOnTool} from "./tools/ZoneZoomOnTool";
 import {ZoneAssociationTool} from "./tools/ZoneAssociationTool";
 import {ZoneDuplicatorTool} from "./tools/ZoneDuplicatorTool";
 import {ZoneContainerEditorTool} from "./tools/ZoneContainerEditorTool";
+import {TemplateMiniatorizerTool} from "./tools/TemplateMiniatorizerTool";
 
 class TemplateModule{
 
@@ -23,6 +24,7 @@ class TemplateModule{
     attachToolBox(){
 
         this.toolBox = new TemplateToolBox();
+        this.toolBox.addTool(new TemplateMiniatorizerTool(this));
         this.toolBox.addTool(new ZoneCreatorTool(this));
         this.toolBox.addTool(new ZoneDraggerTool(this));
         this.toolBox.addTool(new ZoneRemoverTool(this));
@@ -60,6 +62,7 @@ class TemplateModule{
                 type: "GET",
                 url: '/template/stage1/register',
                 data: {
+
                     zones : JSON.stringify(this.currentTemplate.getZones()),
                     template : JSON.stringify(templateDataToImport)
                 },

@@ -88,17 +88,27 @@ class TemplateToolBox{
 
      let element = Object.keys(this.tools).includes(toolName)?'tool':'subTool';
 
+     console.log(toolName)
+     console.log(element)
      let objectToActive = element==='tool'?this.tools[toolName]:this.tools[this.getParentTool(toolName)].subTools[toolName];
 
      let classToAdd = element==='tool'?'active-tool':'active-subTool';
-console.log(active)
+    console.log(objectToActive)
      objectToActive.instance.activeTool(active);
+
+
+
      if(active){
          console.log(objectToActive)
          if(!(objectToActive.instance instanceof PermanentTool))this.activatedTool[element]=objectToActive.instance;
          objectToActive.elements.li.addClass(classToAdd);
      }else{
-         console.log(objectToActive)
+         let currentToolsubTools = Object.values(objectToActive.instance.subTools);
+         if(currentToolsubTools.length >0){
+             currentToolsubTools.map(subTool=>{
+                 this.activeToolInToolBox(subTool.name,false)
+             });
+         }
         if(this.activatedTool[element] !== null && this.activatedTool[element].name === toolName)this.activatedTool[element]=null;
          objectToActive.elements.li.removeClass(classToAdd);
      }

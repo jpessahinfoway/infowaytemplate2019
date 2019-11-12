@@ -1,8 +1,8 @@
 import {ZoneZoomOnSubTool} from "./parent/ZoneZoomOnSubTool.js";
 
 class ZoneZoomDecreaserTool extends ZoneZoomOnSubTool{
-    constructor(templateInterface){
-        super(templateInterface);
+    constructor(templateInterface,parentTool){
+        super(templateInterface,parentTool);
         this.description = 'Appliquer un dézoom';
         this.$applyZoneOn = $('.container-zone');
         this.currentScale  = this.interface.currentTemplate.getCurrentScale();

@@ -11,7 +11,7 @@ class ZoneZoomOnTool extends TemplateTool{
 
     addSubTools(){
         console.log(this.interface)
-        this.addSubTool(new ZoneZoomIncreaserTool(this.interface));
+        this.addSubTool(new ZoneZoomIncreaserTool(this.interface,this));
     }
 
     activeTool(boolean){

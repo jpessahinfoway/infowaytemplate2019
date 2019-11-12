@@ -19,10 +19,10 @@ class ZonePriorityManagerTool extends TemplateTool{
 
 
     addSubTools(){
-        this.addSubTool(new ZonePriorityForegroundTool(this.interface));
-        this.addSubTool(new ZonePriorityBackgroundTool(this.interface));
-        this.addSubTool(new ZonePriorityAboveTool(this.interface));
-        this.addSubTool(new ZonePriorityBellowTool(this.interface));
+        this.addSubTool(new ZonePriorityForegroundTool(this.interface,this));
+        this.addSubTool(new ZonePriorityBackgroundTool(this.interface,this));
+        this.addSubTool(new ZonePriorityAboveTool(this.interface,this));
+        this.addSubTool(new ZonePriorityBellowTool(this.interface,this));
     }
 
 

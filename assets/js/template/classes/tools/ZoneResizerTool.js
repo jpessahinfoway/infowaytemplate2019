@@ -37,7 +37,7 @@ class ZoneResizerTool extends TemplateTool{
                     if(this.borderStyle !== null)icon.css('border',this.borderStyle);
                     //icon.css('border')
 
-                    this.currentWorkZone.$location.append(icon)
+                    this.currentWorkZone.$zone.append(icon)
                 });
             })
     }
@@ -66,11 +66,13 @@ class ZoneResizerTool extends TemplateTool{
             let deplacementValue=null;
 
             $(`${'body'}`).on('mousemove.'+this.constructor.name, (e) => {
+                console.log('icii')
 
                     cursorPosition.old = cursorPosition.new;
                     cursorPosition.new = this.getCursorPositionInTemplate(e,this.workSpace);
+                    console.log(cursorPosition)
 
-                    deplacementValue = {left:cursorPosition.new.left-cursorPosition.old.left,top:cursorPosition.new.top-cursorPosition.old.top};
+                    deplacementValue = {left:cursorPosition.new.x-cursorPosition.old.x,top:cursorPosition.new.y-cursorPosition.old.y};
 
                     Object.keys(properties.new)
                         .map(attr=>{Object.keys(properties.new[attr])

@@ -2,8 +2,8 @@ import {ZoneAssociationSubTool} from "./parent/ZoneAssociationSubTool.js";
 import {ChoiceDiv} from "../../../utilities/ChoiceDiv.js";
 
 class ZoneAssociatorSubTool extends ZoneAssociationSubTool{
-    constructor(template){
-        super(template);
+    constructor(templateInterface,parentTool){
+        super(templateInterface,parentTool);
         //stock les emplacements des evenements js
         this.$eventLocation.click =  {
             associateOnClick : {

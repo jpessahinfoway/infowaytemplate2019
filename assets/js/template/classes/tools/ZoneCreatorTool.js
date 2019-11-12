@@ -42,9 +42,9 @@ class ZoneCreatorTool extends TemplateTool{
     //Ajout des sous-outils
     addSubTools(){
         if(!this.isSubTool){
-            this.addSubTool(new ZonePriceCreatorTool(this.interface));
-            this.addSubTool(new ZoneTextCreatorTool(this.interface));
-            this.addSubTool(new ZoneMediaCreatorTool(this.interface));
+            this.addSubTool(new ZonePriceCreatorTool(this.interface,this));
+            this.addSubTool(new ZoneTextCreatorTool(this.interface,this));
+            this.addSubTool(new ZoneMediaCreatorTool(this.interface,this));
         }
     }
     setZoneType(zone){
