@@ -17,11 +17,7 @@
     outline: 2px solid rgba(243, 79, 31, 0.6)
 }
 
-.selected-style{
-    background: #59a8f8;
-    opacity: 0.4;
-    outline: 1px solid #71b5fb;
-}
+
 
 .zone-content {
     text-align: center;

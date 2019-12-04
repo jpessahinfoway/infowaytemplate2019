@@ -1,3 +1,5 @@
+import {StyleProperty} from "./StyleProperty";
+
 class Style{
     constructor(){
         this.color = null;
@@ -20,9 +22,9 @@ class Style{
                     .replace('-', '')
                     .replace('_', '')
             )
-            if(typeof this[propertyNameToCamelCase] !== 'undefined')this[propertyNameToCamelCase] = styleProperty
+            if(typeof this[propertyNameToCamelCase] !== 'undefined')this[propertyNameToCamelCase] = Object.assign(new StyleProperty(),styleProperty)
         })
-        console.log(this)
+
     }
 
     setTarget(target){

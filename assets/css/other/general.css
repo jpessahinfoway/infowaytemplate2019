@@ -116,8 +116,8 @@ label{
     color: #385b72;
     font-style: italic;
     font-size: 0.7rem;
-    margin-bottom: 7px;
     font-weight: bold;
+    margin-bottom:7px;
 }
 
 
@@ -154,10 +154,11 @@ input[type="radio"], input[type="checkbox"] {
     display: none;
 }
 ::-webkit-scrollbar {
-    width: 6px;
+    width: 4px;
+    height : 4px;
 }
 ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: #876a6a;
 }
 ::-webkit-scrollbar-thumb {
     background: #385b72;
@@ -183,7 +184,25 @@ input[type="radio"], input[type="checkbox"] {
 .button-group {
     margin-top: 5px;
     width: 100%;
+    text-align: center;
 }
+
+.disabled-element .wrapper{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: #f7f3f3;
+    opacity: 0.8;
+    z-index:2;
+    display:block !important;
+}
+
+.disabled-element{
+    position:relative;
+}
+
 
 /*************************************************/
 /********RADIO********CHECKBOX**** FILE***********/
@@ -191,7 +210,7 @@ input[type="radio"], input[type="checkbox"] {
 .radios-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
+   /* margin-bottom: 15px;*/
 }
 .file-group {
     display: flex;
@@ -239,16 +258,21 @@ input[type="radio"], input[type="checkbox"] {
     font-weight: normal;
     cursor: pointer;
 }
+
+img.loader{
+    margin : 5px;
+}
 .radios-group input[type="radio"] + label:before, .checkbox input[type="checkbox"] + label:before {
     background-color: #ffffff;
     border-radius: 50%;
     content: '';
-    width: 0.8rem;
-    height: 0.8rem;
-    margin-right: 0.3rem;
+    width: 11px;
+    height: 11px;
+    margin-right: 3px;
     vertical-align: middle;
-    border: 0.2rem solid #385b72;
+    border: 1px solid #385b72;
     display: inline-block;
+    transition:all 0.5s;
 }
 .checkbox input[type="checkbox"] + label:before {
     border-radius: 0;
@@ -259,10 +283,10 @@ input[type="radio"], input[type="checkbox"] {
     box-shadow: inset 0px 0px 0px 2px #ffffff;
 }
 .radios-group .radio {
-    margin: 0 20px 5px 0;
+    margin: 0 20px 0 0;
 }
 .checkbox {
-    margin-bottom: 5px;
+   /* margin-bottom: 5px;*/
 }
 
 /***************************************************/
@@ -363,19 +387,35 @@ input:checked + .slider:before {
     color: #ffffff;
 }
 .message {
-    padding: 10px;
     color: #ffffff;
-    font-size: 0.7rem;
-    font-weight: bold;
-    border : 1px solid #b94c4c
+    font-size: 11px;
+    position: relative;
+    padding: .25rem 1.25rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    margin : 0.5rem 0;
+}
+
+.input-group div {
+    display: flex;
+    align-items: center;
+}
+input[type="color"] {
+    margin-right: 5px;
+    height: 14px;
+    width: 40px;
+    border: none;
+    outline: none;
+    -webkit-appearance: none;
 }
 .success {
     border: 1px solid #7ac837;
     background-color: #4e6c34;
 }
 .error {
-    border: 1px solid #bf0000;
-    background-color: #bf0000;
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
 }
 .warning {
     border: 1px solid #ff7f00;
@@ -406,6 +446,24 @@ input:checked + .slider:before {
 }
 .file-group > label:hover:before {
     width: 100%;
+}
+.file-group > label:hover {
+    color:white;
+}
+
+.element-focused{
+    outline: 1px solid rgba(159, 73, 182, 0.6)!important;
+}
+.selected-style,.selected-element .wrapper{
+    background-color: rgba(156, 189, 247, 0.5) !important;
+    outline: 1px solid #71b5fb;
+}
+.wrapper{
+    position:absolute;
+    top:0;
+    left:0;
+    height:100%;
+    width : 100%;
 }
 .file-group > label:hover i {
     color: #ffffff;

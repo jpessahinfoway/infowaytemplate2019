@@ -4,7 +4,7 @@
     height: 300px;
     line-height: 300px;
     overflow: hidden;
-    border: 1px solid #385b72;
+    border: 1px solid #d6d6d6;
 }
 #text-style-creator .radios-group, .price-editor .radios-group {
     flex-direction: row;
@@ -16,15 +16,20 @@
     margin-right: 15px;
 }
 
+#choose-text-style ul.classes-text{
+    overflow:auto;
+    max-height:400px;
+}
+
 .class-text__flex-container{
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-end;
 }
 
 #choose-text-style .class-text .incrust-style-wrapper {
     background-color: #f0f0f0;
-    border: 1px solid #385b72;
+    border: 1px solid #d6d6d6;
     margin-bottom: 10px;
     padding: 10px;
     cursor: pointer;

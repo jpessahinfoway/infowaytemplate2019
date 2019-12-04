@@ -30,7 +30,11 @@ class ZoneCreatorTool extends TemplateTool{
             template : null,
             referent : null
         };
-        this.addSubTools();
+        this.addSubTools(
+            new ZonePriceCreatorTool(this.interface,this),
+            new ZoneTextCreatorTool(this.interface,this),
+            new ZoneMediaCreatorTool(this.interface,this)
+        );
         this.zoneCreationObservable = new Observable();
         this.referent = this.interface.currentTemplate
         this.currentZoneMaximumSize = {
@@ -40,13 +44,6 @@ class ZoneCreatorTool extends TemplateTool{
     }
 
     //Ajout des sous-outils
-    addSubTools(){
-        if(!this.isSubTool){
-            this.addSubTool(new ZonePriceCreatorTool(this.interface,this));
-            this.addSubTool(new ZoneTextCreatorTool(this.interface,this));
-            this.addSubTool(new ZoneMediaCreatorTool(this.interface,this));
-        }
-    }
     setZoneType(zone){
         this.zoneType=zone
     }

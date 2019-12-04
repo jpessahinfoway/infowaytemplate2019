@@ -6,6 +6,7 @@ class ZoneContainerEditorSubTool extends TemplateSubTool{
         super(templateInterface,parentTool);
         this.$location = _.cloneDeep(this.parentTool.$location)
         this.functionToExecuteOnSelectedZone = null;
+        this.subTools = {}
 
     }
 
@@ -15,13 +16,26 @@ class ZoneContainerEditorSubTool extends TemplateSubTool{
     }
     onValidateButtonClickApplyOnZonesSelected(active){
         if(active){
-            this.$location.window.containers.right.button.validate.on('click.onValidateButtonClickApplyOnZonesSelected',()=>{
+          /*  this.$location.window.containers.right.button.validate.on('click.onValidateButtonClickApplyOnZonesSelected',()=>{
                 console.log(this.parentTool.zonesSelected)
                 this.parentTool.zonesSelected.forEach(indexZoneSelected => {
                     this.functionToExecuteOnSelectedZone(this.interface.currentTemplate.getZone(indexZoneSelected))
                 })
-            })
+            })*/
         }
+    }
+
+    initSubTools(...subTools){
+        let subToolsObject = {};
+
+        subTools.map(subTool=>subToolsObject[subTool.name] = subTool);
+
+        return subToolsObject
+    }
+
+    activeSubTools(active){
+
+        Object.values(this.subTools).forEach(subTool=>subTool.activeTool(active))
     }
 
 
@@ -29,22 +43,14 @@ class ZoneContainerEditorSubTool extends TemplateSubTool{
         super.activeToolDecorator(boolean,(mode)=>{
             if(mode==='on'){
                 onActivationFunction.bind(this)();
-                this.onValidateButtonClickApplyOnZonesSelected(true)
-                this.parentTool.setTitle({containerX : 'right', containerY : 'top'},this.$location.window.containers.right.containers.top.h2.content);
-                this.parentTool.setTitle({containerX : 'left', containerY : 'bottom'},this.$location.window.containers.left.containers.bottom.h2.content);
-                let containers = this.$location.window.containers;
-                Object.keys(containers).map(containerPositionX => {
-                    Object.keys(containers[containerPositionX].containers).map(containerPositionY=>{
-                        if(containers[containerPositionX].containers[containerPositionY].container.$location !== null && containers[containerPositionX].containers[containerPositionY].container.$location.hasClass('none')){
-                            this.parentTool.setActiveContainer({containerX :containerPositionX ,containerY:containerPositionY},containers[containerPositionX].containers[containerPositionY].container.$location)
-                        }
-                    })
-                });
-                this.$location.window.$location.removeClass('none');
+                this.activeSubTools(true)
+                this.$location.container.removeClass('none');
             }else if(mode === 'off'){
+                this.activeSubTools(false)
                 if(onDisactivationFunction !== null)onDisactivationFunction.bind(this)()
-                this.onValidateButtonClickApplyOnZonesSelected(false)
-                this.parentTool.resetZonesSelected();
+                /*this.onValidateButtonClickApplyOnZonesSelected(false)
+                this.parentTool.resetZonesSelected();*/
+
                 console.log(this.parentTool.zonesSelected)
                // this.parentTool.zoneCreationObservable.removeObserver(this.zoneCreatorObserver)
             }

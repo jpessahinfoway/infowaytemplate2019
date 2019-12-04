@@ -6,17 +6,12 @@ class ZoneAssociationTool extends TemplateTool{
         super(templateInterface);
         this.description = 'Associer à une zone';
         this.$eventLocation=$('body');
-        this.addSubTools()
+        this.addSubTools(new ZoneAssociatorSubTool(this.interface,this))
         this.$location = {
             closeAssociationWindow : $('.modal.associate .close'),
             associationWindow : $('div.modal.associate#associate')
         }
         // this.addSubTools(template);
-    }
-
-
-    addSubTools(){
-        this.addSubTool(new ZoneAssociatorSubTool(this.interface,this));
     }
 
 

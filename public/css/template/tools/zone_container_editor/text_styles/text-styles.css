@@ -93,3 +93,23 @@
     text-decoration : line-through ;
     transform : rotate(7deg) ;
 }
+.text90 {
+    color : #000000 ;
+    font-size : 30px ;
+    text-align : left ;
+    font-family : Arial ;
+    font-weight : bold ;
+    font-style : italic ;
+    text-decoration : initial ;
+    transform : rotate(0deg) ;
+}
+.text91 {
+    color : #000000 ;
+    font-size : 30px ;
+    text-align : left ;
+    font-family : Arial ;
+    font-weight : bold ;
+    font-style : italic ;
+    text-decoration : initial ;
+    transform : rotate(0deg) ;
+}

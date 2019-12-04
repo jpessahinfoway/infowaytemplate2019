@@ -1,8 +1,8 @@
 class Content{
-    constructor(content){
+    constructor(value){
         this.type = null;
-        this.content = content;
-        this.html = null;
+        this.value = value;
+        this.id = null;
     }
 }
 export {Content}

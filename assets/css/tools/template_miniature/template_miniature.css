@@ -32,6 +32,7 @@
     background-color: rgba(159, 73, 182, 0.6)!important;
 }
 .modal.background-editor .left-container .container{
+    width:100%;
     display: inline-block;
 }
 
@@ -59,6 +60,5 @@
 /********************************************************/
 .miniature > div > div {
     position: relative;
-    border: 1px solid #385b72;
     cursor: pointer;
 }

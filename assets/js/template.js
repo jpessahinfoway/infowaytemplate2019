@@ -17,8 +17,11 @@ import '../css/modals/modals.css';
 import '../css/modals/choice_modal.css';
 import '../css/tools/zone_infos_displayer.css';
 import '../css/tools/zone_resizer.css';
-import '../css/tools/associate/associate_zones.css';
+import '../css/tools/associate/associate_zones.css'
+import '../css/tools/zone_container_editor.css';
+import '../css/tools/zone_container_editor/zone_container_zone_selector.css';
 import '../css/tools/zone_container_editor/zone_container_background_editor.css';
+import '../css/tools/zone_container_editor/zone_container_price_editor.css';
 import '../css/tools/zone_container_editor/zone_container_text_editor.css';
 import '../css/tools/template_miniature/template_miniature.css';
 

@@ -13,17 +13,15 @@ class ZonePriorityManagerTool extends TemplateTool{
         super(templateInterface);
         this.description = 'Arranger une zone';
         this.$eventLocation=$('body');
-        this.addSubTools()
+        this.addSubTools(
+            new ZonePriorityForegroundTool(this.interface,this),
+            new ZonePriorityBackgroundTool(this.interface,this),
+            new ZonePriorityAboveTool(this.interface,this),
+            new ZonePriorityBellowTool(this.interface,this)
+        )
        // this.addSubTools(template);
     }
 
-
-    addSubTools(){
-        this.addSubTool(new ZonePriorityForegroundTool(this.interface,this));
-        this.addSubTool(new ZonePriorityBackgroundTool(this.interface,this));
-        this.addSubTool(new ZonePriorityAboveTool(this.interface,this));
-        this.addSubTool(new ZonePriorityBellowTool(this.interface,this));
-    }
 
 
     activeTool(boolean){

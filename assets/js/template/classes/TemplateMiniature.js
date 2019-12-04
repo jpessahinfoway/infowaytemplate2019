@@ -1,9 +1,8 @@
 import {Observable} from "./pattern/observer/Observable";
 
 class TemplateMiniature{
-    constructor(template,name,$location){
+    constructor(template,$location){
         this.scale = '0.3';
-        this.name = name;
         this.$miniature = null;
         this.template = template;
         this.zonesSelected = [];
@@ -12,14 +11,18 @@ class TemplateMiniature{
             container : $location
         }
         this.zonesSelectedUpdatedObservable = new Observable()
+        this.onClickselectZoneInMiniature(true);
     }
 
     createMiniature(){
         this.$miniature =$(`<div class='template-miniature' id='${this.name}'></div>`);
-        this.$miniature.width(this.template._attr._size._width  * this.scale);
+       // this.$miniature.width('calc(100%-10px)');
         this.$miniature.height(this.template._attr._size._height * this.scale);
-
         return this
+    }
+
+    resetSelectedZone(){
+        this.zonesSelected = [];
     }
 
     resetMiniature(){
@@ -34,21 +37,25 @@ class TemplateMiniature{
             if(zoneTypeArray.includes(zone.type)){
                 let currentZoneSize = {};
                 let currentZonePosition = {}
+                console.log(zone.size)
                 Object.keys(zone.size).map(sizeKey => currentZoneSize[sizeKey] = zone.size[sizeKey] * this.scale);
                 Object.keys(zone.position).map(positionKey => currentZonePosition[positionKey] = zone.position[positionKey] * this.scale);
 
                 zonesHtml += "<div class='zone-miniature";
                 if (zone.type !== 'zone') zonesHtml += ` ${zone.type}-zone`;
-                zonesHtml += `' data-type='${zone.type}`;
-                zonesHtml += `' data-zone='${zone.identificator}'`;
-                zonesHtml += " style='";
-                zonesHtml += " position : absolute;";
-                zonesHtml += `width : ${currentZoneSize.width}px;`;
-                zonesHtml += `height : ${currentZoneSize.height}px;`;
-                zonesHtml += `top : ${currentZonePosition.top}px;`;
-                zonesHtml += `left : ${currentZonePosition.left}px;`;
-                zonesHtml += "'></div>";
-                console.log(zonesHtml)
+                console.log(this.template._attr._size._width)
+                console.log(currentZoneSize.width)
+
+                zonesHtml +=
+                    `' data-type='${zone.type}`+
+                    `' data-zone='${zone.identificator}'` +
+                     " style='"+
+                     " position : absolute;"+
+                     `width :  calc(100% / (${this.template._attr._size._width} / ${zone.size.width}));`+
+                     `height : calc(100% / (${this.template._attr._size._height} / ${zone.size.height}));`+
+                     `top : calc(${zone.position.top} * (100% / ${this.template._attr._size._height}));`+
+                     `left : calc(${zone.position.left} * ( 100% / ${this.template._attr._size._width}));`+
+                     "'><div class='wrapper'>&nbsp;</div></div>"
             }
 
         })
@@ -58,16 +65,15 @@ class TemplateMiniature{
 
     onClickselectZoneInMiniature(active){
         if(active){
-            this.$location.miniature.on('click.onClickselectZoneInMiniature','.zone-miniature',(e)=>{
+            this.$location.container.on('click.onClickselectZoneInMiniature','.zone-miniature',(e)=>{
                 let currentZone = $(e.currentTarget)
-                console.log(currentZone.data('zone'))
                 if(this.zonesSelected.includes(currentZone.data('zone'))) {
-                    currentZone.removeClass('selected-miniature')
+                    currentZone.removeClass('selected-element')
                     this.zonesSelected.splice(this.zonesSelected.indexOf(currentZone.data('zone')),1);
                     console.log(this.zonesSelected)
                 }else{
                     this.zonesSelected.push(currentZone.data('zone'));
-                    currentZone.addClass('selected-miniature')
+                    currentZone.addClass('selected-element')
                 }
                 this.zonesSelectedUpdatedObservable.notify(this.zonesSelected)
             })
@@ -82,14 +88,15 @@ class TemplateMiniature{
         this.$location.container = $location
     }
     append($location=null){
+
         let location=null
         if($location!==null){
             this.setLocation($location)
             location = $location
         }else{
-            console.log(this.$location)
             location=this.$location.container
         }
+        console.log(location)
 
         location.append(this.$miniature)
         this.$location.miniature = this.$miniature

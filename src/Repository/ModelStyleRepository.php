@@ -1,26 +1,26 @@
 <?php
 
-namespace AddOn\Repository;
+namespace App\Repository;
 
-use AddOn\Entity\Model;
+use App\Entity\ModelStyle;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
 
 /**
- * @method Model|null find($id, $lockMode = null, $lockVersion = null)
- * @method Model|null findOneBy(array $criteria, array $orderBy = null)
- * @method Model[]    findAll()
- * @method Model[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+ * @method ModelStyle|null find($id, $lockMode = null, $lockVersion = null)
+ * @method ModelStyle|null findOneBy(array $criteria, array $orderBy = null)
+ * @method ModelStyle[]    findAll()
+ * @method ModelStyle[]    findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
  */
-class ModelRepository extends ServiceEntityRepository
+class ModelStyleRepository extends ServiceEntityRepository
 {
     public function __construct(ManagerRegistry $registry)
     {
-        parent::__construct($registry, Model::class);
+        parent::__construct($registry, ModelStyle::class);
     }
 
     // /**
-    //  * @return Model[] Returns an array of Model objects
+    //  * @return ModelStyle[] Returns an array of ModelStyle objects
     //  */
     /*
     public function findByExampleField($value)
@@ -37,7 +37,7 @@ class ModelRepository extends ServiceEntityRepository
     */
 
     /*
-    public function findOneBySomeField($value): ?Model
+    public function findOneBySomeField($value): ?ModelStyle
     {
         return $this->createQueryBuilder('m')
             ->andWhere('m.exampleField = :val')

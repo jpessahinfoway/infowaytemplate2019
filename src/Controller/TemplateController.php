@@ -3,11 +3,19 @@
 namespace App\Controller;
 require __DIR__.'/../../vendor/autoload.php';
 
+use AddOn\Entity\CSSProperty;
+use AddOn\Entity\Incruste;
+use AddOn\Entity\IncrusteElement;
+use AddOn\Entity\IncrusteStyle;
 use AddOn\Entity\Model;
+use AddOn\Entity\ModelStyle;
+use AddOn\Entity\Property;
 use AddOn\Entity\Style;
 use App\Entity\Template;
 use App\Entity\Zone;
+use App\Form\TemplateType;
 use App\Service\CSSParser;
+use App\Service\IncrusteCSSHandler;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Finder\Finder;
 use Symfony\Component\HttpFoundation\ParameterBag;
@@ -19,6 +27,9 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\PropertyAccess\PropertyAccess;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Serializer\Encoder\JsonEncoder;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -50,82 +61,91 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/template/stage1/model/register", name="registerModel",methods="GET")
+     * @Route("/template/cssloader/", name="cssLoader",methods="GET")
      */
-    public function registerModel(Request $request,ParameterBagInterface $parameterBag, CSSParser $CSSParser){
+    public function loadCss()
+    {
+        $entityManager = $this->getDoctrine()->getManager('addons');
+        $allIncrustes = $entityManager->getRepository(Incruste::class)->findAll();
 
-        $response = [
-            "error" => false ,
-            "newClass" => null
-        ];
+        $incrusteCSSHandler = new IncrusteCSSHandler($allIncrustes);
+        $response = new Response($incrusteCSSHandler->getGeneratedCSS());
+        $response->headers->set('Content-Type', 'text/css');
+        return $response;
+    }
 
-        $CSSContent = $CSSParser->parseCSS($parameterBag->get('kernel.project_dir').'/public/css/template/tools/zone_container_editor/text_styles/text-styles.css');
-
-        $propertyAccessor = PropertyAccess::createPropertyAccessor();
-        $newIncrusteStyles = json_decode($request->get('newStyles'),true);
+    /**
+     * @Route("/testpage", name="testPage",methods="GET")
+     */
+    public function testPage(SerializerInterface $serialize){
 
         $entityManager = $this->getDoctrine()->getManager('addons');
+        $allIncrustes = $entityManager->getRepository(Incruste::class)->findAll();
 
-        $newModel = new Model();
-        $newModel->setName($newIncrusteStyles['name']);
-        $newModel->setNameclass($newIncrusteStyles['type']);
-        $newModel->setType($newIncrusteStyles['type']);
-
-        $entityManager->persist($newModel);
-        $entityManager->flush();
-
-        $modelId = $newModel->getId();
-        $newIncrusteIndice = $newIncrusteStyles['type'] . $modelId;
-        $newModel->setIndice($newIncrusteIndice);
+        $incrusteCSSHandler = new IncrusteCSSHandler($allIncrustes);
 
 
-        $modelCss = '';
+        return $this->render('template/model.html.twig', [
+            'controller_name' => 'TemplateController'
+        ]);
+
+    }
+
+    /**
+     * @Route("/template/stage1/model/register", name="registerModel",methods="GET")
+     */
+    public function registerModel(Request $request,ParameterBagInterface $parameterBag, CSSParser $CSSParser,SerializerInterface $serialize){
 
 
-        foreach($newIncrusteStyles['styles'] as $incrusteStyleName => $incrusteStyle){
-            $modelCss .= '.'.$newIncrusteIndice.' {';
+        $entityManager = $this->getDoctrine()->getManager('addons');
+        $incrusteStyle = json_decode($request->get('incrusteStyle'),true);
 
-            $newStyle = new Style();
-            $newStyle-> setName($incrusteStyleName);
-            $newStyle->setModel($newModel);
+        $incrusteResponse = [];
+        $newIncruste = new Incruste();
 
-            $styleCss = '';
+        $newIncruste    ->setName($incrusteStyle['name'])
+                        ->setType($incrusteStyle['type']);
 
-            foreach($incrusteStyle as  $incrusteStyleProperty){
-                $modelCss.= $incrusteStyleProperty['name'] . ' : ' . $incrusteStyleProperty['propertyWritting'] . ' ; ';
-                $styleCss.= $incrusteStyleProperty['name'] . ' : ' . $incrusteStyleProperty['propertyWritting'] . ' ; ';
+        $incrusteResponse['name'] = $newIncruste->getName();
+        $incrusteResponse['type'] = $newIncruste->getType();
+
+
+        foreach($incrusteStyle['contents'] as $content){
+            $newIncrusteElement = new IncrusteElement();
+            $newIncrusteElement->setIncruste($newIncruste);
+            $newIncrusteElement->setType($content['type']);
+            foreach($content['style'] as $incrusteStyle){
+                $property = $entityManager->getRepository(CSSProperty::class)->findOneBy(['name'=>$incrusteStyle['name']]);
+
+                if($property !== NULL && $incrusteStyle['propertyWritting'] !== NULL){
+
+                    $incrusteContentStyle = new IncrusteStyle();
+                    $incrusteContentStyle->setProperty($property);
+                    $incrusteContentStyle->setValue($incrusteStyle['propertyWritting']);
+                    $newIncrusteElement->addIncrusteStyle($incrusteContentStyle);
+                    $entityManager->persist($incrusteContentStyle);
+
+                }
             }
+            $entityManager->persist($newIncrusteElement);
 
-            $newStyle->setName($incrusteStyleName);
-            $newStyle->setContent($styleCss);
-
-
-            $entityManager->persist($newStyle);
-
-            $response['newClass']['name']=$newIncrusteStyles['name'];
-            $response['newClass']['content'][$incrusteStyleName] = $newIncrusteIndice;
-
-            $CSSParser->addClass($newIncrusteStyles['type'] . $modelId,$styleCss);
-            $modelCss.= '}';
+            $incrusteResponse['elements'][]=$newIncrusteElement;
         }
+        $entityManager->persist($newIncruste);
 
 
-        $newModel->setCss($modelCss);
-
-        $entityManager->persist($newModel);
         $entityManager->flush();
 
 
+        $incrusteResponse['elements']=array_map(function($incrusteElement){
+            return [
+                'type' => $incrusteElement->getType(),
+                'name' => $incrusteElement->getType().$incrusteElement->getId()];
+        }, $incrusteResponse['elements']);
 
-        //var_dump($propertyAccessor->getValue($models,'[styles]'));
 
-      /*  return $this->render('template/test.html.twig', [
-            'controller_name' => 'TemplateController',
-            'styles' => $newIncrusteStyles,
-            'cssContent' => $CSSContent
-        ]);*/
-
-      return new Response(json_encode($response));
+        return new Response(json_encode($incrusteResponse));
+      //return new Response(json_encode($response));
     }
 
 
@@ -151,16 +171,40 @@ class TemplateController extends AbstractController
      */
     public function stage2Creation(\Symfony\Component\HttpFoundation\Request $request)
     {
+
+        $ressources = ['medias' => [] ];
         $em = $this->getDoctrine()->getManager();
         $templateName = $request->get('name');
         $orientation = $request->get('orientation');
         $template = $em->getRepository(template::class)->findAll();
 
+        $entityManager = $this->getDoctrine()->getManager('addons');
+        $allIncrustes = $entityManager->getRepository(Incruste::class)->findAll();
+
+        $incrusteCSSHandler = new IncrusteCSSHandler($allIncrustes);
+
+        $incrustesCSS = $incrusteCSSHandler->getGeneratedCSS();
+        $classNames = $incrusteCSSHandler->getClassNames();
+
+        $rupturesSamples = ['il_revient_small', 'il_revient_medium','il_revient_big','indisponible_small','indisponible_medium','indisponible_big'];
+        foreach($rupturesSamples as $indexRupture=>$rupture){
+            $ressources['medias']['ruptures'][]=[
+                'id' => $indexRupture,
+                'ext' => 'png',
+                'filename' => $rupture
+            ];
+        }
+
+
+
         return $this->render('template/stages/index.html.twig', [
-            'controller_name' => 'TemplateController',
-            'templateName'    => $templateName,
-            'orientation'     => $orientation,
-            'stageNumber'     => 2,
+            'controller_name'    => 'TemplateController',
+            'templateName'       => $templateName,
+            'orientation'        => $orientation,
+            'stageNumber'        => 2,
+            'textIncrustesCSS'   => $incrustesCSS,
+            'classNames'         => $classNames,
+            'ressources'        => $ressources
         ]);
     }
 

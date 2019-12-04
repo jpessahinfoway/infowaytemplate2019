@@ -24,7 +24,6 @@ class TemplateModule{
     attachToolBox(){
 
         this.toolBox = new TemplateToolBox();
-        this.toolBox.addTool(new TemplateMiniatorizerTool(this));
         this.toolBox.addTool(new ZoneCreatorTool(this));
         this.toolBox.addTool(new ZoneDraggerTool(this));
         this.toolBox.addTool(new ZoneRemoverTool(this));

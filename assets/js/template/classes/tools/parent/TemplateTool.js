@@ -4,6 +4,7 @@ class TemplateTool{
         this.name = this.constructor.name;
       //  this.jq = null;
         this.icon = null;
+        this.visibleOnActivation = true;
        
        // this.iconContainer = $(`<span title="${this.title}" class="${this.name}" data-tool="${this.constructor.name}"></span>`);
 
@@ -24,9 +25,8 @@ class TemplateTool{
     //    this.activated = false;
     }
 
-    addSubTool(subTool){
-        this.subTools[subTool.name]=subTool
-        console.log(subTool.parentTool)
+    addSubTools(...subTools){
+        subTools.map(subTool => this.subTools[subTool.name]=subTool)
     }
 
     getCursorPositionInTemplate(e,$el) {

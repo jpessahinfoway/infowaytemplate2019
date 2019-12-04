@@ -5,9 +5,10 @@ namespace AddOn\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\Entity\PropertyRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\Entity\CSSPropertyRepository")
+ * @ORM\Table(name="css_properties")
  */
-class Property
+class CSSProperty
 {
     /**
      * @ORM\Id()
@@ -20,6 +21,14 @@ class Property
      * @ORM\Column(type="string", length=255)
      */
     private $name;
+
+    /**
+     * One product has many features. This is the inverse side.
+     * @ORM\OneToMany(targetEntity="IncrusteStyle", mappedBy="property")
+     */
+    private $incrusteStyles;
+
+
 
     public function getId(): ?int
     {

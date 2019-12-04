@@ -6,13 +6,9 @@ class ZoneZoomOnTool extends TemplateTool{
         super(templateInterface)
         this.$eventLocation=$('body');
         console.log(this.interface)
-        this.addSubTools()
+        this.addSubTools(new ZoneZoomIncreaserTool(this.interface,this))
     }
 
-    addSubTools(){
-        console.log(this.interface)
-        this.addSubTool(new ZoneZoomIncreaserTool(this.interface,this));
-    }
 
     activeTool(boolean){
         super.activeToolDecorator(boolean,()=>{

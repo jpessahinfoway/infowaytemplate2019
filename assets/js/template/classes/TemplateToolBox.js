@@ -93,20 +93,19 @@ class TemplateToolBox{
      let objectToActive = element==='tool'?this.tools[toolName]:this.tools[this.getParentTool(toolName)].subTools[toolName];
 
      let classToAdd = element==='tool'?'active-tool':'active-subTool';
-    console.log(objectToActive)
      objectToActive.instance.activeTool(active);
 
 
 
      if(active){
          console.log(objectToActive)
-         if(!(objectToActive.instance instanceof PermanentTool))this.activatedTool[element]=objectToActive.instance;
+         if(!(objectToActive.instance instanceof PermanentTool)){this.activatedTool[element]=objectToActive.instance};
          objectToActive.elements.li.addClass(classToAdd);
      }else{
          let currentToolsubTools = Object.values(objectToActive.instance.subTools);
          if(currentToolsubTools.length >0){
              currentToolsubTools.map(subTool=>{
-                 this.activeToolInToolBox(subTool.name,false)
+                 if(!(subTool instanceof PermanentTool))this.activeToolInToolBox(subTool.name,false)
              });
          }
         if(this.activatedTool[element] !== null && this.activatedTool[element].name === toolName)this.activatedTool[element]=null;
@@ -153,7 +152,6 @@ class TemplateToolBox{
 
                     this.disactiveAllTools([]);
                     console.log(toolSelectioned)
-                    console.log(this.tools)
                     this.activeToolInToolBox(this.tools[toolSelectioned].instance.name,true)
                     console.log(subToolSelectioned)
                     console.log(toolSelectioned)
@@ -171,6 +169,7 @@ class TemplateToolBox{
                     }else{
 
                         this.disactiveAllTools([])
+                        console.log(this.tools[toolSelectioned].subTools[subToolSelectioned].instance.name);debugger;
                         this.activeToolInToolBox(this.tools[toolSelectioned].subTools[subToolSelectioned].instance.name,true)
                         this.activeToolInToolBox(this.tools[toolSelectioned].instance.name,true)
                     }

@@ -1,4 +1,5 @@
 import {Observable} from "./pattern/observer/Observable";
+import {BackgroundContent} from "./zoneContents/BackgroundContent";
 
 
 class Zone{
@@ -17,6 +18,7 @@ class Zone{
         this.identificator = null;
         this.location=null;
         this.parent=null;
+        this.background = {}
         this.zonePropertiesChangeObservable = new Observable()
     }
 
@@ -34,14 +36,18 @@ class Zone{
     }
 
     setZoneBackground(background){
-        this.background = background;
-        console.log(background.url)
-        this.$zone.css("background-image", "url(" + background.url + ")");
+
+        if(typeof background !== 'object' && !(background instanceof BackgroundContent) ) return;
+
+        this.background[background.type] = background;
+
+        this.$zone.css(background.property, background.propertyValue);
+        console.log(background.propertyValue)
     }
 
     setZoneContent(content){
         this.content = content;
-        this.zoneContent.html(this.content.html)
+        this.zoneContent.html(this.content.buildHTML())
     }
 
     putTextInZone(text){

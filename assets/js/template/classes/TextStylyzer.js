@@ -3,116 +3,125 @@ import {StyleProperty} from "./StyleProperty";
 
 class TextStylyzer{
     constructor($location){
+
         let transform = new StyleProperty({name : 'transform'})
+
         this.$location = {
             styleForm : $location,
-            preview   : null
+            preview   : null,
+            target : null
         };
+
         this.styles = {
             textAlign : {
-                $location : this.$location.styleForm.find('form input[name="text-align-text"]'),
+                $location : this.$location.styleForm.find('form input[data-type="text-align"]'),
                 active:false,
-                styleProperty: new StyleProperty({name:'text-align',value:this.$location.styleForm.find('form input[name="text-align-text"]').val()}),
+                styleProperty: new StyleProperty({name:'text-align',value:this.$location.styleForm.find('form input[data-type="text-align"]').val()}),
                 defaultValue:'center',
             },
             textDecoration : {
-                $location : this.$location.styleForm.find('form input[name="text-decoration-text"]'),
+                $location : this.$location.styleForm.find('form input[data-type="text-decoration"]'),
                 active:false,
-                styleProperty: new StyleProperty({name:'text-decoration',value:this.$location.styleForm.find('form input[name="text-decoration-text"]').val()}),
+                styleProperty: new StyleProperty({name:'text-decoration',value:this.$location.styleForm.find('form input[data-type="text-decoration"]').val()}),
                 defaultValue:'none',
             },
             fontWeight : {
-                $location : this.$location.styleForm.find('form input[name="font-weight-text"]'),
+                $location : this.$location.styleForm.find('form input[data-type="font-weight"]'),
                 active:false,
-                styleProperty: new StyleProperty({name:'font-weight',value:this.$location.styleForm.find('form input[name="font-weight-text"]').val()}),
+                styleProperty: new StyleProperty({name:'font-weight',value:this.$location.styleForm.find('form input[data-type="font-weight"]').val()}),
                 defaultValue:'normal',
             },
             fontStyle : {
-                $location : this.$location.styleForm.find('form input[name="font-style-text"]'),
+                $location : this.$location.styleForm.find('form input[data-type="font-style"]'),
                 active:false,
-                styleProperty: new StyleProperty({name:'font-style',value:this.$location.styleForm.find('form input[name="font-style-text"]').val()}),
+                styleProperty: new StyleProperty({name:'font-style',value:this.$location.styleForm.find('form input[data-type="font-style"]').val()}),
                 defaultValue:'normal',
             },
             fontFamily : {
-                $location : this.$location.styleForm.find('form select[name="font-family-text"]'),
+                $location : this.$location.styleForm.find('form select[data-type="font-family"]'),
                 active:false,
-                styleProperty: new StyleProperty({name:'font-family',value:this.$location.styleForm.find('form select[name="font-family-text"]').val()}),
+                styleProperty: new StyleProperty({name:'font-family',value:this.$location.styleForm.find('form select[data-type="font-family"]').val()}),
                 defaultValue:'Arial',
                 cssTag : 'font-family',
             },
             fontSize : {
-                $location : this.$location.styleForm.find('form input[name="font-size-text"]'),
+                $location : this.$location.styleForm.find('form input[data-type="font-size"]'),
                 active:false,
-                styleProperty: new StyleProperty({name:'font-size',value:this.$location.styleForm.find('form input[name="font-size-text"]').val(),unity:'px'}),
+                styleProperty: new StyleProperty({name:'font-size',value:this.$location.styleForm.find('form input[data-type="font-size"]').val(),unity:'px'}),
                 defaultValue:30,
             },
             orientation : {
-                $location : this.$location.styleForm.find('form input[name="rotate-text"]'),
+                $location : this.$location.styleForm.find('form input[data-type="rotate"]'),
                 active:false,
-                styleProperty: new StyleProperty({name:'rotate',value:this.$location.styleForm.find('form input[name="rotate-text"]').val(),unity:'deg',before:'(',after:')', parentProperty: transform}),
+                styleProperty: new StyleProperty({name:'rotate',value:this.$location.styleForm.find('form input[data-type="rotate"]').val(),unity:'deg',before:'(',after:')', parentProperty: transform}),
                 defaultValue:0,
             },
             color : {
-                $location : this.$location.styleForm.find('form input[name="color-text"]'),
+                $location : this.$location.styleForm.find('form input[data-type="color"]'),
                 active:false,
-                styleProperty: new StyleProperty({name:'color',value:this.$location.styleForm.find('form input[name="color-text"]').val()}),
+                styleProperty: new StyleProperty({name:'color',value:this.$location.styleForm.find('form input[data-type="color"]').val()}),
                 defaultValue:'black',
             },
 
-        },
-        console.log(this.styles.textAlign.$location)
+        }
+
     }
 
 
-    generateStyleOnClick(active,comfirmButtonLocation=null, onSuccess=null, onError=null){
-        if(active){
-            comfirmButtonLocation.on('click.generateStyleOnClick',(e)=>{
-                let styles = Object.values(this.styles)
-                if(styles.length >0){
+    generateStyle(){
+
+        let styles = Object.values(this.styles);
+
+                if(styles.length >0) {
                     let style = new Style()
                     style.hydrate(
-                        styles.map(styleProperty=> {
-                            if(styleProperty.active)return styleProperty.styleProperty.isSubProperty() ? styleProperty.styleProperty.parentProperty : styleProperty.styleProperty;
+                        styles.map(styleProperty => {
+                            if (styleProperty.active) return styleProperty.styleProperty.isSubProperty() ? styleProperty.styleProperty.parentProperty : styleProperty.styleProperty;
                         })
-                    )
-                    console.log(style)
-                    onSuccess(style)
-                }
-            })
-        }else{
-            comfirmButtonLocation.off('click.generateStyleOnClick')
-        }
+                    );
+                    return style;
+                }else return null
     }
 
-    activeStylyser(active,{comfirmButtonLocation =null, onSuccess = null, onError = null } = {}){
-        if(comfirmButtonLocation === null)comfirmButtonLocation = this.$location.styleForm.find('button')
-        console.log(comfirmButtonLocation)
-        this.generateStyleOnClick(active,comfirmButtonLocation,onSuccess,onError);
+
+
+    activeStylyser(active){
         this.activeStyleFormEvents(active)
     }
 
     setPreviewZone($previewLocation){
         this.$location.preview = $previewLocation
+        this.$location.target = $previewLocation.find('*');
+    }
+    setTarget($target){
+        this.$location.target = $target
     }
 
     activeStyleFormEvents(active){
         if(active){
             Object.keys(this.styles).map(styleProperty=>{
-                this.styles[styleProperty].active = true
-                this.styles[styleProperty].$location.on('change',(e) => {
+                let currentProperty = this.styles[styleProperty]
+                currentProperty.active = true
+
+                currentProperty.$location.on('change',(e) => {
+                    console.log(this)
                     let cssValue;
                    if( ( $(e.currentTarget).is('input[type=radio]') || $(e.currentTarget).is('input[type=checkbox]') ) && ( !$(e.currentTarget).is(':checked') &&  !$(e.currentTarget).is(':selected') ) ){
-                       this.styles[styleProperty].styleProperty.value = this.styles[styleProperty].defaultValue
-                       cssValue = this.styles[styleProperty].styleProperty.value;
+                       currentProperty.styleProperty.value = currentProperty.defaultValue
+                       cssValue = currentProperty.styleProperty.value;
                    }else{
-                       cssValue = this.styles[styleProperty].styleProperty.value =  $(e.currentTarget).val();
+                       cssValue = currentProperty.styleProperty.value =  $(e.currentTarget).val();
                    }
-                   this.styles[styleProperty].styleProperty.buildPropertyWritting()
-                    if(this.styles[styleProperty].styleProperty.isSubProperty()){
-                        console.log(this.styles[styleProperty].styleProperty.parentProperty.buildPropertyWritting())
-                        console.log(this.styles[styleProperty].styleProperty.parentProperty)
-                    }
-                    this.$location.preview.children('p').css(this.styles[styleProperty].styleProperty.name,this.styles[styleProperty].styleProperty.value)
+                   console.log(cssValue)
+                    console.log(currentProperty)
+                    currentProperty.styleProperty.buildPropertyWritting()
+                    console.log(currentProperty)
+
+                    let propertyToApply = currentProperty.styleProperty.isSubProperty()?currentProperty.styleProperty.parentProperty : currentProperty.styleProperty
+
+console.log(propertyToApply)
+
+                    this.$location.target.css(propertyToApply.name,propertyToApply.propertyWritting)
                 })
             })
         }else{

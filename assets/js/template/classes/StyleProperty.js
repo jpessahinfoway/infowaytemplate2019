@@ -1,5 +1,5 @@
 class StyleProperty{
-    constructor({name = null, value=null, unity=null, before=null, after=null, cssValue=null, parentProperty=null}){
+    constructor({name = null, value=null, unity=null, before=null, after=null, cssValue=null, parentProperty=null} = {}){
         this.name = name;
         this.subProperties = {};
         this.value = value;
@@ -25,8 +25,8 @@ class StyleProperty{
     addSubProperty(subPropertie){
         if(subPropertie instanceof StyleProperty){
             this.subProperties[subPropertie.name]=subPropertie
-            subPropertie.buildPropertyWritting();
-            this.buildPropertyWritting();
+           // subPropertie.buildPropertyWritting();
+          //  this.buildPropertyWritting();
         }
     }
 
@@ -37,22 +37,24 @@ class StyleProperty{
             this.propertyWritting +=  this.name
         };
 
-
         let subPropertiesArray = Object.values(this.subProperties)
+        console.log(subPropertiesArray)
 
         if(Array.isArray(subPropertiesArray) && subPropertiesArray.length > 0){
+            console.log('gfgdf')
             subPropertiesArray.map((subProperty , index )=> {
                 this.propertyWritting +=subProperty.propertyWritting;
-                if(index+1 !== subPropertiesArray.length)this.propertyWritting+=',';
+                if(index !== subPropertiesArray.length -1)this.propertyWritting+=',';
             });
         }else{
 
             if(this.before !== null) this.propertyWritting += this.before;
-
             this.propertyWritting += this.value;
             if(this.unity !== null) this.propertyWritting += this.unity;
             if(this.after !== null) this.propertyWritting += this.after;
         }
+
+        if(typeof this.parentProperty !== 'undefined')this.parentProperty.buildPropertyWritting()
 
         return this.propertyWritting
     }

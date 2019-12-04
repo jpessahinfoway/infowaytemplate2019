@@ -1,19 +1,20 @@
 import {ZoneContainerEditorSubTool} from "./parent/ZoneContainerEditorSubTool";
 import {BackgroundContent} from "../../../zoneContents/BackgroundContent";
 import {MediaContent} from "../../../zoneContents/MediaContent";
+import {ZoneContainerMediaSelectorTool} from "./zoneContainerMediaEditor/ZoneContainerMediaSelectorTool";
 
 
 
 class ZoneContainerMediaEditorTool extends ZoneContainerEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
+        this.subTools = super.initSubTools(
+            new ZoneContainerMediaSelectorTool(this.interface,this)
+            );
 
-        this.$location.window.containers.right.containers.top.h2.content = 'Gestion des médias'
-        this.$location.window.containers.right.containers.top.container.$location = $('.modal.background-editor .right-container #list-medias');
-        this.backgroundSelected = null;
-
-        this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;
+        //this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;
     }
+
 
     activeTool(boolean){
         super.activeTool(boolean,this.onActivation,this.onDisactivation)
@@ -35,20 +36,12 @@ class ZoneContainerMediaEditorTool extends ZoneContainerEditorSubTool{
 
     }
 
-    onClickOnSelectedMedia(active){
-        if(active){
-            console.log('activatedd')
-            this.$location.window.containers.right.containers.top.container.$location.on('click.onClickOnSelectedMedia','.media', (e)=> {
-                $('.selected-style').removeClass('selected-style');
-                $(e.currentTarget).children('.media-selected-sub-layer').addClass('selected-style');
-                this.mediaSelected = $(e.currentTarget).children('.media-miniature').css('background-image').split('/').pop();
-                this.mediaSelected = this.mediaSelected.substring(0,this.mediaSelected.length-2)
-                console.log(this.mediaSelected)
+    onComfirmSetZoneMedia(media){
+        if(typeof media !== 'object' && !(media instanceof MediaContent))return ;
+
+            this.parentTool.subTools['TemplateMiniatorizerTool'].miniature.zonesSelected.forEach(zoneSelected => {
+                if(media !== null) this.interface.currentTemplate.getZone(zoneSelected).setZoneContent(media)
             })
-        }else{
-            console.log('disactivated')
-            this.$location.window.containers.right.containers.top.container.$location.off('click.onClickOnSelectedMedia');
-        }
     }
 
     setMediaToSelectedZone(zone){
@@ -60,12 +53,10 @@ class ZoneContainerMediaEditorTool extends ZoneContainerEditorSubTool{
 
 
     onDisactivation(){
-        this.onClickOnSelectedMedia(false)
-        this.mediaSelected=null
+
     }
     onActivation(){
         this.parentTool.templateMiniature.resetMiniature().addZones(['media']);
-        this.onClickOnSelectedMedia(true)
     }
 }
 

@@ -20,6 +20,9 @@
 
 .modal .popup > div{
     width:49%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 .modal {
     position: fixed;
@@ -35,7 +38,7 @@
     background-color: rgba(0, 0, 0, 0.8);
 }
 .popup {
-    max-height:95%;
+    max-height:90%;
     overflow-y: auto;
 
 }

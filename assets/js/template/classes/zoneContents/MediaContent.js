@@ -1,11 +1,15 @@
 import {Content} from "./Content";
 
 class MediaContent extends Content{
-    constructor(filename){
-        super(filename)
+    constructor(value,url){
+        console.log(value)
+        super(value)
         this.type = 'media';
-        this.url = `/build/medias/${filename}`;
-        this.html = `<img src="${this.url}">`
+        this.url = url;
+    }
+
+    buildHTML(){
+        return `<img src="${this.url}">`
     }
 }
 export {MediaContent}
