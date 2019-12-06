@@ -1,3 +1,10 @@
-label.btn-grey{
-    background: #f0f0f0;
+
+.left-container .containers.bottom-left-container{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+.list-prices ul.classes-text{
+    flex: 1;
 }

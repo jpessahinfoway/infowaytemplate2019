@@ -34,6 +34,16 @@ class IncrusteElement
     private $type;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $content;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $class;
+
+    /**
      * One product has many features. This is the inverse side.
      * @ORM\OneToMany(targetEntity="IncrusteStyle", mappedBy="incrusteElement", cascade={"remove"})
      */
@@ -100,6 +110,30 @@ class IncrusteElement
                 $incrusteStyle->setIncrusteElement(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getContent(): ?string
+    {
+        return $this->content;
+    }
+
+    public function setContent(?string $content): self
+    {
+        $this->content = $content;
+
+        return $this;
+    }
+
+    public function getClass(): ?string
+    {
+        return $this->class;
+    }
+
+    public function setClass(string $class): self
+    {
+        $this->class = $class;
 
         return $this;
     }

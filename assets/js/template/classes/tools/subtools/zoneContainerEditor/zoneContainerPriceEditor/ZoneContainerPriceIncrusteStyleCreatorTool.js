@@ -22,16 +22,17 @@ class ZoneContainerPriceIncrusteStyleCreatorTool extends ZoneContainerPriceEdito
         this.title = 'Choisir un style de prix';
         this.$location.container = $('.modal.background-editor .right-container #price-incrust-style-creator');
         this.$location.container.incrustTypeSelectionRadios = this.$location.container.find('form#type-incrust input[type=radio]');
-        console.log(super.title)
+        this.incrustTarget = null;
         this.addSubTools(
             new ZoneContainerPriceIncrustePriceStyleCreatorTool(this.interface,this),
             new ZoneContainerPriceIncrusteRuptureStyleCreatorTool(this.interface,this)
-        )
+        );
         this.activeCheckedTool()
 
 
         //this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;
     }
+
 
     activeTool(boolean){
         super.activeTool(boolean,this.onActivation,this.onDisactivation)
@@ -50,7 +51,8 @@ class ZoneContainerPriceIncrusteStyleCreatorTool extends ZoneContainerPriceEdito
         let checkedRadio = this.$location.container.incrustTypeSelectionRadios.filter((index , incrustTypeSelectionRadio) => $(incrustTypeSelectionRadio).is(':checked'));
         if(checkedRadio.length >0 && typeof this.subTools[checkedRadio[0].dataset.tool] !== 'undefined'){
             Object.values(this.subTools).map(subTool => subTool.activeTool(false));
-            this.subTools[checkedRadio[0].dataset.tool].activeTool(true)
+            let activatedSubTool = this.subTools[checkedRadio[0].dataset.tool];
+            activatedSubTool.activeTool(true)
         }
     }
 

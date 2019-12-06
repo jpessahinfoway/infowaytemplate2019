@@ -13,10 +13,34 @@
     border: 1px solid #385b72;
 }
 
+
 .modal .popup{
     display:flex;
     justify-content: space-between;
 }
+
+form.choose-type-incrust{
+    display:flex;
+    flex-direction:column;
+    border: 1px solid #f0f0f0;
+    margin : 10px 0;
+}
+
+form.choose-type-incrust .radios-group{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+    margin : 5px 0;
+}
+form.choose-type-incrust span{
+    text-align: center;
+    padding:5px;
+    background: #f0f0f0;
+    color : #bdbdbd;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
 
 .modal .popup > div{
     width:49%;

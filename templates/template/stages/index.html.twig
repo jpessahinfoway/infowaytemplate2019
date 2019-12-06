@@ -14,8 +14,8 @@
     {% block stylesheets %}
         {# 'app' must match the first argument to addEntry() in webpack.config.js #}
         {{ encore_entry_link_tags('template') }}
-        <link id="text-style-css" href="{{ path('cssLoader') }}" rel="stylesheet" type="text/css" media="all" />
-
+        <link id="text-style-css" href="{{ path('cssLoader', { 'type': 'text' })}}" rel="stylesheet" type="text/css" media="all" />
+        <link id="price-style-css" href="{{ path('cssLoader', { 'type': 'price' }) }}" rel="stylesheet" type="text/css" media="all" />
         <!-- Renders a link tag (if your module requires any CSS)
              <link rel="stylesheet" href="/build/app.css"> -->
     {% endblock %}
@@ -238,7 +238,8 @@
                     <div id="choose-text-style" class="none">
 
                         <ul class="classes-text">
-                            {% for className in classNames %}
+                            {%  if  classNames['text'] is defined %}
+                            {% for className in classNames['text'] %}
 
                             <li class="class-text">
                             <div class="class-text__flex-container">
@@ -253,19 +254,21 @@
                             </div>
                             </div>
                                 <div class="incrust-style-wrapper">
-                                    <p class="{{ className['name'] }}" data-id="{{ className['id'] }}">Ici la description de votre zone</p>
+                                    <p class="{{ className['elements'][0]['class'] }}" data-id="{{ className['elements'][0]['id'] }}">Ici la description de votre zone</p>
                                 </div>
                             </li>
                             {% endfor %}
+                            {%  endif %}
                         </ul>
                         <div class="button-group">
-                            <button class="btn">valider</button>
+                            <button class="btn comfirm">valider</button>
                         </div>
                     </div>
                     <div id="choose-price-style" class="none">
-                        <form>
+                        <form class="choose-type-incrust">
+
+                            <span>Type d'incruste</span>
                             <div class="radios-group">
-                                <span>Type d'incruste</span>
                                 <div class="radio">
                                     <input type="radio" name="type" id="price-incrust" value="price" checked>
                                     <label for="price-incrust">Prix</label>
@@ -277,72 +280,39 @@
                             </div>
                         </form>
                         <div class="list-prices">
-                            <div data-type="price" data-indice="6">
-                                <div>
-                                    <span>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, blanditiis.</span>
-                                    <span>
-                                <i class="fal fa-trash" title="Supprimer"></i>
-                                <i class="fal fa-file-import" title="Importer"></i>
-                            </span>
-                                </div>
-                                <div>
-                                    <div class="prix6" style="display: inline;">
-                                        <span class="unite6">2</span><span class="euro6">€</span><span class="centime6">50</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div data-type="price" data-indice="7">
-                                <div>
-                                    <span>Nom du style</span>
-                                    <span>
-                                <i class="fal fa-trash" title="Supprimer"></i>
-                                <i class="fal fa-file-import" title="Importer"></i>
-                            </span>
-                                </div>
-                                <div>
-                                    <div class="prix7">
-                                        <span class="unite7">2</span><span class="euro7">€</span><span class="centime7">50</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="none" data-type="rupture" data-indice="1">
-                                <div>
-                                    <span>Nom du style</span>
-                                    <span>
-                                <i class="fal fa-trash" title="Supprimer"></i>
-                                <i class="fal fa-file-import" title="Importer"></i>
-                            </span>
-                                </div>
-                                <div>
-                                    <span class="rupture1"></span>
-                                </div>
-                            </div>
-                            <div class="none" data-type="rupture" data-indice="2">
-                                <div>
-                                    <span>Nom du style</span>
-                                    <span>
-                                <i class="fal fa-trash" title="Supprimer"></i>
-                                <i class="fal fa-file-import" title="Importer"></i>
-                            </span>
-                                </div>
-                                <div>
-                                    <span class="rupture2"></span>
-                                </div>
-                            </div>
-                            <div data-type="price" data-indice="7">
-                                <div>
-                                    <span>Nom du style</span>
-                                    <span>
-                                <i class="fal fa-trash" title="Supprimer"></i>
-                                <i class="fal fa-file-import" title="Importer"></i>
-                            </span>
-                                </div>
-                                <div>
-                                    <div class="prix7">
-                                        <span class="unite7">2</span><span class="euro7">€</span><span class="centime7">50</span>
-                                    </div>
-                                </div>
-                            </div>
+                            <ul class="classes-text">
+                                {% if classNames['price'] is defined %}
+                                    {% for className in classNames['price'] %}
+
+                                        <li class="class-text">
+                                            <div class="class-text__flex-container">
+                                                <span>Nom du style</span>
+                                                <div>
+                                                    <button class="hidden-btn">
+                                                        <i class="fal fa-trash" title="Supprimer"></i>
+                                                    </button>
+                                                    <button class="hidden-btn">
+                                                        <i class="fal fa-file-import" title="Importer"></i>
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="incrust-style-wrapper">
+
+                                                <div class="prix{{className['id']}} price">
+                                                    {% for  element in  className['elements'] %}
+                                                        <span class="test {{ element['type']~className['id']}}" data-type="price" data-id="{{ element['id'] }}" data-subType="{{ element['type'] }}">{{  element['content'] }}</span>
+                                                    {% endfor %}
+                                                    {#<span class="{{ className['elements'] }}"></span>#}
+                                                </div>
+                                                {#<p class="{{ className['name'] }}" data-id="{{ className['id'] }}">Ici la description de votre zone</p>#}
+                                            </div>
+                                        </li>
+                                    {% endfor %}
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="button-group">
+                            <button class="btn comfirm">valider</button>
                         </div>
                     </div>
                 </div>
@@ -540,9 +510,10 @@
                     </form>
                 </div>
                 <div id="price-incrust-style-creator" class="style-creator price-editor create-incrust none">
-                    <form id="type-incrust">
+                    <form id="type-incrust" class="choose-type-incrust">
+                        <span>Type de l'incruste</span>
+
                         <div class="radios-group">
-                            <span>Type de l'incruste</span>
                             <div class="radio">
                                 <input type="radio" name="type-incrust" id="price_incrust" value="price" data-tool="ZoneContainerPriceIncrustePriceStyleCreatorTool" checked>
                                 <label for="price_incrust">Prix</label>
@@ -555,14 +526,14 @@
                     </form>
                     <div id ="price-incrust-style-creator__price" class="none style-creator__subtool-container">
                         <div class="preview">
-                            <div class="prix element-selected" data-type="prix" style="text-decoration: none; position: relative; font-size: 50px; color: #000000; font-family: Arial;">
-                                <span class="unite prix" data-type="unite" style="text-decoration: none; position: relative; color: #000000; top: 0px; left: 0px; font-size: 50px; font-family: Arial;" contenteditable>2</span><!--
-                            --><span class="euro prix" data-type="euro" style="text-decoration: none; position: relative; color: #000000; top: 0px; left: 0px; font-size: 50px; font-family: Arial;" contenteditable>€</span><!--
-                            --><span class="separator prix" data-type="separator" style="text-decoration: none; position: relative; color: #000000; top: 0px; left: 0px; font-size: 50px; font-family: Arial;" contenteditable>.</span><!--
-                            --><span class="centime prix" data-type="centime" style="text-decoration: none; position: relative; color: #000000; top: 0px; left: 0px; font-size: 50px; font-family: Arial;" contenteditable>50</span>
+                            <div class="incrust-element prix focused-element" data-type="prix" style="text-decoration: none; position: relative; font-size: 50px; color: #000000; font-family: Arial;">
+                                <span class="incrust-element unite prix" data-type="unite" style="text-decoration: none; position: relative; color: #000000; top: 0px; left: 0px; font-size: 50px; font-family: Arial;" contenteditable>2</span><!--
+                            --><span class="incrust-element euro prix" data-type="euro" style="text-decoration: none; position: relative; color: #000000; top: 0px; left: 0px; font-size: 50px; font-family: Arial;" contenteditable>€</span><!--
+                            --><span class="incrust-element separator prix" data-type="separator" style="text-decoration: none; position: relative; color: #000000; top: 0px; left: 0px; font-size: 50px; font-family: Arial;" contenteditable>.</span><!--
+                            --><span class="incrust-element centime prix" data-type="centime" style="text-decoration: none; position: relative; color: #000000; top: 0px; left: 0px; font-size: 50px; font-family: Arial;" contenteditable>50</span>
                             </div>
                         </div>
-                        <p>Pour déplacer un ou plusieurs éléments, veuillez sélectionner les éléments et utiliser le pavé directionnel de votre clavier</p>
+
                         <form action="#" method="" class="select-element-price" data-type="price">
 
                             <div class="radios-group">
@@ -667,7 +638,7 @@
                             <span class="rupture element-selected" style="font-size: 50px; font-family: Arial; padding: 8px; position: absolute;" contenteditable>En rupture</span>
                         </div>
                         <span class="delete-background hidden" data-type="background-image" title="Supprimer l'image"><i class="fas fa-trash"></i>Supprimer l'image</span>
-                        <p>Pour déplacer l'élément, veuillez utiliser le pavé directionnel de votre clavier</p>
+
                         <form action="#" method="" class="select-element-rupture" data-type="rupture">
                             <div class="radios-group">
                                 <div class="radio">
@@ -769,14 +740,15 @@
                                 <div class="slider-ruptures">
                                     <ul class="container-ruptures">
                                     {% for rupture in ressources['medias']['ruptures'] %}
-                                        <li {%  if loop.index > 1 %} class="none" {% endif %}><img src="{{ asset('build/medias/ruptures/' ~rupture['filename']~'.'~rupture['ext']~'' )}}"  ></li>
+                                        <li {%  if loop.index > 1 %} class="none" {% endif %} data-position="{{ loop.index -1}}"><img src="{{ asset('build/medias/ruptures/' ~rupture['filename']~'.'~rupture['ext']~'' )}}"  ></li>
                                     {% endfor %}
+
                                     </ul>
                                     <p>Cliquez sur l'image pour l'ajouter dans l'incruste</p>
                                     <ul>
-                                        <li><span class="left" title="Image précédente"><i class="fas fa-long-arrow-alt-left"></i></span></li>
-                                        <li></li>
-                                        <li><span class="right" title="Image suivante"><i class="fas fa-long-arrow-alt-right"></i></span></li>
+                                        <li class="navigate" data-direction="left"><span  title="Image précédente" ><i class="fas fa-long-arrow-alt-left"></i></span></li>
+                                        <li><span class="currentRuptureIndex">{{ ressources['medias']['ruptures'] | length > 0 ? 1 : 0}}</span> sur {{ ressources['medias']['ruptures'] | length }}</li>
+                                        <li class="navigate" data-direction="right"><span  title="Image suivante" ><i class="fas fa-long-arrow-alt-right"></i></span></li>
                                     </ul>
                                 </div>
                             </div>

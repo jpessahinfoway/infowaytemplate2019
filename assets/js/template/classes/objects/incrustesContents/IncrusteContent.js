@@ -4,6 +4,7 @@ class IncrusteContent{
         this.type = null;
         this.subType = null;
         this.style = null;
+        this.content = null;
     }
 
     setName(name){

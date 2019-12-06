@@ -14,7 +14,7 @@ class ZoneContainerTextStyleCreatorTool extends ZoneContainerTextEditorSubTool{
         super(templateInterface,parentTool);
 
         this.title = 'Choisir un style de texte';
-        this.$location.container = $('.modal.background-editor .right-container #text-style-creator');
+        this.$location.container = $('.modal.background-editor .right-container #text-incrust-style-creator');
         this.$location.preview = this.$location.container.find('.preview')
         this.textIncrusteStyle = null;
         this.buildStylyzer();
@@ -44,7 +44,7 @@ class ZoneContainerTextStyleCreatorTool extends ZoneContainerTextEditorSubTool{
                     success: (encodedNewIncruste)=>{
                         console.log(encodedNewIncruste)
                         let parsedNewIncruste = JSON.parse(encodedNewIncruste);
-                        let newClass = parsedNewIncruste['elements'][0].name;
+                        let newClass = parsedNewIncruste['elements'][0].class;
 
                         console.log(this.parentTool.subTools)
                         let ZoneContainerTextSelectorTool = this.parentTool.subTools['ZoneContainerTextSelectorTool'];

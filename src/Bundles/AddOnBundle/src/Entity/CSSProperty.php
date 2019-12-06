@@ -2,6 +2,8 @@
 
 namespace AddOn\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -28,6 +30,11 @@ class CSSProperty
      */
     private $incrusteStyles;
 
+    public function __construct()
+    {
+        $this->incrusteStyles = new ArrayCollection();
+    }
+
 
 
     public function getId(): ?int
@@ -43,6 +50,37 @@ class CSSProperty
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|IncrusteStyle[]
+     */
+    public function getIncrusteStyles(): Collection
+    {
+        return $this->incrusteStyles;
+    }
+
+    public function addIncrusteStyle(IncrusteStyle $incrusteStyle): self
+    {
+        if (!$this->incrusteStyles->contains($incrusteStyle)) {
+            $this->incrusteStyles[] = $incrusteStyle;
+            $incrusteStyle->setProperty($this);
+        }
+
+        return $this;
+    }
+
+    public function removeIncrusteStyle(IncrusteStyle $incrusteStyle): self
+    {
+        if ($this->incrusteStyles->contains($incrusteStyle)) {
+            $this->incrusteStyles->removeElement($incrusteStyle);
+            // set the owning side to null (unless already changed)
+            if ($incrusteStyle->getProperty() === $this) {
+                $incrusteStyle->setProperty(null);
+            }
+        }
 
         return $this;
     }

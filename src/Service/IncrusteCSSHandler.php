@@ -24,14 +24,18 @@ class IncrusteCSSHandler
     private $_serializer;
 
     private $_classNames = [];
+    private $_incrustesAndElementsClasses = [];
 
     public function __construct($incrustes)
     {
         $this->_incrustes = $incrustes;
         $this->_parsedIncrustes = [];
+        $this->_incrustesAndElementsClasses = [];
 
-        $this->buildParsedincrustes();
+
+       // $this->buildParsedincrustes();
         $this->generateCSS();
+
     }
 
     public function generateSerializer(){
@@ -44,11 +48,16 @@ class IncrusteCSSHandler
         $normalizer = new ObjectNormalizer(null, null, null, null, null, null, $defaultContext);
 
         $this->_serializer = new Serializer([$normalizer], [$encoder]);
+
     }
 
     public function buildParsedincrustes(){
         $this->generateSerializer();
-        $this->_parsedIncrustes = json_decode($this->_serializer->serialize($this->_incrustes, 'json'));
+       /* foreach($this->_incrustes as $incruste){
+            dump($incruste);
+        }
+        dump($this->_incrustes);
+        $this->_parsedIncrustes = json_decode($this->_serializer->serialize($this->_incrustes, 'json'));*/
 
     }
 
@@ -67,17 +76,34 @@ class IncrusteCSSHandler
     {
         $this->_classNames = $classNames;
     }
+
     public function generateCSS(){
-        foreach($this->_incrustes as $incruste){
+
+        foreach($this->_incrustes as $indexIncruste=>$incruste){
+            $this->_incrustesAndElementsClasses[$indexIncruste]=[
+                'name' => $incruste->getName(),
+                'type' => $incruste->getType(),
+                'id'  => $incruste->getId(),
+                'elements' => []
+                ];
             $incrusteElements = $incruste->getIncrusteElements();
-            foreach($incrusteElements as $incrusteElement){
-                $className = $incrusteElement->getType() . $incruste->getId();
-                $this->_classNames[] = [
-                    'name' => $className,
-                    'id'   => $incruste->getId()
+            foreach($incrusteElements as $indexElement => $incrusteElement){
+
+                $this->_incrustesAndElementsClasses[$indexIncruste]['elements'][$indexElement]=[
+                    'type' => $incrusteElement->getType(),
+                    'id'  => $incrusteElement->getId(),
+                    'content' => $incrusteElement->getContent(),
+                    'class' => $incrusteElement->getClass(),
+                //    'content' => $incrusteElement->getContent()
                 ];
 
-                $this->_generatedCSS .= ".$className { ";
+
+                $this->_classNames[] = [
+                    'name' => $this->_incrustesAndElementsClasses[$indexIncruste]['elements'][$indexElement]['class'],
+                    'id'   => $this->_incrustesAndElementsClasses[$indexIncruste]['elements'][$indexElement]['id']
+                ];
+
+                $this->_generatedCSS .= ".".$incrusteElement->getClass()." { ";
 
                 foreach ($incrusteStyles = $incrusteElement->getIncrusteStyles() as $incrusteStyle){
                     $this->_generatedCSS .= $incrusteStyle->getProperty()->getName() .' : ' . $incrusteStyle->getValue() .' ; ';
@@ -86,6 +112,22 @@ class IncrusteCSSHandler
                 $this->_generatedCSS .= ' } ';
             }
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getIncrustesAndElementsClasses(): array
+    {
+        return $this->_incrustesAndElementsClasses;
+    }
+
+    /**
+     * @param array $incrustesAndElementsClasses
+     */
+    public function setIncrustesAndElementsClasses(array $incrustesAndElementsClasses): void
+    {
+        $this->_incrustesAndElementsClasses = $incrustesAndElementsClasses;
     }
 
     /**

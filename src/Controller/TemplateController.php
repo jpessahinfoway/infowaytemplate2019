@@ -61,12 +61,12 @@ class TemplateController extends AbstractController
     }
 
     /**
-     * @Route("/template/cssloader/", name="cssLoader",methods="GET")
+     * @Route("/template/cssloader/{type}", name="cssLoader",methods="GET")
      */
-    public function loadCss()
+    public function loadCss($type)
     {
         $entityManager = $this->getDoctrine()->getManager('addons');
-        $allIncrustes = $entityManager->getRepository(Incruste::class)->findAll();
+        $allIncrustes = $entityManager->getRepository(Incruste::class)->findBy(['type' => $type ]);
 
         $incrusteCSSHandler = new IncrusteCSSHandler($allIncrustes);
         $response = new Response($incrusteCSSHandler->getGeneratedCSS());
@@ -108,12 +108,17 @@ class TemplateController extends AbstractController
 
         $incrusteResponse['name'] = $newIncruste->getName();
         $incrusteResponse['type'] = $newIncruste->getType();
-
+        $entityManager->persist($newIncruste);
+        $entityManager->flush();
 
         foreach($incrusteStyle['contents'] as $content){
+            $className = $content['subType'] !== null ?  $content['subType'] . $newIncruste->getId() : $newIncruste->getType() . $newIncruste->getId();
             $newIncrusteElement = new IncrusteElement();
             $newIncrusteElement->setIncruste($newIncruste);
-            $newIncrusteElement->setType($content['type']);
+            $newIncrusteElement->setType($content['subType']);
+            $newIncrusteElement->setContent($content['content']);
+            $newIncrusteElement->setClass($className);
+
             foreach($content['style'] as $incrusteStyle){
                 $property = $entityManager->getRepository(CSSProperty::class)->findOneBy(['name'=>$incrusteStyle['name']]);
 
@@ -127,9 +132,12 @@ class TemplateController extends AbstractController
 
                 }
             }
-            $entityManager->persist($newIncrusteElement);
+            if(isset($incrusteContentStyle) && $incrusteContentStyle instanceof IncrusteStyle){
+                $entityManager->persist($newIncrusteElement);
+                $incrusteResponse['elements'][]=$newIncrusteElement;
+            }
 
-            $incrusteResponse['elements'][]=$newIncrusteElement;
+            $incrusteContentStyle=null;
         }
         $entityManager->persist($newIncruste);
 
@@ -140,7 +148,9 @@ class TemplateController extends AbstractController
         $incrusteResponse['elements']=array_map(function($incrusteElement){
             return [
                 'type' => $incrusteElement->getType(),
-                'name' => $incrusteElement->getType().$incrusteElement->getId()];
+                'name' => $incrusteElement->getType().$incrusteElement->getId(),
+                'class' => $incrusteElement->getClass()
+            ];
         }, $incrusteResponse['elements']);
 
 
@@ -180,11 +190,20 @@ class TemplateController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager('addons');
         $allIncrustes = $entityManager->getRepository(Incruste::class)->findAll();
+        $allIncrusteSortedByType = $classNames = [];
 
-        $incrusteCSSHandler = new IncrusteCSSHandler($allIncrustes);
+        foreach($allIncrustes as $incruste){ $allIncrusteSortedByType[ $incruste->getType() ][]=$incruste; }
 
-        $incrustesCSS = $incrusteCSSHandler->getGeneratedCSS();
-        $classNames = $incrusteCSSHandler->getClassNames();
+        foreach($allIncrusteSortedByType as $type => $incrusteList){
+
+            $incrusteCSSHandler = new IncrusteCSSHandler($incrusteList);
+            $classNames[$type] = $incrusteCSSHandler->getIncrustesAndElementsClasses();
+
+        }
+
+
+
+
 
         $rupturesSamples = ['il_revient_small', 'il_revient_medium','il_revient_big','indisponible_small','indisponible_medium','indisponible_big'];
         foreach($rupturesSamples as $indexRupture=>$rupture){
@@ -202,7 +221,6 @@ class TemplateController extends AbstractController
             'templateName'       => $templateName,
             'orientation'        => $orientation,
             'stageNumber'        => 2,
-            'textIncrustesCSS'   => $incrustesCSS,
             'classNames'         => $classNames,
             'ressources'        => $ressources
         ]);

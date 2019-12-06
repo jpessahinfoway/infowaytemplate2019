@@ -158,10 +158,10 @@ input[type="radio"], input[type="checkbox"] {
     height : 4px;
 }
 ::-webkit-scrollbar-track {
-    background: #876a6a;
+    background: #f0f0f0;
 }
 ::-webkit-scrollbar-thumb {
-    background: #385b72;
+    background: #d6d6d6;
 }
 
 /*************************************************/
@@ -451,8 +451,9 @@ input[type="color"] {
     color:white;
 }
 
-.element-focused{
+.focused-element{
     outline: 1px solid rgba(159, 73, 182, 0.6)!important;
+    outline-style: dotted !important;
 }
 .selected-style,.selected-element .wrapper{
     background-color: rgba(156, 189, 247, 0.5) !important;

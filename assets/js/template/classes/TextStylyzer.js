@@ -28,7 +28,7 @@ class TextStylyzer{
             fontWeight : {
                 $location : this.$location.styleForm.find('form input[data-type="font-weight"]'),
                 active:false,
-                styleProperty: new StyleProperty({name:'font-weight',value:this.$location.styleForm.find('form input[data-type="font-weight"]').val()}),
+                styleProperty: new StyleProperty({name:'font-weight',value:this.$location.styleForm.find('form input[data-type="font-weight"]:checked').val()}),
                 defaultValue:'normal',
             },
             fontStyle : {

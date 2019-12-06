@@ -19,6 +19,7 @@ class ZoneContainerPriceIncrusteRuptureStyleCreatorTool extends ZoneContainerPri
 
         this.title = 'Choisir un style de rupture';
         this.$location.container = $('.modal.background-editor .right-container #price-incrust-style-creator__rupture');
+        this.$location.sliderRupture = this.$location.container.find('.slider-ruptures');
 
         this.$location.preview = this.$location.container.find('.preview');
 
@@ -31,6 +32,40 @@ class ZoneContainerPriceIncrusteRuptureStyleCreatorTool extends ZoneContainerPri
         debugger;
 
         //this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;*/
+    }
+
+    paginate(active){
+        if(active){
+            this.$location.sliderRupture.find('.navigate').on('click.paginate', e => {
+                let target = e.currentTarget;
+                let inverseDirectionIcon;
+                let direction = target.dataset.direction;
+                let $ruptures = this.$location.sliderRupture.find('.container-ruptures li');
+                let displayedRupture, ruptureToDisplay;
+
+                displayedRupture = ruptureToDisplay = {$ : null, position : null};
+
+
+
+                displayedRupture.$ = $ruptures.not('.none');
+                displayedRupture.$.addClass('none');
+                displayedRupture.position = displayedRupture.$.data('position');
+
+
+                if(direction ==='left')ruptureToDisplay.$ = $($ruptures.eq(displayedRupture.position - 1));
+                else if(direction ==='right')ruptureToDisplay.$ = $($ruptures.eq(displayedRupture.position + 1));
+
+                this.$location.sliderRupture.find('.currentRuptureIndex').text((ruptureToDisplay.position = ruptureToDisplay.$.data('position')) +1);
+
+
+                if(ruptureToDisplay.position  === 0 || ruptureToDisplay.position === $ruptures.length -1)$(target).css('visibility','hidden')
+                else if($( inverseDirectionIcon = $(target).siblings('.navigate').eq(0) ).css('visibility') ==='hidden')$(inverseDirectionIcon).css('visibility','visible')
+
+                ruptureToDisplay.$.removeClass('none');
+            })
+        }else{
+            this.$location.sliderRupture.find('.navigate').off('click.paginate')
+        }
     }
 
     activeTool(boolean){
@@ -141,9 +176,10 @@ class ZoneContainerPriceIncrusteRuptureStyleCreatorTool extends ZoneContainerPri
     // }
 
     onDisactivation(){
-
+        this.paginate(false)
     }
     onActivation(){
+        this.paginate(true)
         // this.onChangeSwitchTargetedIncrusteContents(true)
         // this.onClickOnPreviewFocusElement(true)
     }

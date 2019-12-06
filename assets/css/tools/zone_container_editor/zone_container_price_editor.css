@@ -53,7 +53,7 @@
     overflow-y: auto;
     width: 100%;
     background-color: #f0f0f0;
-    border: 1px solid #385b72;
+    border: 1px solid #d6d6d6;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -184,7 +184,7 @@
     justify-content: center;
     align-items: center;
 }
-.price-editor .slider-ruptures > ul:last-of-type > li:first-child > span {
+.price-editor .slider-ruptures > ul:last-of-type > li:first-child {
     visibility: hidden;
 }
 .price-editor .slider-ruptures > ul:last-of-type > li:nth-child(2) {
@@ -196,4 +196,35 @@
 }
 .price-editor .slider-ruptures > ul:last-of-type > li > span > i {
     font-size: 1.2rem;
+}
+
+
+#choose-price-style{
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+#choose-price-style .list-prices{
+    display: flex;
+    overflow-y: auto;
+    padding-right:10px;
+    margin: 10px 0;
+}
+
+
+
+
+#choose-price-style form .radios-group, #choose-price-style form span{
+padding : 5px;
+}
+
+#choose-price-style .incrust-style-wrapper{
+    background-color: #f0f0f0;
+    border: 1px solid #d6d6d6;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+    width: 99%;
+    overflow: hidden;
 }

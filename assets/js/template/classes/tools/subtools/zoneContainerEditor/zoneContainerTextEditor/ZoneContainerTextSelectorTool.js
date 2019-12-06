@@ -14,7 +14,7 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
 
         this.textSelected = null;
         this.getExistingStyles().done( existingStyles => this.buildStyleSelectorList(existingStyles))
-
+        this.selecetedClasses=null;
         //this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;
     }
 
@@ -55,7 +55,7 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
             `<p class='${className}'>Ici la description de votre zone</p>`+
             `</div>`+
             '</li>';
-        
+
         $container.prepend(HTML);
     }
 
@@ -66,9 +66,9 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
     onClickSelectStyle(active){
         if(active){
             this.$location.selectorList.on('click.onClickSelectStyle','.class-text',(e)=>{
+                    this.$location.selectorList.find('.selected-style').removeClass('selected-style')
                     let styleSelected = $(e.currentTarget)
                     styleSelected.find('.incrust-style-wrapper').addClass('selected-style')
-
             })
         }else{
             this.$location.selectorList.off('click.onClickSelectStyle')
