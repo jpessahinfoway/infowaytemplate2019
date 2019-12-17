@@ -8,7 +8,9 @@ import {UnitePriceIncrusteContent} from "../../../../objects/incrustesContents/p
 import {EuroPriceIncrusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/EuroPriceIncrusteContent";
 import {SeparateurPriceIncrusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/SeparateurPriceIncrusteContent";
 import {CentimePriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/CentimePriceIncrusteContent";
-import {PriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/PriceIncusteContent";
+import {PriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/PriceIncrusteContent";
+import {Style} from "../../../../Style";
+
 var stringify = require('json-stringify-safe');
 
 
@@ -46,9 +48,6 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
     onChangeSwitchTargetedIncrusteContents(active){
        if(active){
            this.$location.selectElementPriceForm.find('input[type=radio]').on('change.onChangeSwitchTargetedIncrusteContents', e => {
-               console.log(this.stylyzer.generateStyle());
-               this.targetedIncrustContents.map(targetedIncrustContent=>targetedIncrustContent.setStyle(this.stylyzer.generateStyle()))
-               console.log(this.targetedIncrustContents)
                this.focusCheckedIncrustElement()
             })
        }else{
@@ -56,70 +55,53 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
        }
     }
 
+    checkRadioByTargetType(type){
+        this.$location.selectElementPriceForm.find(`input[type=radio]#${type}`).attr('checked',true)
+        this.$location.selectElementPriceForm.find(`input[type=radio]#${type}`).attr('checked',true)
+    }
+
     onFocusIncrustRefreshTarget(active) {
         if(active){
             this.$location.container.find('.incrust-element').on('focus.onFocusIncrustRefreshTarget',e => {
                 let incrustTarget = e.currentTarget;
                 let incrustTargetType = e.currentTarget.dataset.type;
+                console.log(incrustTarget);
                 this.$location.container.find('.focused-element').removeClass('focused-element');
                 $(incrustTarget).addClass('focused-element');
-                if( incrustTargetType === 'prix'){
-                    this.targetedIncrustContents = Object.values(this.createdPriceIncrust['contents'])
-                    incrustTarget  = this.$location.preview.eq(0)
-                }
-                else if(typeof this.createdPriceIncrust['contents'][incrustTargetType] !== 'undefined')this.targetedIncrustContents =  [ this.createdPriceIncrust['contents'][incrustTargetType] ];
-                else this.targetedIncrustContents= []
+                console.log(this.createdPriceIncrust);
+                if(typeof this.createdPriceIncrust.contents[incrustTargetType] !== 'undefined')this.targetedIncrustContents = this.createdPriceIncrust.contents[incrustTargetType];
+                else if(typeof this.createdPriceIncrust.contents['prix'].subContents[incrustTargetType] !== 'undefined')this.targetedIncrustContents = this.createdPriceIncrust.contents['prix'].subContents[incrustTargetType];
+                this.stylyzer.handleFormWithNewStyle(this.targetedIncrustContents.style);
+                this.stylyzer.setTarget($(incrustTarget));
+                this.checkRadioByTargetType(incrustTargetType);
 
-                this.stylyzer.setTarget($(incrustTarget))
-
-                this.recoveryPropertiesElement(incrustTargetType)
+               // this.recoveryPropertiesElement(incrustTargetType)
             })
         }else{
             this.$location.container.find('.incrust-element').off('focus.onFocusIncrustRefreshTarget')
         }
     }
 
-    recoveryPropertiesElement(type) {
-        // Cible l'élément
-        let element = this.$location.container.find(`.incrust-element[data-type=${type}]`).get(0);
-        console.log(element)
-        // Ensemble des propriétés CSS
-        let style = element.style
-        // Propriétés CSS de l'incruste
-        let display = style.display == 'none' ? true : false
-        let rotate = style.transform != '' ? style.transform.replace(/[^\d]/g, "") : 0
-        let fontSize = parseInt(style.fontSize.split('px')[0])
-        let bold = style.fontWeight == 'bold' ? true : false
-        let fontStyle = style.fontStyle == 'italic' ? true : false
-        let color = style.color
-        let backgroundColor = style.backgroundColor != '' ? style.backgroundColor : '#000000'
-        $('#form-create-price-incrust #font-family-price').val(style.fontFamily)
-        $('#form-create-price-incrust #color-price').val(color)
-        $('#form-create-price-incrust #background-color-price').val(backgroundColor)
-        $('#form-create-price-incrust #font-size-price').val(fontSize)
-        $('#form-create-price-incrust #rotate-price').val(rotate)
-        $('#form-create-price-incrust #bold-price').prop('checked', bold)
-        $('#form-create-price-incrust #italic-price').prop('checked', fontStyle)
-        $('#form-create-price-incrust #none').prop('checked', display)
-        // Pour la propriété 'text-decoration'
-        let radios = $('#form-create-price-incrust .radio').find('input')
-        // Ensemble des cases à cocher pour la propriété
-        $.each(radios, (index, radio) => {
-            // On active la case à cocher correspondant à la valeur
-            if (style.textDecoration == $(radio).val()) {
-                $(radio).prop('checked', true)
-            }
-        })
-    }
 
     buildIncrust(){
         let priceIncruste = new PriceIncruste();
-        priceIncruste
-            .addContent(new UnitePriceIncrusteContent())
-            .addContent(new EuroPriceIncrusteContent())
-            .addContent(new SeparateurPriceIncrusteContent())
-            .addContent(new CentimePriceIncusteContent());
+        let priceIncrusteContent = new PriceIncusteContent();
+        priceIncrusteContent.addSubContents(
+            new CentimePriceIncusteContent(),
+            new EuroPriceIncrusteContent(),
+            new SeparateurPriceIncrusteContent(),
+            new UnitePriceIncrusteContent()
+            );
+        console.log(priceIncrusteContent);
 
+            Object.values(priceIncrusteContent.subContents).map(priceElement=> {
+                priceElement.setStyle(new Style())
+            });
+            console.log(this.stylyzer.style)
+        priceIncrusteContent.setStyle(this.stylyzer.style)
+        priceIncruste
+            .addContent(priceIncrusteContent)
+    console.log(priceIncruste);
         return priceIncruste
     }
 
@@ -129,14 +111,16 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
             this.$location.container.find('button.btn.comfirm').on('click.onClickOnComfirmRegisterModel',e => {
                 //let textIncruste =  new TextIncruste();
 
-
                 this.createdPriceIncrust.setName('priceincruste1');
-                Object.keys(this.createdPriceIncrust['contents']).map(contentType => {
-                    let incrustElement = this.$location.preview.find(`*[data-type=${contentType}]`);
-                    this.createdPriceIncrust['contents'][contentType].content=incrustElement.text()
-                   // this.createdPriceIncrust['contents'][contentType]
-                })
-                console.log(this.createdPriceIncrust)
+
+                Object.values(this.createdPriceIncrust['contents']['prix'].subContents).map(incrusteContent => {
+                    let incrustElement = this.$location.preview.find(`[data-type=${incrusteContent.type}`)
+                    incrusteContent.content = incrustElement.text();
+                    if(typeof incrustElement.data('order') !== 'undefined')incrusteContent.incrustOrder = incrustElement.data('order');
+
+                });
+
+                console.log(this.createdPriceIncrust);
                 debugger;
 
                 $.ajax({
@@ -146,11 +130,10 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
                         incrusteStyle : stringify(this.createdPriceIncrust),
                     },
                     success: (encodedNewIncruste)=>{
-                        console.log(encodedNewIncruste)
+
                         let parsedNewIncruste = JSON.parse(encodedNewIncruste);
                         let newClass = parsedNewIncruste['elements'][0].name;
 
-                        console.log(this.parentTool.subTools)
                         let ZoneContainerTextSelectorTool = this.parentTool.subTools['ZoneContainerTextSelectorTool'];
 
                         ZoneContainerTextSelectorTool.refreshCssStylesheet()
@@ -169,8 +152,11 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
 
     buildStylyzer(){
         let stylyzer = new TextStylyzer(this.$location.container)
+
         stylyzer.setPreviewZone(this.$location.preview)
+        stylyzer.init();
         stylyzer.activeStylyser(true);
+
             /*,{comfirmButtonLocation : null, onSuccess : (style)=>{
 
                 //let textIncruste =  new TextIncruste();

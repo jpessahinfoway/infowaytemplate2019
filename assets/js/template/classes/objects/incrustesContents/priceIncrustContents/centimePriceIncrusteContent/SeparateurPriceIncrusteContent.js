@@ -1,9 +1,8 @@
-import {PriceIncusteContent} from "../PriceIncusteContent";
-
-class SeparateurPriceIncrusteContent extends PriceIncusteContent{
+import {PriceIncusteSubContent} from "../PriceIncusteSubContent";
+class SeparateurPriceIncrusteContent extends PriceIncusteSubContent{
     constructor(){
         super();
-        this.subType = 'separator';
+        this.type = 'separator';
     }
 
 

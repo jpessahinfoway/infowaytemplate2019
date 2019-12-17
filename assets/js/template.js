@@ -19,6 +19,7 @@ import '../css/tools/zone_infos_displayer.css';
 import '../css/tools/zone_resizer.css';
 import '../css/tools/associate/associate_zones.css'
 import '../css/tools/zone_container_editor.css';
+import '../css/tools/zone_container_editor/zone_container_media_editor.css';
 import '../css/tools/zone_container_editor/zone_container_zone_selector.css';
 import '../css/tools/zone_container_editor/zone_container_background_editor.css';
 import '../css/tools/zone_container_editor/zone_container_price_editor.css';

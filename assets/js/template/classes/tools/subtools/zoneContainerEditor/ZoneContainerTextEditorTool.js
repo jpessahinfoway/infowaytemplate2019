@@ -4,6 +4,8 @@ import {TextIncrusteStyle} from "../../../TextIncrusteStyle";
 import {ZoneContainerMediaSelectorTool} from "./zoneContainerMediaEditor/ZoneContainerMediaSelectorTool";
 import {ZoneContainerTextSelectorTool} from "./zoneContainerTextEditor/ZoneContainerTextSelectorTool";
 import {ZoneContainerTextStyleCreatorTool} from "./zoneContainerTextEditor/ZoneContainerTextStyleCreatorTool";
+import {Incruste} from "../../../objects/incrustes/Incruste";
+import {Observer} from "../../../pattern/observer/Observer";
 
 
 class ZoneContainerTextEditorTool extends ZoneContainerEditorSubTool{
@@ -14,6 +16,7 @@ class ZoneContainerTextEditorTool extends ZoneContainerEditorSubTool{
             new ZoneContainerTextSelectorTool(this.interface,this),
             new ZoneContainerTextStyleCreatorTool(this.interface,this)
         );
+        this.zoneContainerEditorObserver = new Observer()
 
         this.$location.styleLocation = $('');
         this.zonesHTMLToAppendToStyleChoiceContainer = '';
@@ -21,15 +24,29 @@ class ZoneContainerTextEditorTool extends ZoneContainerEditorSubTool{
        // this.getExistingStyles()
     }
 
+    onComfirmAddIncrustToZone(text){
+        if(typeof text !== 'object' && !(text instanceof Incruste))return ;
 
+        this.parentTool.subTools['TemplateMiniatorizerTool'].miniature.zonesSelected.forEach(zoneSelected => {
+            this.interface.currentTemplate.getZone(zoneSelected).setZoneContent(text)
+        });
+    }
+
+    initObserver(){
+        this.zoneContainerEditorObserver.observerFunction(observer => {
+            switch(observer.data[0]){
+                case 'zoneCreation' : this.subTools['zoneContainerTextSelectorTool'].addIncrustToList(observer.data[1]);
+                break;
+            }
+        })
+    }
 
     activeTool(boolean){
         super.activeTool(boolean,this.onActivation,this.onDisactivation)
     }
 
     onActivation(){
-
-
+        this.parentTool.templateMiniature.resetMiniature().addZones(['text']);
     }
     onDisactivation(){
         if(this.stylyzer !== null){

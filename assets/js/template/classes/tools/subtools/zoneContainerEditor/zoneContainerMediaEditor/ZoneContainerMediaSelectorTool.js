@@ -1,5 +1,11 @@
 import {ZoneContainerMediaEditorSubTool} from "./parent/ZoneContainerMediaEditorSubTool";
 import {MediaContent} from "../../../../zoneContents/MediaContent";
+import {TextIncruste} from "../../../../objects/incrustes/textIncruste/TextIncruste";
+import {MediaIncruste} from "../../../../objects/incrustes/mediaIncruste/MediaIncruste";
+import {TextIncrusteContent} from "../../../../objects/incrustesContents/textIncrusteConents/TextIncrusteContent";
+import {MediaIncrusteContent} from "../../../../objects/incrustesContents/mediaIncrustContents/MediaIncrusteContent";
+import {VideoIncrusteContent} from "../../../../objects/incrustesContents/mediaIncrustContents/videoIncrusteContent/VideoIncrusteContent";
+import {ImageIncrusteContent} from "../../../../objects/incrustesContents/mediaIncrustContents/imageIncrusteContent/ImageIncrusteContent";
 
 
 
@@ -22,16 +28,28 @@ class ZoneContainerMediaSelectorTool extends ZoneContainerMediaEditorSubTool{
     }
 
 
+
     onClickOnSelectedMedia(active){
         if(active){
             console.log('activatedd')
-            this.$location.container.on('click.onClickOnSelectedMedia','.media', (e)=> {
-                $('.media').removeClass('selected-element');
-                $(e.currentTarget).addClass('selected-element');
-                let mediaSelected = $(e.currentTarget).children('.media-miniature').css('background-image').split('/').pop();
-                mediaSelected = mediaSelected.substring(0,mediaSelected.length-2)
-                console.log(mediaSelected)
-                this.mediaSelected = mediaSelected === null ? null :  new MediaContent(mediaSelected,`/build/medias/${mediaSelected}`);
+            this.$location.container.on('click.onClickOnSelectedMedia','.incrustlist__element', (e)=> {
+                let selectedMediaTarget = e.currentTarget;
+                let selectedMediaIncruste = $(selectedMediaTarget).find('.incrust-model')
+                let incrusteElementContent = {type : null, object:null, $:null};
+                incrusteElementContent.$ = selectedMediaIncruste.find(`[data-incruste=${selectedMediaIncruste.data('type')}]`).eq(0);
+                $('.incrustlist__element').removeClass('selected-element');
+                $(selectedMediaTarget).addClass('selected-element');
+                if(incrusteElementContent.$.length===0)return console.log("pas d'incruste trouvé dans le dom");
+
+
+                incrusteElementContent.type = incrusteElementContent.$.data('type');
+
+                if(incrusteElementContent.type === 'video')incrusteElementContent.object = new VideoIncrusteContent();
+                else if (incrusteElementContent.type === 'image')incrusteElementContent.object= new ImageIncrusteContent();
+
+                this.selectedIncrust = this.generateIncrust(selectedMediaIncruste.get(0), {incrust : { instance : new MediaIncruste(), required : ['id', 'type'] }, incrustElementContent: { instance : incrusteElementContent.object, required : ['type', 'id', 'incrustOrder', 'content'] }});
+                console.log(this.selectedIncrust);
+
             })
         }else{
             this.$location.container.off('click.onClickOnSelectedMedia');
@@ -43,7 +61,7 @@ class ZoneContainerMediaSelectorTool extends ZoneContainerMediaEditorSubTool{
     onClickOnComfirmButton(active){
         if(active){
             this.$location.comfirmButton.on('click.onClickOnComfirmButton',()=>{
-                this.parentTool.onComfirmSetZoneMedia(this.mediaSelected)
+                this.parentTool.onComfirmSetZoneMedia(this.selectedIncrust)
             })
         }else{
             this.$location.comfirmButton.off('click.onClickOnComfirmButton')

@@ -1,6 +1,16 @@
 
 import {MediaContent} from "../../../../zoneContents/MediaContent";
 import {ZoneContainerTextEditorSubTool} from "./parent/ZoneContainerTextEditorSubTool";
+import {UnitePriceIncrusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/UnitePriceIncrusteContent";
+import {EuroPriceIncrusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/EuroPriceIncrusteContent";
+import {SeparateurPriceIncrusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/SeparateurPriceIncrusteContent";
+import {CentimePriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/CentimePriceIncrusteContent";
+import {PriceIncruste} from "../../../../objects/incrustes/priceIncruste/PriceIncruste";
+import {PriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/PriceIncrusteContent";
+import {TextIncruste} from "../../../../objects/incrustes/textIncruste/TextIncruste";
+import {TextIncrusteContent} from "../../../../objects/incrustesContents/textIncrusteConents/TextIncrusteContent";
+import {Incruste} from "../../../../objects/incrustes/Incruste";
+import {Observer} from "../../../../pattern/observer/Observer";
 
 
 
@@ -10,17 +20,19 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
 
         this.title = 'Choisir un style de texte';
         this.$location.container = $('.modal.background-editor .left-container .bottom-left-container #choose-text-style');
-        this.$location.selectorList = this.$location.container.find('ul.classes-text')
+        this.$location.selectorList = this.$location.container.find('ul.classes-text');
+        this.$location.comfirm = this.$location.container.find('button.btn.comfirm');
 
         this.textSelected = null;
         this.getExistingStyles().done( existingStyles => this.buildStyleSelectorList(existingStyles))
-        this.selecetedClasses=null;
+        this.selectedIncrust=null;
         //this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;
     }
 
     activeTool(boolean){
         super.activeTool(boolean,this.onActivation,this.onDisactivation)
     }
+
 
     getExistingStyles(){
         return $.ajax({
@@ -29,6 +41,7 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
             success: (data) => {return data}
         });
     }
+
 
     buildStyleSelectorList(parsedCSSJson){
 
@@ -66,12 +79,29 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
     onClickSelectStyle(active){
         if(active){
             this.$location.selectorList.on('click.onClickSelectStyle','.class-text',(e)=>{
-                    this.$location.selectorList.find('.selected-style').removeClass('selected-style')
-                    let styleSelected = $(e.currentTarget)
-                    styleSelected.find('.incrust-style-wrapper').addClass('selected-style')
+                    this.$location.selectorList.find('.selected-style').removeClass('selected-style');
+                    let incrustTarget = $(e.currentTarget).find('.incrust-style-wrapper')
+                    incrustTarget.addClass('selected-style');
+                    /*this.selectedIncrust = this.generateIncrust(incrustTarget.get(0), {incrustObject : new TextIncruste(), incrustElementContent: new TextIncrusteContent()});*/
+                this.selectedIncrust = this.generateIncrust(incrustTarget.get(0), {incrust : {instance:new TextIncruste(), required:['id']}, incrustElementContent: {instance : new TextIncrusteContent(), required : ['id','className','content','incrustOrder']}});
+                console.log(this.selectedIncrust)
+                debugger;
             })
         }else{
             this.$location.selectorList.off('click.onClickSelectStyle')
+        }
+    }
+    addIncrustToList(incrust){
+        console.log(incrust)
+    }
+
+    onClickOnComfirmSetZonePrice(active){
+        if(active){
+            this.$location.comfirm.on('click.onClickOnComfirmSetZonePrice',()=>{
+                console.log(this.selectedIncrust)
+                debugger;
+                this.parentTool.onComfirmAddIncrustToZone(this.selectedIncrust)
+            })
         }
     }
 
@@ -93,11 +123,22 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
     }
 
 
+    initZoneCreatorObserver(){
+        this.styleCreatorObserver = new Observer()
+        this.styleCreatorObserver.observerFunction((observer)=>{ this.sendAuthorization(observer.data[0], observer.data[1]) })
+    }
+
+
     onDisactivation(){
         this.onClickSelectStyle(false)
+        this.onClickOnComfirmSetZonePrice(false)
+        this.parentTool.zoneContainerEditorObserver.addObserver()
     }
     onActivation(){
         this.onClickSelectStyle(true)
+        this.onClickOnComfirmSetZonePrice(true)
+
+
         /*  console.log(this)
           console.log(this.parentTool)
           this.parentTool.templateMiniature.resetMiniature().addZones(['media']);

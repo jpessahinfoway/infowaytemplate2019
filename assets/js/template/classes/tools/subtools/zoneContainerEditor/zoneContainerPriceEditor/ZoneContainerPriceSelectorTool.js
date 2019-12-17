@@ -4,6 +4,14 @@ import {EuroContent} from "../../../../zoneContents/PriceContent/EuroContent/Eur
 import {SeparatorContent} from "../../../../zoneContents/PriceContent/SeparatorContent/SeparatorContent";
 import {CentimeContent} from "../../../../zoneContents/PriceContent/CentimeContent/CentimeContent";
 import {UniteContent} from "../../../../zoneContents/PriceContent/UniteContent/UniteContent";
+import {PriceIncruste} from "../../../../objects/incrustes/priceIncruste/PriceIncruste";
+import {UnitePriceIncrusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/UnitePriceIncrusteContent";
+import {EuroPriceIncrusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/EuroPriceIncrusteContent";
+import {SeparateurPriceIncrusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/SeparateurPriceIncrusteContent";
+import {CentimePriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/CentimePriceIncrusteContent";
+import {PriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/PriceIncrusteContent";
+import {Incruste} from "../../../../objects/incrustes/Incruste";
+import {Zone} from "../../../../Zone";
 
 
 
@@ -13,21 +21,11 @@ class ZoneContainerPriceSelectorTool extends ZoneContainerPriceEditorSubTool{
 
         this.title = 'Choisir un style de prix';
         this.$location.container = $('.modal.background-editor .left-container #choose-price-style');
-        this.$location.listPrices = this.$location.container.find('.list-prices')
-        this.generatedPrice = new PriceContent()
-        this.generatedPrice.addSubContents(
-            new EuroContent(),
-            new SeparatorContent(),
-            new CentimeContent(),
-            new UniteContent()
-        )
+        this.$location.listPrices = this.$location.container.find('.list-prices');
+        this.$location.comfirm = this.$location.container.find('button.btn.comfirm')
+        this.selectedIncrust = null
 
     }
-
-    resetGeneratedPrice(){
-        Object.values(this.generatedPrice.subContents).map(subContent => {subContent.value = null ; subContent.className = null })
-    }
-
 
 
     activeTool(boolean){
@@ -38,21 +36,17 @@ class ZoneContainerPriceSelectorTool extends ZoneContainerPriceEditorSubTool{
     onClickSelectStyle(active){
         if(active){
             this.$location.listPrices.find('.incrust-style-wrapper').on('click.onClickSelectStyle',e => {
-                let targetPrice = $(e.currentTarget).find('.price')
-                let priceElements = targetPrice.find('[data-type=price]')
-                let currentSubContent
-                console.log(priceElements)
-                this.resetGeneratedPrice()
-                priceElements.each((indexPriceElement, priceElement) => {
-                    console.log(priceElement)
-                    if(typeof (currentSubContent = this.generatedPrice.subContents[priceElement.dataset.subtype]) !== undefined){
-                        let className = $(priceElement).attr('class').split(' ').filter(className => className.match(new RegExp(`^${priceElement.dataset.subtype}[0-9].$`)));
-                        if(className.length >0)currentSubContent.className = className[0] ;
-                        currentSubContent.value = $(priceElement).text();
-                        currentSubContent.id = priceElement.dataset.id;
-                    }
+                let target = e.currentTarget;
+                this.selectedIncrust = this.generateIncrust($(e.currentTarget).get(0),{
+                    incrust : {instance: new PriceIncruste(), required : ['id']},
+                    incrustElementContent : {instance : new PriceIncusteContent(), required : ['id','className', 'incrustOrder']},
+                    incrustElementSubContents : {instance : {
+                            unite : new UnitePriceIncrusteContent(),
+                            euro: new EuroPriceIncrusteContent(),
+                            separator : new SeparateurPriceIncrusteContent(),
+                            centime : new CentimePriceIncusteContent()
+                    }, required : ['id', 'className' ,'incrustOrder', 'content']}
                 });
-                console.log(this.parentTool)
             })
         }else{
             this.$location.listPrices.find('.incrust-style-wrapper').off('click.onClickSelectStyle')
@@ -62,10 +56,18 @@ class ZoneContainerPriceSelectorTool extends ZoneContainerPriceEditorSubTool{
 
     onClickOnComfirmSetZonePrice(active){
         if(active){
-            this.$location.container.find('button').on('click.onClickOnComfirmSetZonePrice',()=>{
-                this.parentTool.onComfirmAddPriceToZone(this.generatedPrice)
+            this.$location.comfirm.on('click.onClickOnComfirmSetZonePrice',()=>{
+                this.parentTool.onComfirmAddPriceToZone(this.selectedIncrust)
             })
         }
+    }
+
+    setSelectedPriceToZone(zone){
+        if(typeof zone ==='object' && zone instanceof Zone && typeof this.selectedIncrust ==='object' && this.selectedIncrust instanceof Incruste)zone.setZoneContent(zone)
+    }
+
+    onClickOnComfirm(){
+        this.location.buttons
     }
 
     onDisactivation(){

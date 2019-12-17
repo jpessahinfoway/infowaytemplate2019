@@ -96,9 +96,46 @@ class TemplateController extends AbstractController
      */
     public function registerModel(Request $request,ParameterBagInterface $parameterBag, CSSParser $CSSParser,SerializerInterface $serialize){
 
+        function registerIncrustElement($incrustElement,$incrustParent,$em,$parentIncrustElement=false){
+            $type =  $incrustElement['type'] ;
+            $className = $type . $incrustParent->getId();
+
+            $newIncrusteElement = new IncrusteElement();
+            $newIncrusteElement->setIncruste($incrustParent);
+            $newIncrusteElement->setType($type);
+            $newIncrusteElement->setContent($incrustElement['content']);
+            $newIncrusteElement->setClass($className);
+
+            $newIncrusteElement->setIncrustOrder($incrustElement['incrustOrder']);
+            if($parentIncrustElement)$parentIncrustElement->addChild($newIncrusteElement);
+
+            foreach($incrustElement['style'] as $incrusteStyle){
+                $property = $em->getRepository(CSSProperty::class)->findOneBy(['name'=>$incrusteStyle['name']]);
+
+                if($property !== NULL && $incrusteStyle['propertyWritting'] !== NULL){
+
+                    $incrusteContentStyle = new IncrusteStyle();
+                    $incrusteContentStyle->setProperty($property);
+                    $incrusteContentStyle->setValue($incrusteStyle['propertyWritting']);
+                    $newIncrusteElement->addIncrusteStyle($incrusteContentStyle);
+                    $em->persist($incrusteContentStyle);
+
+                }
+            }
+            if(isset($incrusteContentStyle) && $incrusteContentStyle instanceof IncrusteStyle){
+                $em->persist($newIncrusteElement);
+                $incrusteResponse['elements'][]=$newIncrusteElement;
+                foreach($incrustElement['subContents'] as $subIncrustContent){
+                    registerIncrustElement($subIncrustContent,$incrustParent,$em,$newIncrusteElement);
+                }
+            }
+
+            $incrusteContentStyle=null;
+        }
 
         $entityManager = $this->getDoctrine()->getManager('addons');
         $incrusteStyle = json_decode($request->get('incrusteStyle'),true);
+
 
         $incrusteResponse = [];
         $newIncruste = new Incruste();
@@ -112,33 +149,9 @@ class TemplateController extends AbstractController
         $entityManager->flush();
 
         foreach($incrusteStyle['contents'] as $content){
-            $className = $content['subType'] !== null ?  $content['subType'] . $newIncruste->getId() : $newIncruste->getType() . $newIncruste->getId();
-            $newIncrusteElement = new IncrusteElement();
-            $newIncrusteElement->setIncruste($newIncruste);
-            $newIncrusteElement->setType($content['subType']);
-            $newIncrusteElement->setContent($content['content']);
-            $newIncrusteElement->setClass($className);
-
-            foreach($content['style'] as $incrusteStyle){
-                $property = $entityManager->getRepository(CSSProperty::class)->findOneBy(['name'=>$incrusteStyle['name']]);
-
-                if($property !== NULL && $incrusteStyle['propertyWritting'] !== NULL){
-
-                    $incrusteContentStyle = new IncrusteStyle();
-                    $incrusteContentStyle->setProperty($property);
-                    $incrusteContentStyle->setValue($incrusteStyle['propertyWritting']);
-                    $newIncrusteElement->addIncrusteStyle($incrusteContentStyle);
-                    $entityManager->persist($incrusteContentStyle);
-
-                }
-            }
-            if(isset($incrusteContentStyle) && $incrusteContentStyle instanceof IncrusteStyle){
-                $entityManager->persist($newIncrusteElement);
-                $incrusteResponse['elements'][]=$newIncrusteElement;
-            }
-
-            $incrusteContentStyle=null;
+            registerIncrustElement($content,$newIncruste,$entityManager);
         }
+
         $entityManager->persist($newIncruste);
 
 
@@ -190,20 +203,17 @@ class TemplateController extends AbstractController
 
         $entityManager = $this->getDoctrine()->getManager('addons');
         $allIncrustes = $entityManager->getRepository(Incruste::class)->findAll();
+
+
         $allIncrusteSortedByType = $classNames = [];
 
         foreach($allIncrustes as $incruste){ $allIncrusteSortedByType[ $incruste->getType() ][]=$incruste; }
 
         foreach($allIncrusteSortedByType as $type => $incrusteList){
-
-            $incrusteCSSHandler = new IncrusteCSSHandler($incrusteList);
-            $classNames[$type] = $incrusteCSSHandler->getIncrustesAndElementsClasses();
+                $incrusteCSSHandler = new IncrusteCSSHandler($incrusteList);
+                $classNames[$type] = $incrusteCSSHandler->getIncrustesAndElementsClasses();
 
         }
-
-
-
-
 
         $rupturesSamples = ['il_revient_small', 'il_revient_medium','il_revient_big','indisponible_small','indisponible_medium','indisponible_big'];
         foreach($rupturesSamples as $indexRupture=>$rupture){

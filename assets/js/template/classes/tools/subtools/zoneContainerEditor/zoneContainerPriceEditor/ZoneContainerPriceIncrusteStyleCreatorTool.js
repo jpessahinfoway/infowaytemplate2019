@@ -8,7 +8,6 @@ import {UnitePriceIncrusteContent} from "../../../../objects/incrustesContents/p
 import {EuroPriceIncrusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/EuroPriceIncrusteContent";
 import {SeparateurPriceIncrusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/SeparateurPriceIncrusteContent";
 import {CentimePriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/CentimePriceIncrusteContent";
-import {PriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/PriceIncusteContent";
 import {ZoneContainerPriceIncrustePriceStyleCreatorTool} from "./ZoneContainerPriceIncrustePriceStyleCreatorTool";
 import {ZoneContainerPriceIncrusteRuptureStyleCreatorTool} from "./ZoneContainerPriceIncrusteRuptureStyleCreatorTool";
 var stringify = require('json-stringify-safe');

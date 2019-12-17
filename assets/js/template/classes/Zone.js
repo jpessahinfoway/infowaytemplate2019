@@ -1,5 +1,6 @@
 import {Observable} from "./pattern/observer/Observable";
 import {BackgroundContent} from "./zoneContents/BackgroundContent";
+import {Incruste} from "./objects/incrustes/Incruste";
 
 
 class Zone{
@@ -46,9 +47,12 @@ class Zone{
     }
 
     setZoneContent(content){
-        this.content = content;
-        this.zoneContent.html(this.content.buildHTML())
+       if(typeof content === 'object' && content instanceof Incruste){
+           this.content = content;
+           this.zoneContent.html(this.content.buildHTML());
+       }
     }
+
 
     putTextInZone(text){
         this.$contentSpan.text(text)

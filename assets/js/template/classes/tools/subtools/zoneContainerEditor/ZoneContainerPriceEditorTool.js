@@ -11,6 +11,7 @@ import {SeparatorContent} from "../../../zoneContents/PriceContent/SeparatorCont
 import {CentimeContent} from "../../../zoneContents/PriceContent/CentimeContent/CentimeContent";
 import {UniteContent} from "../../../zoneContents/PriceContent/UniteContent/UniteContent";
 import {MediaContent} from "../../../zoneContents/MediaContent";
+import {Incruste} from "../../../objects/incrustes/Incruste";
 /*import {ZoneContainerTextSelectorTool} from "./zoneContainerTextEditor/ZoneContainerTextSelectorTool";
 import {ZoneContainerTextStyleCreatorTool} from "./zoneContainerTextEditor/ZoneContainerTextStyleCreatorTool";*/
 
@@ -38,16 +39,16 @@ class ZoneContainerPriceEditorTool extends ZoneContainerEditorSubTool{
 
     onActivation(){
         this.parentTool.templateMiniature.resetMiniature().addZones(['price']);
-        this.onComfirmAddPriceToZone()
     }
 
     onComfirmAddPriceToZone(price){
-
-        if(typeof price !== 'object' && !(price instanceof PriceContent))return ;
+    console.log(price)
+        debugger;
+        if(typeof price !== 'object' && !(price instanceof Incruste))return ;
+        console.log(this.parentTool.subTools['TemplateMiniatorizerTool'].miniature.zonesSelected)
 
         this.parentTool.subTools['TemplateMiniatorizerTool'].miniature.zonesSelected.forEach(zoneSelected => {
-            if(price !== null) this.interface.currentTemplate.getZone(zoneSelected).setZoneContent(price)
-            console.log(this.interface.currentTemplate.getZone(zoneSelected))
+            this.interface.currentTemplate.getZone(zoneSelected).setZoneContent(price)
             debugger;
         });
     }

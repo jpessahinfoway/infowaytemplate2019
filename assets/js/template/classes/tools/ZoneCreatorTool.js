@@ -1,8 +1,8 @@
-import {TemplateTool} from './parent/TemplateTool'
-import {ZonePriceCreatorTool} from "./subtools/zoneCreator/ZonePriceCreatorTool";
-import {ZoneTextCreatorTool} from "./subtools/zoneCreator/ZoneTextCreatorTool";
-import {ZoneMediaCreatorTool} from "./subtools/zoneCreator/ZoneMediaCreatorTool";
-import {Observable} from "../pattern/observer/Observable";
+import {TemplateTool} from './parent/TemplateTool.js'
+import {ZonePriceCreatorTool} from "./subtools/zoneCreator/ZonePriceCreatorTool.js";
+import {ZoneTextCreatorTool} from "./subtools/zoneCreator/ZoneTextCreatorTool.js";
+import {ZoneMediaCreatorTool} from "./subtools/zoneCreator/ZoneMediaCreatorTool.js";
+import {Observable} from "../pattern/observer/Observable.js";
 class ZoneCreatorTool extends TemplateTool{
 
     constructor(templateInterface){
@@ -43,7 +43,7 @@ class ZoneCreatorTool extends TemplateTool{
         }
     }
 
-    //Ajout des sous-outils
+
     setZoneType(zone){
         this.zoneType=zone
     }
@@ -95,9 +95,9 @@ class ZoneCreatorTool extends TemplateTool{
                     let $target = $(e.target);
 
                     // si on clique sur un element du menu on n'active pas l outil
-                   if($target.hasClass('bloc-menu'))return;
+                    if($target.hasClass('bloc-menu'))return;
 
-                   // correspond a la zone de travail. ici toute la fenetre du template
+                    // correspond a la zone de travail. ici toute la fenetre du template
                     let workZone = $('.container-zone');
 
                     // position du curseur dans le template
@@ -120,7 +120,7 @@ class ZoneCreatorTool extends TemplateTool{
                     // Lorsqu'on bouge le curseur
                     this.$eventLocation.mousemove.on('mousemove.'+this.constructor.name, (e) => {
 
-                       this.setUsingToolAuthorization(true);
+                        this.setUsingToolAuthorization(true);
 
                         // On recupere la nouvelle position du curseur dans le template
                         this.setCursorPosition(this.getCursorPositionInTemplate(e,workZone),'template');

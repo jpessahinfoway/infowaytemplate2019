@@ -6,6 +6,7 @@
  * Time: 12:36
  */
 
+
 namespace App\Service;
 
 
@@ -13,7 +14,7 @@ use Symfony\Component\Serializer\Encoder\JsonEncoder;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\Normalizer\ObjectNormalizer;
 use Symfony\Component\Serializer\Serializer;
-
+ini_set('display_errors',1);
 class IncrusteCSSHandler
 {
 
@@ -80,28 +81,39 @@ class IncrusteCSSHandler
     public function generateCSS(){
 
         foreach($this->_incrustes as $indexIncruste=>$incruste){
+
+
+
             $this->_incrustesAndElementsClasses[$indexIncruste]=[
                 'name' => $incruste->getName(),
                 'type' => $incruste->getType(),
                 'id'  => $incruste->getId(),
                 'elements' => []
                 ];
+
             $incrusteElements = $incruste->getIncrusteElements();
+
             foreach($incrusteElements as $indexElement => $incrusteElement){
 
-                $this->_incrustesAndElementsClasses[$indexIncruste]['elements'][$indexElement]=[
+
+
+                $this->_incrustesAndElementsClasses[$indexIncruste]['elements'][$incrusteElement->getId()]=[
                     'type' => $incrusteElement->getType(),
                     'id'  => $incrusteElement->getId(),
                     'content' => $incrusteElement->getContent(),
                     'class' => $incrusteElement->getClass(),
-                //    'content' => $incrusteElement->getContent()
+                    'parent' => $incrusteElement->getParent()!==null?$incrusteElement->getParent()->getId() : null,
+                    'incrustOrder' => $incrusteElement->getIncrustOrder(),
+                    'childrens' => []
                 ];
+
 
 
                 $this->_classNames[] = [
-                    'name' => $this->_incrustesAndElementsClasses[$indexIncruste]['elements'][$indexElement]['class'],
-                    'id'   => $this->_incrustesAndElementsClasses[$indexIncruste]['elements'][$indexElement]['id']
+                    'name' => $this->_incrustesAndElementsClasses[$indexIncruste]['elements'][$incrusteElement->getId()]['class'],
+                    'id'   => $this->_incrustesAndElementsClasses[$indexIncruste]['elements'][$incrusteElement->getId()]['id']
                 ];
+
 
                 $this->_generatedCSS .= ".".$incrusteElement->getClass()." { ";
 
@@ -111,7 +123,37 @@ class IncrusteCSSHandler
 
                 $this->_generatedCSS .= ' } ';
             }
+
+                //dump($this->_incrustesAndElementsClasses[$indexIncruste]['elements']);
+
+
+            foreach($this->_incrustesAndElementsClasses[$indexIncruste]['elements'] as $indexElementIncruste=>$elementIncruste){
+                if($elementIncruste['parent'] !== null)$this->_incrustesAndElementsClasses[$indexIncruste]['elements'][$elementIncruste['parent']]['childrens'][]=$elementIncruste;
+            }
+
+            $incrustElementsArrayWithoutChildrens = array_values(array_filter(
+                $this->_incrustesAndElementsClasses[$indexIncruste]['elements'],
+                function($elementIncruste){
+                    return $elementIncruste['parent']===null;
+                }));
+            $incrustElementsArrayWithoutChildrensSorted = array_map(function($incrustElementArrayWithoutChildrens){
+                usort($incrustElementArrayWithoutChildrens['childrens'], function($childA,$childB){return $childA['incrustOrder'] > $childB['incrustOrder'];});
+                return $incrustElementArrayWithoutChildrens;
+            },$incrustElementsArrayWithoutChildrens);
+
+            $this->_incrustesAndElementsClasses[$indexIncruste]['elements']=$incrustElementsArrayWithoutChildrensSorted;
+
+
+
+
+          /*  array_map(function($current){
+               return $current;
+            },$this->_incrustesAndElementsClasses['elements']);*/
+
+
         }
+
+
     }
 
     /**

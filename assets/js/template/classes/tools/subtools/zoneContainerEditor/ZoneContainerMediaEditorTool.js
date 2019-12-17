@@ -2,6 +2,7 @@ import {ZoneContainerEditorSubTool} from "./parent/ZoneContainerEditorSubTool";
 import {BackgroundContent} from "../../../zoneContents/BackgroundContent";
 import {MediaContent} from "../../../zoneContents/MediaContent";
 import {ZoneContainerMediaSelectorTool} from "./zoneContainerMediaEditor/ZoneContainerMediaSelectorTool";
+import {MediaIncruste} from "../../../objects/incrustes/mediaIncruste/MediaIncruste";
 
 
 
@@ -37,10 +38,10 @@ class ZoneContainerMediaEditorTool extends ZoneContainerEditorSubTool{
     }
 
     onComfirmSetZoneMedia(media){
-        if(typeof media !== 'object' && !(media instanceof MediaContent))return ;
+        if(typeof media !== 'object' && !(media instanceof MediaIncruste))return ;
 
             this.parentTool.subTools['TemplateMiniatorizerTool'].miniature.zonesSelected.forEach(zoneSelected => {
-                if(media !== null) this.interface.currentTemplate.getZone(zoneSelected).setZoneContent(media)
+               this.interface.currentTemplate.getZone(zoneSelected).setZoneContent(media)
             })
     }
 

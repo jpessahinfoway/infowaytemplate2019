@@ -72,6 +72,7 @@ class ZoneCreatorSubTool extends TemplateSubTool{
     activeTool(boolean,onActivationFunction){
         super.activeToolDecorator(boolean,(mode)=>{
             if(mode==='on'){
+                console.log('fdfdhdhg')
                 this.changeZoneTypeInCreatorTool()
                 this.displayErrorIfNotParent()
                 this.parentTool.zoneCreationObservable.addObserver(this.zoneCreatorObserver)

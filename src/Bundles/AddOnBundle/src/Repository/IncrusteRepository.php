@@ -19,6 +19,16 @@ class IncrusteRepository extends ServiceEntityRepository
         parent::__construct($registry, Incruste::class);
     }
 
+    public function findAllIncrustsWithoutChildrens()
+    {
+        return $this->createQueryBuilder('i')
+            ->leftJoin('i.incrusteElements','e')
+            ->where('e.parent = :val')
+            ->setParameter('val', 173)
+            ->getQuery()
+            ->getResult()
+            ;
+    }
     // /**
     //  * @return Incruste[] Returns an array of Incruste objects
     //  */

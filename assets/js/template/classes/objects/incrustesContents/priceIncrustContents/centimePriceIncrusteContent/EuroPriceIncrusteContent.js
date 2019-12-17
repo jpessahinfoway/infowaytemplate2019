@@ -1,9 +1,9 @@
-import {PriceIncusteContent} from "../PriceIncusteContent";
+import {PriceIncusteSubContent} from "../PriceIncusteSubContent";
 
-class EuroPriceIncrusteContent extends PriceIncusteContent{
+class EuroPriceIncrusteContent extends PriceIncusteSubContent{
     constructor(){
         super();
-        this.subType = 'euro';
+        this.type = 'euro';
     }
 
 

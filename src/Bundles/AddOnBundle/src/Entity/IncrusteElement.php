@@ -39,6 +39,19 @@ class IncrusteElement
     private $content;
 
     /**
+     * One Category has Many Categories.
+     * @ORM\OneToMany(targetEntity="IncrusteElement", mappedBy="parent", cascade={"persist","remove"})
+     */
+    private $children;
+
+    /**
+     * Many Categories have One Category.
+     * @ORM\ManyToOne(targetEntity="IncrusteElement", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id",onDelete="CASCADE")
+     */
+    private $parent;
+
+    /**
      * @ORM\Column(type="string", length=255)
      */
     private $class;
@@ -49,9 +62,17 @@ class IncrusteElement
      */
     private $incrusteStyles;
 
+    /**
+     * @ORM\Column(type="integer", length=255, nullable=true)
+     */
+    private $incrustOrder;
+
+
+
     public function __construct()
     {
         $this->incrusteStyles = new ArrayCollection();
+        $this->children = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -134,6 +155,73 @@ class IncrusteElement
     public function setClass(string $class): self
     {
         $this->class = $class;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|IncrusteElement[]
+     */
+    public function getChildren(): Collection
+    {
+        return $this->children;
+    }
+
+    public function addChild(IncrusteElement $child): self
+    {
+        if (!$this->children->contains($child)) {
+            $this->children[] = $child;
+            $child->setParent($this);
+        }
+
+        return $this;
+    }
+
+    public function removeChild(IncrusteElement $child): self
+    {
+        if ($this->children->contains($child)) {
+            $this->children->removeElement($child);
+            // set the owning side to null (unless already changed)
+            if ($child->getParent() === $this) {
+                $child->setParent(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getParent(): ?self
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?self $parent): self
+    {
+        $this->parent = $parent;
+
+        return $this;
+    }
+
+    public function getOrder(): ?int
+    {
+        return $this->order;
+    }
+
+    public function setOrder(?int $order): self
+    {
+        $this->order = $order;
+
+        return $this;
+    }
+
+    public function getIncrustOrder(): ?int
+    {
+        return $this->incrustOrder;
+    }
+
+    public function setIncrustOrder(?int $incrustOrder): self
+    {
+        $this->incrustOrder = $incrustOrder;
 
         return $this;
     }

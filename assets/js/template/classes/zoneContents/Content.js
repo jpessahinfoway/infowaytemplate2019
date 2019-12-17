@@ -1,7 +1,7 @@
 class Content{
     constructor(value=null){
         this._type = null;
-        console.log(value)
+        this._incruste = null;
         this._id = null;
         this._value = value;
     }

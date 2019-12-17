@@ -19,6 +19,8 @@ class IncrusteElementRepository extends ServiceEntityRepository
         parent::__construct($registry, IncrusteElement::class);
     }
 
+
+
     // /**
     //  * @return IncrusteElement[] Returns an array of IncrusteElement objects
     //  */

@@ -168,47 +168,52 @@
         <ul class="links">
             <li class="tool ZoneAssociationTool" data-tool="ZoneAssociationTool" data-type="associate" title="Associer des zones" ><span>Associer des Zones</span></li>
         </ul>
-        <div class="input-group">
-            <label for="name">Nom</label>
-            <input type="text" name="name" id="name">
-        </div>
-        <div class="input-group">
-            <label for="type">Type</label>
-            <select name="type" id="type">
-                <option value="zone">Zone</option>
-                <option value="media">Média</option>
-                <option value="price">Prix</option>
-                <option value="text">Texte</option>
-            </select>
-        </div>
-        <div class="input-group">
+        <div class="infos__container__zoneInfosGestioner">
+            <div class="input-group">
+                <label for="name">Nom</label>
+                <input type="text" name="name" id="name">
+            </div>
+            <div class="input-group">
+                <label for="type">Type</label>
+                <select name="type" id="type">
+                    <option value="zone">Zone</option>
+                    <option value="media">Média</option>
+                    <option value="price">Prix</option>
+                    <option value="text">Texte</option>
+                </select>
+            </div>
+            <div class="input-group">
                 <label for="referent">Positionné par rapport à</label>
                 <div id="wrapping-div">
                     <div id="wrapper-div">&nbsp;</div>
                     <select name="referent" id="referent" disabled>
                         <option value="selectedReferent">Template</option>
                     </select></div>
+            </div>
+            <div class="container-input">
+                <div class="input-group">
+                    <label for="posX">Position en X</label>
+                    <input type="text" name="posX" id="posX">
+                </div>
+                <div class="input-group">
+                    <label for="posY">Position en Y</label>
+                    <input type="text" name="posY" id="posY">
+                </div>
+            </div>
+            <div class="container-input">
+                <div class="input-group">
+                    <label for="width">Largeur</label>
+                    <input type="text" name="width" id="width">
+                </div>
+                <div class="input-group">
+                    <label for="height">Hauteur</label>
+                    <input type="text" name="height" id="height">
+                </div>
+            </div>
         </div>
-        <div class="container-input">
-            <div class="input-group">
-                <label for="posX">Position en X</label>
-                <input type="text" name="posX" id="posX">
-            </div>
-            <div class="input-group">
-                <label for="posY">Position en Y</label>
-                <input type="text" name="posY" id="posY">
-            </div>
-        </div>
-        <div class="container-input">
-            <div class="input-group">
-                <label for="width">Largeur</label>
-                <input type="text" name="width" id="width">
-            </div>
-            <div class="input-group">
-                <label for="height">Hauteur</label>
-                <input type="text" name="height" id="height">
-            </div>
-        </div>
+    <div class="infos__container__zoneContentGestionner">
+        <button><h3>Gestion du contenu de zone</h3></button>
+    </div>
     </div>
 </div>
     <!-----------------------BACKGROUNDEDITOR-------------------->
@@ -241,6 +246,7 @@
                             {%  if  classNames['text'] is defined %}
                             {% for className in classNames['text'] %}
 
+
                             <li class="class-text">
                             <div class="class-text__flex-container">
                                 <span>Nom du style</span>
@@ -253,9 +259,11 @@
                                 </button>
                             </div>
                             </div>
-                                <div class="incrust-style-wrapper">
-                                    <p class="{{ className['elements'][0]['class'] }}" data-id="{{ className['elements'][0]['id'] }}">Ici la description de votre zone</p>
-                                </div>
+                                {% for incrustElementContent in className['elements']|slice(0,1) %}
+                                    <div class="incrust-style-wrapper" data-id="{{className['id']}}" data-type="{{ className['type'] }}">
+                                        <p class="{{ incrustElementContent['class'] }}" data-id="{{ incrustElementContent['id'] }}" data-incruste="{{ className['type'] }}" data-type = "{{ incrustElementContent['type'] }}" data-order="{{ loop.index-1 }}" data-content="{{ incrustElementContent['content'] }}">{{ incrustElementContent['content'] }}</p>
+                                    </div>
+                                {% endfor %}
                             </li>
                             {% endfor %}
                             {%  endif %}
@@ -282,6 +290,7 @@
                         <div class="list-prices">
                             <ul class="classes-text">
                                 {% if classNames['price'] is defined %}
+                                    {{ dump(classNames) }}
                                     {% for className in classNames['price'] %}
 
                                         <li class="class-text">
@@ -296,14 +305,18 @@
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="incrust-style-wrapper">
+                                            <div class="incrust-style-wrapper" data-id="{{ className['id'] }}" data-type="{{ className['type'] }}" >
 
-                                                <div class="prix{{className['id']}} price">
                                                     {% for  element in  className['elements'] %}
-                                                        <span class="test {{ element['type']~className['id']}}" data-type="price" data-id="{{ element['id'] }}" data-subType="{{ element['type'] }}">{{  element['content'] }}</span>
-                                                    {% endfor %}
+                                                    {{ dump(element) }}
+                                                    <div class="{{ element['class'] }}" data-incruste="{{ className['type'] }}" data-type="{{ element['type'] }}" data-id="{{ element['id'] }}" data-order="{{ loop.index-1 }}">
+                                                        {% for children in element['childrens'] %}
+                                                        <span class="{{ children['class']}}" data-incruste="{{ className['type'] }}" data-id="{{ children['id'] }}" data-type="{{ children['type'] }}" data-order="{{ loop.index-1 }}" data-content="{{ children['content'] }}">{{  children['content'] }}</span>
+                                                        {% endfor %}
+
                                                     {#<span class="{{ className['elements'] }}"></span>#}
                                                 </div>
+                                                    {% endfor %}
                                                 {#<p class="{{ className['name'] }}" data-id="{{ className['id'] }}">Ici la description de votre zone</p>#}
                                             </div>
                                         </li>
@@ -390,26 +403,46 @@
                         </div>
                     </form>
                     <div class="list-medias">
+                        {#{{ dump(classNames) }}#}
+                        <ul class="incrustList mediaList ">
+                            {% if  classNames['media'] is defined %}
+                            {% for incrustMedia in classNames['media'] %}
+                                <li class="incrustlist__element">
+                                    <div class="incrustlist__element__cover cover">&nbsp;</div>
+                                    <div class="incrust-model" data-id="{{ incrustMedia['id'] }}" data-type="{{ incrustMedia['type'] }}">
+                                        {% for incrustElement in incrustMedia['elements'] | slice(0,1) %}
+                                            {{ dump(incrustElement) }}
+                                            <img src="/build/medias/{{ incrustElement['content'] }}" data-id="{{ incrustElement['id'] }}" data-incruste="{{ incrustMedia['type'] }}" data-type="{{ incrustElement['type'] }}" data-order="{{ incrustElement['incrustOrder'] }}" data-content="{{incrustElement['content']}}">
+                                        {% endfor %}
+                                    </div>
+                                    <div class="incrustlist__element__menu">
+                                        <span class="incrustlist__element__menu__name">{{ incrustMedia['name'] }}</span>
+                                        {#<div class="incrustlist__element__menu__actions"></div>#}
+                                    </div>
+                                </li>
+                            {% endfor %}
+                            {% endif %}
+                        </ul>
 
-                        <div class="media" data-type="image" data-categories="" data-name="donut_caramel">
-                            <div class="wrapper">&nbsp;</div>
-                            <div class ="media-miniature" style="background-image: url('/build/medias/donut_caramel.png')"></div>
-                            <span>donut_caramel</span>
-                        </div>
-                        <div class="media" data-type="image" data-categories="1" data-name="mix_mania_granola">
-                            <div class="wrapper">&nbsp;</div>
-                            <div class ="media-miniature" style="background-image: url('/build/medias/mix_mania_granola.png')"></div>
-                            <span>mix_mania_granola</span>
-                        </div>
-                        <div  class="media" data-type="image" data-categories="1" data-name="titre_Desserts">
-                            <div class="wrapper">&nbsp;</div>
-                            <div class ="media-miniature" style="background-image: url('/build/medias/titre_Desserts.png')"></div>
-                            <span>titre_Desserts</span></div>
-                        <div  class="media" data-type="image" data-categories="6" data-name="titre_menus">
-                            <div class="wrapper">&nbsp;</div>
-                            <div class ="media-miniature" style="background-image: url('/build/medias//titre_menus.png')"></div>
-                            <span>titre_menus</span>
-                        </div>
+                        {#<div class="media" data-type="image" data-categories="" data-name="donut_caramel">#}
+                            {#<div class="wrapper">&nbsp;</div>#}
+                            {#<div class ="media-miniature" style="background-image: url('/build/medias/donut_caramel.png')"></div>#}
+                            {#<span>donut_caramel</span>#}
+                        {#</div>#}
+                        {#<div class="media" data-type="image" data-categories="1" data-name="mix_mania_granola">#}
+                            {#<div class="wrapper">&nbsp;</div>#}
+                            {#<div class ="media-miniature" style="background-image: url('/build/medias/mix_mania_granola.png')"></div>#}
+                            {#<span>mix_mania_granola</span>#}
+                        {#</div>#}
+                        {#<div  class="media" data-type="image" data-categories="1" data-name="titre_Desserts">#}
+                            {#<div class="wrapper">&nbsp;</div>#}
+                            {#<div class ="media-miniature" style="background-image: url('/build/medias/titre_Desserts.png')"></div>#}
+                            {#<span>titre_Desserts</span></div>#}
+                        {#<div  class="media" data-type="image" data-categories="6" data-name="titre_menus">#}
+                            {#<div class="wrapper">&nbsp;</div>#}
+                            {#<div class ="media-miniature" style="background-image: url('/build/medias//titre_menus.png')"></div>#}
+                            {#<span>titre_menus</span>#}
+                        {#</div>#}
                         <div class="button-group">
                             <button class="btn comfirm">valider</button>
                         </div>
@@ -527,10 +560,10 @@
                     <div id ="price-incrust-style-creator__price" class="none style-creator__subtool-container">
                         <div class="preview">
                             <div class="incrust-element prix focused-element" data-type="prix" style="text-decoration: none; position: relative; font-size: 50px; color: #000000; font-family: Arial;">
-                                <span class="incrust-element unite prix" data-type="unite" style="text-decoration: none; position: relative; color: #000000; top: 0px; left: 0px; font-size: 50px; font-family: Arial;" contenteditable>2</span><!--
-                            --><span class="incrust-element euro prix" data-type="euro" style="text-decoration: none; position: relative; color: #000000; top: 0px; left: 0px; font-size: 50px; font-family: Arial;" contenteditable>€</span><!--
-                            --><span class="incrust-element separator prix" data-type="separator" style="text-decoration: none; position: relative; color: #000000; top: 0px; left: 0px; font-size: 50px; font-family: Arial;" contenteditable>.</span><!--
-                            --><span class="incrust-element centime prix" data-type="centime" style="text-decoration: none; position: relative; color: #000000; top: 0px; left: 0px; font-size: 50px; font-family: Arial;" contenteditable>50</span>
+                                <span class="incrust-element unite prix" data-order=1 data-type="unite" style="" contenteditable>2</span><!--
+                            --><span class="incrust-element euro prix" data-order=2 data-type="euro" style="" contenteditable>€</span><!--
+                            --><span class="incrust-element separator prix" data-order=3 data-type="separator" style="" contenteditable>.</span><!--
+                            --><span class="incrust-element centime prix" data-order=4 data-type="centime" style="" contenteditable>50</span>
                             </div>
                         </div>
 
@@ -620,7 +653,7 @@
                                 </div>
                                 <div class="input-group">
                                     <label for="rotate-price">Rotation en degré</label>
-                                    <input type="number" data-type="rotate" name="rotate-price" id="rotate-price" value="0" min="-360" max="360">
+                                    <input type="number" data-type="rotate" name="rotate-price" id="rotate-price" value="" min="-360" max="360">
                                 </div>
                                 <div class="checkbox">
                                     <input type="checkbox" data-type="display" name="none" id="none" value="none">

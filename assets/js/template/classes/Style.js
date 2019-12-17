@@ -7,15 +7,16 @@ class Style{
         this.textAlign = null;
         this.fontFamily = null;
         this.fontWeight = null;
-        this.fontStyle=null;
+        this.fontStyle= null;
         this.background = null;
         this.textDecoration = null;
-        this.transform = {};
+        this.transform = null;
     }
 
     hydrate(stylePropertiesList){
         console.log(stylePropertiesList)
         stylePropertiesList.forEach( styleProperty => {
+            console.log(styleProperty)
            let propertyNameToCamelCase = styleProperty.name.replace(
                 /([-_][a-z])/g,
                 (group) => group.toUpperCase()
@@ -24,7 +25,18 @@ class Style{
             )
             if(typeof this[propertyNameToCamelCase] !== 'undefined')this[propertyNameToCamelCase] = Object.assign(new StyleProperty(),styleProperty)
         })
+    }
 
+    addStyleProperties(stylePropertiesList){
+        stylePropertiesList.forEach( styleProperty => {
+            let propertyNameToCamelCase = styleProperty.name.replace(
+                /([-_][a-z])/g,
+                (group) => group.toUpperCase()
+                    .replace('-', '')
+                    .replace('_', '')
+            )
+            if(typeof this[propertyNameToCamelCase] !== 'undefined')this[propertyNameToCamelCase] = Object.assign(new StyleProperty(),styleProperty)
+        })
     }
 
     setTarget(target){
@@ -64,6 +76,7 @@ class Style{
     }
 
     addTransformProperty(transformPropertyName, transformPropertyValue){
+        if(this.transform = null)this.transform = {};
         this.transform[transformPropertyName] = transformPropertyValue;
     }
 }
