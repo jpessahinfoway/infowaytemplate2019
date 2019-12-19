@@ -40,19 +40,18 @@ class ZoneContainerTextStyleCreatorTool extends ZoneContainerTextEditorSubTool{
     buildIncrust({incrustObject = null, incrustContentObject = null, incrustSubContentsObject = [] } = {}){
 
 
-        incrustObject.addContent(incrustContentObject)
+        incrustObject.addIncrusteElements(incrustContentObject)
 
         incrustContentObject.addSubContents(...incrustSubContentsObject);
         Object.values(incrustContentObject.subContents).map(subContent=> {
-            subContent.setStyle(new Style())
+            subContent.style = new Style()
         });
 
         console.log(this.stylyzer.style)
-        incrustContentObject.setStyle(this.stylyzer.style)
+        incrustContentObject.style = this.stylyzer.style;
 
-        incrustObject.addContent(incrustContentObject)
-        console.log(incrustObject)
-        debugger;
+        incrustObject.addIncrusteElements(incrustContentObject)
+
 
         return incrustObject
     }
@@ -62,13 +61,12 @@ class ZoneContainerTextStyleCreatorTool extends ZoneContainerTextEditorSubTool{
             this.stylyzer.$location.styleForm.find('button').on('click.onClickOnComfirmButtonRegisterModel',e => {
                 let createdStyle = this.stylyzer.generateStyle();
                 let textIncruste =  new TextIncruste();
-                textIncruste.setName('incruste2');
+                textIncruste.name = 'incruste2';
                 let textContent = new TextIncrusteContent()
-                textContent.setStyle(createdStyle);
-                textContent.setContent('Exemple de text')
-                textIncruste.addContent(textContent);
-                this.styleCreatorObservable.notify('zoneCreation', textIncruste)
-                debugger;
+                textContent.style=createdStyle;
+                textContent.content = 'Exemple de text'
+                textIncruste.addIncrusteElements(textContent);
+
                 $.ajax({
                     type: "GET",
                     url: '/template/stage1/model/register',
@@ -76,13 +74,14 @@ class ZoneContainerTextStyleCreatorTool extends ZoneContainerTextEditorSubTool{
                         incrusteStyle : stringify(textIncruste),
                     },
                     success: (encodedNewIncruste)=>{
-                        let parsedNewIncruste = JSON.parse(encodedNewIncruste);
-                        let newClass = parsedNewIncruste['elements'][0].class;
-                        let ZoneContainerTextSelectorTool = this.parentTool.subTools['ZoneContainerTextSelectorTool'];
+                        console.log(encodedNewIncruste)
+                        let parsedNewIncruste = JSON.parse(encodedNewIncruste)
+                        this.styleCreatorObservable.notify('zoneCreation', parsedNewIncruste);
+                        /*let ZoneContainerTextSelectorTool = this.parentTool.subTools['ZoneContainerTextSelectorTool'];
 
                         ZoneContainerTextSelectorTool.refreshCssStylesheet();
 
-                        ZoneContainerTextSelectorTool.addStyleSelectorDiv(ZoneContainerTextSelectorTool.$location.container.find('ul'),newClass);
+                        ZoneContainerTextSelectorTool.addStyleSelectorDiv(ZoneContainerTextSelectorTool.$location.container.find('ul'),newClass);*/
 
                     },
                 });
@@ -104,12 +103,14 @@ class ZoneContainerTextStyleCreatorTool extends ZoneContainerTextEditorSubTool{
 
     onDisactivation(){
         this.onClickOnComfirmButtonRegisterModel(false);
-        this.styleCreatorObservable.removeObserver(this.parentTool.styleCreatorObserver)
+
+        this.styleCreatorObservable.removeObserver(this.parentTool.zoneContainerEditorObserver);
+
 
     }
     onActivation(){
         this.onClickOnComfirmButtonRegisterModel(true);
-        this.styleCreatorObservable.addObserver(this.parentTool.styleCreatorObserver)
+        this.styleCreatorObservable.addObserver(this.parentTool.zoneContainerEditorObserver);
     }
 }
 

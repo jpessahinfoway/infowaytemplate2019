@@ -17,6 +17,7 @@ class ZoneContainerTextEditorTool extends ZoneContainerEditorSubTool{
             new ZoneContainerTextStyleCreatorTool(this.interface,this)
         );
         this.zoneContainerEditorObserver = new Observer()
+        this.initObserver()
 
         this.$location.styleLocation = $('');
         this.zonesHTMLToAppendToStyleChoiceContainer = '';
@@ -33,9 +34,11 @@ class ZoneContainerTextEditorTool extends ZoneContainerEditorSubTool{
     }
 
     initObserver(){
+        console.log(this.subTools)
+        debugger;
         this.zoneContainerEditorObserver.observerFunction(observer => {
             switch(observer.data[0]){
-                case 'zoneCreation' : this.subTools['zoneContainerTextSelectorTool'].addIncrustToList(observer.data[1]);
+                case 'zoneCreation' : {this.subTools['ZoneContainerTextSelectorTool'].addIncrustToList(observer.data[1]);debugger;};
                 break;
             }
         })

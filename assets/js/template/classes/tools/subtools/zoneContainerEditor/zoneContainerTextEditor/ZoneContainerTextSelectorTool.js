@@ -24,7 +24,6 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
         this.$location.comfirm = this.$location.container.find('button.btn.comfirm');
 
         this.textSelected = null;
-        this.getExistingStyles().done( existingStyles => this.buildStyleSelectorList(existingStyles))
         this.selectedIncrust=null;
         //this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;
     }
@@ -55,21 +54,21 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
       //  this.$location.selectorList.html(HTMLcontainer)
     }
 
-    addStyleSelectorDiv($container,className){
+    addStyleSelectorDiv(incrust){
         let HTML =
             "<li class='class-text'>"+
-            `<div class="class-text__flex-container"><span>.${className}</span>`+
+            `<div class="class-text__flex-container"><span>${incrust.class}</span>`+
             "<div>" +
             "<button class='hidden-btn'><i class='fas fa-trash-alt' title='Supprimer'></i></button>"+
             "<button class='hidden-btn'><i class='fas fa-file-import' title='Importer'></i></button>" +
             "</div>"+
             "</div>"+
             `<div class='incrust-style-wrapper'>`+
-            `<p class='${className}'>Ici la description de votre zone</p>`+
+                incrust.html +
             `</div>`+
             '</li>';
 
-        $container.prepend(HTML);
+        this.$location.container.prepend(HTML);
     }
 
     refreshCssStylesheet(){
@@ -91,8 +90,30 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
             this.$location.selectorList.off('click.onClickSelectStyle')
         }
     }
+    generateIncrustWithDatas(incrust){
+        let createdIncrust = new TextIncruste();
+        let currentIncrustElement = null;
+
+        ['id','name'].forEach(property => typeof createdIncrust[ property ] === 'object' && typeof incrust[property] !== 'undefined'? createdIncrust[ property ] =  incrust[property] : '');
+        incrust['incrusteElements'].forEach(incrustElement => {
+
+            currentIncrustElement = new TextIncrusteContent();
+
+            let incrustElementProperties = ['id', 'class' ,'incrustOrder', 'content'];
+
+            incrustElementProperties.forEach(property => typeof currentIncrustElement[ property ] === 'object' && typeof incrustElement[property] !== 'undefined'? currentIncrustElement[ property ] =  incrustElement[property] : '');
+            console.log(currentIncrustElement)
+
+            createdIncrust.addIncrusteElements(currentIncrustElement);
+
+        });
+        createdIncrust.buildHTML()
+        return createdIncrust;
+    }
     addIncrustToList(incrust){
-        console.log(incrust)
+        let generatedIncrust = this.generateIncrustWithDatas(incrust);
+        if(typeof generatedIncrust.html !== 'undefined' && generatedIncrust.html !== null)this.addStyleSelectorDiv(generatedIncrust);
+        debugger;
     }
 
     onClickOnComfirmSetZonePrice(active){
@@ -105,7 +126,7 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
         }
     }
 
-    buildStyleSelectorDivHTML(className){
+    buildStyleSelectorDivHTML(incrustHTML){
         console.log(className);
         let HTML =
             "<li class='class-text'>"+
@@ -116,23 +137,17 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
             "</div>"+
             "</div>"+
             `<div class='incrust-style-wrapper'>`+
-            `<p class='${className}' data-id=1>Ici la description de votre zone</p>`+
+                 incrustHTML +
             `</div>`+
             '</li>';
         return HTML
     }
 
 
-    initZoneCreatorObserver(){
-        this.styleCreatorObserver = new Observer()
-        this.styleCreatorObserver.observerFunction((observer)=>{ this.sendAuthorization(observer.data[0], observer.data[1]) })
-    }
-
 
     onDisactivation(){
         this.onClickSelectStyle(false)
         this.onClickOnComfirmSetZonePrice(false)
-        this.parentTool.zoneContainerEditorObserver.addObserver()
     }
     onActivation(){
         this.onClickSelectStyle(true)

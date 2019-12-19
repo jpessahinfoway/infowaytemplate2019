@@ -97,19 +97,20 @@ class TemplateController extends AbstractController
     public function registerModel(Request $request,ParameterBagInterface $parameterBag, CSSParser $CSSParser,SerializerInterface $serialize){
 
         function registerIncrustElement($incrustElement,$incrustParent,$em,$parentIncrustElement=false){
-            $type =  $incrustElement['type'] ;
+            $type =  $incrustElement['_type'] ;
             $className = $type . $incrustParent->getId();
 
             $newIncrusteElement = new IncrusteElement();
-            $newIncrusteElement->setIncruste($incrustParent);
+            $incrustParent->addIncrusteElement($newIncrusteElement);
+
             $newIncrusteElement->setType($type);
-            $newIncrusteElement->setContent($incrustElement['content']);
+            $newIncrusteElement->setContent($incrustElement['_content']);
             $newIncrusteElement->setClass($className);
 
-            $newIncrusteElement->setIncrustOrder($incrustElement['incrustOrder']);
+            $newIncrusteElement->setIncrustOrder($incrustElement['_incrustOrder']);
             if($parentIncrustElement)$parentIncrustElement->addChild($newIncrusteElement);
 
-            foreach($incrustElement['style'] as $incrusteStyle){
+            foreach($incrustElement['_style'] as $incrusteStyle){
                 $property = $em->getRepository(CSSProperty::class)->findOneBy(['name'=>$incrusteStyle['name']]);
 
                 if($property !== NULL && $incrusteStyle['propertyWritting'] !== NULL){
@@ -124,14 +125,22 @@ class TemplateController extends AbstractController
             }
             if(isset($incrusteContentStyle) && $incrusteContentStyle instanceof IncrusteStyle){
                 $em->persist($newIncrusteElement);
-                $incrusteResponse['elements'][]=$newIncrusteElement;
-                foreach($incrustElement['subContents'] as $subIncrustContent){
+
+                foreach($incrustElement['_subContents'] as $subIncrustContent){
                     registerIncrustElement($subIncrustContent,$incrustParent,$em,$newIncrusteElement);
                 }
             }
-
-            $incrusteContentStyle=null;
         }
+
+        function buildPropertiesArray($propertiesList,$object){
+            $propertiesValuesArray = [];
+            foreach($propertiesList as $property){
+                $getter = 'get'.ucfirst($property);
+                if(method_exists($object,$getter))$propertiesValuesArray[$property] = $object->$getter() ;
+            }
+            return $propertiesValuesArray;
+        }
+
 
         $entityManager = $this->getDoctrine()->getManager('addons');
         $incrusteStyle = json_decode($request->get('incrusteStyle'),true);
@@ -140,17 +149,19 @@ class TemplateController extends AbstractController
         $incrusteResponse = [];
         $newIncruste = new Incruste();
 
-        $newIncruste    ->setName($incrusteStyle['name'])
-                        ->setType($incrusteStyle['type']);
+        $newIncruste    ->setName($incrusteStyle['_name'])
+                        ->setType($incrusteStyle['_type']);
 
         $incrusteResponse['name'] = $newIncruste->getName();
         $incrusteResponse['type'] = $newIncruste->getType();
         $entityManager->persist($newIncruste);
         $entityManager->flush();
 
-        foreach($incrusteStyle['contents'] as $content){
+        foreach($incrusteStyle['_incrusteElements'] as $content){
             registerIncrustElement($content,$newIncruste,$entityManager);
         }
+
+
 
         $entityManager->persist($newIncruste);
 
@@ -158,16 +169,21 @@ class TemplateController extends AbstractController
         $entityManager->flush();
 
 
-        $incrusteResponse['elements']=array_map(function($incrusteElement){
-            return [
-                'type' => $incrusteElement->getType(),
-                'name' => $incrusteElement->getType().$incrusteElement->getId(),
-                'class' => $incrusteElement->getClass()
-            ];
-        }, $incrusteResponse['elements']);
 
 
-        return new Response(json_encode($incrusteResponse));
+
+        if($newIncruste->getId() !== null) {
+            $incrusteCreated = buildPropertiesArray(['id', 'name', 'type'], $newIncruste);
+            $incrusteCreated['incrusteElements'] = [];
+
+            foreach ($newIncruste->getIncrusteElements() as $incrustElement) {
+                if ($incrustElement->getId() !== null) {
+                    $incrusteCreated['incrusteElements'][] = buildPropertiesArray(['id', 'type', 'content', 'class','incrustOrder'], $incrustElement);
+                }
+            }
+        }
+
+        return new Response(json_encode($incrusteCreated));
       //return new Response(json_encode($response));
     }
 

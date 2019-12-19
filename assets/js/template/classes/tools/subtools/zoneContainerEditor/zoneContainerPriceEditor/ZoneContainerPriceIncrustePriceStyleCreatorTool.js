@@ -10,6 +10,7 @@ import {SeparateurPriceIncrusteContent} from "../../../../objects/incrustesConte
 import {CentimePriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/CentimePriceIncrusteContent";
 import {PriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/PriceIncrusteContent";
 import {Style} from "../../../../Style";
+import {Observable} from "../../../../pattern/observer/Observable";
 
 var stringify = require('json-stringify-safe');
 
@@ -25,8 +26,9 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
         this.textIncrusteStyle = null;
         this.stylyzer = this.buildStylyzer();
         this.createdPriceIncrust = this.buildIncrust()
-        this.targetedIncrustContents = Object.values(this.createdPriceIncrust['contents'])
+        this.targetedIncrustContents = Object.values(this.createdPriceIncrust.incrusteElements)
         this.focusCheckedIncrustElement()
+        this.styleCreatorObservable = new Observable();
 
         //this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;
     }
@@ -95,13 +97,14 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
         console.log(priceIncrusteContent);
 
             Object.values(priceIncrusteContent.subContents).map(priceElement=> {
-                priceElement.setStyle(new Style())
+                priceElement.style = new Style()
             });
             console.log(this.stylyzer.style)
-        priceIncrusteContent.setStyle(this.stylyzer.style)
+        priceIncrusteContent.style = this.stylyzer.style
         priceIncruste
-            .addContent(priceIncrusteContent)
+            .addIncrusteElements(priceIncrusteContent)
     console.log(priceIncruste);
+            debugger;
         return priceIncruste
     }
 
@@ -111,9 +114,9 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
             this.$location.container.find('button.btn.comfirm').on('click.onClickOnComfirmRegisterModel',e => {
                 //let textIncruste =  new TextIncruste();
 
-                this.createdPriceIncrust.setName('priceincruste1');
+                this.createdPriceIncrust.name = 'priceincruste1';
 
-                Object.values(this.createdPriceIncrust['contents']['prix'].subContents).map(incrusteContent => {
+                Object.values(this.createdPriceIncrust.incrusteElements['prix'].subContents).map(incrusteContent => {
                     let incrustElement = this.$location.preview.find(`[data-type=${incrusteContent.type}`)
                     incrusteContent.content = incrustElement.text();
                     if(typeof incrustElement.data('order') !== 'undefined')incrusteContent.incrustOrder = incrustElement.data('order');
@@ -130,15 +133,8 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
                         incrusteStyle : stringify(this.createdPriceIncrust),
                     },
                     success: (encodedNewIncruste)=>{
-
-                        let parsedNewIncruste = JSON.parse(encodedNewIncruste);
-                        let newClass = parsedNewIncruste['elements'][0].name;
-
-                        let ZoneContainerTextSelectorTool = this.parentTool.subTools['ZoneContainerTextSelectorTool'];
-
-                        ZoneContainerTextSelectorTool.refreshCssStylesheet()
-                        ZoneContainerTextSelectorTool.addStyleSelectorDiv(ZoneContainerTextSelectorTool.$location.container.find('ul'),newClass);
-
+                        let parsedNewIncruste = JSON.parse(encodedNewIncruste)
+                        this.styleCreatorObservable.notify('zoneCreation', parsedNewIncruste);
                     },
                 });
             })
@@ -202,11 +198,16 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
 
     onDisactivation(){
     this.onFocusIncrustRefreshTarget(false)
+        this.styleCreatorObservable.removeObserver(this.parentTool.zoneContainerEditorObserver);
     }
     onActivation(){
         this.onClickOnComfirmRegisterModel(true)
         this.onChangeSwitchTargetedIncrusteContents(true)
         this.onFocusIncrustRefreshTarget(true)
+        debugger;
+        this.styleCreatorObservable.addObserver(this.parentTool.zoneContainerEditorObserver);
+        console.log(this.styleCreatorObservable)
+        debugger;
     }
 }
 

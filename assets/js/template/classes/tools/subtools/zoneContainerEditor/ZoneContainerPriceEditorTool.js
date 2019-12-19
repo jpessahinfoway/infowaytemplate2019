@@ -12,6 +12,7 @@ import {CentimeContent} from "../../../zoneContents/PriceContent/CentimeContent/
 import {UniteContent} from "../../../zoneContents/PriceContent/UniteContent/UniteContent";
 import {MediaContent} from "../../../zoneContents/MediaContent";
 import {Incruste} from "../../../objects/incrustes/Incruste";
+import {Observer} from "../../../pattern/observer/Observer";
 /*import {ZoneContainerTextSelectorTool} from "./zoneContainerTextEditor/ZoneContainerTextSelectorTool";
 import {ZoneContainerTextStyleCreatorTool} from "./zoneContainerTextEditor/ZoneContainerTextStyleCreatorTool";*/
 
@@ -19,13 +20,13 @@ import {ZoneContainerTextStyleCreatorTool} from "./zoneContainerTextEditor/ZoneC
 class ZoneContainerPriceEditorTool extends ZoneContainerEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
-
+        this.zoneContainerEditorObserver = new Observer()
+        this.initObserver()
         this.subTools = super.initSubTools(
            //new ZoneContainerTextSelectorTool(this.interface,this),
             new ZoneContainerPriceIncrusteStyleCreatorTool(this.interface,this),
             new ZoneContainerPriceSelectorTool(this.interface,this)
         );
-
         this.$location.styleLocation = $('');
         this.zonesHTMLToAppendToStyleChoiceContainer = '';
         this.stylyzer = null
@@ -39,6 +40,17 @@ class ZoneContainerPriceEditorTool extends ZoneContainerEditorSubTool{
 
     onActivation(){
         this.parentTool.templateMiniature.resetMiniature().addZones(['price']);
+    }
+
+    initObserver(){
+        console.log(this.zoneContainerEditorObserver)
+        debugger;
+        this.zoneContainerEditorObserver.observerFunction(observer => {
+            switch(observer.data[0]){
+                case 'zoneCreation' : this.subTools['ZoneContainerPriceSelectorTool'].addIncrustToList(observer.data[1]);
+                    break;
+            }
+        })
     }
 
     onComfirmAddPriceToZone(price){

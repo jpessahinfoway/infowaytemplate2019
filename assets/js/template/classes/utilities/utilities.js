@@ -6,3 +6,4 @@ export function clone(obj) {
     }
     return copy;
 }
+
