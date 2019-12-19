@@ -16,7 +16,7 @@ class PriceIncusteContent extends IncrusteContent{
     }
 
     buildHTML(){
-        console.log(this.type)
+        console.log(this)
         if(typeof this.type !=='string' && this.type!=='prix') return console.log('mauvais type');
         if(typeof this.class !=='string' || this.class === '') return console.log('mauvaise classe');
         if(typeof this.id !=='number') return console.log('mauvais id');

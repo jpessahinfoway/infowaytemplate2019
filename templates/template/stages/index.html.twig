@@ -409,7 +409,6 @@
                                     <div class="incrustlist__element__cover cover">&nbsp;</div>
                                     <div class="incrust-model" data-id="{{ incrustMedia['id'] }}" data-type="{{ incrustMedia['type'] }}">
                                         {% for incrustElement in incrustMedia['elements'] | slice(0,1) %}
-                                            {{ dump(incrustElement) }}
                                             <img src="/build/medias/{{ incrustElement['content'] }}" data-id="{{ incrustElement['id'] }}" data-incruste="{{ incrustMedia['type'] }}" data-type="{{ incrustElement['type'] }}" data-order="{{ incrustElement['incrustOrder'] }}" data-content="{{incrustElement['content']}}">
                                         {% endfor %}
                                     </div>

@@ -16,7 +16,7 @@ class ZoneContainerEditorSubSubTool extends PermanentSubTool{
 
     getIncrustElementClassName(incrustElementInDom){
         console.log(incrustElementInDom)
-        debugger;
+
         let type = $(incrustElementInDom).data('type');
         let incrustElementsClasses = $(incrustElementInDom).attr('class')
         let currentElementclassName = typeof incrustElementsClasses !== 'undefined' ? $(incrustElementInDom).attr('class').split(' ').filter(className => className.match(new RegExp(`^${type}[0-9]*$`))) : [];
@@ -25,6 +25,10 @@ class ZoneContainerEditorSubSubTool extends PermanentSubTool{
     }
 
     generateIncrust(incrustInDom, {incrust = { instance : null, required: ['test'] }  , incrustElementContent = {instance : null, required:[]}, incrustElementSubContents = { instance : {}, required : [] } } = {} ){
+        console.log(incrust)
+        console.log(incrustElementContent);
+        console.log(incrustElementSubContents);
+
 
         if(typeof incrust ==='undefined' || incrust.instance ==='undefined') throw new Error('Aucune incruste renseignée');
         if(typeof incrustElementContent ==='undefined' || incrustElementContent.instance ==='undefined') throw new Error("Aucun element d'incruste renseigné");
@@ -39,6 +43,7 @@ class ZoneContainerEditorSubSubTool extends PermanentSubTool{
                 elementDatas.required = requiredAttrArray.includes(elementData.name);
 
                 if(objectToHydrate===null) return;
+                console.log(elementData.name)
                 if(typeof elementData.name === 'undefined')throw new Error("Aucun nom d'attribut indiqué");
                 else if( (typeof elementData.value ==='undefined' ||elementData.value ===null) && elementDatas.required){throw new Error(`Aucune valeur trouvée pour l'attribut obligatoire ${elementData.name}`)}
                 else{objectToHydrate[elementData.name] = typeof elementData.value !== 'undefined' ? elementData.value: null};
@@ -58,10 +63,10 @@ class ZoneContainerEditorSubSubTool extends PermanentSubTool{
             {name:'content', value:incrustElementInDom.get(0).dataset.content},
             {name:'id', value:parseInt(incrustElementInDom.get(0).dataset.id)},
             {name : 'incrustOrder', value: incrustElementInDom.get(0).dataset.order},
-            {name : 'className', value : this.getIncrustElementClassName(incrustElementInDom.get(0))}
+            {name : 'class', value : this.getIncrustElementClassName(incrustElementInDom.get(0))}
         );
         if(incrustElementContent===null)return null
-        else incrust.instance.addContent(incrustElementContent.instance)
+        else incrust.instance.addIncrusteElements(incrustElementContent.instance)
 
         let incrustElementSubContentsDOM = $(incrustElementInDom).find(`[data-incruste=${incrust.instance.type}]`);
 
@@ -72,7 +77,7 @@ class ZoneContainerEditorSubSubTool extends PermanentSubTool{
                 {name:'content', value:subContentDOMValue.dataset.content},
                 {name:'id', value:parseInt(subContentDOMValue.dataset.id)},
                 {name : 'incrustOrder', value: subContentDOMValue.dataset.order},
-                {name : 'className', value : this.getIncrustElementClassName(subContentDOMValue)}
+                {name : 'class', value : this.getIncrustElementClassName(subContentDOMValue)}
             );
         });
 
@@ -82,7 +87,7 @@ class ZoneContainerEditorSubSubTool extends PermanentSubTool{
         );
 
         console.log(incrust.instance);
-        debugger;
+
         return incrust.instance
 
     }

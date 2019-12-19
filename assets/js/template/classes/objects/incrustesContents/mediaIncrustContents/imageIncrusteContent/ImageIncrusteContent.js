@@ -4,7 +4,7 @@ class ImageIncrusteContent extends IncrusteContent{
     constructor(){
         super();
         this.type = 'image';
-        debugger;
+
 
     }
 

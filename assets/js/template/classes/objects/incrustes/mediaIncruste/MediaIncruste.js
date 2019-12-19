@@ -12,7 +12,7 @@ class MediaIncruste extends Incruste{
         Object.values(this.incrusteElements).forEach(incrustElement => Object.keys(incrustElement).map(incrustElementProperties => {
             console.log(incrustElementProperties);
         }))
-        debugger;
+
     }
 
 }

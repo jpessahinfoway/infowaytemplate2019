@@ -42,13 +42,13 @@ class ZoneContainerPriceSelectorTool extends ZoneContainerPriceEditorSubTool{
                 let target = e.currentTarget;
                 this.selectedIncrust = this.generateIncrust($(e.currentTarget).get(0),{
                     incrust : {instance: new PriceIncruste(), required : ['id']},
-                    incrustElementContent : {instance : new PriceIncusteContent(), required : ['id','className', 'incrustOrder']},
+                    incrustElementContent : {instance : new PriceIncusteContent(), required : ['id','class', 'incrustOrder']},
                     incrustElementSubContents : {instance : {
                             unite : new UnitePriceIncrusteContent(),
                             euro: new EuroPriceIncrusteContent(),
                             separator : new SeparateurPriceIncrusteContent(),
                             centime : new CentimePriceIncusteContent()
-                    }, required : ['id', 'className' ,'incrustOrder', 'content']}
+                    }, required : ['id', 'class' ,'incrustOrder', 'content']}
                 });
             })
         }else{
@@ -60,7 +60,7 @@ class ZoneContainerPriceSelectorTool extends ZoneContainerPriceEditorSubTool{
     addIncrustToList(incrust){
         let generatedIncrust = this.generateIncrustWithDatas(incrust);
         if(typeof generatedIncrust.html !== 'undefined' && generatedIncrust.html !== null)this.addStyleSelectorDiv(generatedIncrust);
-        debugger;
+
     }
 
     generateIncrustWithDatas(incrust){

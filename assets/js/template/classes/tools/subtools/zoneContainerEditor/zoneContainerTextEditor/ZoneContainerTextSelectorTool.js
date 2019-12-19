@@ -59,8 +59,8 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
             "<li class='class-text'>"+
             `<div class="class-text__flex-container"><span>${incrust.class}</span>`+
             "<div>" +
-            "<button class='hidden-btn'><i class='fas fa-trash-alt' title='Supprimer'></i></button>"+
-            "<button class='hidden-btn'><i class='fas fa-file-import' title='Importer'></i></button>" +
+            "<button class='hidden-btn'><i class='fal fa-trash' title='Supprimer'></i></button>"+
+            "<button class='hidden-btn'><i class='fal fa-file-import' title='Importer'></i></button>" +
             "</div>"+
             "</div>"+
             `<div class='incrust-style-wrapper'>`+
@@ -68,7 +68,7 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
             `</div>`+
             '</li>';
 
-        this.$location.container.prepend(HTML);
+        this.$location.selectorList.prepend(HTML);
     }
 
     refreshCssStylesheet(){
@@ -84,7 +84,7 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
                     /*this.selectedIncrust = this.generateIncrust(incrustTarget.get(0), {incrustObject : new TextIncruste(), incrustElementContent: new TextIncrusteContent()});*/
                 this.selectedIncrust = this.generateIncrust(incrustTarget.get(0), {incrust : {instance:new TextIncruste(), required:['id']}, incrustElementContent: {instance : new TextIncrusteContent(), required : ['id','className','content','incrustOrder']}});
                 console.log(this.selectedIncrust)
-                debugger;
+
             })
         }else{
             this.$location.selectorList.off('click.onClickSelectStyle')
@@ -113,14 +113,14 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
     addIncrustToList(incrust){
         let generatedIncrust = this.generateIncrustWithDatas(incrust);
         if(typeof generatedIncrust.html !== 'undefined' && generatedIncrust.html !== null)this.addStyleSelectorDiv(generatedIncrust);
-        debugger;
+
     }
 
     onClickOnComfirmSetZonePrice(active){
         if(active){
             this.$location.comfirm.on('click.onClickOnComfirmSetZonePrice',()=>{
                 console.log(this.selectedIncrust)
-                debugger;
+
                 this.parentTool.onComfirmAddIncrustToZone(this.selectedIncrust)
             })
         }

@@ -64,17 +64,21 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
     onFocusIncrustRefreshTarget(active) {
         if(active){
             this.$location.container.find('.incrust-element').on('focus.onFocusIncrustRefreshTarget',e => {
+
                 let incrustTarget = e.currentTarget;
                 let incrustTargetType = e.currentTarget.dataset.type;
-                console.log(incrustTarget);
+
                 this.$location.container.find('.focused-element').removeClass('focused-element');
                 $(incrustTarget).addClass('focused-element');
-                console.log(this.createdPriceIncrust);
-                if(typeof this.createdPriceIncrust.contents[incrustTargetType] !== 'undefined')this.targetedIncrustContents = this.createdPriceIncrust.contents[incrustTargetType];
-                else if(typeof this.createdPriceIncrust.contents['prix'].subContents[incrustTargetType] !== 'undefined')this.targetedIncrustContents = this.createdPriceIncrust.contents['prix'].subContents[incrustTargetType];
-                this.stylyzer.handleFormWithNewStyle(this.targetedIncrustContents.style);
-                this.stylyzer.setTarget($(incrustTarget));
-                this.checkRadioByTargetType(incrustTargetType);
+
+                if( typeof this.createdPriceIncrust.incrusteElements[ incrustTargetType ] !== 'undefined' ) this.targetedIncrustContents = this.createdPriceIncrust.incrusteElements[ incrustTargetType ];
+
+                else if( typeof this.createdPriceIncrust.incrusteElements[ 'prix' ].subContents[ incrustTargetType ] !== 'undefined') this.targetedIncrustContents = this.createdPriceIncrust.incrusteElements[ 'prix' ].subContents[ incrustTargetType ];
+
+                this.stylyzer.handleFormWithNewStyle( this.targetedIncrustContents.style );
+                this.stylyzer.setTarget( $( incrustTarget ) );
+
+                this.checkRadioByTargetType( incrustTargetType );
 
                // this.recoveryPropertiesElement(incrustTargetType)
             })
@@ -103,7 +107,7 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
         priceIncruste
             .addIncrusteElements(priceIncrusteContent)
     console.log(priceIncruste);
-            debugger;
+
         return priceIncruste
     }
 
@@ -121,8 +125,7 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
                     if(typeof incrustElement.data('order') !== 'undefined')incrusteContent.incrustOrder = incrustElement.data('order');
                 });
 
-                console.log(this.createdPriceIncrust);
-                debugger;
+
 
                 $.ajax({
                     type: "GET",
@@ -202,7 +205,7 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
         this.onClickOnComfirmRegisterModel(true)
         this.onChangeSwitchTargetedIncrusteContents(true)
         this.onFocusIncrustRefreshTarget(true)
-        console.log(this.parentTool);debugger;
+        console.log(this.parentTool);
     }
 }
 

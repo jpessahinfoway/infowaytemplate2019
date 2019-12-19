@@ -44,7 +44,7 @@ class ZoneContainerPriceEditorTool extends ZoneContainerEditorSubTool{
 
     initObserver(){
         console.log(this.zoneContainerEditorObserver)
-        debugger;
+
         this.zoneContainerEditorObserver.observerFunction(observer => {
             switch(observer.data[0]){
                 case 'zoneCreation' : this.subTools['ZoneContainerPriceSelectorTool'].addIncrustToList(observer.data[1]);
@@ -55,13 +55,13 @@ class ZoneContainerPriceEditorTool extends ZoneContainerEditorSubTool{
 
     onComfirmAddPriceToZone(price){
     console.log(price)
-        debugger;
+
         if(typeof price !== 'object' && !(price instanceof Incruste))return ;
         console.log(this.parentTool.subTools['TemplateMiniatorizerTool'].miniature.zonesSelected)
 
         this.parentTool.subTools['TemplateMiniatorizerTool'].miniature.zonesSelected.forEach(zoneSelected => {
             this.interface.currentTemplate.getZone(zoneSelected).setZoneContent(price)
-            debugger;
+
         });
     }
 

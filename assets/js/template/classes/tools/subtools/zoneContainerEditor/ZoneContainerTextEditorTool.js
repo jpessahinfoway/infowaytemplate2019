@@ -35,10 +35,9 @@ class ZoneContainerTextEditorTool extends ZoneContainerEditorSubTool{
 
     initObserver(){
         console.log(this.subTools)
-        debugger;
         this.zoneContainerEditorObserver.observerFunction(observer => {
             switch(observer.data[0]){
-                case 'zoneCreation' : {this.subTools['ZoneContainerTextSelectorTool'].addIncrustToList(observer.data[1]);debugger;};
+                case 'zoneCreation' : {this.subTools['ZoneContainerTextSelectorTool'].addIncrustToList(observer.data[1])};
                 break;
             }
         })

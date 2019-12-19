@@ -21,7 +21,11 @@ class ZonePriorityAboveTool extends ZonePriorityManagerSubTool{
         if(currentZonePositionInTemplate<zonesOrderedByZindex.length){
 
             console.log(zonesOrderedByZindex)
+
             zoneAboveThisOneBeforeChange = zonesOrderedByZindex[currentZonePositionInTemplate+1];
+
+            if(typeof zoneAboveThisOneBeforeChange === 'undefined') return ;
+
             console.log(zoneAboveThisOneBeforeChange)
             this.currentZone.setZIndex(zoneAboveThisOneBeforeChange.zIndex);
             zoneAboveThisOneBeforeChange.setZIndex(zoneAboveThisOneBeforeChange.zIndex-1);

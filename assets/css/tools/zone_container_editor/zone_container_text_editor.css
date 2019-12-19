@@ -26,14 +26,3 @@
     justify-content: space-between;
     align-items: flex-end;
 }
-
-
-#choose-text-style .class-text .incrust-style-wrapper {
-    background-color: #f0f0f0;
-    border: 1px solid #d6d6d6;
-    margin-bottom: 10px;
-    padding: 10px;
-    cursor: pointer;
-    width: 99%;
-    overflow: hidden;
-}

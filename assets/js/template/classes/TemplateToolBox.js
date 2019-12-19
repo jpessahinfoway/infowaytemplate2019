@@ -169,7 +169,7 @@ class TemplateToolBox{
                     }else{
 
                         this.disactiveAllTools([])
-                        console.log(this.tools[toolSelectioned].subTools[subToolSelectioned].instance.name);debugger;
+                        console.log(this.tools[toolSelectioned].subTools[subToolSelectioned].instance.name);
                         this.activeToolInToolBox(this.tools[toolSelectioned].subTools[subToolSelectioned].instance.name,true)
                         this.activeToolInToolBox(this.tools[toolSelectioned].instance.name,true)
                     }
