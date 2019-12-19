@@ -290,7 +290,6 @@
                         <div class="list-prices">
                             <ul class="classes-text">
                                 {% if classNames['price'] is defined %}
-                                    {{ dump(classNames) }}
                                     {% for className in classNames['price'] %}
 
                                         <li class="class-text">
@@ -308,7 +307,6 @@
                                             <div class="incrust-style-wrapper" data-id="{{ className['id'] }}" data-type="{{ className['type'] }}" >
 
                                                     {% for  element in  className['elements'] %}
-                                                    {{ dump(element) }}
                                                     <div class="{{ element['class'] }}" data-incruste="{{ className['type'] }}" data-type="{{ element['type'] }}" data-id="{{ element['id'] }}" data-order="{{ loop.index-1 }}">
                                                         {% for children in element['childrens'] %}
                                                         <span class="{{ children['class']}}" data-incruste="{{ className['type'] }}" data-id="{{ children['id'] }}" data-type="{{ children['type'] }}" data-order="{{ loop.index-1 }}" data-content="{{ children['content'] }}">{{  children['content'] }}</span>

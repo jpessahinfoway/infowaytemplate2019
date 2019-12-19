@@ -8,7 +8,7 @@ class PriceIncusteSubContent extends IncrusteContent{
 
     buildHTML(){
         this.html = '<span' +
-        ` class="${this.className}"` +
+        ` class="${this.class}"` +
         ` data-type="${this.type}"` +
         ` data-id="${this.type}"`+
         '>' +

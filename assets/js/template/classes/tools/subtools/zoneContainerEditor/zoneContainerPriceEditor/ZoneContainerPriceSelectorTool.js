@@ -14,6 +14,7 @@ import {Incruste} from "../../../../objects/incrustes/Incruste";
 import {Zone} from "../../../../Zone";
 import {TextIncruste} from "../../../../objects/incrustes/textIncruste/TextIncruste";
 import {TextIncrusteContent} from "../../../../objects/incrustesContents/textIncrusteConents/TextIncrusteContent";
+import {IncrusteContent} from "../../../../objects/incrustesContents/IncrusteContent";
 
 
 
@@ -24,7 +25,7 @@ class ZoneContainerPriceSelectorTool extends ZoneContainerPriceEditorSubTool{
         this.title = 'Choisir un style de prix';
         this.$location.container = $('.modal.background-editor .left-container #choose-price-style');
         this.$location.listPrices = this.$location.container.find('.list-prices');
-        this.$location.comfirm = this.$location.container.find('button.btn.comfirm')
+        this.$location.comfirm = this.$location.container.find('button.btn.comfirm');
         this.selectedIncrust = null
 
     }
@@ -67,19 +68,19 @@ class ZoneContainerPriceSelectorTool extends ZoneContainerPriceEditorSubTool{
         let currentIncrustElement = null;
 
         ['id','name'].forEach(property => typeof createdIncrust[ property ] === 'object' && typeof incrust[property] !== 'undefined'? createdIncrust[ property ] =  incrust[property] : '');
+
+        let incrustElementProperties = ['id', 'class' ,'incrustOrder', 'content'];
+
         incrust['incrusteElements'].forEach(incrustElement => {
-            console.log(incrustElement)
-            debugger;
+            let addIncrustContentElement  = `add${incrustElement['type'].charAt(0).toUpperCase() + incrustElement['type'].slice(1)}Element`;
 
-            currentIncrustElement = new TextIncrusteContent();
+            if(typeof createdIncrust[addIncrustContentElement] !== 'function') return ;
 
-            let incrustElementProperties = ['id', 'class' ,'incrustOrder', 'content'];
+            currentIncrustElement = createdIncrust[addIncrustContentElement]() ;
+
+            if( !(typeof currentIncrustElement === 'object' && currentIncrustElement instanceof IncrusteContent) ) return ;
 
             incrustElementProperties.forEach(property => typeof currentIncrustElement[ property ] === 'object' && typeof incrustElement[property] !== 'undefined'? currentIncrustElement[ property ] =  incrustElement[property] : '');
-            console.log(currentIncrustElement)
-
-            createdIncrust.addIncrusteElements(currentIncrustElement);
-
         });
         createdIncrust.buildHTML()
         return createdIncrust;
@@ -88,7 +89,7 @@ class ZoneContainerPriceSelectorTool extends ZoneContainerPriceEditorSubTool{
     addStyleSelectorDiv(incrust){
         let HTML =
             "<li class='class-text'>"+
-            `<div class="class-text__flex-container"><span>${incrust.class}</span>`+
+            `<div class="class-text__flex-container"><span>${incrust.name}</span>`+
             "<div>" +
             "<button class='hidden-btn'><i class='fas fa-trash-alt' title='Supprimer'></i></button>"+
             "<button class='hidden-btn'><i class='fas fa-file-import' title='Importer'></i></button>" +

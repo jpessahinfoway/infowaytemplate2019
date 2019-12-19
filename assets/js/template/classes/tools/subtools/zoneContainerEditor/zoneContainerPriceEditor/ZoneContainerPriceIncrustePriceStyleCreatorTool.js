@@ -28,7 +28,6 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
         this.createdPriceIncrust = this.buildIncrust()
         this.targetedIncrustContents = Object.values(this.createdPriceIncrust.incrusteElements)
         this.focusCheckedIncrustElement()
-        this.styleCreatorObservable = new Observable();
 
         //this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;
     }
@@ -120,7 +119,6 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
                     let incrustElement = this.$location.preview.find(`[data-type=${incrusteContent.type}`)
                     incrusteContent.content = incrustElement.text();
                     if(typeof incrustElement.data('order') !== 'undefined')incrusteContent.incrustOrder = incrustElement.data('order');
-
                 });
 
                 console.log(this.createdPriceIncrust);
@@ -134,7 +132,7 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
                     },
                     success: (encodedNewIncruste)=>{
                         let parsedNewIncruste = JSON.parse(encodedNewIncruste)
-                        this.styleCreatorObservable.notify('zoneCreation', parsedNewIncruste);
+                        this.parentTool.styleCreatorObservable.notify('zoneCreation', parsedNewIncruste);
                     },
                 });
             })
@@ -198,16 +196,13 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
 
     onDisactivation(){
     this.onFocusIncrustRefreshTarget(false)
-        this.styleCreatorObservable.removeObserver(this.parentTool.zoneContainerEditorObserver);
+
     }
     onActivation(){
         this.onClickOnComfirmRegisterModel(true)
         this.onChangeSwitchTargetedIncrusteContents(true)
         this.onFocusIncrustRefreshTarget(true)
-        debugger;
-        this.styleCreatorObservable.addObserver(this.parentTool.zoneContainerEditorObserver);
-        console.log(this.styleCreatorObservable)
-        debugger;
+        console.log(this.parentTool);debugger;
     }
 }
 

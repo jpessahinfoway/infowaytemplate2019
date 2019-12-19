@@ -10,6 +10,7 @@ import {SeparateurPriceIncrusteContent} from "../../../../objects/incrustesConte
 import {CentimePriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/CentimePriceIncrusteContent";
 import {ZoneContainerPriceIncrustePriceStyleCreatorTool} from "./ZoneContainerPriceIncrustePriceStyleCreatorTool";
 import {ZoneContainerPriceIncrusteRuptureStyleCreatorTool} from "./ZoneContainerPriceIncrusteRuptureStyleCreatorTool";
+import {Observable} from "../../../../pattern/observer/Observable";
 var stringify = require('json-stringify-safe');
 
 
@@ -26,9 +27,7 @@ class ZoneContainerPriceIncrusteStyleCreatorTool extends ZoneContainerPriceEdito
             new ZoneContainerPriceIncrustePriceStyleCreatorTool(this.interface,this),
             new ZoneContainerPriceIncrusteRuptureStyleCreatorTool(this.interface,this)
         );
-        this.activeCheckedTool()
-
-
+        this.styleCreatorObservable = new Observable();
         //this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;
     }
 
@@ -39,27 +38,31 @@ class ZoneContainerPriceIncrusteStyleCreatorTool extends ZoneContainerPriceEdito
 
     onChangeOnIncrustTypeSelectionRadioSwitchActivatedTool(active){
         if(active){
-            this.$location.container.incrustTypeSelectionRadios.on('change.onChangeOnIncrustTypeSelectionRadioSwitchActivatedTool',this.activeCheckedTool.bind(this))
+            console.log('dfgdfgdf')
+            this.$location.container.incrustTypeSelectionRadios.on('change.onChangeOnIncrustTypeSelectionRadioSwitchActivatedTool',()=>this.activeTool(true))
         }else{
             this.$location.container.incrustTypeSelectionRadios.off('change.onChangeOnIncrustTypeSelectionRadioSwitchActivatedTool')
         }
     }
 
-    activeCheckedTool(){
-        console.log(this);
-        let checkedRadio = this.$location.container.incrustTypeSelectionRadios.filter((index , incrustTypeSelectionRadio) => $(incrustTypeSelectionRadio).is(':checked'));
-        if(checkedRadio.length >0 && typeof this.subTools[checkedRadio[0].dataset.tool] !== 'undefined'){
-            Object.values(this.subTools).map(subTool => subTool.activeTool(false));
-            let activatedSubTool = this.subTools[checkedRadio[0].dataset.tool];
-            activatedSubTool.activeTool(true)
+    activeSubTools(active){
+        Object.values(this.subTools).forEach( subTool => subTool.activeTool(false));
+
+        if(active) {
+            let checkedRadio = this.$location.container.incrustTypeSelectionRadios.filter((index, incrustTypeSelectionRadio) => $(incrustTypeSelectionRadio).is(':checked'));
+            if (checkedRadio.length > 0 && typeof this.subTools[checkedRadio[0].dataset.tool] !== 'undefined') this.subTools[checkedRadio[0].dataset.tool].activeTool(true);
         }
     }
 
     onDisactivation(){
         this.onChangeOnIncrustTypeSelectionRadioSwitchActivatedTool(false)
+        this.activeSubTools(false)
+        this.styleCreatorObservable.removeObserver(this.parentTool.zoneContainerEditorObserver);
     }
     onActivation(){
         this.onChangeOnIncrustTypeSelectionRadioSwitchActivatedTool(true)
+        this.activeSubTools(true)
+        this.styleCreatorObservable.addObserver(this.parentTool.zoneContainerEditorObserver);
     }
 }
 
