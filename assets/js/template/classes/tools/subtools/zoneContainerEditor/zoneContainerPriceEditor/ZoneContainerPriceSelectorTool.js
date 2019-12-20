@@ -40,6 +40,7 @@ class ZoneContainerPriceSelectorTool extends ZoneContainerPriceEditorSubTool{
         if(active){
             this.$location.listPrices.find('.incrust-style-wrapper').on('click.onClickSelectStyle',e => {
                 let target = e.currentTarget;
+                $('.selected-style--blue').removeClass('selected-style--blue');
                 this.selectedIncrust = this.generateIncrust($(e.currentTarget).get(0),{
                     incrust : {instance: new PriceIncruste(), required : ['id']},
                     incrustElementContent : {instance : new PriceIncusteContent(), required : ['id','class', 'incrustOrder']},
@@ -49,7 +50,9 @@ class ZoneContainerPriceSelectorTool extends ZoneContainerPriceEditorSubTool{
                             separator : new SeparateurPriceIncrusteContent(),
                             centime : new CentimePriceIncusteContent()
                     }, required : ['id', 'class' ,'incrustOrder', 'content']}
+
                 });
+                $(target).addClass('selected-style--blue')
             })
         }else{
             this.$location.listPrices.find('.incrust-style-wrapper').off('click.onClickSelectStyle')

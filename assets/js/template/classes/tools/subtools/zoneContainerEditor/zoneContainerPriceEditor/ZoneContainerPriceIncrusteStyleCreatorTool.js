@@ -39,8 +39,9 @@ class ZoneContainerPriceIncrusteStyleCreatorTool extends ZoneContainerPriceEdito
     onChangeOnIncrustTypeSelectionRadioSwitchActivatedTool(active){
         if(active){
             console.log('dfgdfgdf')
-            this.$location.container.incrustTypeSelectionRadios.on('change.onChangeOnIncrustTypeSelectionRadioSwitchActivatedTool',()=>this.activeTool(true))
+            this.$location.container.incrustTypeSelectionRadios.on('change.onChangeOnIncrustTypeSelectionRadioSwitchActivatedTool',()=>this.activeSubTools(true))
         }else{
+            console.log('unactivated');
             this.$location.container.incrustTypeSelectionRadios.off('change.onChangeOnIncrustTypeSelectionRadioSwitchActivatedTool')
         }
     }

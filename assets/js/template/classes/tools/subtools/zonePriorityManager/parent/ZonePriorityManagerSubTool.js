@@ -6,22 +6,27 @@ class ZonePriorityManagerSubTool extends TemplateSubTool{
         this.$eventLocation.click=$('body');
     }
 
+
+    activePriorityManagerTool(active){
+        active ? Object.values(this.interface.currentTemplate.getZones()).map(zone => zone.$location.addClass('priorityManagerMode')) : $('.priorityManagerMode').removeClass('priorityManagerMode')
+      //  active ? this.interface.currentTemplate.getZones()
+    }
     activeTool(boolean,onActivationFunction){
         super.activeToolDecorator(boolean,(mode)=>{
             console.log(mode)
             console.log(this.constructor.name)
             if(mode==='on'){
                 this.appendIconInZones()
-                console.log($('.icon-action-div'))
+                this.activePriorityManagerTool(true)
                 this.$eventLocation.click.on('click.'+this.constructor.name,'.icon-action-div',(e)=>{
-                    console.log('clické ')
                     let idZone = $(e.currentTarget).parent('.zone').data('zone');
                     this.currentZone = this.interface.currentTemplate.getZone(idZone)
-                    console.log(this.currentZone)
+
                     onActivationFunction.bind(this)();
                     this.updateZoneZindex();
                 })
             }else if(mode === 'off'){
+                this.activePriorityManagerTool(false)
                 this.$eventLocation.click.off('click.'+this.constructor.name)
 
             }

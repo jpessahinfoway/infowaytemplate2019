@@ -23,7 +23,7 @@ class ZoneDuplicatorTool extends TemplateTool{
         Object.keys(zone.position).map( positionKey => {
             zone.position[positionKey]=zone.position[positionKey]+10
         });
-        this.interface.currentTemplate.createNewZone(zone.position, zone.size, zone.type)
+        this.interface.currentTemplate.createNewZone({...zone.position}, {...zone.size},zone.type)
     }
 
     onClickDisplayDuplicateComfirm(){

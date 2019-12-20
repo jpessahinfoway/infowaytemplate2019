@@ -2,16 +2,40 @@ import {Zone} from "./Zone";
 
 class Template{
     constructor(){
-        this.$location= $('.container-zone');
+        this._$container= $('.container-zone');
         this._name = null;
         this._attr = {
-            _size           :   {},
-            _orientation    :   null,
-            _id             :   null,
-            _scale          :   1
+            size           :   {},
+            orientation    :   null,
+            id             :   null,
+            scale          :   1
         };
         this._zones = {}
 
+    }
+
+    get size(){
+        if( typeof this.$container === 'undefined' || this.$container === null || this.$container.length <1 ) return ;
+        return { width : this.$container.width(), height : this.$container.height() };
+    }
+    set size(size){
+        if(typeof this.$container === 'undefined' || this.$container === null || this.$container.length <1 ) return ;
+
+        if ( typeof size.width ==='number' ){
+            this.$container.css('width',size.width)
+            this._attr.size.width = this.$container.width();
+        }
+        if ( typeof size.height ==='number'){
+            this.$container.css('height',size.height)
+            this._attr.size.height = this.$container.height();
+        }
+    }
+    get $container() {
+        return this._$container;
+    }
+
+    set $container(value) {
+        this._$container = value;
     }
 
     getSize(){
@@ -43,16 +67,17 @@ class Template{
     }
 
     addZone(zone){
-        this._zones[zone.identificator]=zone
+        this._zones[zone.identificator]=zone;
+        this.$container.append(zone.$container)
     }
     setSize({width=null,height=null}){
         if(width!==null){
-            this._attr._size._width=width
-            this.$location.width(width)
+            this._attr.size.width=width
+            this.$container.width(width)
         };
         if(height!==null){
-            this._attr._size._height=height
-            this.$location.height(height)
+            this._attr.size.height=height
+            this.$container.height(height)
         };
     }
 
@@ -77,19 +102,21 @@ class Template{
 
     setId(id=null){
         if(name!==null)this._attr._id='#'+id;
-        this.$location.attr('id',id)
+        this.$container.attr('id',id)
     }
 
     show(){
-        console.log(this.$location)
+        console.log(this.$container)
         console.log('iciii')
-        this.$location.fadeIn()
+        this.$container.fadeIn()
     }
 
     createNewZone(position={top:0,left:0},size={width:0,height:0},zoneType='zone'){
+        console.log(position)
         let zoneId = null;
+
         let zIndex = Object.keys(this._zones).length;
-        console.log(Object.keys(this._zones))
+
         for(let i=0; i<=Object.keys(this._zones).length+1;i++){
             if(!(i in this._zones)){
                 zoneId=i;
@@ -98,13 +125,17 @@ class Template{
                 console.log(this._zones)
             }
         }
+
+        let zoneWrapper = $('<div class="template-zone"></div>');
+        console.log(position)
         let zone = new Zone({position:position,size:size,type:zoneType});
+
         zone.create();
+        zone.$container = zoneWrapper
+        zone.position = position;
         zone.setZIndex(zIndex);
         zone.setIdentificator(zoneId);
-        zone.setLocation(this.$location,true);
         zone.attachToTemplate(this);
-        console.log(this._zones)
         return zone;
     }
 

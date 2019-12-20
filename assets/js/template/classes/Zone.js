@@ -4,23 +4,69 @@ import {Incruste} from "./objects/incrustes/Incruste";
 
 
 class Zone{
+
     constructor({size={width:0,height:0}, type='zone', position = {top:0,left:0}}={}){
-        this.$location= null;
+        this._$container= null;
         this.$contentSpan = null
-        this.$locationAddOnContainer = $('<div></div>')
+        this.$containerAddOnContainer = $('<div></div>')
         this.type = type;
-        this.size = size;
+        this._size = size;
+        this._position = position ;
         this.zoneContent = null;
         this.zoneChildrens = {};
         this.zoneParent = null;
         this.associatedZone = {};
-        this.position = position;
         this.backgroundColor = 'rgb(255, 119, 119)';
         this.identificator = null;
         this.location=null;
         this.parent=null;
         this.background = {}
         this.zonePropertiesChangeObservable = new Observable()
+    }
+
+    get size() {
+        if(typeof this.$zone === 'undefined' || this.$zone === null || this.$zone.length <1)return
+        return { width : this.$zone.width(), height : this.$zone.height() };
+    }
+
+
+    set size(size) {
+        if(this.$zone === null  || this.$zone.length <1) return ;
+
+        if (typeof size.width === 'number'){
+            this.$zone.css('width',size.width);
+            this.size.width = this.$zone.width();
+        }
+        if(typeof size.height === 'number'){
+            this.$zone.css('height',size.height);
+            this.size.height = this.$zone.height();
+        }
+    }
+    get position() {
+        let elementPositionable = (typeof this.$container !== 'undefined' && this.$container !== null && this.$container.length >1) ? this.$container : this.$zone ;
+
+        if(typeof elementPositionable === 'undefined' || elementPositionable === null || elementPositionable <1)return
+        const { left , top } = elementPositionable.position();
+        return { left , top };
+    }
+
+
+    set position(position) {
+
+        let elementPositionable = (typeof this.$container !== 'undefined' && this.$container !== null && this.$container.length >0) ? this.$container : this.$zone ;
+
+
+        if(typeof elementPositionable === 'undefined' || elementPositionable === null  || elementPositionable.length <1) return ;
+
+        if (typeof position.left === 'number'){
+            elementPositionable.css('left',position.left);
+            this.position.left = elementPositionable.position().left;
+        }
+
+        if (typeof position.top === 'number'){
+            elementPositionable.css('top',position.top);
+            this.position.top = elementPositionable.position().top;
+        }
     }
 
     setParent(zone){
@@ -33,7 +79,7 @@ class Zone{
     }
 
     add$ElementInZone($element){
-        this.$location.append($element)
+        this.$container.append($element)
     }
 
     setZoneBackground(background){
@@ -42,7 +88,7 @@ class Zone{
 
         this.background[background.type] = background;
 
-        this.$zone.css(background.property, background.propertyValue);
+        this.$container.css(background.property, background.propertyValue);
         console.log(background.propertyValue)
     }
 
@@ -80,19 +126,20 @@ class Zone{
         return this.position
     }
 
-    create({id=this.id,position=this.position,color=this.backgroundColor,size=this.size}={}){
-        this.$zone =  $(`<div data-type="${this.type}"></div>`);
+    create({id=this.id,position=this._position,color=this.backgroundColor,size=this.size}={}){
 
-        this.$location = $(`<div class="${this.type}type-wrapper"></div>`)
-        this.$contentSpan=$('<span class="zone-infos-content"></span>')
 
-        this.zoneContent=$('<div class="zone-content"></div>')
-        this.$zone.append(this.$contentSpan).append(this.zoneContent)
-        this.$location.append(this.$zone)
-        this.$zone.addClass("zone");
-        if(this.type!=='zone')this.$zone.addClass(`${this.type}-zone`);
-        this.setSize(size);
-        this.setPosition(position);
+        this.$zone =  $(`<div class="zone" data-type="${this.type}" ></div>`);
+
+
+        this.$zoneInfosContainer=$('<span class="zone-infos-content"></span>');
+        this.$zoneContentContainer=$('<div class="zone-content"></div>');
+        this.$zone.append(this.$zoneInfosContainer).append(this.$zoneContentContainer);
+
+
+
+
+        return this.$zone
     }
 
     isAssociatedTo(zone){
@@ -100,13 +147,12 @@ class Zone{
     }
 
     delete(){
-        this.$location.remove();
+        this.$container.remove();
     }
 
     setZIndex(zIndex){
-
-        this.zIndex = zIndex;
-        this.$location.css('z-index', zIndex);
+    if (this.$container !== null && this.$container.length > 0) this.$container.css('z-index', zIndex);
+    this.zIndex = zIndex;
     }
 
     attachToTemplate(template){
@@ -114,7 +160,6 @@ class Zone{
     }
 
     setIdentificator(id){
-        console.log('ici')
 
         this.identificator = id;
 
@@ -125,16 +170,27 @@ class Zone{
 
     }
 
-    appendIt(location = this.location){
-        if(location !== null)this.location.append(this.$location)
+
+    get $container() {
+        return this._$container;
     }
 
-    setLocation(location,append=false){
-        if(typeof append !== 'boolean')return
-        this.location = location;
-        if(append)this.appendIt()
+    set $container($container){
+        if ($container.length<1 ) return ;
+        this._$container = $container;
+
+        if(this.zIndex !== null) this._$container.css('zIndex',this.zIndex);
+
+        this._$container.append(this.$zone)
+
+
+
     }
 
+    appendZone(){
+        if(typeof this.$container == null || this.$container.length <1)return
+        this.$container.append(this.$container)
+    }
 
     setPosition(position = {top:null, left:null}){
         console.log(position)
@@ -145,25 +201,25 @@ class Zone{
             this.position.top = position.top;
             console.log(this.position.top)
         }
-        this.$location.css({top:position.top,left:position.left});
+        this.$container.css({top:position.top,left:position.left});
         this.zonePropertiesChangeObservable.notify(this,{pos:position});
     }
 
     setSize(size = this.size) {
-        if(size.width){
+        if(typeof size.width ==='number'){
            
-            this.$location.width(size.width);
+            this.$zone.width(size.width);
             this.size.width=size.width
         }
-        if(size.height){
-            this.$location.height(size.height);
+        if(typeof size.width ==='number'){
+            this.$zone.height(size.height);
             this.size.height = size.height;
         }
         this.zonePropertiesChangeObservable.notify(this,{size:size});
     }
 
     setColor(color = this.backgroundColor){
-        this.$location.css({'background-color':color, 'opacity' : 0.4});
+        this.$container.css({'background-color':color, 'opacity' : 0.4});
     }
 }
 

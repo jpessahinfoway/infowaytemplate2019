@@ -198,7 +198,9 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
     }
 
     onDisactivation(){
-    this.onFocusIncrustRefreshTarget(false)
+        this.onClickOnComfirmRegisterModel(false)
+        this.onChangeSwitchTargetedIncrusteContents(false)
+        this.onFocusIncrustRefreshTarget(false)
 
     }
     onActivation(){

@@ -56,8 +56,8 @@ class ZoneContainerBackgroundSelectorTool extends ZoneContainerBackgroundEditorS
             this.$location.imageChoice.on('click.onClickSelectBackground','.media', (e)=> {
                 let selectedElement = $(e.currentTarget);
                 if(!this.isActivated(selectedElement)) return;
-                this.$location.container.find('.media').removeClass('selected-element');
-                selectedElement.addClass('selected-element');
+                this.$location.container.find('.media').removeClass('selected-style--blue');
+                selectedElement.addClass('selected-style--blue');
                 let media = $(e.currentTarget).children('img').attr('src').split('/').pop();
                 this.backgroundsSelected['image'] = new BackgroundContent(media,'image',`url("/build/backgrounds/${media}")`);
             })
@@ -101,20 +101,18 @@ class ZoneContainerBackgroundSelectorTool extends ZoneContainerBackgroundEditorS
     }
 
     onDisactivation(){
-        let activation = false;
-        this.onChangeCheckboxs(activation)
-        this.onClickSetBackgroundImage(activation)
-        this.onClickSetBackgroundColor(activation)
-        this.onClickComfirm(activation)
+        this.onChangeCheckboxs(false)
+        this.onClickSetBackgroundImage(false)
+        this.onClickSetBackgroundColor(false)
+        this.onClickComfirm(false)
        /* this.onClickOnSelectedBackground(false)
         this.mediaSelected=null*/
     }
     onActivation(){
-        let activation = true;
-        this.onChangeCheckboxs(activation)
-        this.onClickSetBackgroundImage(activation)
-        this.onClickSetBackgroundColor(activation)
-        this.onClickComfirm(activation)
+        this.onChangeCheckboxs(true)
+        this.onClickSetBackgroundImage(true)
+        this.onClickSetBackgroundColor(true)
+        this.onClickComfirm(true)
       //  this.onClickOnSelectedBackground(true)
         /*  console.log(this)
           console.log(this.parentTool)

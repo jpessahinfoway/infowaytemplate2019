@@ -17,7 +17,7 @@ class TemplateMiniature{
     createMiniature(){
         this.$miniature =$(`<div class='template-miniature' id='${this.name}'></div>`);
        // this.$miniature.width('calc(100%-10px)');
-        this.$miniature.height(this.template._attr._size._height * this.scale);
+        this.$miniature.height(this.template._attr.size.height * this.scale);
         return this
     }
 
@@ -68,12 +68,12 @@ class TemplateMiniature{
             this.$location.container.on('click.onClickselectZoneInMiniature','.zone-miniature',(e)=>{
                 let currentZone = $(e.currentTarget)
                 if(this.zonesSelected.includes(currentZone.data('zone'))) {
-                    currentZone.removeClass('selected-element')
+                    currentZone.removeClass('selected-style--blue')
                     this.zonesSelected.splice(this.zonesSelected.indexOf(currentZone.data('zone')),1);
                     console.log(this.zonesSelected)
                 }else{
                     this.zonesSelected.push(currentZone.data('zone'));
-                    currentZone.addClass('selected-element')
+                    currentZone.addClass('selected-style--blue')
                 }
                 this.zonesSelectedUpdatedObservable.notify(this.zonesSelected)
             })

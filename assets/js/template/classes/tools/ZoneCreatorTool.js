@@ -81,6 +81,7 @@ class ZoneCreatorTool extends TemplateTool{
     }
 
     setCursorPosition(cursorPosition,objectReference){
+        console.log(cursorPosition)
         this.cursorPosition[objectReference] = cursorPosition;
     }
     activeTool(boolean){
@@ -108,10 +109,8 @@ class ZoneCreatorTool extends TemplateTool{
                     // notifie les observateurs des outils de creation de sous zones
                     this.zoneCreationObservable.notify(false,e.target)
 
-                    console.log(this.referent)
-                    console.log(this.outOfParentZoneLimit(this.cursorPosition.referent,this.referent.$location))
                     // si on a cliqué en dehors de la zone du template on autorise pas l utilisation de l outil pour le moment
-                    if(this.outOfParentZoneLimit(this.cursorPosition.referent,this.referent.$location) )  this.setUsingToolAuthorization( false );
+                    if(this.outOfParentZoneLimit(this.cursorPosition.referent,this.referent.$container) )  this.setUsingToolAuthorization( false );
 
                     if(this.usingToolAuthorization && (this.currentZone.pos.left === null && this.currentZone.pos.top === null)){
                         this.initZoneStartPosition( { left : this.cursorPosition.referent.x , top : this.cursorPosition.referent.y } )
@@ -126,13 +125,14 @@ class ZoneCreatorTool extends TemplateTool{
                         this.setCursorPosition(this.getCursorPositionInTemplate(e,workZone),'template');
 
                         // On recupere la position du complete par rapport au referant (son parent)
-                        this.setCursorPosition(this.getCursorPositionInTemplate(e,this.referent.$location),'referent')
+                        console.log(this.referent.$container)
+                        this.setCursorPosition(this.getCursorPositionInTemplate(e,this.referent.$container),'referent')
 
                         // notifie les observateurs des outils de creation de sous zones
                         this.zoneCreationObservable.notify(false,e.target);
 
 
-                        if(this.outOfParentZoneLimit(this.cursorPosition.referent,this.referent.$location)){
+                        if(this.outOfParentZoneLimit(this.cursorPosition.referent,this.referent.$container)){
                             if(this.cursorPosition.referent.x<0 || this.cursorPosition.referent.y<0)this.setUsingToolAuthorization(false);
                         }
 
@@ -140,8 +140,8 @@ class ZoneCreatorTool extends TemplateTool{
                         if (this.usingToolAuthorization ) {
 
                             if(this.usingToolAuthorization && (this.currentZone.pos.left === null && this.currentZone.pos.top === null)){
-                                let leftStartPosition = this.firstClick.x < this.referent.$location.position().left ? this.referent.$location.position().left : this.cursorPosition.template.x
-                                let topStartPosition = this.firstClick.y < this.referent.$location.position().top ? this.referent.$location.position().top : this.cursorPosition.template.y;
+                                let leftStartPosition = this.firstClick.x < this.referent.$container.position.left ? this.referent.$container.position.left : this.cursorPosition.template.x
+                                let topStartPosition = this.firstClick.y < this.referent.$container.position.top ? this.referent.$container.position.top : this.cursorPosition.template.y;
                                 this.initZoneStartPosition( {left:leftStartPosition, top:topStartPosition } )
                             }
 
@@ -150,12 +150,20 @@ class ZoneCreatorTool extends TemplateTool{
                             } else {
                                 this.currentZone.size.width = this.cursorPosition.template.x -  this.currentZone.pos.left ;
                                 this.currentZone.size.height = this.cursorPosition.template.y -  this.currentZone.pos.top ;
-                                if(this.outOfParentZoneLimit(this.cursorPosition.referent,this.referent.$location)){
-                                    if(this.cursorPosition.referent.x>this.referent.$location.width())this.currentZone.size.width=this.referent.$location.width()-(this.currentZone.pos.left-this.referent.$location.position().left)
-                                    console.log(this.currentZone.size.width)
-                                    if(this.cursorPosition.referent.y>this.referent.$location.height())this.currentZone.size.height=this.referent.$location.height()-(this.currentZone.pos.top-this.referent.$location.position().top)
+                                console.log(this.currentZone.size.height);
+                                if(this.outOfParentZoneLimit(this.cursorPosition.referent,this.referent.$container)){
+                                    console.log(this.referent.size)
+                                    if(this.cursorPosition.referent.x>this.referent.size.width){
+                                        this.currentZone.size.height=this.referent.size.width-(this.currentZone.pos.left-this.referent.position.left)
+                                    }
+                                    if(this.cursorPosition.referent.y>this.referent.size.height){
+                                        console.log( this.cursorPosition.referent.y);debugger;
+                                        this.currentZone.size.height=this.referent.size.height-(this.currentZone.pos.top-this.referent.position.top)
+                                    }
                                 }
-                                this.currentZone.instance.setSize({width:this.currentZone.size.width,height: this.currentZone.size.height})
+
+                                console.log(this.currentZone.instance)
+                                this.currentZone.instance.size = {width:this.currentZone.size.width,height: this.currentZone.size.height}
                             }
                             //debugger
                         }

@@ -11,7 +11,17 @@ body {
     font-family: 'Source Sans Pro', sans-serif;
     background-color: #ccc;
 }
+.selected-style--blue{
+    position: relative;
 
+}
+.selected-style--blue{
+    background-color: #82aef8 !important;
+    opacity: 0.5 !important;
+    border: 1px solid #1e70c5 !important;
+    height: 100%;
+    width: 100%;
+}
 .cover {
     position:absolute;
     width: 100%;

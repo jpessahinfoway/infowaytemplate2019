@@ -24,6 +24,7 @@ import '../css/tools/zone_container_editor/zone_container_zone_selector.css';
 import '../css/tools/zone_container_editor/zone_container_background_editor.css';
 import '../css/tools/zone_container_editor/zone_container_price_editor.css';
 import '../css/tools/zone_container_editor/zone_container_text_editor.css';
+import '../css/tools/zone_priority_manager/zone_priority_manager.css';
 import '../css/tools/template_miniature/template_miniature.css';
 
 const $ = require('jquery');

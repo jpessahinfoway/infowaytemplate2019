@@ -43,11 +43,11 @@ class ZoneContainerTextStyleCreatorTool extends ZoneContainerTextEditorSubTool{
         incrustObject.addIncrusteElements(incrustContentObject)
 
         incrustContentObject.addSubContents(...incrustSubContentsObject);
+
         Object.values(incrustContentObject.subContents).map(subContent=> {
             subContent.style = new Style()
         });
 
-        console.log(this.stylyzer.style)
         incrustContentObject.style = this.stylyzer.style;
 
         incrustObject.addIncrusteElements(incrustContentObject)
@@ -87,6 +87,8 @@ class ZoneContainerTextStyleCreatorTool extends ZoneContainerTextEditorSubTool{
                 });
 
             })
+        }else {
+            this.stylyzer.$location.styleForm.find('button').off('click.onClickOnComfirmButtonRegisterModel')
         }
     }
 
@@ -103,10 +105,7 @@ class ZoneContainerTextStyleCreatorTool extends ZoneContainerTextEditorSubTool{
 
     onDisactivation(){
         this.onClickOnComfirmButtonRegisterModel(false);
-
         this.styleCreatorObservable.removeObserver(this.parentTool.zoneContainerEditorObserver);
-
-
     }
     onActivation(){
         this.onClickOnComfirmButtonRegisterModel(true);

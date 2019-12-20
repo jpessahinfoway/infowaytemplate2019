@@ -1,20 +1,37 @@
-.container-zone > div {
-    position: absolute;
-}
 
-.pricetype-wrapper,.price-preview, .zone-miniature.price-zone{
-    background: rgba(255, 215, 0, 0.4);
+.zone[data-type=price]::after,.price-preview, .zone-miniature[data-type=price]{
+    background: yellow;
     outline: 2px solid rgba(255, 215, 0, 0.6);
 }
 
-.texttype-wrapper,.text-preview, .zone-miniature.text-zone{
-    background: rgba(73, 182, 117, 0.4) ;
+.zone[data-type=text]::after,.text-preview, .zone-miniature[data-type=text]{
+    background: #2cd82c ;
     outline: 2px solid rgba(73, 182, 117, 0.6);
 }
 
-.zonetype-wrapper,.zone-preview, .zone-miniature{
-    background:rgba(243, 79, 31, 0.4);
-    outline: 2px solid rgba(243, 79, 31, 0.6)
+.zone::after,.zone-miniature::after{
+    content:'';
+    position: absolute;
+    top : 0;
+    width:100%;
+    height: 100%;
+}
+
+.template-zone{
+    position:absolute;
+}
+
+.zone::after,.zone-miniature::after{
+    opacity: 0.3;
+}
+.zone[data-type=zone]::after,.zone-preview::before, .zone-miniature[data-type=zone]::after{
+    background-color: #ff1100;
+    outline: 1px solid #ff0000
+}
+
+.zone[data-type=media]::after, .media-preview, .zone-miniature[data-type=media]{
+    background:#0a73ff;
+    outline: 2px solid rgba(14, 75, 239, 0.6)
 }
 
 
@@ -28,12 +45,7 @@
 }
 .zone{
     display:flex;
-    height:100%;
-}
-
-.mediatype-wrapper, .media-preview, .zone-miniature.media-zone{
-    background:rgba(14, 75, 239, 0.4);
-    outline: 2px solid rgba(14, 75, 239, 0.6)
+    position:absolute;
 }
 
 .zone-selected {

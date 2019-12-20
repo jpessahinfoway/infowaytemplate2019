@@ -78,9 +78,9 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
     onClickSelectStyle(active){
         if(active){
             this.$location.selectorList.on('click.onClickSelectStyle','.class-text',(e)=>{
-                    this.$location.selectorList.find('.selected-style').removeClass('selected-style');
+                    this.$location.selectorList.find('.selected-style--blue').removeClass('selected-style--blue');
                     let incrustTarget = $(e.currentTarget).find('.incrust-style-wrapper')
-                    incrustTarget.addClass('selected-style');
+                    incrustTarget.addClass('selected-style--blue');
                     /*this.selectedIncrust = this.generateIncrust(incrustTarget.get(0), {incrustObject : new TextIncruste(), incrustElementContent: new TextIncrusteContent()});*/
                 this.selectedIncrust = this.generateIncrust(incrustTarget.get(0), {incrust : {instance:new TextIncruste(), required:['id']}, incrustElementContent: {instance : new TextIncrusteContent(), required : ['id','className','content','incrustOrder']}});
                 console.log(this.selectedIncrust)

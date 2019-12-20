@@ -15,7 +15,6 @@ class ZoneCreatorSubTool extends TemplateSubTool{
 
     initZoneCreatorObserver(){
         this.zoneCreatorObserver = new Observer()
-        console.log('jog')
         this.zoneCreatorObserver.observerFunction((observer)=>{ this.sendAuthorization(observer.data[0], observer.data[1]) })
     }
 
@@ -78,6 +77,7 @@ class ZoneCreatorSubTool extends TemplateSubTool{
                 this.parentTool.zoneCreationObservable.addObserver(this.zoneCreatorObserver)
             }else if(mode === 'off'){
                 this.parentTool.zoneCreationObservable.removeObserver(this.zoneCreatorObserver)
+                this.parentTool.setZoneType('zone')
 
             }
         })
