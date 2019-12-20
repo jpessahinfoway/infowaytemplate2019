@@ -1,15 +1,15 @@
 
-.zone[data-type=price]::after,.price-preview, .zone-miniature[data-type=price]{
+.zone[data-type=price],.price-preview, .zone-miniature[data-type=price]{
     background: yellow;
     outline: 2px solid rgba(255, 215, 0, 0.6);
 }
 
-.zone[data-type=text]::after,.text-preview, .zone-miniature[data-type=text]{
+.zone[data-type=text],.text-preview, .zone-miniature[data-type=text]{
     background: #2cd82c ;
     outline: 2px solid rgba(73, 182, 117, 0.6);
 }
 
-.zone::after,.zone-miniature::after{
+.zone::before,.zone-miniature::before{
     content:'';
     position: absolute;
     top : 0;
@@ -21,15 +21,15 @@
     position:absolute;
 }
 
-.zone::after,.zone-miniature::after{
+.zone,.zone-miniature{
     opacity: 0.3;
 }
-.zone[data-type=zone]::after,.zone-preview::before, .zone-miniature[data-type=zone]::after{
+.zone[data-type=zone],.zone-preview::before, .zone-miniature[data-type=zone]{
     background-color: #ff1100;
     outline: 1px solid #ff0000
 }
 
-.zone[data-type=media]::after, .media-preview, .zone-miniature[data-type=media]{
+.zone[data-type=media], .media-preview, .zone-miniature[data-type=media]{
     background:#0a73ff;
     outline: 2px solid rgba(14, 75, 239, 0.6)
 }

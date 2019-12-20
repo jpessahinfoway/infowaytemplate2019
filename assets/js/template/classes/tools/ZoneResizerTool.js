@@ -37,13 +37,14 @@ class ZoneResizerTool extends TemplateTool{
                     if(this.borderStyle !== null)icon.css('border',this.borderStyle);
                     //icon.css('border')
 
-                    this.currentWorkZone.$zone.append(icon)
+                    this.currentWorkZone.$container.append(icon)
                 });
             })
     }
 
     resizeZoneOnMouseActivity(){
         this.$eventLocation.mousedown.on('mousedown.'+this.constructor,'.zoneResizer',(e)=>{
+            console.log('clicked')
             this.activated=true;
 
             this.lastIconClicked = $(e.currentTarget);
