@@ -25,47 +25,42 @@ class Zone{
     }
 
     get size() {
-        if(typeof this.$zone === 'undefined' || this.$zone === null || this.$zone.length <1)return
-        return { width : this.$zone.width(), height : this.$zone.height() };
+        if(typeof this.$container === 'undefined' || this.$container === null || this.$container.length <1)return
+        return { width : this.$container.width(), height : this.$container.height() };
     }
 
 
     set size(size) {
-        if(this.$zone === null  || this.$zone.length <1) return ;
+        if(this.$container === null  || this.$container.length <1) return ;
 
         if (typeof size.width === 'number'){
-            this.$zone.css('width',size.width);
-            this.size.width = this.$zone.width();
+            this.$container.css('width',size.width);
+            this.size.width = this.$container.width();
         }
         if(typeof size.height === 'number'){
-            this.$zone.css('height',size.height);
-            this.size.height = this.$zone.height();
+            this.$container.css('height',size.height);
+            this.size.height = this.$container.height();
         }
     }
     get position() {
-        let elementPositionable = (typeof this.$container !== 'undefined' && this.$container !== null && this.$container.length >1) ? this.$container : this.$zone ;
-
-        if(typeof elementPositionable === 'undefined' || elementPositionable === null || elementPositionable <1)return
-        const { left , top } = elementPositionable.position();
+        if(typeof this.$container === 'undefined' || this.$container === null || this.$container <1)return
+        const { left , top } = this.$container.position();
         return { left , top };
     }
 
 
     set position(position) {
 
-        let elementPositionable = (typeof this.$container !== 'undefined' && this.$container !== null && this.$container.length >0) ? this.$container : this.$zone ;
-
-
-        if(typeof elementPositionable === 'undefined' || elementPositionable === null  || elementPositionable.length <1) return ;
+        if(typeof this.$container === 'undefined' || this.$container === null  || this.$container.length <1) return ;
 
         if (typeof position.left === 'number'){
-            elementPositionable.css('left',position.left);
-            this.position.left = elementPositionable.position().left;
+            this.$container.css('left',position.left);
+            this.position.left = this.$container.position().left;
         }
 
         if (typeof position.top === 'number'){
-            elementPositionable.css('top',position.top);
-            this.position.top = elementPositionable.position().top;
+            this.$container.css('top',position.top);
+            this.position.top = this.$container.position().top;
         }
     }
 
@@ -129,17 +124,17 @@ class Zone{
     create({id=this.id,position=this._position,color=this.backgroundColor,size=this.size}={}){
 
 
-        this.$zone =  $(`<div class="zone" data-type="${this.type}" ></div>`);
+        this.$container =  $(`<div class="zone" data-type="${this.type}" ></div>`);
 
 
         this.$zoneInfosContainer=$('<span class="zone-infos-content"></span>');
         this.$zoneContentContainer=$('<div class="zone-content"></div>');
-        this.$zone.append(this.$zoneInfosContainer).append(this.$zoneContentContainer);
+        this.$container.append(this.$zoneInfosContainer).append(this.$zoneContentContainer);
 
 
 
 
-        return this.$zone
+        return this.$container
     }
 
     isAssociatedTo(zone){
@@ -165,8 +160,8 @@ class Zone{
 
         this.name = "zone-"+id;
 
-        this.$zone.data('zone',id);
-        this.$zone.attr("id",this.name);
+        this.$container.data('zone',id);
+        this.$container.attr("id",this.name);
 
     }
 
@@ -181,7 +176,7 @@ class Zone{
 
         if(this.zIndex !== null) this._$container.css('zIndex',this.zIndex);
 
-        this._$container.append(this.$zone)
+        this._$container.append(this.$container)
 
 
 
@@ -208,11 +203,11 @@ class Zone{
     setSize(size = this.size) {
         if(typeof size.width ==='number'){
            
-            this.$zone.width(size.width);
+            this.$container.width(size.width);
             this.size.width=size.width
         }
         if(typeof size.width ==='number'){
-            this.$zone.height(size.height);
+            this.$container.height(size.height);
             this.size.height = size.height;
         }
         this.zonePropertiesChangeObservable.notify(this,{size:size});

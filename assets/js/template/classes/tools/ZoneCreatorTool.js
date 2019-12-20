@@ -154,10 +154,11 @@ class ZoneCreatorTool extends TemplateTool{
                                 if(this.outOfParentZoneLimit(this.cursorPosition.referent,this.referent.$container)){
                                     console.log(this.referent.size)
                                     if(this.cursorPosition.referent.x>this.referent.size.width){
-                                        this.currentZone.size.height=this.referent.size.width-(this.currentZone.pos.left-this.referent.position.left)
+                                        this.currentZone.size.width=this.referent.size.width-(this.currentZone.pos.left-this.referent.position.left)
                                     }
                                     if(this.cursorPosition.referent.y>this.referent.size.height){
-                                        console.log( this.cursorPosition.referent.y);debugger;
+                                        console.log( this.cursorPosition.referent.y);
+                                        console.log(this.referent)
                                         this.currentZone.size.height=this.referent.size.height-(this.currentZone.pos.top-this.referent.position.top)
                                     }
                                 }

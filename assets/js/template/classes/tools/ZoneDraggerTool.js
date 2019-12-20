@@ -44,11 +44,11 @@ class ZoneDraggerTool extends TemplateTool{
                                 if(nextZonePos.left<0)nextZonePos.left=0;
                                 if(nextZonePos.top<0)nextZonePos.top=0;
 
-                                if(nextZonePos.left + currentZone.size.width>this.interface.currentTemplate.getSize()._width){
-                                    nextZonePos.left= this.interface.currentTemplate.getSize()._width-currentZone.size.width;
+                                if(nextZonePos.left + currentZone.size.width>this.interface.currentTemplate.size.width){
+                                    nextZonePos.left= this.interface.currentTemplate.size.width-currentZone.size.width;
                                 }
-                                if(nextZonePos.top + currentZone.size.height>this.interface.currentTemplate.getSize()._height){
-                                    nextZonePos.top=this.interface.currentTemplate.getSize()._height-currentZone.size.height;
+                                if(nextZonePos.top + currentZone.size.height>this.interface.currentTemplate.size.height){
+                                    nextZonePos.top=this.interface.currentTemplate.size.height-currentZone.size.height;
                                 }
                             Object.values(currentZone.zoneChildrens).map(zone=>{
                                 console.log(currentZone.position.top )

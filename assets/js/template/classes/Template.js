@@ -126,12 +126,9 @@ class Template{
             }
         }
 
-        let zoneWrapper = $('<div class="template-zone"></div>');
-        console.log(position)
         let zone = new Zone({position:position,size:size,type:zoneType});
 
         zone.create();
-        zone.$container = zoneWrapper
         zone.position = position;
         zone.setZIndex(zIndex);
         zone.setIdentificator(zoneId);
