@@ -15,10 +15,22 @@ class ChoiceDiv{
                 button    : {
                     yes : $('button#choice-window__choice--yes'),
                     no  : $('button#choice-window__choice--no')
-                }
+                },
+                closeIcon :$('#choice-background .choice-window__label .choice-window__label__close')
             }
+        this.onClickCloseWindow(true)
     }
 
+        onClickCloseWindow(active) {
+            if(active){
+                this.$elements.closeIcon.on('click.onClickCloseWindow',() => {
+                    this.hide()
+                })
+            }else{
+
+            }
+
+        }
         setLabel(label) {
             this.choiceLabel = label
             this.$elements.labelZone.text(label)

@@ -84,110 +84,115 @@ class ZoneCreatorTool extends TemplateTool{
         console.log(cursorPosition)
         this.cursorPosition[objectReference] = cursorPosition;
     }
-    activeTool(boolean){
-        super.activeToolDecorator(boolean,(mode)=>{
-            if(mode==='on'){
-                this.$eventLocation.mousedown.on('mousedown.'+this.constructor.name,(e)=> {
+    activeTool(active) {
+        super.activeTool(active);
+        if (active) {
+            this.$eventLocation.mousedown.on('mousedown.' + this.constructor.name, (e) => {
 
+
+                this.setUsingToolAuthorization(true);
+
+                // element en dessous du click
+                let $target = $(e.target);
+
+                // si on clique sur un element du menu on n'active pas l outil
+                if ($target.hasClass('bloc-menu')) return;
+
+                // correspond a la zone de travail. ici toute la fenetre du template
+                let workZone = $('.container-zone');
+
+                // position du curseur dans le template
+                this.setCursorPosition(this.getCursorPositionInTemplate(e, workZone), 'template');
+                this.setCursorPosition(this.getCursorPositionInTemplate(e, workZone), 'referent');
+                this.firstClick = this.cursorPosition.template
+
+                // notifie les observateurs des outils de creation de sous zones
+                this.zoneCreationObservable.notify(false, e.target)
+
+                // si on a cliqué en dehors de la zone du template on autorise pas l utilisation de l outil pour le moment
+                if (this.outOfParentZoneLimit(this.cursorPosition.referent, this.referent.$container)) this.setUsingToolAuthorization(false);
+
+                if (this.usingToolAuthorization && (this.currentZone.pos.left === null && this.currentZone.pos.top === null)) {
+                    this.initZoneStartPosition({
+                        left: this.cursorPosition.referent.x,
+                        top: this.cursorPosition.referent.y
+                    })
+                }
+
+                // Lorsqu'on bouge le curseur
+                this.$eventLocation.mousemove.on('mousemove.' + this.constructor.name, (e) => {
 
                     this.setUsingToolAuthorization(true);
 
-                    // element en dessous du click
-                    let $target = $(e.target);
+                    // On recupere la nouvelle position du curseur dans le template
+                    this.setCursorPosition(this.getCursorPositionInTemplate(e, workZone), 'template');
 
-                    // si on clique sur un element du menu on n'active pas l outil
-                    if($target.hasClass('bloc-menu'))return;
-
-                    // correspond a la zone de travail. ici toute la fenetre du template
-                    let workZone = $('.container-zone');
-
-                    // position du curseur dans le template
-                    this.setCursorPosition(this.getCursorPositionInTemplate(e,workZone),'template');
-                    this.setCursorPosition(this.getCursorPositionInTemplate(e,workZone),'referent');
-                    this.firstClick=this.cursorPosition.template
+                    // On recupere la position du complete par rapport au referant (son parent)
+                    console.log(this.referent.$container)
+                    this.setCursorPosition(this.getCursorPositionInTemplate(e, this.referent.$container), 'referent')
 
                     // notifie les observateurs des outils de creation de sous zones
-                    this.zoneCreationObservable.notify(false,e.target)
+                    this.zoneCreationObservable.notify(false, e.target);
 
-                    // si on a cliqué en dehors de la zone du template on autorise pas l utilisation de l outil pour le moment
-                    if(this.outOfParentZoneLimit(this.cursorPosition.referent,this.referent.$container) )  this.setUsingToolAuthorization( false );
 
-                    if(this.usingToolAuthorization && (this.currentZone.pos.left === null && this.currentZone.pos.top === null)){
-                        this.initZoneStartPosition( { left : this.cursorPosition.referent.x , top : this.cursorPosition.referent.y } )
+                    if (this.outOfParentZoneLimit(this.cursorPosition.referent, this.referent.$container)) {
+                        if (this.cursorPosition.referent.x < 0 || this.cursorPosition.referent.y < 0) this.setUsingToolAuthorization(false);
                     }
 
-                    // Lorsqu'on bouge le curseur
-                    this.$eventLocation.mousemove.on('mousemove.'+this.constructor.name, (e) => {
+                    console.log(this.usingToolAuthorization)
+                    if (this.usingToolAuthorization) {
 
-                        this.setUsingToolAuthorization(true);
-
-                        // On recupere la nouvelle position du curseur dans le template
-                        this.setCursorPosition(this.getCursorPositionInTemplate(e,workZone),'template');
-
-                        // On recupere la position du complete par rapport au referant (son parent)
-                        console.log(this.referent.$container)
-                        this.setCursorPosition(this.getCursorPositionInTemplate(e,this.referent.$container),'referent')
-
-                        // notifie les observateurs des outils de creation de sous zones
-                        this.zoneCreationObservable.notify(false,e.target);
-
-
-                        if(this.outOfParentZoneLimit(this.cursorPosition.referent,this.referent.$container)){
-                            if(this.cursorPosition.referent.x<0 || this.cursorPosition.referent.y<0)this.setUsingToolAuthorization(false);
+                        if (this.usingToolAuthorization && (this.currentZone.pos.left === null && this.currentZone.pos.top === null)) {
+                            let leftStartPosition = this.firstClick.x < this.referent.$container.position.left ? this.referent.$container.position.left : this.cursorPosition.template.x
+                            let topStartPosition = this.firstClick.y < this.referent.$container.position.top ? this.referent.$container.position.top : this.cursorPosition.template.y;
+                            this.initZoneStartPosition({left: leftStartPosition, top: topStartPosition})
                         }
 
-                        console.log(this.usingToolAuthorization)
-                        if (this.usingToolAuthorization ) {
-
-                            if(this.usingToolAuthorization && (this.currentZone.pos.left === null && this.currentZone.pos.top === null)){
-                                let leftStartPosition = this.firstClick.x < this.referent.$container.position.left ? this.referent.$container.position.left : this.cursorPosition.template.x
-                                let topStartPosition = this.firstClick.y < this.referent.$container.position.top ? this.referent.$container.position.top : this.cursorPosition.template.y;
-                                this.initZoneStartPosition( {left:leftStartPosition, top:topStartPosition } )
-                            }
-
-                            if (this.currentZone.instance === null){
-                                this.currentZone.instance = this.interface.currentTemplate.createNewZone(this.currentZone.pos, this.currentZone.size,this.zoneType);
-                            } else {
-                                this.currentZone.size.width = this.cursorPosition.template.x -  this.currentZone.pos.left ;
-                                this.currentZone.size.height = this.cursorPosition.template.y -  this.currentZone.pos.top ;
-                                console.log(this.currentZone.size.height);
-                                if(this.outOfParentZoneLimit(this.cursorPosition.referent,this.referent.$container)){
-                                    console.log(this.referent.size)
-                                    if(this.cursorPosition.referent.x>this.referent.size.width){
-                                        this.currentZone.size.width=this.referent.size.width-(this.currentZone.pos.left-this.referent.position.left)
-                                    }
-                                    if(this.cursorPosition.referent.y>this.referent.size.height){
-                                        console.log( this.cursorPosition.referent.y);
-                                        console.log(this.referent)
-                                        this.currentZone.size.height=this.referent.size.height-(this.currentZone.pos.top-this.referent.position.top)
-                                    }
+                        if (this.currentZone.instance === null) {
+                            this.currentZone.instance = this.interface.currentTemplate.createNewZone(this.currentZone.pos, this.currentZone.size, this.zoneType);
+                        } else {
+                            this.currentZone.size.width = this.cursorPosition.template.x - this.currentZone.pos.left;
+                            this.currentZone.size.height = this.cursorPosition.template.y - this.currentZone.pos.top;
+                            console.log(this.currentZone.size.height);
+                            if (this.outOfParentZoneLimit(this.cursorPosition.referent, this.referent.$container)) {
+                                console.log(this.referent.size)
+                                if (this.cursorPosition.referent.x > this.referent.size.width) {
+                                    this.currentZone.size.width = this.referent.size.width - (this.currentZone.pos.left - this.referent.position.left)
                                 }
-
-                                console.log(this.currentZone.instance)
-                                this.currentZone.instance.size = {width:this.currentZone.size.width,height: this.currentZone.size.height}
+                                if (this.cursorPosition.referent.y > this.referent.size.height) {
+                                    console.log(this.cursorPosition.referent.y);
+                                    console.log(this.referent)
+                                    this.currentZone.size.height = this.referent.size.height - (this.currentZone.pos.top - this.referent.position.top)
+                                }
                             }
-                            //debugger
+
+                            console.log(this.currentZone.instance)
+                            this.currentZone.instance.size = {
+                                width: this.currentZone.size.width,
+                                height: this.currentZone.size.height
+                            }
                         }
-                    });
+                        //debugger
+                    }
                 });
-                this.$eventLocation.mouseup.on('mouseup.'+this.constructor.name, (e) => {
+            });
+            this.$eventLocation.mouseup.on('mouseup.' + this.constructor.name, (e) => {
 
-                    if(this.currentZone.instance !== null && (this.currentZone.instance.size.width<5 || this.currentZone.instance.size.height<5))this.interface.currentTemplate.deleteZoneInTemplate(this.currentZone.instance.identificator);
+                if (this.currentZone.instance !== null && (this.currentZone.instance.size.width < 5 || this.currentZone.instance.size.height < 5)) this.interface.currentTemplate.deleteZoneInTemplate(this.currentZone.instance.identificator);
 
-                    this.zoneCreationObservable.notify(true);
-                    this.resetCurrentZoneValues()
-                    this.usingToolAuthorization = false;
-                    //this.error=true;
-                    this.$eventLocation.mouseup.unbind('mousemove.'+this.constructor.name);
-                })
-            }else if(mode==='off'){
-                this.$eventLocation.mouseup.unbind('mouseup.'+this.constructor.name);
-                this.$eventLocation.mousedown.unbind('mousedown.'+this.constructor.name);
-                this.$eventLocation.mousemove.unbind('mousemove.'+this.constructor.name);
-            }
-        })
+                this.zoneCreationObservable.notify(true);
+                this.resetCurrentZoneValues()
+                this.usingToolAuthorization = false;
+                //this.error=true;
+                this.$eventLocation.mouseup.unbind('mousemove.' + this.constructor.name);
+            })
+        } else {
+            this.$eventLocation.mouseup.unbind('mouseup.' + this.constructor.name);
+            this.$eventLocation.mousedown.unbind('mousedown.' + this.constructor.name);
+            this.$eventLocation.mousemove.unbind('mousemove.' + this.constructor.name);
+        }
+
     }
-
 }
 
 export {ZoneCreatorTool}

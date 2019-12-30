@@ -62,9 +62,11 @@ class ZoneInfoDisplayerTool extends PermanentTool{
         if(size.height!==null)this.$location.infosChamps.size.height.val(size.height);
     }
 
-    activeTool(boolean){
-        super.activeToolDecorator(boolean,(mode)=>{
-            if(mode==='on'){
+    activeTool(active){
+        super.activeTool(active)
+
+
+            if(active){
                 this.$eventLocation.doubleclick.on(`dblclick.${this.constructor.name}`,'.zone',(e)=>{
                     let zoneId = $(e.currentTarget).data('zone')
                     this.currentZone = this.interface.currentTemplate.getZone(zoneId);
@@ -77,11 +79,11 @@ class ZoneInfoDisplayerTool extends PermanentTool{
                     console.log('test')
                })
             }
-            if(mode==='off'){
+            else{
 
             }
 
-        })
+
     }
 
 

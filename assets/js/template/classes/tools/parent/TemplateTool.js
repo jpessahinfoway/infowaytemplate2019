@@ -2,13 +2,14 @@ class TemplateTool{
     constructor(templateInterface){
         this.interface = templateInterface;
         this.name = this.constructor.name;
+        this.parentTool = {};
       //  this.jq = null;
         this.icon = null;
         this.visibleOnActivation = true;
        
        // this.iconContainer = $(`<span title="${this.title}" class="${this.name}" data-tool="${this.constructor.name}"></span>`);
 
-        this.state = 'disabled';
+        this.activated = false;
 
         this.$eventLocation={};
 
@@ -24,6 +25,8 @@ class TemplateTool{
         console.log(this.subTools)
     //    this.activated = false;
     }
+
+
 
     addSubTools(...subTools){
         subTools.map(subTool => this.subTools[subTool.name]=subTool)
@@ -95,6 +98,17 @@ class TemplateTool{
         return this.state !== 'disabled';
     }*/
 
+    activeTool(active=true){
+        console.log(this.interface.toolBox.toolsList)
+        debugger;
+        if(typeof active !== 'boolean' ){
+            return;
+        }
+        if( this.interface.toolBox[this.name] ) return console.log(`tool ${this.name} not founded in ToolBox. Please add it first`) ;
+        this.activated=active;
+        console.log(this.interface.toolBox.toolsList)
+        debugger;
+    }
     activeToolDecorator(boolean,functionToExecuteWhenEventIsTriggered){
        
         if(typeof boolean ==='undefined'){
@@ -111,16 +125,19 @@ class TemplateTool{
            
         }
         if(boolean){
-            this.state = 'enabled';
+            this.activated = true;
+            this.interface.activatedTools[this.name] = this;
             //this.activeTool(false);
            if(typeof this.$eventLocation !== 'undefined' && this.$eventLocation!== null ){
               
                    functionToExecuteWhenEventIsTriggered('on')
            }
-            this.state = 'enabled';
+            this.activated = true;
+           if(typeof this.parentTool ==='object' && this.parentTool instanceof TemplateTool && !this.parentTool.activated)this.parentTool.activateTool
            
         }else{
-            this.state='disabled';
+            this.activated=false;
+            delete this.interface.activatedTools[this.name];
             if(typeof this.$eventLocation !== 'undefined' && this.$eventLocation!== null ){
                 functionToExecuteWhenEventIsTriggered('off')
             }

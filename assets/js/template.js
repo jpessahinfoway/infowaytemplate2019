@@ -37,7 +37,9 @@ import {TemplateModule} from "./template/classes/TemplateModule";
 let templateModule = new TemplateModule();
 
 templateModule.createTemplate( 'test' , 'H' );
-templateModule.attachToolBox();
+templateModule.initToolBox();
+templateModule.initToolsMenu();
+//templateModule.attachToolBox();
 
 
 

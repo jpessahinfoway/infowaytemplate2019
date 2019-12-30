@@ -10,10 +10,8 @@ class ZoneZoomOnTool extends TemplateTool{
     }
 
 
-    activeTool(boolean){
-        super.activeToolDecorator(boolean,()=>{
-
-        })
+    activeTool(active){
+        super.activeTool(active)
     }
 }
 

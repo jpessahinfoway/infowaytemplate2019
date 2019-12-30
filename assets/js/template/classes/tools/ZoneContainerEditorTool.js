@@ -74,10 +74,9 @@ class ZoneContainerEditorTool extends TemplateTool{
 
 
 
-    activeTool(boolean){
-        super.activeToolDecorator(boolean,(mode)=>{
-            this.onClickCloseZoneContainerWindow(boolean)
-        })
+    activeTool(active){
+        super.activeTool(active)
+        this.onClickCloseZoneContainerWindow(active)
     }
 }
 

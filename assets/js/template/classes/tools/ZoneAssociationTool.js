@@ -15,25 +15,22 @@ class ZoneAssociationTool extends TemplateTool{
     }
 
 
-    activeTool(boolean){
-        super.activeToolDecorator(boolean,(mode)=>{
-
-            if(mode==='on'){
+    activeTool(active){
+        super.activeTool(active)
+            if(active){
                 this.onClickCloseAssociationWindow(true)
                 Object.values(this.subTools).map(subtool=>{
                     console.log(subtool)
                     subtool.activeTool(true)
                 });
                 this.$location.associationWindow.removeClass('none');
-            }else if(mode === 'off'){
+            }else{
                 Object.values(this.subTools).map(subtool=>{
                     console.log(subtool)
                     subtool.activeTool(false)
                 });
                 this.$location.associationWindow.addClass('none');
             }
-
-        })
     }
 
     onClickCloseAssociationWindow(active){

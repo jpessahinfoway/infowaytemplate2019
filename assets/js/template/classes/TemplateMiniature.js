@@ -53,8 +53,8 @@ class TemplateMiniature{
                      " position : absolute;"+
                      `width :  calc(100% / (${this.template._attr.size.width} / ${zone.size.width}));`+
                      `height : calc(100% / (${this.template._attr.size.height} / ${zone.size.height}));`+
-                     `top : calc(${zone.position.top} * (100% / ${this.template._attr._size._height}));`+
-                     `left : calc(${zone.position.left} * ( 100% / ${this.template._attr._size._width}));`+
+                     `top : calc(${zone.position.top} * (100% / ${this.template._attr.size.height}));`+
+                     `left : calc(${zone.position.left} * ( 100% / ${this.template._attr.size.width}));`+
                      "'><div class='wrapper'>&nbsp;</div></div>"
             }
 

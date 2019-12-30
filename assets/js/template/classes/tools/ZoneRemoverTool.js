@@ -45,14 +45,13 @@ class ZoneRemoverTool extends TemplateTool{
         })
     }
 
-    activeTool(boolean){
-        super.activeToolDecorator(boolean,(mode)=>{
-
-            if(mode==='on'){
+    activeTool(active){
+        super.activeTool(active)
+            if(active){
                 this.initOnZoneHoverFocusIcon();
                 this.buildConfirmationDiv();
                 this.appendIconInZones();
-            }else if(mode === 'off'){
+            }else{
 
                 $('.icon-action-div').remove();
                 $('.zone').unbind(`mouseover.${this.constructor.name}`);
@@ -61,7 +60,6 @@ class ZoneRemoverTool extends TemplateTool{
                 if(this.choiceDiv!==null)this.choiceDiv.desactive()
             }
 
-        })
     }
 }
 

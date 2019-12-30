@@ -1,22 +1,14 @@
 import {TemplateSubTool} from "./tools/subtools/parent/TemplateSubTool";
 import {PermanentTool} from "./tools/parent/PermanentTool";
 import {Observer} from "./pattern/observer/Observer";
+import {TemplateTool} from "./tools/parent/TemplateTool";
+import {Observable} from "./pattern/observer/Observable";
 
 class TemplateToolBox{
     constructor(){
-        console.log('Hello Toolbox')
-
-        this.$location = {
-            ul : $('.tools > ul'),
-        };
-
-        this.activatedTool = {
-            tool:null,
-            subTool : null
-        };
 
         this.tools={};
-
+        this.toolsList = {};
         this.toggleSubMenuOnMouseHover()
 
        /* this.iconsSize=null;
@@ -39,6 +31,45 @@ class TemplateToolBox{
 
     }
 
+
+    updateActivatedTools(clickedTool){
+        console.log(this.toolsList)
+        debugger;
+        let toolsToNotDisactivate = [clickedTool] ;
+
+        if(typeof  clickedTool.parentTool === 'object'  && clickedTool.parentTool instanceof TemplateTool){
+            /*let activatedSiblingTools = [];
+
+            activatedSiblingTools =  Object.values(clickedTool.parentTool.subTools).filter(subTool =>  subTool !== clickedTool && subTool.activated && ! (subTool instanceof PermanentTool))
+            if(activatedSiblingTools.length>1 && clickedTool.activated) toolsToNotDisactivate.push(clickedTool.parentTool)*/
+
+            if(clickedTool.parentTool.activated && !clickedTool.activated) toolsToNotDisactivate.push(clickedTool.parentTool)
+
+        }
+        Object.values(this.toolsList).forEach(tool => ( toolsToNotDisactivate.includes(tool) || tool instanceof PermanentTool ) ? '' : tool.activeTool(false));
+
+            if(!clickedTool.activated){clickedTool.activeTool(true) };
+            if(typeof  clickedTool.parentTool === 'object'  && clickedTool.parentTool instanceof TemplateTool && clickedTool.parentTool)
+
+            console.log(this.toolsList)
+        debugger;
+
+    }
+
+    attachTool(tool){
+
+
+        if(this.$location.toolBox.find(`[data-tool=${tool.name}]`).length <1)return console.log(`no data-tool for the tool ${tool.name} founded please add once first `)
+        console.log(this.$location.toolBox)
+        this.toolsList[tool.name] = tool
+        Object.values(tool.subTools).forEach(subTool => this.attachTool(subTool))
+    }
+
+    setLocation($location){
+        console.log(this.$location.toolBox)
+        this.$location.toolBox = $location ;
+       // this.$location.toolBox.append(this.$location.ul) ;
+    }
 
     disactiveAllTools(exception){
      let exceptionArray = exception;
@@ -118,7 +149,8 @@ class TemplateToolBox{
         return $element.hasClass('tool')
     }
 
-    activeToolBoxEvents(){
+
+  /*  activeToolBoxEvents(){
         //Au click sur un element de la toolBox
         console.log($('.tools'))
         console.log(this.$location.ul)
@@ -179,10 +211,21 @@ class TemplateToolBox{
 
         })
     }
+*/
 
+    detachTool(tool) {
+        delete this.attachedTools[tool.name];
+    }
 
+    addTool(tool) {
+        if(typeof tool !== 'object' || !(tool instanceof TemplateTool)) return console.log("outil non comforme")
+        this.toolsList[tool.name] = tool ;
+        if(typeof tool.subTools==='object')Object.values(tool.subTools).forEach(subTool => {
+            if(subTool instanceof TemplateTool) this.addTool(subTool)
+        })
+    }
 
-    addTool(tool){
+   /* addTool(tool){
 
         let currentTool;
 
@@ -209,7 +252,7 @@ class TemplateToolBox{
             this.addTool(tool.subTools[subTool])
         })
 
-    }
+    }*/
 
    /* initLastActivatedToolBoxElements(){
         this.lastActivatedToolBoxElements = {

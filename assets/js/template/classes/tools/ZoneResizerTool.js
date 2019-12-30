@@ -145,21 +145,18 @@ class ZoneResizerTool extends TemplateTool{
             this.$eventLocation.mousemove.unbind('mousemove.'+this.constructor.name)
         })
     }
-    activeTool(boolean){
-
-        super.activeToolDecorator(boolean,(mode)=>{
-
-            if(mode==='on'){
+    activeTool(active){
+        super.activeTool(active) ;
+            if(active){
 
                 this.appendResizeButton()
                 this.resizeZoneOnMouseActivity()
-            }else if(mode === 'off'){
+            }else{
                 this.$eventLocation.mouseup.unbind('mouseup.'+this.constructor.name);
                 this.$eventLocation.mousedown.unbind('mousedown.'+this.constructor.name);
                 this.$eventLocation.mousemove.unbind('mousemove.'+this.constructor.name);
                 $('.zoneResizer').remove()
             }
-        })
     }
 
 }

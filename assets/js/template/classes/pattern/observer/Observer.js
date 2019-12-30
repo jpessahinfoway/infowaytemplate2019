@@ -6,7 +6,7 @@ class Observer {
     // Gets called by the Subject::notify method.
     update(data) {
         this.data = data
-        this.functionToExecuteWhenTriggered(this)
+        this.functionToExecuteWhenTriggered(data)
     }
 
     observerFunction(functionToExecuteWhenTriggered){

@@ -1,11 +1,11 @@
 
 .zone[data-type=price],.price-preview, .zone-miniature[data-type=price]{
-    background: yellow;
+    background: rgba(240, 255, 0, 0.3);
     outline: 2px solid rgba(255, 215, 0, 0.6);
 }
 
 .zone[data-type=text],.text-preview, .zone-miniature[data-type=text]{
-    background: #2cd82c ;
+    background: rgba(44, 216, 44,0.3) ;
     outline: 2px solid rgba(73, 182, 117, 0.6);
 }
 
@@ -17,20 +17,25 @@
     height: 100%;
 }
 
+.zone.hidden-zone{
+    outline:none !important;
+    background-color: transparent !important;
+}
+
 .template-zone{
     position:absolute;
 }
 
 .zone,.zone-miniature{
-    opacity: 0.3;
+    /*opacity: 0.3;*/
 }
 .zone[data-type=zone],.zone-preview::before, .zone-miniature[data-type=zone]{
-    background-color: #ff1100;
+    background-color: rgba(255, 17, 0,0.3);
     outline: 1px solid #ff0000
 }
 
 .zone[data-type=media], .media-preview, .zone-miniature[data-type=media]{
-    background:#0a73ff;
+    background:rgba(10, 115, 255,0.3);
     outline: 2px solid rgba(14, 75, 239, 0.6)
 }
 

@@ -32,18 +32,14 @@ class TemplateMiniatorizerTool extends PermanentTool{
             this.$location.closeAssociationWindow.off('click.'+this.constructor.name)
         }
     }
-    activeTool(boolean){
-
-        super.activeToolDecorator(boolean,(mode)=>{
-
-            if(mode==='on'){
-                console.log(this.$location.container)
-               this.$location.container.removeClass('none');
-            }else if(mode === 'off'){
-                this.$location.container.addClass('none');
-            }
-
-        })
+    activeTool(active){
+        super.activeTool(active)
+        if(active){
+            console.log(this.$location.container)
+           this.$location.container.removeClass('none');
+        }else{
+            this.$location.container.addClass('none');
+        }
     }
 }
 

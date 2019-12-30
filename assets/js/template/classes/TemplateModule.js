@@ -12,16 +12,83 @@ import {ZoneAssociationTool} from "./tools/ZoneAssociationTool";
 import {ZoneDuplicatorTool} from "./tools/ZoneDuplicatorTool";
 import {ZoneContainerEditorTool} from "./tools/ZoneContainerEditorTool";
 import {TemplateMiniatorizerTool} from "./tools/TemplateMiniatorizerTool";
+import {Observer} from "./pattern/observer/Observer";
+import {TemplateToolsMenu} from "./TemplateToolsMenu";
 
 class TemplateModule{
 
     constructor(){
         this.currentTemplate    =   null;
-        this.toolBox            =   null;
+        this.toolsList          = {};
+        this.toolBox            =  null;
+        this.clickOnToolObserver = this.initClickOnToolObserver() ;
+        this.toolsMenu          =  {};
+        this.activatedTools     =  {} ;
         this.initActions()
     }
 
-    attachToolBox(){
+    initClickOnToolObserver(){
+        let clickOnToolObserver = new Observer();
+        clickOnToolObserver.observerFunction(datas=>{
+            let clickedTool = datas[0]
+            this.toolBox.updateActivatedTools(clickedTool)
+        })
+        return clickOnToolObserver
+    }
+
+    initToolBox(){
+        this.toolBox = new TemplateToolBox() ;
+        this.toolBox.addTool(new ZoneCreatorTool(this))
+        this.toolBox.addTool(new ZoneDraggerTool(this));
+        this.toolBox.addTool(new ZoneRemoverTool(this));
+        this.toolBox.addTool(new ZoneResizerTool(this));
+        this.toolBox.addTool(new ZonePriorityManagerTool(this));
+        this.toolBox.addTool(new ZoneMaskerTool(this));
+        this.toolBox.addTool(new ZoneZoomOnTool(this));
+        this.toolBox.addTool(new ZoneInfoDisplayerTool(this));
+        this.toolBox.addTool(new ZoneAssociationTool(this));
+        this.toolBox.addTool(new ZoneDuplicatorTool(this));
+        this.toolBox.addTool(new ZoneContainerEditorTool(this));
+         return this.toolBox
+    }
+
+    initToolsMenu(){
+        this.toolsMenu = {};
+
+        let mainToolsMenu = this.addToolsMenu('mainToolsMenu', $('#main-toolbox')) ;
+        mainToolsMenu.attachTool(this.toolBox.toolsList['ZoneCreatorTool']) ;
+        mainToolsMenu.attachTool(this.toolBox.toolsList['ZoneDraggerTool']) ;
+        mainToolsMenu.attachTool(this.toolBox.toolsList['ZoneRemoverTool']) ;
+        mainToolsMenu.attachTool(this.toolBox.toolsList['ZoneResizerTool']) ;
+        mainToolsMenu.attachTool(this.toolBox.toolsList['ZonePriorityManagerTool']) ;
+        mainToolsMenu.attachTool(this.toolBox.toolsList['ZoneMaskerTool']) ;
+        mainToolsMenu.attachTool(this.toolBox.toolsList['ZoneZoomOnTool']) ;
+        mainToolsMenu.attachTool(this.toolBox.toolsList['ZoneDuplicatorTool']) ;
+
+        mainToolsMenu.clickOnToolObservable.addObserver(this.clickOnToolObserver)
+        let zoneContainerToolsMenu = this.addToolsMenu('zoneContainerToolsMenu', $('#modal-toolbar')) ;
+        zoneContainerToolsMenu.attachTool(this.toolBox.toolsList['ZoneContainerEditorTool'])
+
+        zoneContainerToolsMenu.clickOnToolObservable.addObserver(this.clickOnToolObserver)
+
+        Object.values(this.toolsMenu).forEach(toolMenu => toolMenu.activeToolMenu(true))
+    }
+
+    addToolsMenu(name,$location){
+        this.toolsMenu[name] = new TemplateToolsMenu(name,$location)
+        return this.toolsMenu[name]
+    }
+    addToolBox(name,$location) {
+        let createdToolBox = new TemplateToolBox() ;
+        createdToolBox.setLocation($location) ;
+
+        this.toolBoxes[name] = createdToolBox ;
+
+        return createdToolBox ;
+    }
+
+
+  /*  attachToolBox(){
 
         this.toolBox = new TemplateToolBox();
         this.toolBox.addTool(new ZoneCreatorTool(this));
@@ -36,7 +103,7 @@ class TemplateModule{
         this.toolBox.addTool(new ZoneDuplicatorTool(this));
         this.toolBox.addTool(new ZoneContainerEditorTool(this));
         this.toolBox.activeToolBoxEvents()
-    }
+    }*/
 
     createTemplate(name,orientation){
         this.currentTemplate = new Template();

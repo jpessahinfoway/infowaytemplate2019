@@ -7,18 +7,17 @@ class ZoneMaskerTool extends PermanentTool{
         this.$eventLocation=$('.zone');
     }
 
-    activeTool(boolean){
-        super.activeToolDecorator(boolean,(mode)=>{
-            if(mode==='on'){
-                this.interface.isMaskerOn=true;
-                $('.zone').addClass('blindmode');
-            }
-            if(mode==='off'){
-                this.interface.isMaskerOn=false;
-                $('.zone').removeClass('blindmode');
-            }
+    activeTool(active){
+        super.activeTool(active)
 
-        })
+            if(active){
+                this.interface.isMaskerOn=true;
+                $('.zone').addClass('hidden-zone');
+            }
+            else{
+                this.interface.isMaskerOn=false;
+                $('.zone').removeClass('hidden-zone');
+            }
     }
 }
 

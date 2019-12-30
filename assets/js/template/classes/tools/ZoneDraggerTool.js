@@ -10,9 +10,9 @@ class ZoneDraggerTool extends TemplateTool{
         this.workSpace = $('.container-zone')
     }
 
-   activeTool(boolean){
-        super.activeToolDecorator(boolean,(mode)=>{
-            if(mode==='on'){
+   activeTool(active){
+       super.activeTool(active)
+            if(active){
                 let newPosition,
                     oldPosition,
                     deplacementValue,
@@ -71,14 +71,12 @@ class ZoneDraggerTool extends TemplateTool{
                     this.activated = false;
                 })
             }
-            if(mode=='off'){
+            else{
                 $('.zone').removeClass('draggerModeOn');
                 this.$eventLocation.mousedown.unbind('mousedown.'+this.constructor.name);
                 this.$eventLocation.mousemove.unbind('mousemove.'+this.constructor.name);
                 this.$eventLocation.mouseup.unbind('mouseup.'+this.constructor.name);
             }
-
-        })
     }
 }
 

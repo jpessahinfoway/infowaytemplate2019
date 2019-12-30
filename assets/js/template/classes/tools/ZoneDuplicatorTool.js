@@ -49,18 +49,13 @@ class ZoneDuplicatorTool extends TemplateTool{
 
         })
     }
-    activeTool(boolean){
-
-        super.activeToolDecorator(boolean,(mode)=>{
-
-            if(mode==='on'){
-                console.log('icii')
+    activeTool(active){
+        super.activeTool(active)
+            if(active){
                 this.onClickDisplayDuplicateComfirm()
-
-            }else if(mode === 'off'){
+            }else{
 
             }
-        })
     }
 
 }

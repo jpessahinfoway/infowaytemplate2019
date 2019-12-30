@@ -90,7 +90,8 @@ class Zone{
     setZoneContent(content){
        if(typeof content === 'object' && content instanceof Incruste){
            this.content = content;
-           this.zoneContent.html(this.content.buildHTML());
+
+           this.$zoneContentContainer.html(this.content.buildHTML());
        }
     }
 
