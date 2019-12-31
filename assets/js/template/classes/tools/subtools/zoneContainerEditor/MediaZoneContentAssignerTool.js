@@ -1,16 +1,16 @@
 import {ZoneContainerEditorSubTool} from "./parent/ZoneContainerEditorSubTool";
 import {BackgroundContent} from "../../../zoneContents/BackgroundContent";
 import {MediaContent} from "../../../zoneContents/MediaContent";
-import {ZoneContainerMediaSelectorTool} from "./zoneContainerMediaEditor/ZoneContainerMediaSelectorTool";
+import {MediaZoneIncrusteSelectorTool} from "./zoneContainerMediaEditor/MediaZoneIncrusteSelectorTool";
 import {MediaIncruste} from "../../../objects/incrustes/mediaIncruste/MediaIncruste";
 
 
 
-class ZoneContainerMediaEditorTool extends ZoneContainerEditorSubTool{
+class MediaZoneContentAssignerTool extends ZoneContainerEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
         this.subTools = super.initSubTools(
-            new ZoneContainerMediaSelectorTool(this.interface,this)
+            new MediaZoneIncrusteSelectorTool(this.interface,this)
             );
 
         //this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;
@@ -61,4 +61,4 @@ class ZoneContainerMediaEditorTool extends ZoneContainerEditorSubTool{
     }
 }
 
-export {ZoneContainerMediaEditorTool}
+export {MediaZoneContentAssignerTool}

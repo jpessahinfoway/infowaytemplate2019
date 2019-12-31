@@ -98,48 +98,44 @@
         {%  if 'stage2' in path(app.request.attributes.get('_route')) %}
         <div class="modal-toolbar tools" id="modal-toolbar">
             <ul>
-                <li class="tool ZoneContainerEditorTool hidden-tool" data-tool="ZoneContainerEditorTool">
-                    <ul>
-                        <li data-modal="background" class="subTool ZoneContainerBackgroundEditorTool" data-tool="ZoneContainerBackgroundEditorTool" data-subtool="ZoneContainerBackgroundEditorTool"><span>Arrière plan</span><i class="fal fa-image"></i></li>
-                        <li data-modal="text" class="subTool ZoneContainerTextEditorTool" data-tool="ZoneContainerTextEditorTool" data-subtool="ZoneContainerTextEditorTool"><span>Texte</span><i class="fal fa-text"></i></li>
-                        <li data-modal="price" class="subTool ZoneContainerPriceEditorTool" data-tool="ZoneContainerPriceEditorTool" data-subtool="ZoneContainerPriceEditorTool"><span>Prix</span><i class="fal fa-euro-sign"></i></li>
-                        <li data-modal="medias" class="subTool ZoneContainerMediaEditorTool" data-tool= "ZoneContainerMediaEditorTool" data-subtool="ZoneContainerMediaEditorTool"><span>Médias</span><i class="fal fa-photo-video"></i></li>
-                    </ul>
-                </li>
+                <li data-modal="background" class="tool" data-tool="ZoneBackgroundAssignerTool"><span>Arrière plan</span><i class="fal fa-image"></i></li>
+                <li data-modal="text" class="tool" data-tool="TextZoneContentAssignerTool"><span>Texte</span><i class="fal fa-text"></i></li>
+                <li data-modal="price" class="tool" data-tool="PriceZoneContentAssignerTool"><span>Prix</span><i class="fal fa-euro-sign"></i></li>
+                <li data-modal="medias" class="tool" data-tool="MediaZoneContentAssignerTool"><span>Médias</span><i class="fal fa-photo-video"></i></li>
             </ul>
         </div>
         {% endif %}
 
         <div id="main-toolbox" class="tools">
             <ul>
-                <li title="Ajouter une zone" class="tool ZoneCreatorTool" data-tool="ZoneCreatorTool"><span>Ajouter une zone</span><i class="fal fa-plus-square"></i>
+                <li title="Ajouter une zone" class="tool" data-tool="ZoneCreatorTool"><span>Ajouter une zone</span><i class="fal fa-plus-square"></i>
                     {%  if 'stage2' in path(app.request.attributes.get('_route')) %}
                     <ul class="slider-menu">
-                        <li title="Zone Texte" class="subTool ZoneTextCreatorTool" data-tool="ZoneTextCreatorTool" data-subtool="ZoneTextCreatorTool"><span>Texte</span><i class="fal fa-text"></i></li>
-                        <li title="Zone Prix" class="subTool ZonePriceCreatorTool" data-tool="ZonePriceCreatorTool" data-subtool="ZonePriceCreatorTool"><span>Prix</span><i class="fal fa-euro-sign"></i></li>
-                        <li title="Zone Media" class="subTool ZoneMediaCreatorTool" data-tool="ZoneMediaCreatorTool" data-subtool="ZoneMediaCreatorTool"><span>Média</span><i class="fal fa-image"></i></li>
+                        <li title="Zone Texte" class="tool" data-tool="ZoneTextCreatorTool"><span>Texte</span><i class="fal fa-text"></i></li>
+                        <li title="Zone Prix" class="tool" data-tool="ZonePriceCreatorTool" ><span>Prix</span><i class="fal fa-euro-sign"></i></li>
+                        <li title="Zone Media" class="tool" data-tool="ZoneMediaCreatorTool"><span>Média</span><i class="fal fa-image"></i></li>
                     </ul>
                     {% endif %}
                 </li>
-                <li title="Déplacer" class="tool ZoneDraggerTool" data-tool="ZoneDraggerTool"><span>Déplacer</span><i class="fal fa-arrows bold"></i></li>
-                <li title="Supprimer" class="tool ZoneRemoverTool" data-tool="ZoneRemoverTool"><span>Supprimer</span><i class="fal fa-trash-alt"></i></li>
-                <li title="Dupliquer" class="tool ZoneDuplicatorTool" data-tool="ZoneDuplicatorTool"><span>Dupliquer</span><i class="fal fa-copy"></i></li>
-                <li title="Transformation" class="tool ZoneResizerTool" data-tool="ZoneResizerTool"><span>Transformation</span><i class="fal fa-vector-square"></i></li>
-                <li title="Arranger" class="tool ZonePriorityManagerTool" data-tool="ZonePriorityManagerTool"><span>Organiser</span><i class="fal fa-layer-group"></i>
+                <li title="Déplacer" class="tool" data-tool="ZoneDraggerTool"><span>Déplacer</span><i class="fal fa-arrows bold"></i></li>
+                <li title="Supprimer" class="tool" data-tool="ZoneRemoverTool"><span>Supprimer</span><i class="fal fa-trash-alt"></i></li>
+                <li title="Dupliquer" class="tool" data-tool="ZoneDuplicatorTool"><span>Dupliquer</span><i class="fal fa-copy"></i></li>
+                <li title="Transformation" class="tool" data-tool="ZoneResizerTool"><span>Transformation</span><i class="fal fa-vector-square"></i></li>
+                <li title="Arranger" class="tool" data-tool="ZonePriorityManagerTool"><span>Organiser</span><i class="fal fa-layer-group"></i>
                     <ul class="subMenu subTools slider-menu" >
-                        <li title="Avancer une zone" class="subTool ZonePriorityAboveTool" data-tool= "ZonePriorityAboveTool" data-subTool="ZonePriorityAboveTool"><span>Avancer une zone</span><i class="fal fa-layer-plus"></i></li>
-                        <li title="Reculer une zone"class="subTool ZonePriorityBellowTool" data-tool= "ZonePriorityBellowTool" data-subTool="ZonePriorityBellowTool"><span>Reculer une zone</span><i class="fal fa-layer-minus"></i></li>
-                        <li title="Mettre au premier plan" class="subTool ZonePriorityForegroundTool" data-tool= "ZonePriorityForegroundTool" data-subTool="ZonePriorityForegroundTool"><span>Mettre au premier plan</span><i class="fal fa-bring-front"></i></li>
-                        <li title="Mettre en arriere plan" class="subTool ZonePriorityBackgroundTool" data-tool= "ZonePriorityBackgroundTool" data-subTool="ZonePriorityBackgroundTool"><span>Mettre au dernier plan</span><i class="fal fa-send-back"></i></li>
+                        <li title="Avancer une zone" class="tool" data-tool="ZonePriorityAboveTool"><span>Avancer une zone</span><i class="fal fa-layer-plus"></i></li>
+                        <li title="Reculer une zone"class="tool" data-tool= "ZonePriorityBellowTool"><span>Reculer une zone</span><i class="fal fa-layer-minus"></i></li>
+                        <li title="Mettre au premier plan" class="tool" data-tool= "ZonePriorityForegroundTool"><span>Mettre au premier plan</span><i class="fal fa-bring-front"></i></li>
+                        <li title="Mettre en arriere plan" class="tool" data-tool= "ZonePriorityBackgroundTool"><span>Mettre au dernier plan</span><i class="fal fa-send-back"></i></li>
                     </ul>
                 </li>
-                <li title="Zoomer" id="zoom" class="tool ZoneZoomOnTool" data-tool="ZoneZoomOnTool"><span>Zoomer</span><i class="fal fa-search"></i>
+                <li title="Zoomer" id="zoom" class="tool" data-tool="ZoneZoomOnTool"><span>Zoomer</span><i class="fal fa-search"></i>
                     <ul class="subMenu subTools slider-menu">
-                        <li title="Agrandir" id="enlarge" class="subtool ZoneZoomIncreaserTool" data-subtool="ZoneZoomIncreaserTool"><span>Agrandir</span><i class="fal fa-search-plus"></i></li>
-                        <li title="Diminuer" id="decrease" class="subtool ZoneZoomDecreaserTool" data-subtool="ZoneZoomDecreaserTool"><span>Diminuer</span><i class="fal fa-search-minus"></i></li>
+                        <li title="Agrandir" id="enlarge" class="tool" data-subtool="ZoneZoomIncreaserTool"><span>Agrandir</span><i class="fal fa-search-plus"></i></li>
+                        <li title="Diminuer" id="decrease" class="tool" data-subtool="ZoneZoomDecreaserTool"><span>Diminuer</span><i class="fal fa-search-minus"></i></li>
                     </ul>
                 </li>
-                <li title="Masquet les zones" id="toggle-zone" class="tool ZoneMaskerTool" data-tool="ZoneMaskerTool"><span>Masquer les zones</span><i class="fal fa-eye"></i></li>
+                <li title="Masquet les zones" id="toggle-zone" class="tool" data-tool="ZoneMaskerTool"><span>Masquer les zones</span><i class="fal fa-eye"></i></li>
             </ul>
         </div>
     </div>

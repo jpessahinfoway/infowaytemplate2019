@@ -9,7 +9,7 @@ import {ImageIncrusteContent} from "../../../../objects/incrustesContents/mediaI
 
 
 
-class ZoneContainerMediaSelectorTool extends ZoneContainerMediaEditorSubTool{
+class MediaZoneIncrusteSelectorTool extends ZoneContainerMediaEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
 
@@ -85,4 +85,4 @@ class ZoneContainerMediaSelectorTool extends ZoneContainerMediaEditorSubTool{
     }
 }
 
-export {ZoneContainerMediaSelectorTool}
+export {MediaZoneIncrusteSelectorTool}

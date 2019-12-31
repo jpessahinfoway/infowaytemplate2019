@@ -18,7 +18,7 @@ var stringify = require('json-stringify-safe');
 
 
 
-class ZoneContainerTextStyleCreatorTool extends ZoneContainerTextEditorSubTool{
+class TextZoneIncrusteCreatorTool extends ZoneContainerTextEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
 
@@ -113,4 +113,4 @@ class ZoneContainerTextStyleCreatorTool extends ZoneContainerTextEditorSubTool{
     }
 }
 
-export {ZoneContainerTextStyleCreatorTool}
+export {TextZoneIncrusteCreatorTool}

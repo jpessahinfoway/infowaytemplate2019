@@ -1,0 +1,19 @@
+{% extends 'infowaytemplate/base.html.twig' %}
+    {% block stylesheets %}
+        {{ parent() }}
+        {{ encore_entry_link_tags('interface') }}
+    {% endblock %}
+{% block header %}
+    {% include 'infowaytemplate/interface/menus/template_navmenu_top.html.twig' %}
+{%  endblock  %}
+  {% block body %}
+        {{  parent() }}
+          {% block zone_infos_modal %}{% endblock %}
+          {% block stagesmenus %}
+              <div class="toolbar template-toolsmenu">
+                  {%  block zone_content_assigner_tools_menu %}{% endblock %}
+                  {% block main_tools_menu %}{% endblock %}
+             </div>
+            {% endblock %}
+      {% include 'infowaytemplate/interface/workzone/workzone.html.twig' %}
+  {% endblock %}

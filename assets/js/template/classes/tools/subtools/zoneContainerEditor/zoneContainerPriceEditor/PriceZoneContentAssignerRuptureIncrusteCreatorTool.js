@@ -12,7 +12,7 @@ var stringify = require('json-stringify-safe');
 
 
 
-class ZoneContainerPriceIncrusteRuptureStyleCreatorTool extends ZoneContainerPriceEditorSubTool{
+class PriceZoneContentAssignerRuptureIncrusteCreatorTool extends ZoneContainerPriceEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
 
@@ -184,4 +184,4 @@ class ZoneContainerPriceIncrusteRuptureStyleCreatorTool extends ZoneContainerPri
     }
 }
 
-export {ZoneContainerPriceIncrusteRuptureStyleCreatorTool}
+export {PriceZoneContentAssignerRuptureIncrusteCreatorTool}

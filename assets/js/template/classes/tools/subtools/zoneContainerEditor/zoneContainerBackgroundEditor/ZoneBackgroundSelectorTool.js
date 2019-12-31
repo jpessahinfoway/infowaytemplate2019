@@ -2,7 +2,7 @@ import {ZoneContainerBackgroundEditorSubTool} from "./parent/ZoneContainerBackgr
 import {BackgroundContent} from "../../../../zoneContents/BackgroundContent";
 
 
-class ZoneContainerBackgroundSelectorTool extends ZoneContainerBackgroundEditorSubTool{
+class ZoneBackgroundSelectorTool extends ZoneContainerBackgroundEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
 
@@ -121,4 +121,4 @@ class ZoneContainerBackgroundSelectorTool extends ZoneContainerBackgroundEditorS
     }
 }
 
-export {ZoneContainerBackgroundSelectorTool}
+export {ZoneBackgroundSelectorTool}

@@ -1,0 +1,11 @@
+{% extends 'infowaytemplate/interface/index.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('stage1') }}
+{% endblock %}
+{% block zone_infos_modal %}
+    {% include 'infowaytemplate/stages/modals/zone_infos_modal.html.twig' %}
+{% endblock %}
+{% block zone_content_assigner_tools_menu %}
+    {% include 'infowaytemplate/stages/menus/main_tools_menu.html.twig' %}
+{% endblock %}

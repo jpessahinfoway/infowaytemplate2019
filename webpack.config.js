@@ -19,7 +19,10 @@ Encore
      * Each entry will result in one JavaScript file (e.g. app.js)
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
+    .addEntry('general', './assets/js/general/general.js')
     .addEntry('template', './assets/js/template.js')
+    .addEntry('interface', './assets/js/interface/interface.js')
+    .addEntry('stage1', './assets/js/stages/stage1/stage1.js')
     .copyFiles({
              from: './assets/images',
 

@@ -37,6 +37,18 @@ use Symfony\Component\Serializer\SerializerInterface;
 class TemplateController extends AbstractController
 {
 
+
+    /**
+     * @Route("/infowaytemplate/stage1", name="templateStage1")
+     */
+    public function templateStage1()
+    {
+        return $this->render('infowaytemplate/stages/stage1/index.html.twig', [
+            'controller_name' => 'TemplateController',
+        ]);
+    }
+
+
     /**
      * @Route("/template", name="templateAccueil")
      */

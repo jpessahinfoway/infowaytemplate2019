@@ -16,7 +16,7 @@ var stringify = require('json-stringify-safe');
 
 
 
-class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPriceEditorSubTool{
+class PriceZoneSelectorTool extends ZoneContainerPriceEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
         this.title = 'Choisir un style de prix';
@@ -47,13 +47,13 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
 
 
     onChangeSwitchTargetedIncrusteContents(active){
-       if(active){
-           this.$location.selectElementPriceForm.find('input[type=radio]').on('change.onChangeSwitchTargetedIncrusteContents', e => {
-               this.focusCheckedIncrustElement()
+        if(active){
+            this.$location.selectElementPriceForm.find('input[type=radio]').on('change.onChangeSwitchTargetedIncrusteContents', e => {
+                this.focusCheckedIncrustElement()
             })
-       }else{
-           this.$location.selectElementPriceForm.find('input[type=radio]').off('change.onChangeSwitchTargetedIncrusteContents')
-       }
+        }else{
+            this.$location.selectElementPriceForm.find('input[type=radio]').off('change.onChangeSwitchTargetedIncrusteContents')
+        }
     }
 
     checkRadioByTargetType(type){
@@ -80,7 +80,7 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
 
                 this.checkRadioByTargetType( incrustTargetType );
 
-               // this.recoveryPropertiesElement(incrustTargetType)
+                // this.recoveryPropertiesElement(incrustTargetType)
             })
         }else{
             this.$location.container.find('.incrust-element').off('focus.onFocusIncrustRefreshTarget')
@@ -96,17 +96,17 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
             new EuroPriceIncrusteContent(),
             new SeparateurPriceIncrusteContent(),
             new UnitePriceIncrusteContent()
-            );
+        );
         console.log(priceIncrusteContent);
 
-            Object.values(priceIncrusteContent.subContents).map(priceElement=> {
-                priceElement.style = new Style()
-            });
-            console.log(this.stylyzer.style)
+        Object.values(priceIncrusteContent.subContents).map(priceElement=> {
+            priceElement.style = new Style()
+        });
+        console.log(this.stylyzer.style)
         priceIncrusteContent.style = this.stylyzer.style
         priceIncruste
             .addIncrusteElements(priceIncrusteContent)
-    console.log(priceIncruste);
+        console.log(priceIncruste);
 
         return priceIncruste
     }
@@ -154,47 +154,47 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
         stylyzer.init();
         stylyzer.activeStylyser(true);
 
-            /*,{comfirmButtonLocation : null, onSuccess : (style)=>{
+        /*,{comfirmButtonLocation : null, onSuccess : (style)=>{
 
-                //let textIncruste =  new TextIncruste();
-                let priceIncruste = new PriceIncruste();
+            //let textIncruste =  new TextIncruste();
+            let priceIncruste = new PriceIncruste();
 
-                priceIncruste.setName('priceincruste1');
-                priceIncruste
-                    .addContent(new UnitePriceIncrusteContent())
-                    .addContent(new EuroPriceIncrusteContent())
-                    .addContent(new SeparateurPriceIncrusteContent())
-                    .addContent(new CentimePriceIncusteContent());
-                this.targetedIncrustContents = Object.values(priceIncruste.contents);
+            priceIncruste.setName('priceincruste1');
+            priceIncruste
+                .addContent(new UnitePriceIncrusteContent())
+                .addContent(new EuroPriceIncrusteContent())
+                .addContent(new SeparateurPriceIncrusteContent())
+                .addContent(new CentimePriceIncusteContent());
+            this.targetedIncrustContents = Object.values(priceIncruste.contents);
 
 
 
-                let priceContent = new TextIncrusteContent()
-                textContent.setStyle(style);
-                textIncruste.addContent(textContent)
+            let priceContent = new TextIncrusteContent()
+            textContent.setStyle(style);
+            textIncruste.addContent(textContent)
 
-                $.ajax({
-                    type: "GET",
-                    url: '/template/stage1/model/register',
-                    data: {
-                        incrusteStyle : stringify(textIncruste),
-                    },
-                    success: (encodedNewIncruste)=>{
-                        console.log(encodedNewIncruste)
-                        let parsedNewIncruste = JSON.parse(encodedNewIncruste);
-                        let newClass = parsedNewIncruste['elements'][0].name;
+            $.ajax({
+                type: "GET",
+                url: '/template/stage1/model/register',
+                data: {
+                    incrusteStyle : stringify(textIncruste),
+                },
+                success: (encodedNewIncruste)=>{
+                    console.log(encodedNewIncruste)
+                    let parsedNewIncruste = JSON.parse(encodedNewIncruste);
+                    let newClass = parsedNewIncruste['elements'][0].name;
 
-                        console.log(this.parentTool.subTools)
-                        let ZoneContainerTextSelectorTool = this.parentTool.subTools['ZoneContainerTextSelectorTool'];
+                    console.log(this.parentTool.subTools)
+                    let ZoneContainerTextSelectorTool = this.parentTool.subTools['ZoneContainerTextSelectorTool'];
 
-                        ZoneContainerTextSelectorTool.refreshCssStylesheet()
-                        ZoneContainerTextSelectorTool.addStyleSelectorDiv(ZoneContainerTextSelectorTool.$location.container.find('ul'),newClass);
+                    ZoneContainerTextSelectorTool.refreshCssStylesheet()
+                    ZoneContainerTextSelectorTool.addStyleSelectorDiv(ZoneContainerTextSelectorTool.$location.container.find('ul'),newClass);
 
-                    },
-                });
+                },
+            });
 
-            }})*/
-            return stylyzer
+        }})*/
+        return stylyzer
     }
 
     onDisactivation(){
@@ -211,4 +211,4 @@ class ZoneContainerPriceIncrustePriceStyleCreatorTool extends ZoneContainerPrice
     }
 }
 
-export {ZoneContainerPriceIncrustePriceStyleCreatorTool}
+export {PriceZoneSelectorTool}

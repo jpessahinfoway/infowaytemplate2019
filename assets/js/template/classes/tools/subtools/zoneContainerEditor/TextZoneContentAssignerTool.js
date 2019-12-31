@@ -1,20 +1,19 @@
 import {ZoneContainerEditorSubTool} from "./parent/ZoneContainerEditorSubTool";
 import {TextStylyzer} from "../../../TextStylyzer";
-import {TextIncrusteStyle} from "../../../TextIncrusteStyle";
-import {ZoneContainerMediaSelectorTool} from "./zoneContainerMediaEditor/ZoneContainerMediaSelectorTool";
-import {ZoneContainerTextSelectorTool} from "./zoneContainerTextEditor/ZoneContainerTextSelectorTool";
-import {ZoneContainerTextStyleCreatorTool} from "./zoneContainerTextEditor/ZoneContainerTextStyleCreatorTool";
+import {TextIncrusteStyle} from "../../../TextIncrusteStyle";;
+import {TextZoneIncrusteSelectorTool} from "./zoneContainerTextEditor/TextZoneIncrusteSelectorTool";
+import {TextZoneIncrusteCreatorTool} from "./zoneContainerTextEditor/TextZoneIncrusteCreatorTool";
 import {Incruste} from "../../../objects/incrustes/Incruste";
 import {Observer} from "../../../pattern/observer/Observer";
 
 
-class ZoneContainerTextEditorTool extends ZoneContainerEditorSubTool{
+class TextZoneContentAssignerTool extends ZoneContainerEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
 
         this.subTools = super.initSubTools(
-            new ZoneContainerTextSelectorTool(this.interface,this),
-            new ZoneContainerTextStyleCreatorTool(this.interface,this)
+            new TextZoneIncrusteSelectorTool(this.interface,this),
+            new TextZoneIncrusteCreatorTool(this.interface,this)
         );
         this.zoneContainerEditorObserver = new Observer()
         this.initObserver()
@@ -37,7 +36,7 @@ class ZoneContainerTextEditorTool extends ZoneContainerEditorSubTool{
         console.log(this.subTools)
         this.zoneContainerEditorObserver.observerFunction(observer => {
             switch(observer.data[0]){
-                case 'zoneCreation' : {this.subTools['ZoneContainerTextSelectorTool'].addIncrustToList(observer.data[1])};
+                case 'zoneCreation' : {this.subTools['TextZoneIncrusteSelectorTool'].addIncrustToList(observer.data[1])};
                 break;
             }
         })
@@ -57,4 +56,4 @@ class ZoneContainerTextEditorTool extends ZoneContainerEditorSubTool{
     }
 }
 
-export {ZoneContainerTextEditorTool}
+export {TextZoneContentAssignerTool}

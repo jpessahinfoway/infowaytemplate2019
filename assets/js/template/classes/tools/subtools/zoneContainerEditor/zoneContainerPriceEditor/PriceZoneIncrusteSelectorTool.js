@@ -18,7 +18,7 @@ import {IncrusteContent} from "../../../../objects/incrustesContents/IncrusteCon
 
 
 
-class ZoneContainerPriceSelectorTool extends ZoneContainerPriceEditorSubTool{
+class PriceZoneIncrusteSelectorTool extends ZoneContainerPriceEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
 
@@ -131,4 +131,4 @@ class ZoneContainerPriceSelectorTool extends ZoneContainerPriceEditorSubTool{
     }
 }
 
-export {ZoneContainerPriceSelectorTool}
+export {PriceZoneIncrusteSelectorTool}

@@ -1,15 +1,15 @@
 import {ZoneContainerEditorSubTool} from "./parent/ZoneContainerEditorSubTool";
 import {BackgroundContent} from "../../../zoneContents/BackgroundContent";
-import {ZoneContainerBackgroundSelectorTool} from "./zoneContainerBackgroundEditor/ZoneContainerBackgroundSelectorTool";
+import {ZoneBackgroundSelectorTool} from "./zoneContainerBackgroundEditor/ZoneBackgroundSelectorTool";
 
 
 
-class ZoneContainerBackgroundEditorTool extends ZoneContainerEditorSubTool{
+class ZoneBackgroundAssignerTool extends ZoneContainerEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
 
         this.subTools = super.initSubTools(
-            new ZoneContainerBackgroundSelectorTool(this.interface,this)
+            new ZoneBackgroundSelectorTool(this.interface,this)
         );
 
         //this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;
@@ -42,4 +42,4 @@ class ZoneContainerBackgroundEditorTool extends ZoneContainerEditorSubTool{
     }
 }
 
-export {ZoneContainerBackgroundEditorTool}
+export {ZoneBackgroundAssignerTool}

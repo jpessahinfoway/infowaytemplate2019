@@ -14,7 +14,7 @@ import {Observer} from "../../../../pattern/observer/Observer";
 
 
 
-class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
+class TextZoneIncrusteSelectorTool extends ZoneContainerTextEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
 
@@ -161,4 +161,4 @@ class ZoneContainerTextSelectorTool extends ZoneContainerTextEditorSubTool{
     }
 }
 
-export {ZoneContainerTextSelectorTool}
+export {TextZoneIncrusteSelectorTool}

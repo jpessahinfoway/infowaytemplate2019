@@ -1,10 +1,10 @@
 import {ZoneContainerEditorSubTool} from "./parent/ZoneContainerEditorSubTool";
 import {TextStylyzer} from "../../../TextStylyzer";
 import {TextIncrusteStyle} from "../../../TextIncrusteStyle";
-import {ZoneContainerPriceIncrustePriceStyleCreatorTool} from "./zoneContainerPriceEditor/ZoneContainerPriceIncrustePriceStyleCreatorTool";
-import {ZoneContainerPriceIncrusteRuptureStyleCreatorTool} from "./zoneContainerPriceEditor/ZoneContainerPriceIncrusteRuptureStyleCreatorTool";
-import {ZoneContainerPriceIncrusteStyleCreatorTool} from "./zoneContainerPriceEditor/ZoneContainerPriceIncrusteStyleCreatorTool";
-import {ZoneContainerPriceSelectorTool} from "./zoneContainerPriceEditor/ZoneContainerPriceSelectorTool";
+import {PriceZoneSelectorTool} from "./zoneContainerPriceEditor/PriceZoneSelectorTool";
+import {PriceZoneContentAssignerRuptureIncrusteCreatorTool} from "./zoneContainerPriceEditor/PriceZoneContentAssignerRuptureIncrusteCreatorTool";
+import {PriceZoneIncrusteCreatorTool} from "./zoneContainerPriceEditor/PriceZoneIncrusteCreatorTool";
+import {PriceZoneIncrusteSelectorTool} from "./zoneContainerPriceEditor/PriceZoneIncrusteSelectorTool";
 import {PriceContent} from "../../../zoneContents/PriceContent";
 import {EuroContent} from "../../../zoneContents/PriceContent/EuroContent/EuroContent";
 import {SeparatorContent} from "../../../zoneContents/PriceContent/SeparatorContent/SeparatorContent";
@@ -17,15 +17,15 @@ import {Observer} from "../../../pattern/observer/Observer";
 import {ZoneContainerTextStyleCreatorTool} from "./zoneContainerTextEditor/ZoneContainerTextStyleCreatorTool";*/
 
 
-class ZoneContainerPriceEditorTool extends ZoneContainerEditorSubTool{
+class PriceZoneContentAssignerTool extends ZoneContainerEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
         this.zoneContainerEditorObserver = new Observer()
         this.initObserver()
         this.subTools = super.initSubTools(
            //new ZoneContainerTextSelectorTool(this.interface,this),
-            new ZoneContainerPriceIncrusteStyleCreatorTool(this.interface,this),
-            new ZoneContainerPriceSelectorTool(this.interface,this)
+            new PriceZoneIncrusteCreatorTool(this.interface,this),
+            new PriceZoneIncrusteSelectorTool(this.interface,this)
         );
         this.$location.styleLocation = $('');
         this.zonesHTMLToAppendToStyleChoiceContainer = '';
@@ -47,7 +47,7 @@ class ZoneContainerPriceEditorTool extends ZoneContainerEditorSubTool{
 
         this.zoneContainerEditorObserver.observerFunction(observer => {
             switch(observer.data[0]){
-                case 'zoneCreation' : this.subTools['ZoneContainerPriceSelectorTool'].addIncrustToList(observer.data[1]);
+                case 'zoneCreation' : this.subTools['PriceZoneIncrusteSelectorTool'].addIncrustToList(observer.data[1]);
                     break;
             }
         })
@@ -72,4 +72,4 @@ class ZoneContainerPriceEditorTool extends ZoneContainerEditorSubTool{
     }
 }
 
-export {ZoneContainerPriceEditorTool}
+export {PriceZoneContentAssignerTool}

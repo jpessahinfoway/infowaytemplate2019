@@ -3,7 +3,7 @@ import {TemplateTool} from "./tools/parent/TemplateTool";
 
 class TemplateToolsMenu{
     constructor(name,$location){
-        this.name = name
+        this.name = name ;
         this.$location = {
             menu : $location
         };
@@ -11,55 +11,64 @@ class TemplateToolsMenu{
         this.toolsList = {}
     }
 
-    activeToolMenu(active){
+    activeMenu(active){
+        this. toggleSubMenuOnMouseHover(active)
+        this. onClickOnIconActiveTool(active)
+    }
+
+    toggleSubMenuOnMouseHover(active){
         if(active){
-            this.$location.menu.find('.tool').on('click.activeToolBox',(e)=>{
-                console.log('test')
-                e.stopPropagation()
-                let $clickedTool = $(e.currentTarget);
-                let selectedToolName = $clickedTool.data('tool');
-
-                if(typeof selectedToolName ==='undefined')throw new Error('invalid dataset')
-
-                let selectedTool = this.toolsList[selectedToolName]
-
-                if(typeof selectedTool !=='object' || !( selectedTool instanceof TemplateTool) )throw new Error('tool non recognized')
-
-                this.clickOnToolObservable.notify(selectedTool)
-
-            })
+            this.$location.menu
+                .on('mouseover.toggleSubMenuOnMouseHover','.tool' ,e => { $(e.currentTarget).children('ul.slider-menu').stop().slideDown('fast') })
+                .on('mouseout.toggleSubMenuOnMouseHover','.tool', e => { $(e.currentTarget).children('ul.slider-menu').stop().slideUp('fast') });
+        }else{
+            this.$location.menu
+                .off('mouseover.toggleSubMenuOnMouseHover')
+                .off('mouseout.toggleSubMenuOnMouseHover' )
         }
     }
 
+    activeIcons($icons,active){
+        active ? $icons.addClass('active-tool') : $icons.removeClass('active-tool')
+    }
+    onClickOnIconActiveTool(active){
+        if ( active ){
+            this.$location.menu.on('click.activeToolBox','.tool',(e)=>{
+
+                e.stopPropagation() ;
+
+                let $clickedTool = $(e.currentTarget);
+                let selectedToolName = $clickedTool .data( 'tool' );
+
+                if ( typeof selectedToolName === 'undefined' ) throw new Error( 'invalid dataset' ) ;
+
+                let selectedTool = this.toolsList[ selectedToolName ] ;
+
+                if(typeof selectedTool !=='object' || !( selectedTool instanceof TemplateTool) ) throw new Error('tool non recognized') ;
+
+                this.clickOnToolObservable .notify( selectedTool ) ;
+
+                $('.tool.active-tool') .removeClass('active-tool') ;
+                if(selectedTool .isActivated())  this .activeIcons( $( `.tool[data-tool=${selectedTool.name}` ) , true ) ;
+
+                if( selectedTool .hasParentTool() ){
+                    let parentTool = selectedTool .getParentTool() ;
+                    if ( parentTool .isActivated() ) $(`.tool[data-tool=${parentTool.name}`) .addClass('active-tool') ;
+                }
+            })
+        } else {
+            this.$location.menu.off('click.activeToolBox')
+        }
+    }
 
     attachTool(tool){
+        Object .values(tool.subTools).forEach(subTool => this.attachTool(subTool))
         if(this.$location.menu.find(`[data-tool=${tool.name}]`).length <1)return console.log(`no data-tool for the tool ${tool.name} founded please add once first `)
         this.toolsList[tool.name] = tool
-        Object.values(tool.subTools).forEach(subTool => this.attachTool(subTool))
     }
     detachTool(tool) {
         delete this.toolsList[tool.name];
     }
-
-    toggleSubMenuOnMouseHover(){
-        $('.toolbar')
-            .on('mouseover','.tool' ,e=> {
-                let current = $(e.currentTarget)
-                console.log($(e.currentTarget))
-                console.log($(current).children('ul.slider-menu'))
-                $(current).children('ul.slider-menu').stop().slideDown('fast')
-            })
-            .on('mouseout','.tool', e => {
-                let current = $(e.currentTarget)
-                $(current).children('ul.slider-menu').stop().slideUp('fast')
-            });
-    }
-
-
-
-
-
-
 
 }
 

@@ -73,41 +73,29 @@ class TemplateTool{
         return { top: _y, left: _x };
     }
 
-   /* setIcon(iconClass){
-        this.icon = $(`<i class="${iconClass}"></i>`)
-        this.iconContainer.append(this.icon);
-        this.icon.data('eventname',this.constructor.name);
-    }*/
-
-    isActivated(){
-        return this.state ==='enabled';
+    hasParentTool(){
+        return typeof this.parentTool ==='object' && this.parentTool instanceof TemplateTool
     }
 
-    /*setTitle(title){
-        this.iconContainer.attr('title',this.title=title)
-    }*/
+    getParentTool(){
+        return this.parentTool
+    }
 
-    /*switchState(){
-        if(typeof this.state === 'undefined' || (this.state !== 'enabled' && this.state !== 'disabled')){
-           
-            return;
-        }
-        if(this.state === 'enabled')this.state = 'disabled';
-        else this.state='enabled';
-       
-        return this.state !== 'disabled';
-    }*/
+    isActivated(){
+        return this.activated;
+    }
+
+
 
     activeTool(active=true){
-        console.log(this.interface.toolBox.toolsList)
-        debugger;
+
         if(typeof active !== 'boolean' ){
             return;
         }
         if( this.interface.toolBox[this.name] ) return console.log(`tool ${this.name} not founded in ToolBox. Please add it first`) ;
         this.activated=active;
-        console.log(this.interface.toolBox.toolsList)
-        debugger;
+
+        if(this.activated && typeof this.parentTool === 'object' && this.parentTool instanceof TemplateTool && !this.parentTool.activated)this.parentTool.activeTool(true)
     }
     activeToolDecorator(boolean,functionToExecuteWhenEventIsTriggered){
        

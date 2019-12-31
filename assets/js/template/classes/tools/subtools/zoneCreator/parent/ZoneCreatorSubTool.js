@@ -15,7 +15,7 @@ class ZoneCreatorSubTool extends TemplateSubTool{
 
     initZoneCreatorObserver(){
         this.zoneCreatorObserver = new Observer()
-        this.zoneCreatorObserver.observerFunction((observer)=>{ this.sendAuthorization(observer.data[0], observer.data[1]) })
+        this.zoneCreatorObserver.observerFunction((data)=>{ this.sendAuthorization(data[0], data[1]) })
     }
 
     sendAuthorization(reset,target){
@@ -68,19 +68,18 @@ class ZoneCreatorSubTool extends TemplateSubTool{
         }*/
     }
 
-    activeTool(boolean,onActivationFunction){
-        super.activeToolDecorator(boolean,(mode)=>{
-            if(mode==='on'){
-                console.log('fdfdhdhg')
-                this.changeZoneTypeInCreatorTool()
-                this.displayErrorIfNotParent()
-                this.parentTool.zoneCreationObservable.addObserver(this.zoneCreatorObserver)
-            }else if(mode === 'off'){
-                this.parentTool.zoneCreationObservable.removeObserver(this.zoneCreatorObserver)
-                this.parentTool.setZoneType('zone')
+    activeTool(active){
+        super.activeTool(active)
+        if(active){
+            console.log('fdfdhdhg')
+            this.changeZoneTypeInCreatorTool()
+            this.displayErrorIfNotParent()
+            this.parentTool.zoneCreationObservable.addObserver(this.zoneCreatorObserver)
+        }else{
+            this.parentTool.zoneCreationObservable.removeObserver(this.zoneCreatorObserver)
+            this.parentTool.setZoneType('zone')
 
-            }
-        })
+        }
     }
 }
 

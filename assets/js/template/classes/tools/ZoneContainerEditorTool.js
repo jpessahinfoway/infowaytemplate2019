@@ -1,10 +1,10 @@
 import {TemplateTool} from './parent/TemplateTool'
-import {ZoneContainerBackgroundEditorTool} from "./subtools/zoneContainerEditor/ZoneContainerBackgroundEditorTool";
-import {ZoneContainerTextEditorTool} from "./subtools/zoneContainerEditor/ZoneContainerTextEditorTool";
+import {ZoneBackgroundAssignerTool} from "./subtools/zoneContainerEditor/ZoneBackgroundAssignerTool";
+import {TextZoneContentAssignerTool} from "./subtools/zoneContainerEditor/TextZoneContentAssignerTool";
 import {TemplateMiniatorizerTool} from "./TemplateMiniatorizerTool";
 import {Observer} from "../pattern/observer/Observer";
-import {ZoneContainerMediaEditorTool} from "./subtools/zoneContainerEditor/ZoneContainerMediaEditorTool";
-import {ZoneContainerPriceEditorTool} from "./subtools/zoneContainerEditor/ZoneContainerPriceEditorTool";
+import {MediaZoneContentAssignerTool} from "./subtools/zoneContainerEditor/MediaZoneContentAssignerTool";
+import {PriceZoneContentAssignerTool} from "./subtools/zoneContainerEditor/PriceZoneContentAssignerTool";
 
 
 class ZoneContainerEditorTool extends TemplateTool{
@@ -25,10 +25,10 @@ class ZoneContainerEditorTool extends TemplateTool{
         this.activeTool(true);
         this.addSubTools(
             new TemplateMiniatorizerTool(this.interface,this.$location.container.find('.miniature')),
-            new ZoneContainerBackgroundEditorTool(this.interface,this),
-            new ZoneContainerTextEditorTool(this.interface,this),
-            new ZoneContainerMediaEditorTool(this.interface,this),
-            new ZoneContainerPriceEditorTool(this.interface,this)
+            new ZoneBackgroundAssignerTool(this.interface,this),
+            new TextZoneContentAssignerTool(this.interface,this),
+            new MediaZoneContentAssignerTool(this.interface,this),
+            new PriceZoneContentAssignerTool(this.interface,this)
             );
         this.subTools['TemplateMiniatorizerTool'].activeTool(true)
         this.buildZoneContainerMiniature();
@@ -46,12 +46,8 @@ class ZoneContainerEditorTool extends TemplateTool{
 
 
     buildZoneContainerMiniature(){
-
-        console.log(this.subTools)
         this.templateMiniature = this.subTools['TemplateMiniatorizerTool'].createMiniature();
         this.templateMiniature.append();
-        console.log(this.templateMiniature)
-
     }
 
 
@@ -65,7 +61,8 @@ class ZoneContainerEditorTool extends TemplateTool{
             this.$location.window.closeIcon.$location.on('click.onClickCloseZoneContainerWindow',()=>{
                 this.$location.container.addClass('none')
                 this.subTools['TemplateMiniatorizerTool'].miniature.resetZonesSelected();
-                this.interface.toolBox.activeToolInToolBox(this.name,false)
+
+                this.interface.toolBox.toolsList[this.name].activeTool(false)
             })
         }
     }

@@ -8,14 +8,14 @@ import {UnitePriceIncrusteContent} from "../../../../objects/incrustesContents/p
 import {EuroPriceIncrusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/EuroPriceIncrusteContent";
 import {SeparateurPriceIncrusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/SeparateurPriceIncrusteContent";
 import {CentimePriceIncusteContent} from "../../../../objects/incrustesContents/priceIncrustContents/centimePriceIncrusteContent/CentimePriceIncrusteContent";
-import {ZoneContainerPriceIncrustePriceStyleCreatorTool} from "./ZoneContainerPriceIncrustePriceStyleCreatorTool";
-import {ZoneContainerPriceIncrusteRuptureStyleCreatorTool} from "./ZoneContainerPriceIncrusteRuptureStyleCreatorTool";
+import {PriceZoneSelectorTool} from "./PriceZoneSelectorTool";
+import {PriceZoneContentAssignerRuptureIncrusteCreatorTool} from "./PriceZoneContentAssignerRuptureIncrusteCreatorTool";
 import {Observable} from "../../../../pattern/observer/Observable";
 var stringify = require('json-stringify-safe');
 
 
 
-class ZoneContainerPriceIncrusteStyleCreatorTool extends ZoneContainerPriceEditorSubTool{
+class PriceZoneIncrusteCreatorTool extends ZoneContainerPriceEditorSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
 
@@ -24,8 +24,8 @@ class ZoneContainerPriceIncrusteStyleCreatorTool extends ZoneContainerPriceEdito
         this.$location.container.incrustTypeSelectionRadios = this.$location.container.find('form#type-incrust input[type=radio]');
         this.incrustTarget = null;
         this.addSubTools(
-            new ZoneContainerPriceIncrustePriceStyleCreatorTool(this.interface,this),
-            new ZoneContainerPriceIncrusteRuptureStyleCreatorTool(this.interface,this)
+            new PriceZoneSelectorTool(this.interface,this),
+            new PriceZoneContentAssignerRuptureIncrusteCreatorTool(this.interface,this)
         );
         this.styleCreatorObservable = new Observable();
         //this.functionToExecuteOnSelectedZone = this.setMediaToSelectedZone;
@@ -67,4 +67,4 @@ class ZoneContainerPriceIncrusteStyleCreatorTool extends ZoneContainerPriceEdito
     }
 }
 
-export {ZoneContainerPriceIncrusteStyleCreatorTool}
+export {PriceZoneIncrusteCreatorTool}
