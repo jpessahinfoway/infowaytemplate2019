@@ -23,6 +23,11 @@ class PriceZoneIncrusteCreatorTool extends ZoneContainerPriceEditorSubTool{
         this.$location.container = $('.modal.background-editor .right-container #price-incrust-style-creator');
         this.$location.container.incrustTypeSelectionRadios = this.$location.container.find('form#type-incrust input[type=radio]');
         this.incrustTarget = null;
+        this.subTools = {
+            'PriceZoneSelectorTool' : null,
+            'PriceZoneContentAssignerRuptureIncrusteCreatorTool' : null
+        };
+
         this.addSubTools(
             new PriceZoneSelectorTool(this.interface,this),
             new PriceZoneContentAssignerRuptureIncrusteCreatorTool(this.interface,this)

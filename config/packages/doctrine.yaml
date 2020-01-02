@@ -10,40 +10,40 @@ doctrine:
 #            host: 127.0.0.1
 #            port: 3306
 #        url: '%env(resolve:DATABASE_URL)%'
-        default_connection: default
+        default_connection: template
         connections:
-            default:
+            template:
                 # configure these for your database server
                 url: '%env(resolve:DATABASE_URL)%'
                 driver: 'pdo_mysql'
                 server_version: '5.7'
                 charset: utf8mb4
-            addons:
+            ressources:
                 # configure these for your database server
                 url: '%env(resolve:DATABASE_SECONDARY_URL)%'
                 driver: 'pdo_mysql'
                 server_version: '5.7'
                 charset: utf8mb4
     orm:
-        default_entity_manager: default
+        default_entity_manager: template
         entity_managers:
-            default:
-                connection: default
+            template:
+                connection: template
                 mappings:
                     App:
                         is_bundle: false
                         type: annotation
-                        dir: '%kernel.project_dir%/src/Entity'
-                        prefix: 'App\Entity'
-                        alias: App
+                        dir: '%kernel.project_dir%/src/Entity/Template'
+                        prefix: 'App\Entity\Template'
+                        alias: Template
 
-            addons:
-                connection: addons
+            ressources:
+                connection: ressources
                 mappings:
                     AddOn:
                         is_bundle: false
                         type: annotation
-                        dir: '%kernel.project_dir%/src/Bundles/AddOnBundle/src/Entity'
-                        prefix: 'AddOn\Entity'
-                        alias: AddOn
+                        dir: '%kernel.project_dir%/src/Entity/TemplateRessources'
+                        prefix: 'App\Entity\TemplateRessources'
+                        alias: TemplateRessources
 

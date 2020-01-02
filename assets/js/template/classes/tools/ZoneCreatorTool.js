@@ -29,12 +29,12 @@ class ZoneCreatorTool extends TemplateTool{
         this.cursorPosition = {
             template : null,
             referent : null
-        };
-        this.addSubTools(
-            new ZonePriceCreatorTool(this.interface,this),
-            new ZoneTextCreatorTool(this.interface,this),
-            new ZoneMediaCreatorTool(this.interface,this)
-        );
+        } ;
+        this.subTools = {
+            'ZonePriceCreatorTool'  : null,
+            'ZoneTextCreatorTool'   : null,
+            'ZoneMediaCreatorTool'  : null
+        } ;
         this.zoneCreationObservable = new Observable();
         this.referent = this.interface.currentTemplate
         this.currentZoneMaximumSize = {

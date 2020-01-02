@@ -1,0 +1,12 @@
+{% extends 'stages/index.html.twig' %}
+{% block javascripts %}
+    {{ parent() }}
+    {{ encore_entry_script_tags('stage1') }}
+{% endblock %}
+{% block zone_infos_modal %}
+    {% include 'stages/modals/zone_infos_modal.html.twig' %}
+{% endblock %}
+
+{% block main_tools_menu %}
+    {% include 'stages/menus/main_tools_menu.html.twig' %}
+{% endblock %}

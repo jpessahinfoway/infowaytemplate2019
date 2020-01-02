@@ -8,14 +8,12 @@ class TemplateMiniatorizerTool extends PermanentTool{
         this.description = 'Creé la miniature du template avec les zones';
         this.$eventLocation=$('body');
         this.miniature = null;
-        this.$location = {
-            container : $location,
-            miniature : $location.find('.container')
-        }
+        this.$location.container = $('.modal.background-editor').find('.miniature');
+        this.$location.miniature = this.$location.container.find('.container');
         // this.addSubTools(template);
     }
 
-    createMiniature(){
+    createMiniature($location){
         this.miniature= new TemplateMiniature(this.interface.currentTemplate,this.$location.miniature).createMiniature()
 
         return this.miniature
@@ -40,6 +38,7 @@ class TemplateMiniatorizerTool extends PermanentTool{
         }else{
             this.$location.container.addClass('none');
         }
+        return this
     }
 }
 

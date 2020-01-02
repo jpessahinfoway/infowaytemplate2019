@@ -28,9 +28,21 @@ class TemplateTool{
 
 
 
-    addSubTools(...subTools){
-        subTools.map(subTool => this.subTools[subTool.name]=subTool)
+    addSubTool(subTool){
+        console.log(subTool)
+        if (typeof subTool !== 'object' || ! ( subTool instanceof TemplateTool ) ) throw new Error('Tool non regnized. Please add a correct Tool')
+
+        let subToolName = subTool.constructor.name ;
+        if( ! Object. keys( this.subTools ). includes( subToolName ))throw new Error(` ${ subToolName } isn't a SubTool of  ${this.constructor.name}`)
+
+        return this.subTools[subTool.constructor.name] = subTool ;
     }
+
+    addSubTools(...subTools){
+        if(typeof subTools === 'undefined' || !Array. isArray(subTools) ) throw new Error('Bad Argument type. Must be an Array')
+        subTools. map(subTool => this. addSubTool( subTool ) )
+    }
+
 
     getCursorPositionInTemplate(e,$el) {
         let offsetElement = this.getOffset($el);
@@ -84,7 +96,6 @@ class TemplateTool{
     isActivated(){
         return this.activated;
     }
-
 
 
     activeTool(active=true){
