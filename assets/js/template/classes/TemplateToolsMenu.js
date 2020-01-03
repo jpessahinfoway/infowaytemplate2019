@@ -62,7 +62,7 @@ class TemplateToolsMenu{
     }
 
     attachTool(tool){
-        Object .values(tool.subTools).forEach(subTool => this.attachTool(subTool))
+        Object .values(tool.subTools). filter( tool => typeof tool === 'object' && tool instanceof  TemplateTool ). forEach(subTool => this.attachTool(subTool)  )
         if(this.$location.menu.find(`[data-tool=${tool.name}]`).length <1)return console.log(`no data-tool for the tool ${tool.name} founded please add once first `)
         this.toolsList[tool.name] = tool
     }

@@ -3,17 +3,7 @@
 namespace App\Controller;
 require __DIR__.'/../../vendor/autoload.php';
 
-use AddOn\Entity\CSSProperty;
-use AddOn\Entity\Incruste;
-use AddOn\Entity\IncrusteElement;
-use AddOn\Entity\IncrusteStyle;
-use AddOn\Entity\Model;
-use AddOn\Entity\ModelStyle;
-use AddOn\Entity\Property;
-use AddOn\Entity\Style;
-use App\Entity\Template;
-use App\Entity\Zone;
-use App\Form\TemplateType;
+
 use App\Service\CSSParser;
 use App\Service\IncrusteCSSHandler;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -77,7 +67,7 @@ class TemplateController extends AbstractController
      */
     public function loadCss($type)
     {
-        $entityManager = $this->getDoctrine()->getManager('addons');
+        $entityManager = $this->getDoctrine()->getManager('ressources');
         $allIncrustes = $entityManager->getRepository(Incruste::class)->findBy(['type' => $type ]);
 
         $incrusteCSSHandler = new IncrusteCSSHandler($allIncrustes);
@@ -91,7 +81,7 @@ class TemplateController extends AbstractController
      */
     public function testPage(SerializerInterface $serialize){
 
-        $entityManager = $this->getDoctrine()->getManager('addons');
+        $entityManager = $this->getDoctrine()->getManager('ressources');
         $allIncrustes = $entityManager->getRepository(Incruste::class)->findAll();
 
         $incrusteCSSHandler = new IncrusteCSSHandler($allIncrustes);
@@ -127,7 +117,7 @@ class TemplateController extends AbstractController
 
                 if($property !== NULL && $incrusteStyle['propertyWritting'] !== NULL){
 
-                    $incrusteContentStyle = new IncrusteStyle();
+                    $incrusteContentStyle = new \App\Entity\TemplateRessources\IncrusteStyle();
                     $incrusteContentStyle->setProperty($property);
                     $incrusteContentStyle->setValue($incrusteStyle['propertyWritting']);
                     $newIncrusteElement->addIncrusteStyle($incrusteContentStyle);
@@ -154,7 +144,7 @@ class TemplateController extends AbstractController
         }
 
 
-        $entityManager = $this->getDoctrine()->getManager('addons');
+        $entityManager = $this->getDoctrine()->getManager('ressources');
         $incrusteStyle = json_decode($request->get('incrusteStyle'),true);
 
 
@@ -224,25 +214,26 @@ class TemplateController extends AbstractController
     {
 
         $ressources = ['medias' => [] ];
-        $em = $this->getDoctrine()->getManager();
         $templateName = $request->get('name');
         $orientation = $request->get('orientation');
-        $template = $em->getRepository(template::class)->findAll();
+      /*  $template = $this->getDoctrine()
+        ->getRepository(Template::class)->findAll();
+*/
+        /*$allIncrustes = $this->getDoctrine()
+            ->getRepository(Incruste::class, 'templateressources')
+            ->findAll();*/
 
-        $entityManager = $this->getDoctrine()->getManager('addons');
-        $allIncrustes = $entityManager->getRepository(Incruste::class)->findAll();
 
-
-        $allIncrusteSortedByType = $classNames = [];
-
-        foreach($allIncrustes as $incruste){ $allIncrusteSortedByType[ $incruste->getType() ][]=$incruste; }
-
-        foreach($allIncrusteSortedByType as $type => $incrusteList){
-                $incrusteCSSHandler = new IncrusteCSSHandler($incrusteList);
-                $classNames[$type] = $incrusteCSSHandler->getIncrustesAndElementsClasses();
-
-        }
-
+//        $allIncrusteSortedByType = $classNames = [];
+//
+//        foreach($allIncrustes as $incruste){ $allIncrusteSortedByType[ $incruste->getType() ][]=$incruste; }
+//
+//        foreach($allIncrusteSortedByType as $type => $incrusteList){
+//                $incrusteCSSHandler = new IncrusteCSSHandler($incrusteList);
+//                $classNames[$type] = $incrusteCSSHandler->getIncrustesAndElementsClasses();
+//
+//        }
+//
         $rupturesSamples = ['il_revient_small', 'il_revient_medium','il_revient_big','indisponible_small','indisponible_medium','indisponible_big'];
         foreach($rupturesSamples as $indexRupture=>$rupture){
             $ressources['medias']['ruptures'][]=[
@@ -259,7 +250,6 @@ class TemplateController extends AbstractController
             'templateName'       => $templateName,
             'orientation'        => $orientation,
             'stageNumber'        => 2,
-            'classNames'         => $classNames,
             'ressources'        => $ressources
         ]);
     }

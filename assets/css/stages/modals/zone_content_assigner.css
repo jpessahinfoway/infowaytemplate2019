@@ -1,0 +1,11 @@
+
+
+.zone-bg-assign__pick_bg__content--pick-type--img__list--item{
+    width : 31%;
+}
+.zone_content_assigner .modal__content > div{
+    flex:0.5;
+}
+.zone-bg-assign__pick_bg__content--pick-type--img__list{
+    display:flex;
+}

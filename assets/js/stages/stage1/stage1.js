@@ -50,12 +50,13 @@ let toolsList = [
     toolBox. addTool( new ZoneDuplicatorTool(templateInterface)),
 
     toolBox. addTool(new ZoneContentAssignerTool(templateInterface ) )
-        .addSubTool( new TemplateMiniatorizerTool( templateInterface ) .activeTool( true ) .createMiniature( ).bind .append() )
-        .addSubTool( new ZoneBackgroundAssignerTool( templateInterface , this.$location.container .find( '.miniature' )) ),
+        //.addSubTool( new TemplateMiniatorizerTool( templateInterface ) .activeTool( true ) .createMiniature() .append() )
+     //   .addSubTool( new ZoneBackgroundAssignerTool( templateInterface ) )
 ] ;
 
 let mainToolsMenu = templateInterface.attachToolsMenu('mainToolsMenu', $('#main-toolbox')) ;
 
+console.log(toolsList)
 toolsList.forEach(tool => {
     if(typeof tool ==='object' && tool instanceof TemplateTool) mainToolsMenu.attachTool(tool)
 }) ;

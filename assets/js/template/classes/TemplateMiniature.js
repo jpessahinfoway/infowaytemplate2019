@@ -3,6 +3,8 @@ import {Observable} from "./pattern/observer/Observable";
 class TemplateMiniature{
     constructor(template,$location){
         this.scale = '0.3';
+        this.$location.container = null;
+        this.$location.miniature = null;
         this.$miniature = null;
         this.template = template;
         this.zonesSelected = [];
@@ -11,13 +13,51 @@ class TemplateMiniature{
             container : $location
         }
         this.zonesSelectedUpdatedObservable = new Observable()
+        this.init();
+        this.active(true) ;
         this.onClickselectZoneInMiniature(true);
     }
 
+
     createMiniature(){
-        this.$miniature =$(`<div class='template-miniature' id='${this.name}'></div>`);
-       // this.$miniature.width('calc(100%-10px)');
-        this.$miniature.height(this.template._attr.size.height * this.scale);
+        this.$location.miniature =$(`<div class='template-miniature'></div>`);
+        this.$location.miniature.css( "maxWidth", '100%' );
+        return this
+    }
+
+    updateMiniatureSize(){
+        this.scale = this.$location.miniature.width()/this.template.attr.size.width
+        let newHeight = this.template.attr.size.height * this.scale ;
+        this.$location.miniature.height(newHeight)
+    }
+    onResizeOfBrowzerUpdateMiniatureSize(active){
+        if(active){
+            $(window).on('resize.OnResizeOfBrowzerUpdateMiniatureSize',()=>{
+                this.updateMiniatureSize()
+            })
+        }else{
+            $(window).off('resize.OnResizeOfBrowzerUpdateMiniatureSize');
+        }
+    }
+    refreshMiniature(){
+
+    }
+
+    active(active){
+        this.onResizeOfBrowzerUpdateMiniatureSize(active)
+    }
+
+    init(){
+        this.createMiniature()
+            .append()
+            .updateMiniatureSize()
+    }
+
+    calculSize(){
+
+    }
+    append($location) {
+        this.$location.container.append(this.$location.miniature)
         return this
     }
 
@@ -91,7 +131,7 @@ class TemplateMiniature{
 
         let location=null
         if($location!==null){
-            this.setLocation($location)
+            this.setLocation($location) ;
             location = $location
         }else{
             location=this.$location.container

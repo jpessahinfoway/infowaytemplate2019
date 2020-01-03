@@ -3,6 +3,7 @@ class TemplateTool{
         this.interface = templateInterface;
         this.name = this.constructor.name;
         this.parentTool = {};
+        this.$location = {} ;
       //  this.jq = null;
         this.icon = null;
         this.visibleOnActivation = true;

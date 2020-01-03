@@ -28,6 +28,9 @@ body {
     height : 100%;
 }
 
+h2{
+    text-transform: uppercase;
+}
 /*h2 {
     position: relative;
     font-style: italic;
@@ -227,7 +230,7 @@ input[type="radio"], input[type="checkbox"] {
 .radios-group {
     display: flex;
     flex-direction: column;
-   /* margin-bottom: 15px;*/
+    /* margin-bottom: 15px;*/
 }
 .file-group {
     display: flex;
@@ -251,9 +254,9 @@ input[type="radio"], input[type="checkbox"] {
 }
 
 .file-group > p {
-  /*  font-size: 0.7rem;
-    margin-left: 5px;
-    color: #385b72;*/
+    /*  font-size: 0.7rem;
+      margin-left: 5px;
+      color: #385b72;*/
 }
 
 .radios-group > label {
@@ -303,7 +306,7 @@ img.loader{
     margin: 0 20px 0 0;
 }
 .checkbox {
-   /* margin-bottom: 5px;*/
+    /* margin-bottom: 5px;*/
 }
 
 /***************************************************/

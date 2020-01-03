@@ -2,54 +2,48 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="869b1863-c2d7-447a-8c37-f8b2e78912b4" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/stages/modals/modal_layout.html.twig" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_content_assigner.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/infowaytemplate.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/infowaytemplate.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/general/general.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/general/modals/modals.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/css/stages/modals/zone_content_assigner.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/stages/modals/layout/full_modal_layout.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/template_miniature.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_background_assigner/zone_background_assigner.html.twig" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_background_assigner/zone_background_assigner_choose_background.hmtl.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/css/other/general.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/other/general.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/general/general.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/general/general.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/interface/interface.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/interface/interface.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/stages/stage1/stage1.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/stages/stage1/stage1.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/TemplateMiniature.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/TemplateMiniature.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/TemplateModule.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/TemplateModule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/TemplateToolsMenu.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/TemplateToolsMenu.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/TemplateMiniatorizerTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/TemplateMiniatorizerTool.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContainerEditorTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContentAssignerTool.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneCreatorTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneCreatorTool.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/ZonePriorityManagerTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZonePriorityManagerTool.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneZoomOnTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneZoomOnTool.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/parent/TemplateTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/parent/TemplateTool.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/zoneContainerPriceEditor/PriceZoneIncrusteCreatorTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/zoneContainerPriceEditor/PriceZoneIncrusteCreatorTool.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/parent/ZoneContainerEditorSubTool.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/parent/ZoneContainerEditorSubTool.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/packages/doctrine.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/packages/doctrine.yaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/services.yaml" beforeDir="false" afterPath="$PROJECT_DIR$/config/services.yaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bundles/AddOnBundle/src/Entity/CSSProperty.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TemplateRessources/CSSProperty.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bundles/AddOnBundle/src/Entity/Incruste.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TemplateRessources/Incruste.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bundles/AddOnBundle/src/Entity/IncrusteElement.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TemplateRessources/IncrusteElement.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bundles/AddOnBundle/src/Entity/IncrusteStyle.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TemplateRessources/IncrusteStyle.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Bundles/AddOnBundle/src/Repository/IncrusteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/TemplateRessources/IncrusteRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Template.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Template/Template.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Entity/Zone.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Entity/Template/Zone.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AddOn/Entity/IncrusteRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AddOn/Entity/IncrusteStyleRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/AddOn/Entity/ModelStyleRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/Entity/CSSPropertyRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TemplateRessources/CSSPropertyRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/Entity/IncrusteElementRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TemplateRessources/IncrusteElementRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/Entity/IncrusteStyleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TemplateRessources/IncrusteStyleRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/Entity/ModelStyleRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TemplateRessources/ModelStyleRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/Entity/PropertyRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/TemplateRessources/PropertyRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/EntityRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/IncrusteRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/assets/css/interface/zones.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ModelStyleRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/PropertyRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/TemplateRepository.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Repository/ZonesRepository.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Repository/Template/ZonesRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/TemplateController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/TemplateController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Template/Template.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/Template/Zone.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/TemplateRessources/CSSProperty.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/TemplateRessources/Incruste.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/TemplateRessources/IncrusteElement.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/TemplateRessources/IncrusteRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Entity/TemplateRessources/IncrusteStyle.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/Template/TemplateRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/Template/ZonesRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TemplateRessources/CSSPropertyRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TemplateRessources/IncrusteElementRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TemplateRessources/IncrusteStyleRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TemplateRessources/ModelStyleRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Repository/TemplateRessources/PropertyRepository.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TemplateRessources/Repository/CSSPropertyRepository.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/base.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/base.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/infowaytemplate/base.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/infowaytemplate/general/modals/choice_div.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/general/modals/choice_div.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/infowaytemplate/interface/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stages/index.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/infowaytemplate/interface/menus/template_navmenu_top.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stages/menus/template_navmenu_top.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/infowaytemplate/interface/modals/zone_infos_modal.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stages/modals/zone_infos_modal.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/infowaytemplate/interface/workzone/workzone.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stages/workzone/workzone.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/infowaytemplate/stages/menus/main_tools_menu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stages/menus/main_tools_menu.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/infowaytemplate/stages/menus/zone_content_assigner_tools_menu.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stages/menus/zone_content_assigner_tools_menu.html.twig" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/infowaytemplate/stages/modals/zone_infos_modal.html.twig" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/infowaytemplate/stages/stage1/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stages/stage1/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/stages/index.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stages/index.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/stages/modals/modal_layout.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stages/modals/layout/modal_layout.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_content_assigner.html.twig" beforeDir="false" afterPath="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_content_assigner.html.twig" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/stages/stage1/index.html.twig" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -78,7 +72,7 @@
     <session id="-1463559350">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="10" />
+          <entry key="project.closed" value="11" />
           <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.1" value="1" />
           <entry key="project.open.time.10" value="1" />
@@ -88,71 +82,71 @@
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.5" value="1" />
           <entry key="project.open.time.6" value="5" />
-          <entry key="project.open.time.7" value="3" />
+          <entry key="project.open.time.7" value="4" />
           <entry key="project.open.time.8" value="1" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="20" />
+          <entry key="project.opened" value="21" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="css" value="207" />
-          <entry key="env" value="4" />
+          <entry key="css" value="217" />
+          <entry key="env" value="6" />
           <entry key="gitignore" value="6" />
           <entry key="html" value="5" />
           <entry key="jpg" value="1" />
-          <entry key="js" value="1342" />
+          <entry key="js" value="1350" />
           <entry key="json" value="12" />
           <entry key="lock" value="1" />
           <entry key="md" value="1" />
-          <entry key="php" value="246" />
+          <entry key="php" value="262" />
           <entry key="png" value="1" />
           <entry key="ts" value="5" />
-          <entry key="twig" value="234" />
+          <entry key="twig" value="256" />
           <entry key="xml" value="3" />
-          <entry key="yaml" value="52" />
+          <entry key="yaml" value="58" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="CSS" value="207" />
+          <entry key="CSS" value="217" />
           <entry key="HTML" value="5" />
           <entry key="Image" value="2" />
           <entry key="JSON" value="13" />
-          <entry key="JavaScript" value="1342" />
+          <entry key="JavaScript" value="1350" />
           <entry key="Markdown" value="1" />
-          <entry key="PHP" value="246" />
-          <entry key="PLAIN_TEXT" value="10" />
-          <entry key="Twig" value="234" />
+          <entry key="PHP" value="262" />
+          <entry key="PLAIN_TEXT" value="12" />
+          <entry key="Twig" value="256" />
           <entry key="TypeScript" value="5" />
           <entry key="XML" value="3" />
-          <entry key="YAML" value="52" />
+          <entry key="YAML" value="58" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="css" value="11461" />
+          <entry key="css" value="11816" />
           <entry key="dummy" value="60" />
-          <entry key="env" value="85" />
+          <entry key="env" value="113" />
           <entry key="gitignore" value="31" />
-          <entry key="js" value="195564" />
+          <entry key="js" value="197223" />
           <entry key="json" value="167" />
-          <entry key="php" value="21760" />
-          <entry key="twig" value="13087" />
+          <entry key="php" value="22113" />
+          <entry key="twig" value="14135" />
           <entry key="txt" value="21" />
-          <entry key="yaml" value="641" />
+          <entry key="yaml" value="868" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="CSS" value="11461" />
+          <entry key="CSS" value="11816" />
           <entry key="HTML" value="52" />
           <entry key="JSON" value="167" />
-          <entry key="JavaScript" value="195512" />
-          <entry key="PHP" value="21760" />
-          <entry key="PLAIN_TEXT" value="197" />
-          <entry key="Twig" value="13087" />
-          <entry key="YAML" value="641" />
+          <entry key="JavaScript" value="197171" />
+          <entry key="PHP" value="22113" />
+          <entry key="PLAIN_TEXT" value="225" />
+          <entry key="Twig" value="14135" />
+          <entry key="YAML" value="868" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -162,7 +156,7 @@
       </usages-collector>
       <usages-collector id="statistics.php.new.class">
         <counts>
-          <entry key="PHP Class.type" value="5" />
+          <entry key="PHP Class.type" value="7" />
         </counts>
       </usages-collector>
     </session>
@@ -170,113 +164,92 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/zoneContainerPriceEditor/PriceZoneIncrusteSelectorTool.js">
+        <entry file="file://$PROJECT_DIR$/templates/stages/modals/layout/full_modal_layout.html.twig">
           <provider selected="true" editor-type-id="text-editor">
             <state>
+              <caret column="36" selection-start-column="36" selection-end-column="36" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/stages/modals/layout/modal_layout.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="51">
+              <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_background_assigner/zone_background_assigner_choose_background.hmtl.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
               <folding>
-                <element signature="e#0#89#0" expanded="true" />
+                <element signature="e#603#609#1#HTML" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/zoneContainerPriceEditor/PriceZoneIncrusteCreatorTool.js">
+        <entry file="file://$PROJECT_DIR$/assets/css/modals/modals.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#54#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="153">
+              <caret line="42" selection-start-line="42" selection-end-line="42" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/assets/js/stages/stage1/stage1.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="52" column="127" selection-start-line="52" selection-start-column="127" selection-end-line="52" selection-end-column="127" />
-              <folding>
-                <element signature="e#0#76#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/TemplateMiniatorizerTool.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="20" selection-start-line="20" selection-end-line="20" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneZoomOnTool.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
-              <folding>
-                <element signature="e#0#51#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContentAssignerTool.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="391">
-              <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="52" />
-              <folding>
-                <element signature="e#0#50#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/parent/TemplateTool.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneCreatorTool.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-              <folding>
-                <element signature="e#0#53#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZonePriorityManagerTool.js">
+        <entry file="file://$PROJECT_DIR$/assets/css/general/modals/modals.css">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="340">
-              <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-              <folding>
-                <element signature="e#0#50#0" expanded="true" />
-              </folding>
+              <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneBackgroundAssignerTool.js">
+        <entry file="file://$PROJECT_DIR$/assets/css/stages/modals/zone_infos_modal.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <folding>
-                <element signature="e#0#79#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-41" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/css/stages/modals/zone_content_assigner.css">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_content_assigner.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="1" column="62" selection-start-line="1" selection-start-column="62" selection-end-line="1" selection-end-column="62" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/stages/index.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_background_assigner/zone_background_assigner.html.twig">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="2" column="43" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
             </state>
           </provider>
         </entry>
@@ -295,10 +268,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>removec</find>
-      <find>setLo</find>
-      <find>appendIt</find>
-      <find>outOfParentZoneLimit</find>
       <find>$locatio</find>
       <find>debugger</find>
       <find>$zone</find>
@@ -325,6 +294,10 @@
       <find>reposito</find>
       <find>Zonesrepo</find>
       <find>background</find>
+      <find>addons</find>
+      <find>Incruste</find>
+      <find>zone_content_assigner.html.twig</find>
+      <find>zone_background_assigner.html.twig</find>
     </findStrings>
     <replaceStrings>
       <replace>custom_select</replace>
@@ -343,10 +316,12 @@
       <replace>$location</replace>
       <replace>$container</replace>
       <replace>this.$container</replace>
+      <replace>ressources</replace>
     </replaceStrings>
     <dirStrings>
-      <dir>C:\wamp64\www\infowaytemplate</dir>
       <dir>C:\wamp64\www\infowaytemplate\assets\js</dir>
+      <dir>C:\wamp64\www\infowaytemplate</dir>
+      <dir>C:\wamp64\www\infowaytemplate\templates</dir>
     </dirStrings>
   </component>
   <component name="Git.Settings">
@@ -355,57 +330,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/templates/infowaytemplate/stages/menus/main_tools_menu.html.twig" />
-        <option value="$PROJECT_DIR$/assets/css/interface/menus/menu_toolsbars.css" />
-        <option value="$PROJECT_DIR$/assets/css/general/reset.css" />
-        <option value="$PROJECT_DIR$/assets/js/general/general.js" />
-        <option value="$PROJECT_DIR$/templates/infowaytemplate/interface/index.html.twig" />
-        <option value="$PROJECT_DIR$/assets/css/stages/modals/zone_infos_modal.css" />
-        <option value="$PROJECT_DIR$/assets/js/stages/stage2/stage2.js" />
-        <option value="$PROJECT_DIR$/assets/js/stages/stage3/stage3.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/TemplateToolBox.js" />
-        <option value="$PROJECT_DIR$/webpack.config.js" />
-        <option value="$PROJECT_DIR$/assets/js/interface/classes/TemplateInterface.js" />
-        <option value="$PROJECT_DIR$/assets/css/stages/zones.css" />
-        <option value="$PROJECT_DIR$/assets/css/interface/zones.css.ts" />
-        <option value="$PROJECT_DIR$/assets/css/interface/zones.css" />
-        <option value="$PROJECT_DIR$/assets/js/interface/interface.js" />
-        <option value="$PROJECT_DIR$/templates/infowaytemplate/stages/stage1/index.html.twig" />
-        <option value="$PROJECT_DIR$/src/Repository/Entity/TemplateRepository.php" />
-        <option value="$PROJECT_DIR$/src/Repository/TemplateRepository.php" />
-        <option value="$PROJECT_DIR$/config/services.yaml" />
-        <option value="$PROJECT_DIR$/src/Entity/TemplateRessources/CSSProperty.php" />
-        <option value="$PROJECT_DIR$/src/Repository/TemplateRessources/CSSPropertyRepository.php" />
-        <option value="$PROJECT_DIR$/src/Repository/TemplateRessources/IncrusteElementRepository.php" />
         <option value="$PROJECT_DIR$/src/Repository/TemplateRessources/IncrusteStyleRepository.php" />
         <option value="$PROJECT_DIR$/src/Repository/TemplateRessources/ModelStyleRepository.php" />
         <option value="$PROJECT_DIR$/src/Repository/TemplateRessources/PropertyRepository.php" />
-        <option value="$PROJECT_DIR$/src/Entity/TemplateRessources/Incruste.php" />
         <option value="$PROJECT_DIR$/src/Entity/TemplateRessources/IncrusteElement.php" />
-        <option value="$PROJECT_DIR$/src/Repository/Template/ZonesRepository.php" />
         <option value="$PROJECT_DIR$/src/Entity/Template/Zone.php" />
         <option value="$PROJECT_DIR$/src/Entity/Template/Template.php" />
         <option value="$PROJECT_DIR$/composer.json" />
         <option value="$PROJECT_DIR$/src/Entity/TemplateRessources/IncrusteStyle.php" />
-        <option value="$PROJECT_DIR$/config/packages/doctrine.yaml" />
         <option value="$PROJECT_DIR$/src/Repository/Template/TemplateRepository.php" />
         <option value="$PROJECT_DIR$/templates/stages/stage1/index.html.twig" />
-        <option value="$PROJECT_DIR$/templates/base.html.twig" />
-        <option value="$PROJECT_DIR$/templates/stages/modals/modal_layout.html.twig" />
         <option value="$PROJECT_DIR$/src/Controller/StagesController.php" />
-        <option value="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_content_assigner.html.twig" />
         <option value="$PROJECT_DIR$/templates/stages/menus/main_tools_menu.html.twig" />
         <option value="$PROJECT_DIR$/templates/stages/menus/zone_content_assigner_tools_menu.html.twig" />
-        <option value="$PROJECT_DIR$/templates/stages/index.html.twig" />
         <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContainerEditorTool.js" />
         <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneCreatorTool.js" />
         <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZonePriorityManagerTool.js" />
         <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneZoomOnTool.js" />
         <option value="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/zoneContainerPriceEditor/PriceZoneIncrusteCreatorTool.js" />
-        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/parent/TemplateTool.js" />
         <option value="$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContentAssignerTool.js" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/parent/TemplateTool.js" />
         <option value="$PROJECT_DIR$/assets/js/template/classes/tools/TemplateMiniatorizerTool.js" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/TemplateMiniature.js" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/parent/ZoneContainerEditorSubTool.js" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/TemplateToolsMenu.js" />
         <option value="$PROJECT_DIR$/assets/js/stages/stage1/stage1.js" />
+        <option value="$PROJECT_DIR$/templates/base.html.twig" />
+        <option value="$PROJECT_DIR$/config/services.yaml" />
+        <option value="$PROJECT_DIR$/src/Repository/TemplateRessources/IncrusteRepository.php" />
+        <option value="$PROJECT_DIR$/src/Entity/TemplateRessources/Incruste.php.css" />
+        <option value="$PROJECT_DIR$/.env" />
+        <option value="$PROJECT_DIR$/config/packages/doctrine.yaml" />
+        <option value="$PROJECT_DIR$/src/Entity/TemplateRessources/Incruste.php" />
+        <option value="$PROJECT_DIR$/src/Repository/Template/ZonesRepository.php" />
+        <option value="$PROJECT_DIR$/src/Controller/TemplateController.php" />
+        <option value="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_backgorund_assigner.html.twig" />
+        <option value="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_background_assigner.html.twig" />
+        <option value="$PROJECT_DIR$/templates/stages/modals/modal_layout.html.twig" />
+        <option value="$PROJECT_DIR$/assets/js/template/classes/TemplateModule.js" />
+        <option value="$PROJECT_DIR$/templates/stages/modals/layout/full_modal_layout.html.twig" />
+        <option value="$PROJECT_DIR$/assets/css/other/general.css" />
+        <option value="$PROJECT_DIR$/assets/css/general/general.css" />
+        <option value="$PROJECT_DIR$/assets/js/general/general.js" />
+        <option value="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/template_miniature.html.twig" />
+        <option value="$PROJECT_DIR$/assets/js/interface/interface.js" />
+        <option value="$PROJECT_DIR$/templates/stages/index.html.twig" />
+        <option value="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_background_assigner/zone_background_assigner.html.twig" />
+        <option value="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_content_assigner.html.twig" />
+        <option value="$PROJECT_DIR$/assets/css/stages/modals/zone_content_assigner.css" />
+        <option value="$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_background_assigner/zone_background_assigner_choose_background.hmtl.twig" />
+        <option value="$PROJECT_DIR$/templates/stages/modals/layout/modal_layout.html.twig" />
+        <option value="$PROJECT_DIR$/assets/css/general/modals/modals.css" />
       </list>
     </option>
   </component>
@@ -536,9 +511,9 @@
       <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
     </include_path>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="329" />
-    <option name="y" value="-20" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-287" />
+    <option name="y" value="117" />
     <option name="width" value="2157" />
     <option name="height" value="1100" />
   </component>
@@ -568,6 +543,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -584,7 +560,57 @@
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="general" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="general" type="462c0819:PsiDirectoryNode" />
+              <item name="modals" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="other" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="stages" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="stages" type="462c0819:PsiDirectoryNode" />
+              <item name="modals" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
+              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="general" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
@@ -598,73 +624,41 @@
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
               <item name="assets" type="462c0819:PsiDirectoryNode" />
               <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="interface" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="stages" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="interface" type="462c0819:PsiDirectoryNode" />
-              <item name="tools" type="462c0819:PsiDirectoryNode" />
+              <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="tools" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Entity" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="tools" type="462c0819:PsiDirectoryNode" />
-              <item name="subtools" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Migrations" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="tools" type="462c0819:PsiDirectoryNode" />
-              <item name="subtools" type="462c0819:PsiDirectoryNode" />
-              <item name="zoneContainerEditor" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="assets" type="462c0819:PsiDirectoryNode" />
-              <item name="js" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="classes" type="462c0819:PsiDirectoryNode" />
-              <item name="tools" type="462c0819:PsiDirectoryNode" />
-              <item name="subtools" type="462c0819:PsiDirectoryNode" />
-              <item name="zoneContainerEditor" type="462c0819:PsiDirectoryNode" />
-              <item name="zoneContainerPriceEditor" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="Repository" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
@@ -676,13 +670,6 @@
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="stages" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="stages" type="462c0819:PsiDirectoryNode" />
-              <item name="menus" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
@@ -696,26 +683,13 @@
               <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
               <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="stages" type="462c0819:PsiDirectoryNode" />
-              <item name="stage1" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="infowaytemplate" type="b2602c69:ProjectViewProjectNode" />
-              <item name="infowaytemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="templates" type="462c0819:PsiDirectoryNode" />
-              <item name="template" type="462c0819:PsiDirectoryNode" />
-              <item name="stages" type="462c0819:PsiDirectoryNode" />
+              <item name="modals" type="462c0819:PsiDirectoryNode" />
+              <item name="layout" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -735,19 +709,19 @@
     <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\PhpStorm 2018.2.5\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\wamp64\www\infowaytemplate\templates\stages\modals\layout" />
+      <recent name="C:\wamp64\www\infowaytemplate\templates\stages\modals\zone_content_assigners\zone_background_assigner" />
+      <recent name="C:\wamp64\www\infowaytemplate\src\Repository\TemplateRessources" />
+      <recent name="C:\wamp64\www\infowaytemplate\templates\general" />
+      <recent name="C:\wamp64\www\infowaytemplate\templates\stages\workzone" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\wamp64\www\infowaytemplate\src\Entity\TemplateRessources" />
       <recent name="C:\wamp64\www\infowaytemplate\assets\js\interface\tools" />
       <recent name="C:\wamp64\www\infowaytemplate\templates\infowaytemplate\stages\modals" />
       <recent name="C:\wamp64\www\infowaytemplate\templates\infowaytemplate\general\modals" />
       <recent name="C:\wamp64\www\infowaytemplate\assets\js\template\classes\tools\subtools\zoneContainerEditor" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\wamp64\www\infowaytemplate\templates\general" />
-      <recent name="C:\wamp64\www\infowaytemplate\templates\stages\workzone" />
-      <recent name="C:\wamp64\www\infowaytemplate\templates\stages\menus" />
-      <recent name="C:\wamp64\www\infowaytemplate\templates\stages" />
-      <recent name="C:\wamp64\www\infowaytemplate\templates" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -791,7 +765,8 @@
       <workItem from="1575970197778" duration="27150000" />
       <workItem from="1576056533143" duration="6308000" />
       <workItem from="1576062870736" duration="206773000" />
-      <workItem from="1577798798170" duration="32367000" />
+      <workItem from="1577798798170" duration="38196000" />
+      <workItem from="1578048285902" duration="20109000" />
     </task>
     <task id="LOCAL-00001" summary="css zone flex">
       <created>1569571566982</created>
@@ -804,7 +779,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="1369016000" />
+    <option name="totallyTimeSpent" value="1394954000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -816,10 +791,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <frame x="-287" y="117" width="2157" height="1100" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14232409" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.23700525" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -832,7 +807,7 @@
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.329718" />
-      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49946582" visible="true" weight="0.2657267" />
+      <window_info anchor="bottom" id="Terminal" order="10" sideWeight="0.49946582" visible="true" weight="0.2536232" />
       <window_info anchor="bottom" id="Event Log" order="11" sideWeight="0.5005342" side_tool="true" weight="0.38801712" />
       <window_info anchor="bottom" id="File Transfer" order="12" visible="true" weight="0.32919255" />
       <window_info anchor="bottom" id="Messages" order="13" weight="0.329718" />
@@ -882,321 +857,30 @@
     <option name="LAST_COMMIT_MESSAGE" value="css zone flex" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/config/packages/doctrine.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="418">
-          <caret line="40" column="38" selection-start-line="40" selection-start-column="38" selection-end-line="40" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/TemplateRessources/CSSProperty.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="10" column="36" selection-start-line="10" selection-start-column="36" selection-end-line="10" selection-end-column="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/TemplateRessources/IncrusteStyle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/TemplateRessources/IncrusteElement.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/Entity/IncrusteElementRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-245" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/Entity/IncrusteStyleRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-245" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/AddOn/Entity/IncrusteRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/AddOn/Entity/IncrusteStyleRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-245" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/AddOn/Entity/ModelStyleRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-245" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/EntityRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-211">
-          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="17" />
-          <folding>
-            <element signature="e#34#51#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/ModelStyleRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-245" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/PropertyRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-245" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/IncrusteRepository.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/Template/ZonesRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="22" column="59" selection-start-line="22" selection-start-column="59" selection-end-line="22" selection-end-column="59" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/Template/TemplateRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="442">
-          <caret line="29" selection-start-line="29" selection-end-line="29" />
-          <folding>
-            <element signature="e#43#76#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/TemplateRessources/CSSPropertyRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
-          <folding>
-            <element signature="e#53#99#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/TemplateRessources/IncrusteElementRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-228">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/TemplateRessources/IncrusteStyleRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Repository/TemplateRessources/ModelStyleRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="44" selection-start-line="2" selection-start-column="44" selection-end-line="2" selection-end-column="44" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Entity/Template/Template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="21" selection-start-line="2" selection-start-column="21" selection-end-line="2" selection-end-column="21" />
-          <folding>
-            <element signature="e#39#87#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/accueil/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/infowaytemplate/interface/modals/zone_infos_modal.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="70" selection-start-line="23" selection-start-column="70" selection-end-line="23" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/infowaytemplate/base.html.twig">
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/TemplateMiniatorizerTool.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
-          <caret line="22" selection-end-line="22" />
+          <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/stages/workzone/workzone.html.twig">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/general/modals/choice_div.html.twig">
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/TemplateMiniature.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="6" selection-start-line="13" selection-start-column="6" selection-end-line="13" selection-end-column="6" />
+        <state relative-caret-position="646">
+          <caret line="38" column="73" selection-start-line="38" selection-start-column="73" selection-end-line="38" selection-end-column="73" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/AccueilController.php">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_content_assigner.html.twig">
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/parent/PermanentTool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="12" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/template/model.html.twig">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/template/stages/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="98" selection-start-line="98" selection-end-line="105" selection-end-column="14" />
-          <folding>
-            <element signature="n#div#2;n#body#0;n#html#0;n#!!top" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/stages/modals/zone_infos_modal.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Controller/StagesController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="18" />
-          <folding>
-            <element signature="e#34#67#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/stages/menus/main_tools_menu.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="12" selection-start-line="1" selection-start-column="12" selection-end-line="1" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/stages/menus/template_navmenu_top.html.twig">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/stages/modals/modal_layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/stages/menus/zone_content_assigner_tools_menu.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/template/test.html.twig">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/template/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="16" selection-start-line="13" selection-start-column="16" selection-end-line="13" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/stages/stage1/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" selection-start-line="1" selection-end-line="4" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/stages/index.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="51" selection-start-line="7" selection-start-column="51" selection-end-line="7" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/IncrusteStyle.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/ZoneBackgroundAssignerTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#79#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneCreatorTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#53#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZonePriorityManagerTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/parent/TemplateTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="31" column="28" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/zoneContainerPriceEditor/PriceZoneIncrusteCreatorTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-          <folding>
-            <element signature="e#0#54#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/zoneContainerPriceEditor/PriceZoneIncrusteSelectorTool.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#89#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="34">
+          <caret line="2" column="36" selection-start-line="2" selection-start-column="36" selection-end-line="2" selection-end-column="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneZoomOnTool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
+        <state relative-caret-position="153">
           <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
           <folding>
             <element signature="e#0#51#0" expanded="true" />
@@ -1206,28 +890,323 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZoneContentAssignerTool.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="52" />
+        <state relative-caret-position="51">
+          <caret line="9" column="45" selection-start-line="9" selection-start-column="45" selection-end-line="9" selection-end-column="45" />
           <folding>
             <element signature="e#0#50#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/TemplateMiniatorizerTool.js">
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/parent/TemplateTool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="6" selection-start-column="6" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/ZonePriorityManagerTool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="20" column="11" selection-start-line="20" selection-start-column="11" selection-end-line="20" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/tools/subtools/zoneContainerEditor/parent/ZoneContainerEditorSubTool.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="289">
+          <caret line="17" column="36" selection-start-line="17" selection-start-column="36" selection-end-line="17" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#61#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/TemplateToolsMenu.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="382">
+          <caret line="64" column="47" selection-start-line="64" selection-start-column="47" selection-end-line="64" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#57#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/template/stages/windows/associate-window.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/AccueilController.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/StagesController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="280">
+          <caret line="20" column="41" selection-start-line="20" selection-start-column="41" selection-end-line="20" selection-end-column="41" />
+          <folding>
+            <element signature="e#34#67#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/TemplateRessources/IncrusteElementRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/TemplateRessources/IncrusteRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="4" selection-start-line="4" selection-start-column="4" selection-end-line="4" selection-end-column="4" />
+          <folding>
+            <element signature="e#53#96#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/var/cache/dev/doctrine/orm/Proxies/__CG__AppEntityTemplateRessourcesIncruste.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/TemplateRessources/Incruste.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#49#97#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/security.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/routing.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/routes.yaml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/services.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.env">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="370">
+          <caret line="27" column="72" selection-start-line="27" selection-start-column="62" selection-end-line="27" selection-end-column="72" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/packages/doctrine.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="343">
+          <caret line="31" column="46" selection-start-line="31" selection-start-column="28" selection-end-line="31" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/TemplateRessources/CSSProperty.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="765">
+          <caret line="47" column="5" selection-start-line="47" selection-start-column="5" selection-end-line="47" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/TemplateRessources/IncrusteElement.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Entity/TemplateRessources/Incruste.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="50" column="5" lean-forward="true" selection-start-line="50" selection-start-column="5" selection-end-line="50" selection-end-column="5" />
+          <folding>
+            <element signature="e#47#95#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/Template/TemplateRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Repository/Template/ZonesRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/TemplateRessources/Repository/CSSPropertyRepository.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Controller/TemplateController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="224">
+          <caret line="236" selection-start-line="236" selection-end-line="236" />
+          <folding>
+            <element signature="e#81#107#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/stages/workzone/workzone.html.twig">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/stages/modals/zone_infos_modal.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-332">
+          <caret line="3" column="23" selection-start-line="3" selection-start-column="23" selection-end-line="3" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/template/classes/TemplateModule.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="50" column="56" selection-start-line="50" selection-start-column="56" selection-end-line="50" selection-end-column="56" />
+          <folding>
+            <element signature="e#0#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/general/reset.css">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/other/general.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="238">
-          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <caret line="29" selection-end-line="492" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/general/general.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="33" column="6" selection-start-line="33" selection-start-column="6" selection-end-line="33" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/general/general.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/template/stages/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-714">
+          <caret line="24" column="30" selection-start-line="24" selection-start-column="30" selection-end-line="24" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/template_miniature.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="49" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/assets/js/stages/stage1/stage1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="52" column="127" selection-start-line="52" selection-start-column="127" selection-end-line="52" selection-end-column="127" />
+        <state relative-caret-position="935">
+          <caret line="55" selection-start-line="55" selection-end-line="55" />
           <folding>
             <element signature="e#0#76#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/js/interface/interface.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="6" column="58" selection-start-line="6" selection-start-column="58" selection-end-line="6" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/base.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="272">
+          <caret line="16" column="59" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/stages/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="14" column="8" selection-start-line="14" selection-start-column="8" selection-end-line="14" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/stages/modals/layout/full_modal_layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret column="36" selection-start-column="36" selection-end-column="36" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_content_assigner.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="62" selection-start-line="1" selection-start-column="62" selection-end-line="1" selection-end-column="62" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_background_assigner/zone_background_assigner.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" column="43" selection-start-line="2" selection-start-column="43" selection-end-line="2" selection-end-column="43" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/stages/modals/layout/modal_layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="17" selection-start-line="3" selection-start-column="17" selection-end-line="3" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/stages/modals/zone_infos_modal.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-41" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/stages/modals/zone_content_assigner.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="17" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/stages/modals/zone_content_assigners/zone_background_assigner/zone_background_assigner_choose_background.hmtl.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="1" column="26" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
+          <folding>
+            <element signature="e#603#609#1#HTML" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/modals/modals.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/css/general/modals/modals.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="340">
+          <caret line="20" column="22" selection-start-line="20" selection-start-column="22" selection-end-line="20" selection-end-column="22" />
         </state>
       </provider>
     </entry>

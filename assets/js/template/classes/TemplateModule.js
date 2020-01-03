@@ -10,7 +10,7 @@ import {ZoneInfoDisplayerTool} from "./tools/ZoneInfoDisplayerTool";
 import {ZoneZoomOnTool} from "./tools/ZoneZoomOnTool";
 import {ZoneAssociationTool} from "./tools/ZoneAssociationTool";
 import {ZoneDuplicatorTool} from "./tools/ZoneDuplicatorTool";
-import {ZoneContainerEditorTool} from "./tools/ZoneContainerEditorTool";
+import {ZoneContentAssignerTool} from "./tools/ZoneContentAssignerTool";
 import {TemplateMiniatorizerTool} from "./tools/TemplateMiniatorizerTool";
 import {Observer} from "./pattern/observer/Observer";
 import {TemplateToolsMenu} from "./TemplateToolsMenu";
@@ -48,7 +48,7 @@ class TemplateModule{
         this.toolBox.addTool(new ZoneInfoDisplayerTool(this));
         this.toolBox.addTool(new ZoneAssociationTool(this));
         this.toolBox.addTool(new ZoneDuplicatorTool(this));
-        this.toolBox.addTool(new ZoneContainerEditorTool(this));
+        this.toolBox.addTool(new ZoneContentAssignerTool(this));
          return this.toolBox
     }
 

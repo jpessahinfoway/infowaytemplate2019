@@ -13,7 +13,9 @@
 <body>
 {% block header %}{%  endblock %}
 {% block body %}
-    {% include 'general/modals/choice_div.html.twig' %}
+    {% block modals %}
+        {% include 'general/modals/choice_div.html.twig' %}
+    {%  endblock %}
 {% endblock %}
 {% block javascripts %}
     <script src="/lib/jquery3.4.1.js"></script>

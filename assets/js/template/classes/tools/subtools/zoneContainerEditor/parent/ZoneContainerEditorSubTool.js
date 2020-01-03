@@ -4,22 +4,18 @@ import _ from 'lodash';
 class ZoneContainerEditorSubTool extends TemplateSubTool{
     constructor(templateInterface,parentTool){
         super(templateInterface,parentTool);
-        this.$location = _.cloneDeep(this.parentTool.$location)
         this.functionToExecuteOnSelectedZone = null;
         this.subTools = {}
 
     }
 
-    resetSubToolWindowsContainers(){
-        this.parentTool.resetWindowContainers();
-        //this.$location = _.cloneDeep(this.parentTool.$location)
-    }
+
     onValidateButtonClickApplyOnZonesSelected(active){
         if(active){
           /*  this.$location.window.containers.right.button.validate.on('click.onValidateButtonClickApplyOnZonesSelected',()=>{
                 console.log(this.parentTool.zonesSelected)
                 this.parentTool.zonesSelected.forEach(indexZoneSelected => {
-                    this.functionToExecuteOnSelectedZone(this.interface.currentTemplate.getZone(indexZoneSelected))
+                    this.functionTodExecuteOnSelectedZone(this.interface.currentTemplate.getZone(indexZoneSelected))
                 })
             })*/
         }
