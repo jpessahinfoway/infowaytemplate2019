@@ -1,5 +1,8 @@
 import {TemplateTool} from './parent/TemplateTool'
+import {Zone} from "../Zone";
+import {getCursorPositionInReferent} from "../utilities/utilities";
 class ZoneResizerTool extends TemplateTool{
+
     constructor(templateInterface){
         super(templateInterface);
         this.description='Transformer une zone'
@@ -7,7 +10,20 @@ class ZoneResizerTool extends TemplateTool{
         this.$eventLocation.mouseup = $('body');
         this.$eventLocation.mousedown = $('body');
         this.currentWorkZone=null;
-        this.workSpace = $('.container-zone')
+        this.cursorPosition = { new : null , old : null }
+        this.workSpace = $('.container-zone');
+        this._targetZone = null;
+        this.iconsDivHTML =
+            '<div class="resizer-tool__list">' +
+                '<span class="resizer-tool__resizer top left"></span>' +
+                '<span class="resizer-tool__resizer top right" ></span>' +
+                '<span class="resizer-tool__resizer bottom left" ></span>' +
+                '<span class="resizer-tool__resizer bottom right"></span>' +
+                '<span class="resizer-tool__resizer center left"></span>' +
+                '<span class="resizer-tool__resizer center right" ></span>' +
+                '<span class="resizer-tool__resizer center bottom"></span>' +
+                '<span class="resizer-tool__resizer center top"></span>' +
+            '</div>'
         /*this.iconsArray = [];
         this.size = 5;
         this.backGroundColor = null;
@@ -16,142 +32,117 @@ class ZoneResizerTool extends TemplateTool{
     }
 
 
-
-    appendResizeButton(){
-         Object.keys(this.interface.currentTemplate.getZones()).forEach((templateZoneIndex,iterIndex)=>{
-             console.log(templateZoneIndex);
-                this.currentWorkZone = this.interface.currentTemplate.getZone(templateZoneIndex);
-                this.iconsArray = [];
-                this.iconsArray.push($(`<span class="tl" data-position="topLeft" style="top:-2px;left:-2px"></span>`));
-                this.iconsArray.push($(`<span class="tr" data-position="topRight" style="top:-2px;right:-2px"></span>`));
-                this.iconsArray.push($(`<span class="bl" data-position="bottomLeft" style="bottom:-2px;left:-2px"></span>`));
-                this.iconsArray.push($(`<span class="br" data-position="bottomRight" style="bottom:-2px;right:-2px"></span>`));
-                this.iconsArray.push($(`<span class="ml" data-position="middleLeft" style="top:50%;left:-2px;transform:translateY(-50%)"></span>`));
-                this.iconsArray.push($(`<span class="mr" data-position="middleRight" style="top:50%;right:-2px;transform:translateY(-50%)"></span>`));
-                this.iconsArray.push($(`<span class="mb" data-position="middleBottom" style="bottom:-2px;left:50%;transform:translateX(-50%)"></span>`));
-                this.iconsArray.push($(`<span class="mt" data-position="middleTop" style="top:-2px;right:50%;transform:translateX(50%)"></span>`));
-                this.iconsArray.forEach(icon=>{
-                    icon.addClass('zoneResizer');
-                    if(this.size !== null)icon.css({ "width" : this.size,"height": this.size});
-                    if(this.backGroundColor !== null)icon.css('background-color',this.backGroundColor);
-                    if(this.borderStyle !== null)icon.css('border',this.borderStyle);
-                    //icon.css('border')
-
-                    this.currentWorkZone.$container.append(icon)
-                });
-            })
+    get targetZone() {
+        return this._targetZone;
     }
 
-    resizeZoneOnMouseActivity(){
-        this.$eventLocation.mousedown.on('mousedown.'+this.constructor,'.zoneResizer',(e)=>{
-            console.log('clicked')
-            this.activated=true;
+    set targetZone(targetZone) {
+        if(typeof targetZone !=='object' || ! ( targetZone instanceof Zone )) throw new Error('Invalid argument. the given argument need to be a Zone')
+        this._targetZone = targetZone;
+    }
 
-            this.lastIconClicked = $(e.currentTarget);
+    refreshCursorPosition(e){
+        this.cursorPosition.old = this.cursorPosition.new !== null ? { ...this.cursorPosition.new } : getCursorPositionInReferent(e,this.interface.currentTemplate.$container)
+        this.cursorPosition.new = getCursorPositionInReferent(e,this.interface.currentTemplate.$container)
+    }
 
-            let zoneId=$(e.currentTarget).parents('.zone').data('zone');
+    appendResizerIcons(active){
+        if(active){
+            console.log(this.interface.currentTemplate.getZones())
+            Object.values( this.interface.currentTemplate.getZones() ) .forEach( zone =>{
+                console.log(zone)
+                zone.appendInToolsEffectsContainer(this.iconsDivHTML)
+            })
+        }
+        else{
+        $('.resizer-tool__list').remove()
+        }
+    }
 
-            this.currentWorkZone = this.interface.currentTemplate.getZone(zoneId);
+    isAttributeNeedToBeUpdated(attributeName, attributeValue){
 
-            console.log(this.currentWorkZone)
-            let properties = {new : {size:this.currentWorkZone.getSize(),position:this.currentWorkZone.getPosition()}};
-            properties.old = properties.new;
+        if(typeof this.targetZone[attributeName] === 'undefined') return console.log('unrecognized attribute of Zone')
 
-            console.log(this.currentWorkZone.$zone)
-            console.log(this.workSpace)
-            let cursorPosition = {'new':this.getCursorPositionInTemplate(e,this.workSpace),'old':null};
+        return Object.keys( attributeValue ) .filter( attributeKey => typeof attributeValue[attributeKey] === 'number' &&  typeof this.targetZone[attributeName][attributeKey] !== 'undefined' && attributeValue[attributeKey] !== this.targetZone[attributeName][attributeKey] ).length > 0
+    }
 
-
-           // let {oldPosition,deplacementValue}=null;
-
-            let deplacementValue=null;
-
-            $(`${'body'}`).on('mousemove.'+this.constructor.name, (e) => {
+    resizeZoneOnMouseActivity(active){
+        if(active){
+           console.log('sfsgdg')
+            $('.resizer-tool__resizer').on('mousedown.resizeZoneOnMouseActivity',(e)=>{
                 console.log('icii')
+                this.refreshCursorPosition(e)
 
-                    cursorPosition.old = cursorPosition.new;
-                    cursorPosition.new = this.getCursorPositionInTemplate(e,this.workSpace);
-                    console.log(cursorPosition)
+                this.lastIconClicked = $(e.currentTarget);
 
-                    deplacementValue = {left:cursorPosition.new.x-cursorPosition.old.x,top:cursorPosition.new.y-cursorPosition.old.y};
+                let zoneId=$(e.currentTarget).parents('.zone').data('zone');
 
-                    Object.keys(properties.new)
-                        .map(attr=>{Object.keys(properties.new[attr])
-                            .map(subAttr=>{if(typeof properties.new[attr][subAttr] === 'number')properties.old[attr][subAttr] = properties.new[attr][subAttr]
-                       })});
-                   
-                    properties.new = {size:false,position:false};
+                let $targetContainer = this.interface.currentTemplate.$container ;
+                let targetContainerPos = $targetContainer.position();
+                let targetContainerSize = {width : $targetContainer.width(), height : $targetContainer.height()} ;
+                console.log(targetContainerSize)
+
+                this.targetZone = this.interface.currentTemplate.getZone(zoneId);
+
+                $(document).on('mousemove.resizeZoneOnMouseActivity',(e) => {
+
+                    this.refreshCursorPosition(e) ;
+                    let newPos = {left : null, top:null}
+                    let newSize = {width : null, height : null}
+
+                    let deplacementValue = {
+                        x :  this.cursorPosition.new.x - this.cursorPosition.old.x,
+                        y : this.cursorPosition.new.y - this.cursorPosition.old.y
+                    } ;
+
+                    if( this.lastIconClicked.hasClass('left') ){
+                        newPos.left = Math.ceil(this.targetZone.position.left + deplacementValue.x);
+                        if( newPos.left < targetContainerPos.left ) newPos.left =  targetContainerPos.left ;
+                        console.log(this.targetZone.size.width);
+                        console.log(newPos.left)
+                        console.log(this.targetZone.position.left);
+                        newSize.width = Math.ceil(this.targetZone.size.width - ( newPos.left - this.targetZone.position.left));
 
 
-                    switch(this.lastIconClicked.data('position')){
-                        case 'topLeft':
-                            // $('body').addClass('tl');
-                            properties.new.position = {left : properties.old.position.left + deplacementValue.left,top:properties.old.position.top + deplacementValue.top};
-                           
-                            properties.new.size = {width: properties.old.size.width - deplacementValue.left,height:properties.old.size.height - deplacementValue.top};
-                            break;
-                        case 'topRight':
+                    }
+                    if( this.lastIconClicked.hasClass('top') ) {
+                        newPos.top = this.targetZone.position.top + deplacementValue.y ;
+                        if( newPos.top < targetContainerPos.top ) newPos.top =  targetContainerPos.top ;
 
-                            properties.new.position = {left: false,top:properties.old.position.top+deplacementValue.top};
-                            properties.new.size = {width: properties.old.size.width + deplacementValue.left,height:properties.old.size.height-deplacementValue.top};
-
-                            break;
-                        case 'bottomLeft':
-                            properties.new.position = {left: properties.old.position.left + deplacementValue.left,top:false};
-                            properties.new.size = {width: properties.old.size.width - deplacementValue.left,height:properties.old.size.height+deplacementValue.top};
-                            break;
-                        case 'bottomRight' :
-                            properties.new.size = {width: properties.old.size.width + deplacementValue.left,height:properties.old.size.height+deplacementValue.top};
-                            break;
-                        case 'middleLeft':
-                            console.log(properties.old.position.left)
-                            console.log(deplacementValue.left)
-                            console.log(properties.old.position.left + deplacementValue.left)
-                            properties.new.position = {left: properties.old.position.left + deplacementValue.left,top:false};
-                            properties.new.size = {width: properties.old.size.width - deplacementValue.left,height:false};
-                            break;
-                        case 'middleRight':
-                            properties.new.size = {width: properties.old.size.width + deplacementValue.left,height:false};
-                            break;
-                        case 'middleTop':
-                            properties.new.size = {width: false,height:properties.old.size.height - deplacementValue.top};
-                            properties.new.position = {left: false,top:properties.old.position.top + deplacementValue.top};
-                            break;
-                        case 'middleBottom':
-                            properties.new.size = {width: false,height:properties.old.size.height + deplacementValue.top};
-                            break;
+                        newSize.height = this.targetZone.size.height - ( newPos.top - this.targetZone.position.top) ;
                     }
 
 
-                  /*  if(cursorPosition.new.left<=0){
 
+                    if( this.lastIconClicked.hasClass('right') ) {
+                        newSize.width = this.targetZone.size.width + deplacementValue.x;
+                        if( this.targetZone.position.x + newSize.width > targetContainerSize.width ) newSize.width =  targetContainerSize.width ;
                     }
-                    if(properties.new.position.top<=-1){
-                        properties.new.size.height = false;
-                        properties.new.position.top=false;
-                    }*/
+                    if( this.lastIconClicked.hasClass('bottom') ) {
+                        newSize.height = this.targetZone.size.height + deplacementValue.y;
+                        if( this.targetZone.position.y + newSize.height > targetContainerSize.top ) newSize.height =  targetContainerSize.height ;
+                    }
+                    if( this.isAttributeNeedToBeUpdated('position', newPos) )  this.targetZone.position = newPos ;
+                    if( this.isAttributeNeedToBeUpdated('size', newSize) )  this.targetZone.size = newSize ;
 
+                }) ;
 
-                    if(properties.new.position)this.currentWorkZone.setPosition(properties.new.position);
-
-                    if(properties.new.size)this.currentWorkZone.setSize(properties.new.size);
-                   
-
-                    //this.template.tools['ZoneInfoDisplayerTool'].updateInfosZoneContent(properties.new);
 
             });
-        });
-        this.$eventLocation.mouseup.on('mouseup',()=>{
-            this.$eventLocation.mousemove.unbind('mousemove.'+this.constructor.name)
-        })
+
+            this.$eventLocation.mouseup.on('mouseup',()=>{
+                this.$eventLocation.mousemove.unbind('mousemove.'+this.constructor.name)
+            })
+        }
     }
     activeTool(active){
         super.activeTool(active) ;
             if(active){
 
-                this.appendResizeButton()
-                this.resizeZoneOnMouseActivity()
+                this.appendResizerIcons(true)
+                this.resizeZoneOnMouseActivity(true)
             }else{
+                this.appendResizerIcons(false)
                 this.$eventLocation.mouseup.unbind('mouseup.'+this.constructor.name);
                 this.$eventLocation.mousedown.unbind('mousedown.'+this.constructor.name);
                 this.$eventLocation.mousemove.unbind('mousemove.'+this.constructor.name);

@@ -1,81 +1,90 @@
 import {TemplateTool} from './parent/TemplateTool'
+import {getCursorPositionInReferent} from "../utilities/utilities.js"
+import { Zone } from '../Zone';
 
 class ZoneDraggerTool extends TemplateTool{
     constructor(templateInterface){
         super(templateInterface);
         this.description = 'Déplacer une zone';
+        this.$location.workSpace = this.interface.currentTemplate.$container
+        this.cursorPosition = {old : null, new:null}
         this.$eventLocation.mousedown =  $('body');
         this.$eventLocation.mousemove =  $('body');
         this.$eventLocation.mouseup =  $('body');
         this.workSpace = $('.container-zone')
     }
 
+    refreshCursorPosition(e){
+        this.cursorPosition.old = this.cursorPosition.new !== null ? { ...this.cursorPosition.new } : getCursorPositionInReferent(e,this.$location.workSpace)
+        this.cursorPosition.new = getCursorPositionInReferent(e,this.$location.workSpace)
+    }
+
+    calculateMinAndMaxPos($container, $target){
+     let $containerPos = $container.position() 
+     let $containerSize = {width : $container.width(), height : $container.height()}
+        return  {
+             min: {  ...$containerPos } ,
+             max: { left: $containerPos.left + $containerSize.width - $target.width(),top: $containerPos.top + $containerSize.height - $target.height()} 
+            }
+    }
+
+    calculateNewPosOfCurrentElement(currentElement, $container, minPos, maxPos){
+
+        let containerPos = $container.position()
+        let deplacementValue = {x : this .cursorPosition .new .x - this .cursorPosition .old .x, y :this .cursorPosition .new .y-this .cursorPosition .old .y};
+        let futurePos = { left: containerPos.left + currentElement .position .left + deplacementValue .x, top: containerPos.top + currentElement .position .top + deplacementValue .y };
+
+        if( futurePos .left < minPos .left ) futurePos .left = minPos .left
+        if( futurePos .top < minPos .top ) futurePos .top = minPos .top
+        if( futurePos .left > maxPos .left) futurePos .left = maxPos .left
+        if( futurePos .top > maxPos .top) futurePos .top = maxPos .top
+
+        return futurePos
+    }
+
+    dragTarget(target, $container, minPosition, maxPosition){
+        console.log(target)
+        if ( typeof target !== 'object' || !( target instanceof Zone ) ) return console.log('the target to move need to be a Zone')
+
+        let newPos = this.calculateNewPosOfCurrentElement(target, $container, minPosition, maxPosition)
+        if(typeof newPos.left !== 'number' || typeof newPos.top !== 'number')return console.log("impossible to calculate the position of the element")
+   
+        target.setPosition(newPos)
+    }
    activeTool(active){
        super.activeTool(active)
             if(active){
-                let newPosition,
-                    oldPosition,
-                    deplacementValue,
-                    currentPosition,
-                    currentZone,
-                    nextZonePos;
 
                 $('.zone').addClass('draggerModeOn');
 
-                this.$eventLocation.mousedown.on('mousedown.'+this.constructor.name,'.zone',(e)=>{
-                    this.activated = true;
-                    currentZone = this.interface.currentTemplate.getZone($(e.currentTarget).data('zone'));
-                    console.log(currentZone)
-                    currentPosition = Object.assign(currentZone.position,{});
-                    newPosition = this.getCursorPositionInTemplate(e,this.workSpace);
-                    oldPosition = null;
+                this.$location.workSpace.find('.zone').on('mousedown.'+this.constructor.name,(e)=>{
 
-                    this.$eventLocation.mousemove.on('mousemove.'+this.constructor.name,(e) => {
-                        if(this.activated){
-                                oldPosition = newPosition;
-                                newPosition = this.getCursorPositionInTemplate(e,this.workSpace);
-                                deplacementValue = {left:newPosition.x-oldPosition.x,top:newPosition.y-oldPosition.y};
-                                console.log(deplacementValue);
-                                nextZonePos = {left : currentPosition.left + deplacementValue.left, top:currentPosition.top + deplacementValue.top};
+                    this.refreshCursorPosition(e)
 
-                                console.log('current: '+currentPosition.left+ ' + deplacement : '+deplacementValue.left+' = '+nextZonePos.left);
-                                console.log('')
-                                let positionLimit;
-                                if(nextZonePos.left<0)nextZonePos.left=0;
-                                if(nextZonePos.top<0)nextZonePos.top=0;
+                    let currentZone = this.interface.currentTemplate.getZone($(e.currentTarget).data('zone'));
 
-                                if(nextZonePos.left + currentZone.size.width>this.interface.currentTemplate.size.width){
-                                    nextZonePos.left= this.interface.currentTemplate.size.width-currentZone.size.width;
-                                }
-                                if(nextZonePos.top + currentZone.size.height>this.interface.currentTemplate.size.height){
-                                    nextZonePos.top=this.interface.currentTemplate.size.height-currentZone.size.height;
-                                }
-                            Object.values(currentZone.zoneChildrens).map(zone=>{
-                                console.log(currentZone.position.top )
-                                console.log(nextZonePos.top)
-                                let childNewSize = {
-                                    top : zone.position.top + ( nextZonePos.top - currentZone.position.top ),
-                                    left : zone.position.left + ( nextZonePos.left - currentZone.position.left )
-                                }
-                                zone.setPosition(childNewSize);
-                            })
-                            currentZone.setPosition(nextZonePos);
-                                console.log(currentZone)
-                            currentPosition = nextZonePos
-                            //this.template.tools['ZoneInfoDisplayerTool'].updateInfosZoneContent({position:nextZonePos});
-                        }
+                   let minMaxPos = this.calculateMinAndMaxPos(this.$location.workSpace, currentZone.$container)
+
+                   $(document).on('mousemove.'+this.constructor.name,(e) => {
+        
+                                this.refreshCursorPosition(e)
+
+                                this.dragTarget(currentZone , this.$location.workSpace, minMaxPos.min, minMaxPos.max)
+                                                 
+                        
+                    })
+
+                    $(document).on('mouseup.'+this.constructor.name, (e) => {
+                        $(document).off('mousemove.'+this.constructor.name)
                     })
                 });
-                $(`${'body'}`).on('mouseup.'+this.constructor.name, (e) => {
-                    this.$eventLocation.mousemove.unbind('mousemove.'+this.constructor.name)
-                    this.activated = false;
-                })
+
             }
             else{
                 $('.zone').removeClass('draggerModeOn');
-                this.$eventLocation.mousedown.unbind('mousedown.'+this.constructor.name);
-                this.$eventLocation.mousemove.unbind('mousemove.'+this.constructor.name);
-                this.$eventLocation.mouseup.unbind('mouseup.'+this.constructor.name);
+                this.$location.workSpace.find('.zone').off('mousedown.'+this.constructor.name);
+                $(document).off('mousemove.'+this.constructor.name);
+                $(document).off('mouseup.'+this.constructor.name);
             }
     }
 }

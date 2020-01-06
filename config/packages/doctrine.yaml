@@ -1,17 +1,16 @@
-# config/packages/doctrine.yaml
 doctrine:
     dbal:
         default_connection: default
         connections:
             default:
                 # configure these for your database server
-                url: '%env(DATABASE_TEMPLATE_URL)%'
+                url: '%env(DATABASE_URL)%'
                 driver: 'pdo_mysql'
                 server_version: '5.7'
                 charset: utf8mb4
             templateressources:
                 # configure these for your database server
-                url: '%env(DATABASE_TEMPLATERESSOURCES_URL)%'
+                url: '%env(DATABASE_URL2)%'
                 driver: 'pdo_mysql'
                 server_version: '5.7'
                 charset: utf8mb4
@@ -22,12 +21,13 @@ doctrine:
             default:
                 connection: default
                 mappings:
-                    Template:
+                    Main:
                         is_bundle: false
                         type: annotation
                         dir: '%kernel.project_dir%/src/Entity/Template'
                         prefix: 'App\Entity\Template'
-                        alias: Template
+                        alias: Main
+
             templateressources:
                 connection: templateressources
                 mappings:
@@ -37,4 +37,3 @@ doctrine:
                         dir: '%kernel.project_dir%/src/Entity/TemplateRessources'
                         prefix: 'App\Entity\TemplateRessources'
                         alias: TemplateRessources
-

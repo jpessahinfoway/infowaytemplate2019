@@ -2,6 +2,7 @@ import {Observer} from "../../template/classes/pattern/observer/Observer";
 import {Template} from "../../template/classes/Template";
 import {TemplateToolBox} from "../../template/classes/TemplateToolBox";
 import {TemplateToolsMenu} from "../../template/classes/TemplateToolsMenu";
+import {ChoiceDiv} from "../../template/classes/utilities/ChoiceDiv";
 
 class TemplateInterface{
 
@@ -13,6 +14,7 @@ class TemplateInterface{
         this.toolsMenu          =  {};
         this.activatedTools     =  {} ;
         this.toolsMenus = {};
+        this.choiceDiv = new ChoiceDiv()
         this.initActions()
 
     }

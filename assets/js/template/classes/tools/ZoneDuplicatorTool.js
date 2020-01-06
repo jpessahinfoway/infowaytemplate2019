@@ -1,60 +1,62 @@
 import {TemplateTool} from './parent/TemplateTool';
 import {parse, stringify} from 'flatted/esm';
+import {Zone} from "../Zone";
 
 class ZoneDuplicatorTool extends TemplateTool{
     constructor(templateInterface){
         super(templateInterface);
         this.description='Dupliquer une zone'
         this.workSpace = $('.container-zone')
-        this.currentZone = {
-            $zone : null,
-            instance : null,
-            id : null
-        };
-        /*this.iconsArray = [];
-        this.size = 5;
-        this.backGroundColor = null;
-        this.borderStyle = null;*/
-
+        this._targetZone = null;
     }
 
+
+    get targetZone() {
+        return this._targetZone;
+    }
+
+    set targetZone(targetZone) {
+        if(typeof targetZone !== 'object' || ! ( targetZone instanceof Zone ) ) throw new Error('Invalid argument. Argument gived must be a Zone')
+        this._targetZone = targetZone;
+    }
 
     duplicateZone(zone){
-        Object.keys(zone.position).map( positionKey => {
-            zone.position[positionKey]=zone.position[positionKey]+10
-        });
-        this.interface.currentTemplate.createNewZone({...zone.position}, {...zone.size},zone.type)
+
+        if(typeof zone !== 'object' || ! ( zone instanceof Zone ) ) throw new Error('Invalid argument. Argument gived must be a Zone')
+
+        let newZonePos = { left: zone .position .left + 10 , top: zone .position .top } ;
+
+        let newZone = new Zone()
+
+        newZone .position =  newZonePos  ;
+        newZone .size = { ...zone .size }  ;
+        newZone .type = zone.type ;
+        newZone.$location = this.interface.currentTemplate
+        newZone.append()
+
     }
 
-    onClickDisplayDuplicateComfirm(){
-        $('body').on('click','.zone', (e) => {
+    onClickDisplayDuplicateComfirm(active){
+        if(active){
+            $('.zone').on('click.onClickDisplayDuplicateComfirm', (e) => {
 
-            this.currentZone.$zone = $(e.currentTarget);
-            this.currentZone.id = this.currentZone.$zone.data('zone');
-            this.currentZone.instance = this.interface.currentTemplate.getZone(this.currentZone.id)
-            this.duplicateZone(this.currentZone.instance)
+                let zoneId = $(e.currentTarget).data('zone') ;
+                this.targetZone = this. interface. currentTemplate. getZone(zoneId) ;
 
-            /*let templateInstanceToDecode = Object.assign({},this.interface.currentTemplate);
+                this.duplicateZone(this.targetZone)
 
+            })
+        }else{
+            $('.zone').off('click.onClickDisplayDuplicateComfirm')
+        }
 
-            Object.values(templateInstanceToDecode._zones).map(zone=>{
-                return zone.zoneChildrens = Object.keys(zone.zoneChildrens).map(childKeys=>childKeys)
-            });
-            console.log(templateInstanceToDecode)
-
-            /*this.interface.currentTemplate.map(val=>{
-
-            })*/
-
-
-        })
     }
     activeTool(active){
         super.activeTool(active)
             if(active){
-                this.onClickDisplayDuplicateComfirm()
+                this.onClickDisplayDuplicateComfirm(true)
             }else{
-
+                this.onClickDisplayDuplicateComfirm(false)
             }
     }
 

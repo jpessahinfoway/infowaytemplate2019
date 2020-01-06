@@ -2,7 +2,7 @@ import {Zone} from "./Zone";
 
 class Template{
     constructor(){
-        this._$container= $('.container-zone');
+        this._$container= $('.template-workzone');
         this._name = null;
         this._attr = {
             size           :   {},
@@ -14,6 +14,17 @@ class Template{
 
     }
 
+    removeZone(zone){
+        if(typeof zone !== 'object' || ! ( zone instanceof Zone ) ) throw new Error('invalid Argument. the argument gived must be a Zone')
+        if( this.getZone(zone.identificator) !== zone) throw new Error("Impossible to identify the zone to delete in the template")
+
+        this.getZone(zone.identificator).delete();
+        delete this._zones[zone.identificator];
+    }
+
+    get zones(){
+        return this._zones
+    }
     get size(){
         if( typeof this.$container === 'undefined' || this.$container === null || this.$container.length <1 ) return ;
         return { width : this.$container.width(), height : this.$container.height() };
@@ -67,7 +78,13 @@ class Template{
     }
 
     addZone(zone){
-        this._zones[zone.identificator]=zone;
+        console.log(this.zones)
+        let allZonesIndexes = Object.keys(this.zones)
+        for(let i=0; i<=allZonesIndexes.length ;i++){
+            if(! allZonesIndexes .includes( i ) ) zone.identificator = i
+        }
+        this._zones[zone.identificator] = zone;
+ 
         this.$container.append(zone.$container)
     }
     setSize({width=null,height=null}){

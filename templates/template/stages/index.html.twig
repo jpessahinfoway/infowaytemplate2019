@@ -13,7 +13,7 @@
     <title>Menu du module Template</title>
     {% block stylesheets %}
         {# 'app' must match the first argument to addEntry() in webpack.config.js #}
-        {{ encore_entry_link_tags('template') }}
+        {#{{ encore_entry_link_tags('template') }} #}
         <link id="text-style-css" href="{{ path('cssLoader', { 'type': 'text' })}}" rel="stylesheet" type="text/css" media="all" />
         <link id="price-style-css" href="{{ path('cssLoader', { 'type': 'price' }) }}" rel="stylesheet" type="text/css" media="all" />
         <!-- Renders a link tag (if your module requires any CSS)

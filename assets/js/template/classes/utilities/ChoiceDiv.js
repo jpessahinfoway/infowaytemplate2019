@@ -1,36 +1,61 @@
 
 class ChoiceDiv{
     constructor(){
-        this.choiceLabel= null;
-        this.textHTML='';
-        this.events = {
-            onYes : null,
-            onNo: null
-        };
-        this.$elements      =
-            {
-                choiceZone   : $('#choice-background'),
-                labelZone    : $('.choice-window__label p'),
-                textZone     : $('.choice-window__content p'),
-                button    : {
-                    yes : $('button#choice-window__choice--yes'),
-                    no  : $('button#choice-window__choice--no')
-                },
-                closeIcon :$('#choice-background .choice-window__label .choice-window__label__close')
-            }
-        this.onClickCloseWindow(true)
+        this._onYes = () => console.log('yes');
+        this._onNo = () => console.log('false');
+        this.$location      = {} ;
+        this.$location.container = $('.modal--comfirm');
+        this.$location.label = this.$location.container.find('.modal__top-menu__title') ;
+        this.$location.content = this.$location.container.find('.modal--comfirm__choices-content') ;
+        this.$location.buttons = {
+            comfirm : this.$location.container.find('#modal--comfirm__choices-buttons--yes') ,
+            cancel : this.$location.container.find('#modal--comfirm__choices-buttons--no') ,
+        }
     }
 
-        onClickCloseWindow(active) {
-            if(active){
-                this.$elements.closeIcon.on('click.onClickCloseWindow',() => {
-                    this.hide()
-                })
-            }else{
+    set label(label){
+        this.$location.label.text(label)
+    }
 
-            }
+    set content($content){
+        this.$location.content.html($content)
+    }
 
-        }
+    get onYes(){
+        return this._onYes
+    }
+
+    get onNo(){
+        return this._onNo
+    }
+
+    set onYes(onYes){
+        if(typeof onYes !== 'function')throw new Error('Argument must be a function')
+        this._onYes = onYes
+    }
+
+    set onNo(onNo){
+        if(typeof onNo !== 'function')throw new Error('Argument must be a function')
+        this._onNo = onNo
+    }
+
+    show(){
+        this.$location.container.fadeIn()
+    }
+
+    hide(){
+        this.$location.container.fadeOut()
+    }
+
+    reset(){
+        this.label = '' ;
+        this.content = $('') ;
+        this.onYes = () => console.log('yes')
+        this.onNo = () => console.log('no')
+    }
+
+
+
         setLabel(label) {
             this.choiceLabel = label
             this.$elements.labelZone.text(label)
@@ -52,27 +77,22 @@ class ChoiceDiv{
             this.$elements.textZone.html(this.textHTML);
         }
 
-        show(){
-        this.$elements.button.yes.on(`click.${this.constructor.name}`,(e)=>{
-            e.preventDefault();
-            this.events.onYes();
-            this.hide()
-        });this.$elements.button.no.on(`click.${this.constructor.name}`,(e)=>{
-                e.preventDefault();
-                this.events.onNo();
-                this.hide()
-            });
 
-
-            this.$elements.choiceZone.fadeIn()
+        activeChoiceDiv(active){
+            if(active){
+                console.log(this.onYes)
+                if(typeof this.onYes !== 'function')throw new Error('no function for onYes Event')
+                if(typeof this.onNo !== 'function')throw new Error('no function for onNo Event')
+                console.log(this.$location.buttons.comfirm)
+                this.$location.buttons.comfirm.on('click.activeChoiceDiv',this.onYes)
+                this.$location.buttons.cancel.on('click.activeChoiceDiv',this.onNo)
+            }else{
+                this.$location.buttons.comfirm.off('click.activeChoiceDiv')
+                this.$location.buttons.cancel.off('click.activeChoiceDiv')
+                this.reset()
+            }
         }
 
-        hide(){
-            this.$elements.choiceZone.fadeOut()
-            this.desactive()
-            this.textHTML = ''
-            console.log(this.textHTML)
-        }
 
         onYes(success){
         this.events.onYes = success

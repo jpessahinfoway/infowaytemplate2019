@@ -3,193 +3,129 @@ import {ZonePriceCreatorTool} from "./subtools/zoneCreator/ZonePriceCreatorTool.
 import {ZoneTextCreatorTool} from "./subtools/zoneCreator/ZoneTextCreatorTool.js";
 import {ZoneMediaCreatorTool} from "./subtools/zoneCreator/ZoneMediaCreatorTool.js";
 import {Observable} from "../pattern/observer/Observable.js";
+import {getCursorPositionInReferent} from "../utilities/utilities.js"
+import { Zone } from '../Zone.js';
 class ZoneCreatorTool extends TemplateTool{
 
     constructor(templateInterface){
         super(templateInterface);
         this.description = 'Ajouter une zone';
-        this.zoneType=this.setZoneType('zone');
+        this.$location.templateWorkSpace = $('.template-workzone')
+        this.$location.targetContainer = null;
+        this.cursorPosition = { new : null , old : null } ;
+        this.creationLimits = { x : { start : null, end : null } , y : { start : null , end : null } }
+        this._creatingZoneType = 'zone'
         this.error = true;
-
-        this.currentZone = {
-            instance : null,
-            pos : {
-                left : null,
-                top:  null
-            },
-            size : {
-                width : 0,
-                height: 0
-            },
-        };
-        this.$eventLocation.mousedown = $(document);
-        this.$eventLocation.mousemove = $(document);
-        this.$eventLocation.mouseup = $(document);
-        this.firstClick = null;
-        this.cursorPosition = {
-            template : null,
-            referent : null
-        } ;
+        this.currentZone = null;
         this.subTools = {
             'ZonePriceCreatorTool'  : null,
             'ZoneTextCreatorTool'   : null,
             'ZoneMediaCreatorTool'  : null
         } ;
         this.zoneCreationObservable = new Observable();
-        this.referent = this.interface.currentTemplate
-        this.currentZoneMaximumSize = {
-            width :null,
-            height : null
+    }
+
+
+    set creatingZoneType(type){
+        this._creatingZoneType = type
+    }
+
+    get creatingZoneType(){
+        return this._creatingZoneType
+    }
+
+    setTargetContainer($target) {
+        this.$location.targetContainer =  $target.hasClass('zone') ?  $target : $('.template-workzone')
+        this.updateZoneCreationLimits()
+        return this.$location.targetContainer
+    }
+
+    refreshCursorPosition(e){
+        this.cursorPosition.old = this.cursorPosition.new !== null ? { ...this.cursorPosition.new } : getCursorPositionInReferent(e,this.$location.templateWorkSpace)
+        this.cursorPosition.new = getCursorPositionInReferent(e,this.$location.templateWorkSpace)
+    }
+
+
+    updateZoneCreationLimits(){
+        let containerPos = this.$location.targetContainer.position()
+        let containerSize = {width : this.$location.targetContainer.width(), height: this.$location.targetContainer.height()}
+
+        this.creationLimits.x.start = containerPos.left
+        this.creationLimits.y.start = containerPos.top
+        this.creationLimits.x.end = this.creationLimits.x.start + containerSize.width;
+        this.creationLimits.y.end = this.creationLimits.y.start + containerSize.height;
+    }
+    outOfContainerLimit(){
+        let outOfLimit = { x: { start : null, end : null }, y: { start : null, end : null } }
+
+         Object.keys(outOfLimit).map( limitPoint => 
+            outOfLimit[limitPoint] = {
+                start : this.cursorPosition.new[limitPoint] < this.creationLimits[limitPoint].start,
+                end   : this.cursorPosition.new[limitPoint] > this.creationLimits[limitPoint].end
+            } )
+            return outOfLimit
         }
-    }
-
-
-    setZoneType(zone){
-        this.zoneType=zone
-    }
-
-    initZoneStartPosition(position){
-        this.currentZone.pos=position
-    }
-
-    setUsingToolAuthorization(boolean){
-        this.usingToolAuthorization=boolean
-    }
-
-    outOfParentZoneLimit(cursorPosition,$parent){
-
-        let outOfParent=false;
-
-        if(cursorPosition.x < 0 || cursorPosition.x > $parent.width())  outOfParent=true;
-        if(cursorPosition.y < 0 || cursorPosition.y > $parent.height())  outOfParent=true;
-
-        return outOfParent
-    }
-
-    resetCurrentZoneValues(){
-        this.currentZone = {
-            instance : null,
-            pos : {
-                left : null,
-                top:  null
-            },
-            size : {
-                width : 0,
-                height: 0
-            },
-        };
-    }
-
-    setCursorPosition(cursorPosition,objectReference){
-        console.log(cursorPosition)
-        this.cursorPosition[objectReference] = cursorPosition;
-    }
     activeTool(active) {
         super.activeTool(active);
         if (active) {
-            this.$eventLocation.mousedown.on('mousedown.' + this.constructor.name, (e) => {
+            $(document).on('mousedown.' + this.constructor.name, (e) => {
 
+                 let $target = $(e.target)
 
-                this.setUsingToolAuthorization(true);
-
-                // element en dessous du click
-                let $target = $(e.target);
-
-                // si on clique sur un element du menu on n'active pas l outil
                 if ($target.hasClass('bloc-menu')) return;
 
-                // correspond a la zone de travail. ici toute la fenetre du template
-                let workZone = $('.container-zone');
+                let workZone = this.setTargetContainer($target)
 
-                // position du curseur dans le template
-                this.setCursorPosition(this.getCursorPositionInTemplate(e, workZone), 'template');
-                this.setCursorPosition(this.getCursorPositionInTemplate(e, workZone), 'referent');
-                this.firstClick = this.cursorPosition.template
-
-                // notifie les observateurs des outils de creation de sous zones
-                this.zoneCreationObservable.notify(false, e.target)
-
-                // si on a cliqué en dehors de la zone du template on autorise pas l utilisation de l outil pour le moment
-                if (this.outOfParentZoneLimit(this.cursorPosition.referent, this.referent.$container)) this.setUsingToolAuthorization(false);
-
-                if (this.usingToolAuthorization && (this.currentZone.pos.left === null && this.currentZone.pos.top === null)) {
-                    this.initZoneStartPosition({
-                        left: this.cursorPosition.referent.x,
-                        top: this.cursorPosition.referent.y
-                    })
-                }
-
+               this.refreshCursorPosition(e)
+    
                 // Lorsqu'on bouge le curseur
-                this.$eventLocation.mousemove.on('mousemove.' + this.constructor.name, (e) => {
+                $(document).on('mousemove.' + this.constructor.name, (e) => {
 
-                    this.setUsingToolAuthorization(true);
+                    this.refreshCursorPosition(e)
 
-                    // On recupere la nouvelle position du curseur dans le template
-                    this.setCursorPosition(this.getCursorPositionInTemplate(e, workZone), 'template');
+                    let outOfContainerLimits = this.outOfContainerLimit() ;
+                    console.log(outOfContainerLimits)
 
-                    // On recupere la position du complete par rapport au referant (son parent)
-                    console.log(this.referent.$container)
-                    this.setCursorPosition(this.getCursorPositionInTemplate(e, this.referent.$container), 'referent')
-
-                    // notifie les observateurs des outils de creation de sous zones
-                    this.zoneCreationObservable.notify(false, e.target);
-
-
-                    if (this.outOfParentZoneLimit(this.cursorPosition.referent, this.referent.$container)) {
-                        if (this.cursorPosition.referent.x < 0 || this.cursorPosition.referent.y < 0) this.setUsingToolAuthorization(false);
+                    if( ( typeof this.currentZone !== 'object' || ! ( this.currentZone instanceof Zone ) ) && 
+                        ( !outOfContainerLimits.x.start || !outOfContainerLimits.y.start )){
+   
+                        this.currentZone = new Zone({ position : {
+                             left : this.cursorPosition.old.x<this.creationLimits.x.start ? this.creationLimits.x.start : this.cursorPosition.new.x,
+                              top: this.cursorPosition.old.y<this.creationLimits.y.start ? this.creationLimits.y.start : this.cursorPosition.new.y}
+                             })
+                        this.currentZone.type = this.creatingZoneType
+                        this.currentZone.$location = this.interface.currentTemplate
+                        this.currentZone.position = {                          
+                                left : this.cursorPosition.old.x<this.creationLimits.x.start ? this.creationLimits.x.start : this.cursorPosition.new.x,
+                                 top: this.cursorPosition.old.y<this.creationLimits.y.start ? this.creationLimits.y.start : this.cursorPosition.new.y
+                        }
+                        this.currentZone.append()
                     }
 
-                    console.log(this.usingToolAuthorization)
-                    if (this.usingToolAuthorization) {
+                    if(typeof this.currentZone === 'object' &&  this.currentZone instanceof Zone ){
+                        if(!outOfContainerLimits.x.end) this.currentZone.size= { width : this.cursorPosition.new.x-this.currentZone.position.left }
+                        else if(this.currentZone.size.width < this.creationLimits.x.end) this.currentZone.size= { width : this.creationLimits.x.end - this.currentZone.position.left}
 
-                        if (this.usingToolAuthorization && (this.currentZone.pos.left === null && this.currentZone.pos.top === null)) {
-                            let leftStartPosition = this.firstClick.x < this.referent.$container.position.left ? this.referent.$container.position.left : this.cursorPosition.template.x
-                            let topStartPosition = this.firstClick.y < this.referent.$container.position.top ? this.referent.$container.position.top : this.cursorPosition.template.y;
-                            this.initZoneStartPosition({left: leftStartPosition, top: topStartPosition})
-                        }
-
-                        if (this.currentZone.instance === null) {
-                            this.currentZone.instance = this.interface.currentTemplate.createNewZone(this.currentZone.pos, this.currentZone.size, this.zoneType);
-                        } else {
-                            this.currentZone.size.width = this.cursorPosition.template.x - this.currentZone.pos.left;
-                            this.currentZone.size.height = this.cursorPosition.template.y - this.currentZone.pos.top;
-                            console.log(this.currentZone.size.height);
-                            if (this.outOfParentZoneLimit(this.cursorPosition.referent, this.referent.$container)) {
-                                console.log(this.referent.size)
-                                if (this.cursorPosition.referent.x > this.referent.size.width) {
-                                    this.currentZone.size.width = this.referent.size.width - (this.currentZone.pos.left - this.referent.position.left)
-                                }
-                                if (this.cursorPosition.referent.y > this.referent.size.height) {
-                                    console.log(this.cursorPosition.referent.y);
-                                    console.log(this.referent)
-                                    this.currentZone.size.height = this.referent.size.height - (this.currentZone.pos.top - this.referent.position.top)
-                                }
-                            }
-
-                            console.log(this.currentZone.instance)
-                            this.currentZone.instance.size = {
-                                width: this.currentZone.size.width,
-                                height: this.currentZone.size.height
-                            }
-                        }
-                        //debugger
-                    }
+                        if(!outOfContainerLimits.y.end) this.currentZone.size= { height : this.cursorPosition.new.y -this.currentZone.position.top }
+                        else if(this.currentZone.size.height < this.creationLimits.y.end) this.currentZone.size= { height : this.creationLimits.y.end  - this.currentZone.position.top}
+                    }           
+        
                 });
             });
-            this.$eventLocation.mouseup.on('mouseup.' + this.constructor.name, (e) => {
+            $(document).on('mouseup.' + this.constructor.name, (e) => {
 
-                if (this.currentZone.instance !== null && (this.currentZone.instance.size.width < 5 || this.currentZone.instance.size.height < 5)) this.interface.currentTemplate.deleteZoneInTemplate(this.currentZone.instance.identificator);
+                if (typeof this.currentZone ==='object' && this.currentZone instanceof Zone && (this.currentZone.size.width < 5 || this.currentZone.size.height < 5)) this.interface.currentTemplate.deleteZoneInTemplate(this.currentZone.identificator);
 
                 this.zoneCreationObservable.notify(true);
-                this.resetCurrentZoneValues()
+                  this.currentZone = null;
                 this.usingToolAuthorization = false;
                 //this.error=true;
-                this.$eventLocation.mouseup.unbind('mousemove.' + this.constructor.name);
+                $(document).unbind('mousemove.' + this.constructor.name);
             })
         } else {
-            this.$eventLocation.mouseup.unbind('mouseup.' + this.constructor.name);
-            this.$eventLocation.mousedown.unbind('mousedown.' + this.constructor.name);
-            this.$eventLocation.mousemove.unbind('mousemove.' + this.constructor.name);
+            $(document).off('mouseup.' + this.constructor.name);
+            $(document).off('mousedown.' + this.constructor.name);
+            $(document).off('mousemove.' + this.constructor.name);
         }
 
     }

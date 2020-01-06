@@ -14,6 +14,7 @@ import {ZoneContentAssignerTool} from "./tools/ZoneContentAssignerTool";
 import {TemplateMiniatorizerTool} from "./tools/TemplateMiniatorizerTool";
 import {Observer} from "./pattern/observer/Observer";
 import {TemplateToolsMenu} from "./TemplateToolsMenu";
+import {ChoiceDiv} from "./utilities/ChoiceDiv";
 
 class TemplateModule{
 
@@ -24,6 +25,7 @@ class TemplateModule{
         this.clickOnToolObserver = this.initClickOnToolObserver() ;
         this.toolsMenu          =  {};
         this.activatedTools     =  {} ;
+        this.choiceDiv = new ChoiceDiv() ;
         this.initActions()
     }
 
